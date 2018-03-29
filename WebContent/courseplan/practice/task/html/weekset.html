@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>周次设置（弹窗）</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<!DOCTYPE html>
+<body page-auth-code="CoursePlan_Practice_ClassSection_CourseUnit_Add,CoursePlan_Practice_ClassSection_TeachingFaculty_Add">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="mt20">
+				<form id="">
+					<div class="row">
+						<div class="col-xs-5 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">环节：</label> 
+								<span id="practice" class="ellipsis" style="width:220px"></span>
+							</div>
+						</div>						
+						<div class="col-xs-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">环节类别：</label> 
+								<span id="practice-style">环节类型</span>
+							</div>
+						</div>
+						<div class="col-xs-3 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">学分：</label> 
+								<span id="score">4</span>
+							</div>
+						</div>	
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">	
+						<div class="box-header pull-left" style="margin:10px 0 10px 0;">
+							<label class="checkbox-inline" style="padding:0 15px 0 0;"> 
+								<div class="checkbox-con mr10">
+									<input type="checkbox" class="checNormal" name="weeks-count">
+								</div>允许设置的实践周次数与周数不一致
+							</label>
+							<label class="checkbox-inline" style="padding:0 15px 0 0;"> 
+								<div class="checkbox-con mr10 on-check">
+									<input type="checkbox" class="checNormal" name="weeks-times" checked="checked">
+								</div>允许各班级实践周次重叠
+							</label>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">序号</th>
+												<th class="width55">年级</th>
+												<th>院系</th>
+												<th>专业</th>
+												<th>行政班级</th>
+												<th class="width45">周数</th>
+												<th class="width45">人数</th>
+												<th class="width20"><i class="text-danger">*</i>实践周次</th>
+											</tr>
+										</thead>
+										<tbody id="setWeeksContent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="error"></div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+  <tr class="tr-checkbox" classId="${classId}" linkClassWeekId="${linkClassWeekId}">  
+	    <td class="width05">${id}</td>
+	    <td class="width55">${grade}</td>    
+	    <td class="text-l" title="${departmentName}">${departmentName}</td>
+	    <td class="text-l" title="${majorName}">${majorName}</td>
+	    <td class="text-l" title="${className}">${className}</td>
+	    <td class="width45 text-r">${weekNum}</td>
+	    <td class="width45 text-r">${presetNumber}</td>
+	    <td class="width20">
+	    	<input type="text" class="form-control inp-small-120" name="practiceWeeksSet" value="${practiceWeeks}" placeholder="请输入周次">
+	    </td>
+  </tr> 
+</script> 
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/weekset", function(weekset) {
+		weekset.init();
+	});
+</script>

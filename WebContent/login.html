@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>登录</title>
+		<link href="common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="common/css/font-awesome.min.css" rel="stylesheet" /> 
+	    <link href="common/css/reset.css" rel="stylesheet"/>
+		<link href="common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="common/css/sideBar.css" rel="stylesheet"/>
+		<link href="common/css/login.css" rel="stylesheet"/>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+	</head>
+	<body id="login">
+	   <div class="backgroundimg">
+			<div class="main-login">
+				<div class="logo-con"><span class="loginlogo"></span></div>
+				<div class="login-con">
+					<div class="side-img"></div>
+					<div class="login-box">
+						<div class="form-horizontal inputList">
+						  <!-- login input -->
+						  <div class="form-group">
+						    <div class="col-sm-12">
+						      <div class="input-group-con">
+						      	<span class="fa fa-user input-addon-ico fa-lg"></span>
+						        <input type="text" class="form-control" id="username" placeholder="用户名">
+						      </div>
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <div class="col-sm-12">
+						      <div class="input-group-con">
+						      	<span class="fa fa-lock input-addon-ico fa-lg"></span>
+						        <input type="password" class="form-control" id="password" placeholder="密码">
+						      </div>
+						    </div>
+						  </div>
+						  <div class="form-group last-input-text hide">
+						    <div class="col-sm-7 " >
+						      <div class="input-group-con" >
+							      <span class="fa fa-check-circle input-addon-ico fa-lg"></span>
+							      <input type="text" class="form-control" placeholder="验证码" maxlength="4" id="verificationcode" >
+						      </div>	
+						    </div>
+						    <div class="col-sm-5 padding0">
+						      <img src='' id="verification-img" class="verification-code"/>
+						    </div>
+						  </div>
+						  <div class="marked text-danger hide"><span>用户名与密码不匹配</span></div>
+						  <div class="form-group">
+						    <div class="col-sm-12 text-center">
+						      <button class="btn btn-primary login-btn">登  录</button>
+						    </div>
+						  </div>
+						</div>
+					</div>
+				</div>
+				<div class="footer">
+					<p class="text-center margin5">深圳国泰安教育技术股份有限公司 </p>
+					<p class="text-center"> Copyright 2018 GTA All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<script src="common/js/base/bootstrap/bootstrap.min.js"></script>
+	<script src="common/js/base/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+	<!-- Seajs 模块化开发，请一定遵守 -->
+	<script src="common/js/base/seajs/2.2.0/sea.js"></script>
+	<script type="text/javascript">
+	 	seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"./udf/user/js"}});
+		seajs.use("localPath/login",function(login){
+			login.init();
+		}); 
+	</script>
+</html>

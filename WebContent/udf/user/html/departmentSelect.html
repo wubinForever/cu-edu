@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>院系选择</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../css/login.css" rel="stylesheet"/>
+  <!-- jquery版本 -->
+  <script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+  <!-- bootstrap -->
+  <script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+  <!-- Seajs 模块化开发，请一定遵守 -->
+  <script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>  
+  <!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+  <!-- 弹窗 -->
+  <script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+  <script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+  <!-- 验证 -->
+  <script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+  <script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+</head>
+
+	<body>
+			
+		<div class="pop-con">
+			 <!-- 表格区域 开始 ------>
+			<div class="sub-content">
+
+				<div class="box">
+
+				  <div class="box-body">
+						<div class="scorll-box">
+							<table class="table table-bordered table-hover">
+								<thead>
+								<tr>
+									<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" value="" class="checNormal"></div></th>
+									<th class="width48">序号</th>
+									<th>单位号</th>
+									<th>单位名称</th>
+                                    <th>单位类别</th>
+									<th>所在校区</th>
+								</tr>
+								</thead>
+								<tbody id="tbodycontent" class="departContent">
+								
+                                </tbody>
+							</table>
+					  </div>
+					</div>
+					<div id="pagination"></div>
+				</div>
+
+			</div>
+			<!-- 表格区域 结束 --- -->
+		</div>	
+	
+	<script id="departmentTableTmpl" type="text/x-jquery-tmpl">
+	<tr class="tr-checkbox" data-tt-id="${departmentId}">
+        <td class="width03">
+{{if isChecked }}
+<div class="checkbox-con on-check"><input  checked="checked"  type="checkbox" name="checNormal"  departmentId="${departmentId}" departmentName="${departmentName}" class="checNormal"></div>
+{{else}}
+<div class="checkbox-con"><input type="checkbox" name="checNormal"  departmentId="${departmentId}" departmentName="${departmentName}" class="checNormal"></div>
+{{/if}}
+</td> 
+		<td class="width48">${id}</td>
+		<td class="text-l" title="${departmentNo}">${departmentNo}</td>
+		<td class="text-l" title="${departmentName}">${departmentName}</td>
+		<td title="${departmentClass}">${departmentClass}</td>
+	    <td class="text-l" title="${campusName}">${campusName}</td>
+	</tr>
+	</script>
+	<script type="text/javascript">	
+	    seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+		seajs.use("localPath/user",function(user){
+			user.initDepartment();
+		}); 
+		seajs.use("basePath/utils/authority");
+	</script>
+	</body>
+</html>

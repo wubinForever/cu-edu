@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>成绩补录</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+<body page-auth-code="ScoreService_Entry_Add">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<div class="container-fluid">
+		<div class="header-con mb10">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"><i class="text-danger">*</i> 学号/姓名：</label>
+							<!-- <input class="form-control inp-com" name="studentNo" id="studentNo" value="" maxlength="100" /> -->
+							<input class="form-control inp-com" id="studentNoOrName" name="studentNoOrName">
+							<div id="studentSelect"></div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="query"
+					id="query">查询</button>
+		</div>
+	</div>
+	<!--提示信息-->
+	<div class="care-tips" ><p>年级：<span id="grade"></span><span class="ml20">院系：</span><span id="departmentName"></span><span class="ml20">专业：<span id="majorName"></span></span><span class="ml20">班级：<span id="className"></span></span><span class="ml20">学生：<span id="studentName"></span></span> </p>
+	</div>
+	<!-- 正式内容区域 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="clearfix">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success width-default" id="save" name="save" auth-code="ScoreService_Entry_Add_Save">保存</button>
+							<button type="button" class="btn btn-success width-default" id="auditing" name="auditing" auth-code="ScoreService_Entry_Add_Submit">送审</button>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box min1600">
+								<table class="table table-bordered table-hover">
+									<thead>
+									<tr>
+										<th class="width48">序号</th>
+										<th>修读学年学期</th>
+										<th>课程/环节</th>
+										<th class="width60">学分</th>
+										<th class="width70">考核方式</th>
+										<th class="width70">类型</th>
+										<th class="width100">取得方式</th>
+										<th>取得学年学期</th>
+										<th class="width110">分制</th>
+										<th class="width110">总评成绩</th>
+										<th class="width100">特殊情况</th>
+										<th>备注</th>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 --- -->
+	<input id="studentId" type="hidden">
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+	<tr class="tr-checkbox" academicYear="${academicYear}" semesterCode="${semesterCode}" courseId="${courseId}" originalScoreId="${originalScoreId}" auditStatus="${auditStatus}" classType="${classType}"> 
+		<td class="width48" title="${id}" >${id}</td>
+		<td title="${semester}">${semester}</td>
+		<td class="text-l" title="${courseName}" >${courseName}</td>
+		<td class="width60  text-r" title="${credit}">${credit}</td>
+		<td class="width70" title="${checkWakyName}">${checkWakyName}</td>
+		<td class="width70" title="${classTypeName}">${classTypeName}</td>
+		<td class="width100" >
+ 			<select class="form-control inp-mini"  id="scoreType${$index+1}" name="scoreType" value="${scoreType}">
+   			</select></td>
+		<td class="text-l" >
+			<select class="form-control inp-mini" id="scoreSemester${$index+1}" name="scoreSemester" value="${scoreSemester}">
+    		</select></td>
+		<td class="width110" title="${scoreRegimenId}">
+			<select class="form-control inp-mini" id="scoreRegimenId${$index+1}" name="scoreRegimenId" value="${scoreRegimenId}">
+    		</select></td>
+		<td class="width110" title="${totalScore}">
+			<input type="text" class="form-control inp-mini text-r"  name="totalScore"  maxlength="4" value="${totalScore}" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\d.]/g,'')" >
+			<select class="form-control inp-mini  text-r" id="hierarchical${$index+1}" name="hierarchical" value="${hierarchical}">
+    		</select>
+		</td>
+		<td class="width100" title="${specialCaseId}">
+			<select class="form-control inp-mini" id="specialCaseId${$index+1}" name="specialCaseId" value="${specialCaseId}">
+    		</select></td>
+		<td class="text-l" title="${remark}"><input type="text" class="form-control inp-mini text-l"  name="remark"  maxlength="50" value="${remark}"></td>
+	</tr>
+</script>
+<!-- 学年学期 -->
+<script  id="selectImpl" type="text/x-jquery-tmpl">
+<option value="${value}">${name}</option>
+</script>
+<!-- 特殊情况 -->
+<script  id="specialSelectImpl" type="text/x-jquery-tmpl">
+<option value="${specialCaseId}" score="${totalScore}">${name}</option>
+</script>
+<!-- 分制 -->
+<script  id="scoreRegimenSelectImpl" type="text/x-jquery-tmpl">
+<option value="${scoreRegimenId}" isHierarchical="${isHierarchical}">${scoreRegimenName}</option>
+</script>
+<!-- 等级 -->
+<script  id="hierarchicalSelectImpl" type="text/x-jquery-tmpl">
+<option value="${scoreRegimenDetailId}" percentileScore="${percentileScore}">${cnName}</option>
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/scoreReentry",function(scoreReentry){
+		scoreReentry.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

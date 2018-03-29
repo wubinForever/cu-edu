@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>基本信息</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+    <link href="../../../common/css/webuploader/webuploader.css" rel="stylesheet" />
+    <link href="../../studentService.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentService_StudentArchives_Information"> 
+   <form id="infoForm">
+	<div class="sub-content mt20">
+	<div class="row">
+		<div class="col-xs-12">
+		 <div class="tableBox">
+			<h3 class="school-titlle">基本信息</h3>
+			<div class="school-infoList">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				  <tbody>
+					<tr>
+						<th><label for="name">学号：</label></th>
+						<td width="210"><span class="studentNo conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="studentNo" id="studentNo" value="" maxlength="20"></div></td>
+						<th><label for="name">姓名：</label></th>
+						<td width="210"><span class="studentName conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="studentName" id="studentName" value="" maxlength="50"></div></td>
+						<th><label for="name">姓名拼音：</label></th>
+						<td width="210"><span class="nameSpell conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="nameSpell" id="nameSpell" value="" maxlength="300"></div></td>
+						<th colspan="2" rowspan="7" width="300">
+	                      <div class="avatar-upload clearfix">
+	                        <div class="avatar-photo"><img src="../../../common/images/avatar.png" id="studentImage" /></div>
+	                        <input type="hidden" id="fileId" name="fileId">
+	                        <div class="btn btn-success width-default mt10 mr10" name="ico-selpop" id="importBtn">上传照片</div>
+	                        </div>
+                        </th>
+					</tr>
+					<tr>
+						<th><label for="name">曾用名：</label></th>
+						<td width="210"><span class="usedName conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="usedName" id="usedName" value="" maxlength="50"></div></td>
+						<th><label for="name"><i class="text-danger requiretxt">*</i>性别：</label></th>
+						<td width="210"><span class="sexCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="sexCode" name="sexCode">
+						<option value="">请选择</option>
+					</select></div></td>
+						<th><label for="name">出生日期：</label></th>
+						<td class="formtext"><span class="birthday conSpan" ></span><div class="tips-text verification-info"><input id="birthday" name="birthday" type="text" class="form-control wdate valid" onclick="WdatePicker();"></div></td>
+					</tr>
+                    <tr>
+						<th><label for="name">政治面貌：</label></th>
+						<td width="210"><span class="politicalStatusCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="politicalStatusCode" name="politicalStatusCode"></select></div></td>
+						<th><label>出生地：</label></th>
+						<td colspan="3"><span class="birthProvinceCode conSpan" ></span>
+						 <div class="tips-text verification-info">
+						   <select class="form-control sel-mall" id="birthProvinceCode" name="birthProvinceCode"></select>
+					       <select class="form-control sel-mall" id="birthCityCode" name="birthCityCode"></select>
+					       <select class="form-control sel-mall" id="birthAreaCode" name="birthAreaCode"></select>
+					     </div>
+					   </td>
+				    </tr>
+                    <tr>
+						<th><label for="name">籍贯：</label></th>
+						<td width="210"><span class="nativePlace conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="nativePlace" id="nativePlace" value="" maxlength="20"></div></td>
+						<th><label for="name"><i class="text-danger requiretxt">*</i>民族：</label></th>
+						<td width="210"><span class="nationCode  conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="nationCode" name="nationCode"></select></div></td>
+						<th><label for="name">国籍：</label></th>
+						<td width="210"><span class="nationalityCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="nationalityCode" name="nationalityCode"></select></div></td>
+                    </tr>
+                    <tr>
+						<th><label for="name">身份证件类型：</label></th>
+						<td width="210"><span class="idCardTypeCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="idCardTypeCode" name="idCardTypeCode"></select></div></td>
+						<th><label for="name">身份证件号：</label></th>
+						<td width="210"><span class="idCard conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="idCard" id="idCard" value="" maxlength="20"></div></td>
+						<th><label for="name">港澳台侨胞：</label></th>
+						<td width="210"><span class="overseasChineseCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="overseasChineseCode" name="overseasChineseCode"></select></div></td>
+					</tr>
+					<tr>
+						
+						<th><label for="name">信仰宗教：</label></th>
+						<td width="210"><span class="faithCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="faithCode" name="faithCode"></select></div></td>
+						<th><label for="name">健康状况：</label></th>
+						<td width="210"><span class="healthCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="healthCode" name="healthCode"></select></div></td>
+						<th><label for="name">血型：</label></th>
+						<td width="210"><span class="bloodTypeCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="bloodTypeCode" name="bloodTypeCode"></select></div></td>
+                    </tr>
+					<tr>
+						<th><label for="name">QQ号码：</label></th>
+						<td width="210"><span class="qq conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="qq" id="qq" value="" maxlength="15"></div></td>
+						<th><label for="name">微信号码：</label></th>
+						<td width="210"><span class="wechat conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="wechat" id="wechat" value="" maxlength="20"></div></td>
+						<th><label for="name">手机号码：</label></th>
+						<td width="210"><span class="mobilePhone conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="mobilePhone" id="mobilePhone" value=""></div></td>
+					</tr>
+                    <tr>
+                        <th><label for="name">联系人：</label></th>
+                        <td width="210"><span class="contactPerson conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="contactPerson" id="contactPerson" value="" maxlength="50"></div></td>
+                        <th><label for="name">联系人电话：</label></th>
+                        <td width="210"><span class="contactPhone  conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="contactPhone" id="contactPhone" value="" maxlength="50"></div></td>
+                        <th><label for="name">邮政编码：</label></th>
+                        <td width="210"><span class="postalCode conSpan"  ></span><div class="tips-text verification-info"><input class="form-control" name="postalCode" id="postalCode" value="" maxlength="6"></div></td>
+						
+					</tr>
+                    <tr>
+                        <th><label for="name">电子邮箱：</label></th>
+                        <td width="210"><span class="email conSpan"  ></span><div class="tips-text verification-info"><input class="form-control" name="email" id="email" value="" maxlength="30"></div></td>
+                        <th><label for="name">联系地址：</label></th>
+                        <td colspan="5"><span class="address conSpan"  ></span><div class="tips-text verification-info"><input class="form-control" name="address" id="address" value="" maxlength="100"></div></td>
+                    </tr>
+                    <tr>
+						<th><label>考生特征：</label></th>
+						<td colspan="7" class="relative"><span class="candidateFeature conSpan" ></span><div class="tips-text verification-info"><textarea class="form-control" rows="3" cols="" id="candidateFeature" name="candidateFeature" maxlength="100"></textarea>
+					     <span id="candidateFeatureCount" class="textarea-length">0/100</span></div>
+					    </td>
+					</tr>
+				
+					<tr><td colspan="8"><div class=" school-titlle mt10">学籍信息</div></td></tr>
+					<tr>
+						<th><label for="name">入学日期：</label></th>
+						<td class=" formtext" width="210"><span class="entranceDate conSpan" ></span><div class="tips-text verification-info"><input id="entranceDate" name="entranceDate" type="text" class="form-control wdate valid" onclick="WdatePicker();"></div></td>
+						<th><label for="name">招生季节：</label></th>
+						<td width="210"><span class="enrollSeasonCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="enrollSeasonCode" name="enrollSeasonCode conSpan"></select></div></td>
+						<th><label for="name">入学方式：</label></th>
+						<td width="210"><span class="entranceWayCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="entranceWayCode" name="entranceWayCode"></select></div></td>
+						<th><label for="name">学生类别：</label></th>
+						<td width="210"><span class="studentCategoryCode" ></span><div class="tips-text verification-info"><select class="form-control" id="studentCategoryCode" name="studentCategoryCode"></select></div></td>
+					</tr>
+					<tr>
+						<th><label for="name">考生号：</label></th>
+						<td class=" formtext"><span class="candidateNo  conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="candidateNo" id="candidateNo" value="" maxlength="20"></div></td>
+					    <th><label for="name">院系：</label></th>
+						<td><span class="departmentId  conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="departmentId" name="departmentId"></select></div></td>
+						<th><label for="name">专业：</label></th>
+						<td><span class="majorId  conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="majorId" name="majorId"></select></div></td>
+						<th><label for="name">班级：</label></th>
+						<td><span class="classId  conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="classId" name="classId"></select></div></td>
+					</tr>
+					<tr>
+						<th><label for="name">当前年级：</label></th>
+						<td class=" formtext"><span class="grade conSpan" ></span><div class="tips-text verification-info"></div></td>
+						<th><label for="name">培养层次：</label></th>
+                        <td class=" formtext"><span class="trainingLevelName conSpan" ></span><div class="tips-text verification-info"><select class="form-control"  name="trainingLevelName" id="trainingLevelName"></select></div></td>
+                        <th><label for="name">学制：</label></th>
+                        <td class=" formtext"><span class="educationSystem conSpan" ></span><div class="tips-text verification-info"><input class="form-control" name="educationSystem" id="educationSystem"></div></td>
+                        <th><label for="name">学生当前状态：</label></th>
+                        <td><span class="currentStatusCode  conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="currentStatusCode" name="currentStatusCode"></select></div></td>
+					</tr>
+                    <tr>
+						<th><label for="name">入学成绩：</label></th>
+						<td class="formtext"><span class="entranceScore conSpan"  ></span><div class="tips-text verification-info"><input class="form-control" name="entranceScore" id="entranceScore" value=""></div></td>
+						<th><label for="name">外语语种：</label></th>
+                        <td><span class="foreignLanguageCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="foreignLanguageCode" name="foreignLanguageCode"></select></div></td>
+					</tr>
+					<tr>
+						<td colspan="8"><div class=" school-titlle mt10">其他信息</div></th>
+						
+					</tr>
+					<tr>
+                            <th><label for="name">学生来源：</label></th>
+                            <td ><span class="studentOriginCode conSpan" ></span><div class="tips-text verification-info"><select class="form-control" id="studentOriginCode" name="studentOriginCode"></select></div></td>
+                            <th><label>生源地区：</label></th>
+                            <td colspan="5"  class=" formtext"><span class="fromProvinceCode conSpan"></span><div class="tips-text verification-info">
+                            <select class="form-control sel-mall" id="fromProvinceCode" name="fromProvinceCode"></select>
+                            <select class="form-control sel-mall" id="fromCityCode" name="fromCityCode"></select>
+                            <select class="form-control sel-mall" id="fromAreaCode" name="fromAreaCode"></select></div></td>
+               
+						</tr>
+                        <tr>
+							<th><label>备注：</label></th>
+							<td colspan="7" class="relative"><span class="remark conSpan" ></span><div class="tips-text verification-info"><textarea class="form-control" rows="3" cols="" id="remark" name="remark" maxlength="100"></textarea>
+							<span id="remarkCount" class="textarea-length">0/100</span></div></td>
+				    	</tr>
+						  </tbody>
+						</table>
+					</div>
+                    
+					<div class="text-center mb20"> 
+		              <button type="button" id="modifyButton" class="btn btn-success width-default" auth-code="StudentService_StudentArchives_Information_Update">修改</button>
+		              <button type="button" id="saveButton" class="btn btn-success width-default">保存</button>
+		            </div>
+				</div>				
+			</div>
+		</div>
+	  </div>
+    </form>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+    <!-- 图片上传 -->
+    <script src="../../../common/js/base/webuploader/webuploader.js"></script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+
+		seajs.use("localPath/studentInformation", function(studentInformation) {
+			studentInformation.init();
+		});
+
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

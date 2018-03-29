@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>关于</title>
+    <style>
+    * {
+            margin: 0;
+            padding: 0;
+            box-sizing:boder-box;
+        }
+        html,body {
+            width: 100%;
+            height: 100%;
+        }
+        #container {
+            background: none repeat scroll 0 0 #FFFFFF;
+            border: 1px solid #B0D6F4;
+            height: 375px;
+            left: 50%;
+            margin: -188px 0 0 -335px;
+            position: absolute;
+            top: 50%;
+            width: 680px;
+        }
+        #info {
+            height: 48px;
+            background: none repeat scroll 0 0 #4DA9EB;
+            color: #FFFFFF;
+            font: 20px/48px Microsoft YaHei;
+            margin-bottom: 70px;
+            text-align: center;
+        }
+        #content {
+            width: 510px;
+            margin:0 auto;
+        }
+        p {
+            font-size:14px;
+            margin-bottom:15px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+        p span {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    <p id="info">授权信息</p>
+	<div id="content">
+    <p>产品码: <span id="productCode"></span></p>
+    <p>申请码: <span id="registerCode"></span></p>
+    <p>授权码: <span id="grantCode"></span></p> 
+    <p>授权开始日期: <span id="start"></span></p>
+    <p>授权结束日期: <span id="end"></span></p>
+</div></div>
+</body> 
+<!-- jquery版本 -->
+<script src="../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../common/js","localPath":"../js"}});
+	seajs.use("localPath/register",function(register){
+		register.initAbout();
+	});
+</script>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>异动处理</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+    <link href="../../../common/css/ztree/zTreeStyle.css" rel="stylesheet" />
+    <link href="../css/alienChange.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentArchives_AlienChange_ApplyDeal_Deal">
+<form id="addForm">
+    <input type="hidden" name="recordId" value=""/>
+    <input type="hidden" name="userId" value=""/>
+    <input type="hidden" name="academicYear" value=""/>
+    <input type="hidden" name="semesterCode" value=""/>
+    <input type="hidden" name="afterSchoolStatusCode" value=""/>
+    <input type="hidden" name="afterCurrentStatusCode" value=""/>
+    <input type="hidden" name="afterArchievesStatusCode" value=""/>
+    <input type="hidden" name="beforeGrade" value=""/>
+    <input type="hidden" name="afterTrainingLevelCode" id="afterTrainingLevelCode" value=""/>    
+	<div class="pop-con box900">
+		<div class="container-fluid ">
+			<div class="row">
+				<div class="pop-title">学生基本信息</span></div>
+			<div class="header-con clearfix deal">
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">学号：</label>
+						<div class=" inline-block" name="studentNo"></div>
+					</div>
+				</div>
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">姓名：</label>
+						<div class=" inline-block w220 ellipsis" name="studentName"></div>
+					</div>
+				</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">性别：</label>
+							<div class=" inline-block" name="sexCodeName"></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">申请日期：</label>
+							<div class=" inline-block" name="applyDate" id="applyDate"></div>
+						</div>
+					</div>
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">异动来源：</label>
+								<div class=" inline-block" name=dataSourceCodeName></div>
+							</div>
+						</div>
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">备注：</label>
+								<div class=" inline-block w220 ellipsis" name="remark" title=""></div>
+							</div>
+						</div>
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name"> 异动类别：</label>
+						<select class="form-control sel-com" id="alienChangeCategoryCode" name="alienChangeCategoryCode" disabled>							
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name"> 异动原因：</label>
+						<div class="toggle-tree-con vertical-align-mid drop-down-normal">
+							<div class="w220">
+								<input class="form-control inp-com toggle-tree" id="alienChangeReasonCodeName"
+									name="alienChangeReasonCodeName" type="text" readonly="readonly" value="--请选择--" /> 
+									<input type="hidden" id="alienChangeReasonCode" name="alienChangeReasonCode" value="" />
+							</div>
+							<ul id="alienChangeReasonCodeTree" class="ztree input-tree toggle-ui-up"></ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			</div>
+		</div>
+
+		<!--表格区域-->
+		<div class="col-xs-12 mt10 clearfix">
+		<div class="row">
+			<div class="blue-titlle">学生异动信息</span></div>
+		<div class="box-body">
+			<div class="">
+				<div class="table-box">
+					<table class="table table-bordered ">
+						<thead>
+						<tr>
+							<th class="alcwidth10"></th>
+							<th class="alcwidth45">异动前信息</th>
+							<th class="alcwidth45">异动后信息</th>
+						</tr>
+						</thead>
+						<tbody id="tbodycontent">
+						<tr>
+							<td>年级</td>
+							<td class="whspace"><div name="beforeGrade"></div></td>
+							<td class="verification">
+				            <div class="tips-text verification-info text-left">
+							<select class="form-control sel-com" id="afterGrade" name="afterGrade">
+								<option value="">--请选择--</option>
+							</select>
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td>院系</td>
+							<td class="whspace"><div name="beforeDepartmentName"></div></td>
+							<td class="verification">
+				            <div class="tips-text verification-info text-left">
+				            <select class="form-control sel-com" id="afterDepartmentId" name="afterDepartmentId">
+								<option value="">--请选择--</option>
+							</select>
+							</div>
+							</td>
+						</tr>
+						<tr>
+							<td>专业</td>
+							<td class="whspace"><div name="beforeMajorName"></div></td>
+							<td class="verification">
+				            <div class="tips-text verification-info text-left">
+				            <select class="form-control sel-com" id="afterMajorId" name="afterMajorId">
+							<option value="">--请选择--</option>
+						    </select>
+						    </div>
+						</td>
+						</tr>
+						<tr>
+							<td>班级</td>
+							<td class="whspace"><div name="beforeClassName"></div></td>
+							<td class="verification">
+				            <div class="tips-text verification-info text-left">
+				            <select class="form-control sel-com" id="afterClassId" name="afterClassId">
+							<option value="">--请选择--</option>
+						    </select>
+						    </div>
+						    </td>
+						</tr>
+						<tr>
+							<td>学制</td>
+							<td class="whspace"><div name="beforeEducationSys"></div></td>
+							<td><div id="afterEducationSys" name="afterEducationSys"></div></td>
+						</tr>
+						<tr>
+							<td>培养层次</td>
+							<td class="whspace"><div name="beforeTrainingLevelName"></div></td>
+							<td><div id="afterTrainingLevelName" name="afterTrainingLevelName"></div></td>
+						</tr>
+						<tr>
+							<td>在校状态</td>
+							<td class="whspace"><div name="beforeSchoolStatusCodeName"></div></td>
+							<td><div name="afterSchoolStatusCodeName"></div></td>
+						</tr>
+						<tr>
+							<td>学籍状态</td>
+							<td class="whspace"><div name="beforeArchievesStatusCodeName"></div></td>
+							<td><div name="afterArchievesStatusCodeName"></div></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		<!--异动处理-->
+		<div class="container-fluid ">
+			<div class="row">
+				<div class="pop-title mt20">异动处理</span></div>
+				<div class="header-con clearfix">
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name"><i class="text-danger">*</i> 异动文号：</label>
+							<div class="tips-text verification-info">
+							<input class="form-control inp-com" id="documentSymbol" name="documentSymbol" placeholder="" maxlength="50"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">发文日期：</label>
+							<input id="issueDate" name="issueDate" type="text" class="form-control inp-com wdate"/>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name"><i class="text-danger">*</i> 异动日期：</label>
+							<div class="tips-text verification-info">
+							<input id="alienChangeDate" name="alienChangeDate" type="text" class="form-control inp-com wdate"/>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name"><i class="text-danger">*</i> 处理结果：</label>
+							<label class="radio-inline on-radio">
+								<div class="radio-con"><input type="radio" name="dealStatus" value="1" checked></div>通过
+							</label>
+							<label class="radio-inline">
+								<div class="radio-con"><input type="radio" name="dealStatus" value="0"></div>不通过
+							</label>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 树结构 -->
+<script src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/alienChange", function(alienChange) {
+		alienChange.initDealRegister();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

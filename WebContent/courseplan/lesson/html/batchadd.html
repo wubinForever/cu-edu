@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>批量调停课新增-调课</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+
+<body page-auth-code="CoursePlan_Lesson_Batch_Add">
+	<form id="addWorkForm">
+		<div class="pop-con">
+		    <input type="hidden" id="level" name="level">
+			<div class="form-group form-inline formtext">
+				<label for="name">学年学期：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="semester" name="semester"> </select>
+				</div>
+				<label for="name">类型：</label>
+				<label class="radio-inline on-radio rangebutton">
+					<div class="radio-con"><input type="radio" name="weekStartDay" value="4" checked></div> 调课
+				</label>
+				<label class="radio-inlin stopbutton" style="width:100px;">
+					<div class="radio-con"><input type="radio" name="weekStartDay" value="3" ></div> 停课
+				</label>
+			</div>			
+			<div class="rangebox">
+				<div class="form-group form-inline formtext">
+					<label for="name"><i class="text-danger">*</i>调前周次：</label>
+					<div class="tips-text verification-info">
+						<input type="text" class="form-control inp-com" id="beforeWeek" name="beforeWeek" maxlength="20">
+					</div>
+					<label for="name"><i class="text-danger">*</i>调前星期：</label>
+					<div class="s-dutyform">
+						<input class="form-control toggle-tree" id="beforeWeekOfDay" name="beforeWeekOfDay" readonly="readonly">
+						<div class="s-mult form-control multiSelect" id="beforeWeekOfDay-list">
+						</div>
+					</div>
+				</div>
+				<div class="form-group form-inline formtext">
+					<label for="name"><i class="text-danger">*</i>调后周次：</label>
+					<div class="tips-text verification-info">
+						<input type="text" class="form-control inp-com" id="afterWeek" name="afterWeek" maxlength="50">
+					</div>
+					<label for="name"><i class="text-danger">*</i>调后星期：</label>
+					<div class="s-dutyform">
+						<input class="form-control toggle-tree" id="afterWeekOfDay" name="afterWeekOfDay" readonly="readonly">
+						<div class="s-mult form-control multiSelect" id="afterWeekOfDay-list">
+						</div>
+					</div>
+				</div>			
+				<div class="form-group form-inline formtext">
+					<label for="name"><i class="text-danger">*</i>调课原因：</label>
+					<div class="tips-text verification-info">
+						<textarea class="form-control tarea-com-long" rows="3" id=rangeRemark name="rangeRemark"></textarea>
+						<span id="rangeRemarkCount" class="textarea-length"></span>
+					</div>
+				</div>
+			</div>
+			<div class="stopbox" style="display: none;">
+				<div class="form-group form-inline formtext">
+					<label for="name"><i class="text-danger">*</i>停课周次：</label>
+					<div class="tips-text verification-info">
+						<input type="text" class="form-control inp-com" id="stopWeek" name="stopWeek" maxlength="50">
+					</div>
+					<label for="name"><i class="text-danger">*</i>停课星期：</label>
+					<div class="s-dutyform">
+						<input class="form-control toggle-tree" id="stopWeekOfDay" name="stopWeekOfDay" readonly="readonly">
+						<div class="s-mult form-control multiSelect" id="stopWeekOfDay-list">
+						</div>
+					</div>
+				</div>			
+				<div class="form-group form-inline formtext">
+					<label for="name"><i class="text-danger">*</i>停课原因：</label>
+					<div class="tips-text verification-info">
+						<textarea class="form-control tarea-com-long" rows="3" id="stopRemark" name="stopRemark"></textarea>
+						<span id="stopRemarkCount" class="textarea-length"></span>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</body>
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/utils/limit.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/batchadd", function(batchadd) {
+		batchadd.init();
+	});
+</script>
+</html>

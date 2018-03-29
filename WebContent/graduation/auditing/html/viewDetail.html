@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<title>查看别业审核详情</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="../../../common/css/reset.css" rel="stylesheet" />
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+		<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+		<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+		<link href="../../../common/css/popup.css" rel="stylesheet" />
+		<link href="../../../common/css/skins.css" rel="stylesheet" />
+		<!--日期样式-->
+		<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+		<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+	</head>
+	<body page-auth-code="Graduation_Audit_Detail">
+		<div class="pop-con">
+			<div class="box">
+				<div class="box-header row" style="border-bottom:1px solid #C6C6C6;">
+					<div class="col-xs-4 form-inline form-inp-con">
+						<div class="form-group form-normal">
+							<label for="name">年级：</label> 
+							<span id="grade"></span>
+						</div>
+					</div>
+					<div class="col-xs-4 form-inline form-inp-con">
+						<div class="form-group form-normal">
+							<label for="name">专业：</label> 
+							<span id="majorName"></span>
+						</div>
+					</div>
+					<div class="col-xs-4 form-inline form-inp-con">
+						<div class="form-group form-normal">
+							<label for="name">学生：</label> 
+							<span id="studentName"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<p style="font-size: 16px;color: #095f7f;margin-bottom:10px;">毕业学分要求</p>
+					</div>
+				</div>
+				<!-- table begin -->
+				<div class="box-body">
+						<div class="table-box">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>类别</th>
+										<th>毕业学分要求</th>
+										<th>取得学分</th>
+									</tr>
+								</thead>
+								<tbody id="tcreditbodycontent">
+									<!--<tr>
+									    <td>是地方是否</td>
+									    <td>为24234</td>
+									    <td>逸夫楼：27</td>
+									</tr>
+									<tr>
+									    <td>是地方是否</td>
+									    <td>为24234</td>
+									    <td>逸夫楼：27</td>								    
+									</tr>
+									<tr>
+									    <td>是地方是否</td>
+									    <td>为24234</td>
+									    <td>逸夫楼：27</td>
+									</tr>-->
+								</tbody>
+							</table>
+						</div>
+				</div>	
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<p style="font-size: 16px;color: #095f7f;margin-bottom:10px;">毕业课程要求</p>
+					</div>
+				</div>
+				<!-- table begin -->
+				<div class="box-body">
+					<div class="scorll-box">
+						<div class="table-box">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th width="50">学年</th>
+										<th width="50">学期</th>
+										<th>课程号</th>
+										<th width="150">课程</th>
+										<th>课程类别</th>
+										<th>学分</th>
+										<th>取得学分</th>
+										<th>要求成绩</th>
+										<th>有效成绩</th>
+									</tr>
+								</thead>
+								<tbody id="courseScoretbodycontent">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>					
+			</div>
+		</div>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->	
+<script id="creditBodyContentImpl" type="text/x-jquery-tmpl">
+	{{if gotCredit < requireCredit}}
+		<tr class="text-danger">
+	{{else}}
+		<tr>
+	{{/if}}
+	    <td title="${creditTypeName}">${creditTypeName}</td> 
+	    <td class="typeCreditPlan" title="${requireCredit}">${requireCredit}</td>
+	    <td class="typeCreditOpen" title="${gotCredit}">${gotCredit}</td>
+	</tr>
+</script>
+<script id="creditTotalBodyContentImpl" type="text/x-jquery-tmpl">
+	{{if gotCredit < requireCredit}}
+		<tr class="text-danger">
+	{{else}}
+		<tr>
+	{{/if}}
+	    <td title="总学分">总学分</td> 
+	    <td class="typeCreditPlanTotal" title="${requireCredit}">${requireCredit}</td>
+	    <td class="typeCreditOpenTotal" title="${gotCredit}">${gotCredit}</td>
+	</tr>
+</script>
+<script id="courseScoreBodyContentImpl" type="text/x-jquery-tmpl">
+	{{if isRed == true}}
+		<tr class="text-danger">
+	{{else}}
+		<tr>
+	{{/if}}
+		<td width="50" title="${semesterCode}">${academicYear}</td>
+	    <td width="50" title="${semesterCode}">${semesterCode}</td>
+	    <td title="${courseNo}">${courseNo}</td>
+	    <td width="150" title="${courseName}">${courseName}</td>
+	    <td title="${creditTypeName}">${creditTypeName}</td>
+	    <td title="${credit}">${credit}</td>
+	    <td title="${creditGot}">${creditGot}</td>
+	    <td title="${scoreRequireStr}">${scoreRequireStr}</td>
+	    <td title="${finalPercentageScoreName}">${finalPercentageScoreName}</td>
+	</tr>
+</script>
+
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/viewDetail", function(viewDetail) {
+		viewDetail.init();
+	});
+</script>

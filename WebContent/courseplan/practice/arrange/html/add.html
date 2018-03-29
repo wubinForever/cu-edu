@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>小组新增</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<style>
+	.arrange-add .form-inline .form-control.sel-com, .arrange-add .form-inline .form-control.inp-com {
+	    width: 215px;
+	}
+</style>
+</head>
+
+<body page-auth-code="CoursePlan_PracticeArrange_Arrange_Add">
+	<form id="groupForm">
+		<input type="text" class="form-control inp-com" id="schoolId"
+			   name="schoolId" style="display: none;">
+		<div class="sub-content arrange-add">
+			<div class="row">
+				<div class="col-xs-12">
+					<div  class="school-infoList" >
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tbody>
+							<tr>
+								<th class="width100"><label for="name"><i class="text-danger">*</i>学年学期：</label></th>
+								<td>
+									<div class="tips-text verification-info form-inline">
+										<select class="form-control sel-com" id="semester" name="semester"></select>
+									</div>
+								</td>
+								<th class="width100"><label for="name"><i class="text-danger">*</i>年级：</label></th>
+								<td>
+									<div class="tips-text verification-info form-inline">
+										<select class="form-control sel-com" id="grade" name="grade"></select>
+									</div>
+								</td>
+								<th class="width100"><label for="name"><i class="text-danger">*</i>院系：</label></th>
+								<td>
+									<div class="tips-text verification-info form-inline">
+										<select class="form-control sel-com" id="departmentId" name="departmentId">									
+										</select>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="width100"><label for="name"><i class="text-danger">*</i>专业：</label></th>
+								<td>
+									<div class="tips-text verification-info form-inline">
+										<select class="form-control sel-com" id="majorId" name="majorId">									
+										</select>
+									</div>
+								</td>
+								<th class="width100"><label for="name"><i class="text-danger">*</i>环节：</label></th>
+								<td>
+									<div class="tips-text verification-info form-inline">
+										<select class="form-control sel-com" id="courseNoName" name="courseNoName">
+										</select>
+									</div>
+								</td>
+								<th class="width100"><label for="name"><i class="text-danger">*</i>环节类别：</label></th>
+								<td>
+									<label id="courseType" name="courseType" class="tips-text" practiceID = "" styleId = "">
+									</label>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+					<h3 class=" school-titlle">小组信息</h3>
+					<div  class="school-infoList" >
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+							<tbody>
+							<tr>
+								<th class="width100"><label for="name"><i class="text-danger">*</i>小组号：</label></th>
+								<td>
+									<div class="tips-text verification-info form-inline">
+										<select class="form-control sel-com" id="teamNo" name="teamNo">	
+										</select>
+									</div>
+								</td>
+								<th class="width100"><label for="name">指导教师：</label></th>
+								<td>
+									<div class="s-dutyform">
+										<input class="form-control toggle-tree width170" id="teachers" name="teachers" title="" readonly="readonly">
+										<div class="s-mult form-control multiSelect" id="teacher-list">
+										</div>
+									</div>
+								</td>
+								<th class="width100" name="subjectCon1"><label for="name">题目：</label></th>
+								<td name="subjectCon1">
+									<div class="tips-text verification-info form-inline">
+										<input class="form-control inp-com" name="subject" id="subject" value="" maxlength="20"/>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th class="width100" name="subjectCon2"><label for="name">题目内容：</label></th>
+								<td name="subjectCon2" colspan="5">
+									<div class="tips-text verification-info">
+										<textarea class="form-control" id="subjectContent" rows="3" cols="" id="history" name="subjectContent" maxlength="500"></textarea>
+									</div>
+								</td>
+							</tr>
+							</tbody>
+						</table>
+					</div>					
+				    <h3 class=" school-titlle">小组成员</h3>
+				    <div class="box">
+						<div class="box-header pull-left"><i class="text-danger">*</i>成员列表：已添加成员<span name="stuNumber" class="text-danger">0</span>人</div>
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="studentAdd">添加</button>
+							<button type="button" class="btn btn-danger" name="deletGroup">删除</button>
+						</div>
+						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">
+													<div class="checkbox-con">
+														<input type="checkbox" id="check-all" class="checNormal">
+													</div>
+												</th>
+												<th class="width05">序号</div></th>
+												<th>班级</th>
+												<th class="width75">实践周次</th>
+												<th>学号</th>
+												<th>姓名</th>
+												<th class="width48">性别</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent" class="no-data-html mh200">
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div id="pagination" class="pagination"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+	
+		</div>
+	</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+  <tr class="tr-checkbox" studentId=${studentId}> 
+  	<td class="width05">
+			<div class="checkbox-con">
+				<input type="checkbox" name="checNormal">
+			</div>
+		</th>
+  	<td class="width05">${$index+1}</td>
+    <td classId=${classId} title=${className}>${className}</td>    
+    <td class="width75 text-r" title=${practiceWeeks}>${practiceWeeks}</td>
+    <td title=${studentNo}>${studentNo}</td>
+    <td title=${studentName}>${studentName}</td>
+    <td class="width48" title=${sexName}>${sexName}</td>
+  </tr> 
+</script> 
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/addTeam", function(addTeam) {
+		addTeam.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>开课计划修改申请</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+
+<body>
+<form id="addForm" onkeydown="if(event.keyCode==13)return false;">
+	<div class="pop-con box900">
+		<div class="form-group form-inline formtext mt30">
+			<label for="name">学年学期：</label>
+			<select class="form-control inp-com" disabled id="semester" name="semester">
+			</select>
+			<label for="name">年级：</label>
+			<select class="form-control inp-com" disabled name="grade" id="grade">
+			</select>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">院系：</label>
+			<select class="form-control inp-com" disabled name="departmentId" id="departmentId">
+			</select>
+			<label for="name">专业：</label>
+			<select class="form-control inp-com" disabled name="majorId" id="majorId">
+			</select>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">开课单位：</label>
+			<select class="form-control inp-com" disabled name="startUnit" id="startUnit">
+			</select>
+			<label for="name">课程号：</label>
+			<input type="text" class="form-control inp-com" disabled  name="courseNo" id="courseNo">
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">课程名称：</label>
+			<input type="text" class="form-control inp-com" disabled name="courseName" id="courseName">
+			<label for="name">英文名称：</label>
+			<input type="text" class="form-control inp-com" disabled name="englishName" id="englishName">
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">学分：</label>
+			<input type="text"  class="form-control inp-com" disabled name="credit" id="credit" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+
+		</div>
+		<h3 class=" school-titlle">原有数据</h3>
+		<div class="form-group form-inline formtext">
+			<label for="name">总学时：</label>
+			<input type="text"  class="form-control inp-com" disabled name="totalPeriod" id="totalPeriod" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">理论学时：</label>
+			<input type="text"   class="form-control inp-com" disabled name="theoryPeriod" id="theoryPeriod" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+			<label for="name">实验学时：</label>
+			<input type="text"  class="form-control inp-com" disabled name="experiPeriod" id="experiPeriod" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">实践学时：</label>
+			<input type="text" class="form-control inp-com" disabled name="practicePeriod" id="practicePeriod" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+			<label for="name">其他学时：</label>
+			<input type="text" class="form-control inp-com" disabled name="otherPeriod" id="otherPeriod" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">周学时：</label>
+			<input type="text"  class="form-control inp-com" disabled name="weekPeriod" id="weekPeriod" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+			<label for="name">考核方式：</label>
+			<select class="form-control inp-com" disabled name="checkWayCode" id="checkWayCode">
+			</select>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">课程类别：</label>
+			<select class="form-control inp-com" disabled name="courseTypeCode" id="courseTypeCode">
+			</select>
+			<label for="name">课程属性：</label>
+			<select class="form-control inp-com" disabled name="courseAttributeCode" id="courseAttributeCode">
+			</select>
+		</div>
+		<h3 class=" school-titlle">变更数据</h3>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i> 总学时：</label>
+			<input type="text" class="form-control inp-com" disabled  name="totalPeriod2" id="totalPeriod2" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">理论学时：</label>
+			<div class="input-group spinner num2">
+			<input type="text" class="form-control" name="theoryPeriod2"  id="theoryPeriod2" maxlength="2" min="0" max="99" myattr='period' >
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-up mybutton"></i></button>
+				<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-down mybutton"></i></button>
+				</div>
+			</div>
+			<!-- <input type="text" class="form-control inp-com" name="theoryPeriod2" myattr='period' id="theoryPeriod2" maxlength="2" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')"> -->
+			<label for="name">实验学时：</label>
+			<div class="input-group spinner num2">
+			<input type="text" class="form-control" name="experiPeriod2"  id="experiPeriod2" maxlength="2" min="0" max="99" myattr='period' >
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-up mybutton"></i></button>
+				<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-down mybutton"></i></button>
+				</div>
+			</div>
+			<!-- <input type="text" class="form-control inp-com" name="experiPeriod2" myattr='period' id="experiPeriod2" maxlength="2" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')"> -->
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">实践学时：</label>
+			<div class="input-group spinner num2">
+			<input type="text" class="form-control" name="practicePeriod2"  id="practicePeriod2" maxlength="2" min="0" max="99" myattr='period' >
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-up mybutton"></i></button>
+				<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-down mybutton"></i></button>
+				</div>
+			</div>
+			<!-- <input type="text" class="form-control inp-com" name="practicePeriod2" myattr='period' id="practicePeriod2" maxlength="2" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')"> -->
+			<label for="name">其他学时：</label>
+			<div class="input-group spinner num2">
+			<input type="text" class="form-control" name="otherPeriod2"  id="otherPeriod2" maxlength="2" min="0" max="99" myattr='period' >
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-up mybutton"></i></button>
+				<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-down mybutton"></i></button>
+				</div>
+			</div>
+			<!-- <input type="text" class="form-control inp-com" name="otherPeriod2" myattr='period' id="otherPeriod2" maxlength="2" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')"> -->
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">周学时：</label>
+			<!-- <input type="text" class="form-control inp-com" name="weekPeriod2"  id="weekPeriod2" maxlength="2" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')"> -->
+			<div class="input-group spinner num2">
+			<input type="text" class="form-control" name="weekPeriod2"  id="weekPeriod2" maxlength="2" min="0" max="99">
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-up"></i></button>
+				<button class="btn btn-default mybutton" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+			<label for="name">考核方式：</label>
+			<select class="form-control inp-com" name="checkWayCode2" id="checkWayCode2">
+			</select>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">课程类别：</label>
+			<select class="form-control inp-com" name="courseTypeCode2" id="courseTypeCode2">
+			</select>
+			<label for="name">课程属性：</label>
+			<select class="form-control inp-com" name="courseAttributeCode2" id="courseAttributeCode2">
+			</select>
+		</div>
+	</div>
+</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/editApply",function(editApply){
+		editApply.innitUpdate();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

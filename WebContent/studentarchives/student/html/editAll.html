@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>批量修改学生信息</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/webuploader/webuploader.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../css/student.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+<body>
+	<form id="addStudentForm">
+		<div class="pop-con box900">
+			<div class="row">
+				<div class="col-xs-12">
+					<div  class="school-infoList" >
+					<table width="100%" border="0"cellspacing="0" cellpadding="0">
+						<tbody>
+						<tr>
+						  <th><label for="name">性别：</label></th>
+						  <td width="300"><select class="form-control sel-com" id="sexCode" name="sexCode">
+						    <option value="">--请选择--</option>
+						    </select></td>
+						  <th><label for="name">政治面貌：</label></th>
+						  <td><select class="form-control sel-com" id="politicalStatusCode" name="politicalStatusCode">
+						    <option value="">--请选择--</option>
+						    </select></td>
+						  </tr>
+                        <tr>
+                          <th><label for="name">民族：</label></th>
+                          <td><select class="form-control sel-com" id="nationCode" name="nationCode">
+                            <option value="">--请选择--</option>
+                          </select></td>
+                          <th><label for="name">国籍：</label></th>
+                          <td><select class="form-control sel-com" id="nationalityCode" name="nationalityCode">
+                            <option value="">--请选择--</option>
+                          </select></td>
+                          </tr>
+                        <tr>
+                          <th><label for="name">港澳台侨胞：</label></th>
+                          <td><select class="form-control sel-com" id="overseasChineseCode" name="overseasChineseCode">
+                            <option value="">--请选择--</option>
+                          </select></td>
+                          <th><label for="name">信仰宗教：</label></th>
+                          <td><select class="form-control sel-com" id="faithCode" name="faithCode">
+                            <option value="">--请选择--</option>
+                          </select></td>
+						  </tr>
+						
+						<tr>
+						  <th><label for="name">血型：</label></th>
+						  <td><select class="form-control sel-com" id="bloodTypeCode" name="bloodTypeCode">
+						    <option value="">--请选择--</option>
+						    </select></td>
+						  <th><label for="name">是否独生子女：</label></th>
+						  <td><select class="form-control sel-com" id="isOnlyChild" name="isOnlyChild">
+						    <option value="">--请选择--</option>
+					      </select></td>
+						  </tr>
+						<tr>
+							<th><label for="name">婚姻状况：</label></th>
+							<td><select class="form-control sel-com" id="maritalStatusCode" name="maritalStatusCode">
+								<option value="">--请选择--</option>
+							</select>
+						  </td>
+							<th><label for="name">健康状况：</label></th>
+							<td><select class="form-control sel-com" id="healthCode" name="healthCode">
+							  <option value="">--请选择--</option>
+							  </select></td>
+						  </tr>
+                        <tr>
+                          <th><label for="name">联系人：</label></th>
+                          <td><input class="form-control inp-com" name="contactPerson" id="contactPerson" value="" maxlength="50"/></td>
+                          <th><label for="name">联系人电话：</label></th>
+                          <td><div class="tips-text verification-info"><input class="form-control inp-com" name="contactPhone" id="contactPhone" value="" maxlength="50"/></div></td>
+                          </tr>
+                       
+                        <tr>
+                          <th><label for="name">邮政编码：</label></th>
+                          <td><div class="tips-text verification-info"><input class="form-control inp-com" name="postalCode" id="postalCode" value="" maxlength="6"/></div></td>
+                          <th><label for="name">联系地址：</label></th>
+                          <td><input class="form-control" name="address" id="address" value="" maxlength="100"/></td>
+                          </tr>
+                        <tr>
+							<th><label for="name">考生特征：</label></th>
+							<td colspan="3"  class="relative"><textarea class="form-control" rows="3" cols="" id="candidateFeature" name="candidateFeature" maxlength="100"></textarea>
+							<span id="candidateFeatureCount" class="textarea-length"></span></td>
+						  </tr>
+                          <tr>
+							  <th><label for="name">入学日期：</label></th>
+							  <td class=" formtext"><input id="entranceDate" name="entranceDate" type="text" class="form-control inp-com wdate valid" onclick="WdatePicker();"></td>
+							  <th><label for="name">招生季节：</label></th>
+							  <td><select class="form-control sel-com" id="enrollSeasonCode" name="enrollSeasonCode">
+							    <option value="">--请选择--</option>
+							    </select></td>
+							  </tr>
+                           <tr>
+                             <th><label for="name">入学方式：</label></th>
+                             <td><select class="form-control sel-com" id="entranceWayCode" name="entranceWayCode">
+                               <option value="">--请选择--</option>
+                             </select></td>
+                             <th><label for="name">学生类别：</label></th>
+                             <td><select class="form-control sel-com" id="studentCategoryCode" name="studentCategoryCode">
+                               <option value="">--请选择--</option>
+                             </select></td>
+                             </tr>
+                            <tr>
+                              <th><label for="name">入学成绩：</label></th>
+                              <td class=" formtext"><div class="tips-text verification-info"><input class="form-control inp-com" name="entranceScore" id="entranceScore" value=""/></div></td>
+                              <th><label for="name">外语语种：</label></th>
+                              <td><select class="form-control sel-com" id="foreignLanguageCode" name="foreignLanguageCode">
+                                <option value="">--请选择--</option>
+                              </select></td>
+                              </tr>
+                              <tr>
+                             <th><label for="name">学生来源：</label></th>
+                             <td><select class="form-control sel-com" id="studentOriginCode" name="studentOriginCode">
+                               <option value="">--请选择--</option>
+                             </select></td>
+                             <th><label for="name">生源地区：</label></th>
+                             <td colspan="3" class=" formtext"><select class="form-control sel-small" id="fromProvinceCode" name="fromProvinceCode">
+							  <option value="">--请选择--</option>
+						    </select>
+                            <select class="form-control sel-small" id="fromCityCode" name="fromCityCode">
+							  <option value="">--请选择--</option>
+						    </select>
+                            <select class="form-control sel-small" id="fromAreaCode" name="fromAreaCode">
+							  <option value="">--请选择--</option>
+						    </select></td>
+							</tr>
+                            <tr>
+							<th><label for="name">备注：</label></th>
+							<td colspan="3"  class="relative"><textarea class="form-control" rows="3" cols="" id="remark" name="remark" maxlength="100"></textarea>
+							<span id="remarkCount" class="textarea-length"></span>
+							</td>
+						  </tr>
+						</tbody>
+					</table>
+					</div>
+			  </div>
+			</div>
+		</div>
+	</form>
+	
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<!-- Seajs 模块化开发，请一定遵守 -->
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+	<script src="../../../common/js/utils/limit.js"></script>
+	<script type="text/javascript">
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath":"../../../common/js",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/student", function(student) {
+			student.initEditAll();
+		});
+		
+		new limit($("#candidateFeature"),$("#candidateFeatureCount"),100);
+		new limit($("#remark"),$("#remarkCount"),100);
+	</script>
+</body>
+</html>
+

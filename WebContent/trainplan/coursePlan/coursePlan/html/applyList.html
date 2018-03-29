@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>申请开课变更</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TrainPlan_StartClassPlan_ApplyChange">
+<!-- 内容框架 开始------------------------------------------------------------->
+<!--筛选查询 开始-->
+<div class="container-fluid col-xs-12">
+	<div class="header-con">
+		<form id="queryForm" onkeydown="if(event.keyCode==13)return false;">
+			<div class="row">
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">学年学期：</label>
+						<select class="form-control sel-com" id="semester" name="semester">
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">年级：</label>
+						<select class="form-control sel-com" id="grade" name="grade">
+							<option value="-1">全部</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">院系：</label>
+						<select class="form-control sel-com" id="departmentId" name="departmentId">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">专业：</label>
+						<select class="form-control sel-com" id="majorId" name="majorId">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">课程/环节：</label>
+					    <select class="form-control sel-com" id="courseOrTache" name="courseOrTache">
+							<option value="">全部</option>
+							<option value="1">理论课程</option>
+							<option value="2">实践环节</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">审核状态：</label>
+						<select class="form-control sel-com" id="auditResult" name="auditResult">
+							<option value="-1">全部</option>
+							<option value="0" selected="selected">未审核</option>
+							<option value="1">已审核</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</form>
+		<button type="button" class="btn btn-primary header-btn"  name="query" id="query">查询</button>
+	</div>
+</div>
+<!--筛选查询 结束-->
+<!-- 内容 开始 ------>
+<div class="sub-content">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="box">
+				<div class="box-header pull-right">
+					<button type="button" class="btn btn-success width-default" name="addCourse" auth-code="TrainPlan_StartClassPlan_ApplyChange_AddCourse">增开课程</button>
+					<button type="button" class="btn btn-success width-default" name="addTache" auth-code="TrainPlan_StartClassPlan_ApplyChange_AddTache">增开环节</button>
+					<button type="button" class="btn btn-success width-default" name="export" auth-code="TrainPlan_StartClassPlan_ApplyChange_Export">导出</button>
+				</div>
+				<div class="box-body">
+					<div class="scorll-box">
+						<div class="table-box min1600">
+							<table class="table table-bordered table-hover">
+								<thead>
+								<tr>
+									<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+									<th class="width48">序号</th>
+									<th class="width55">年级</th>
+									<th class="nonewline">院系</th>
+									<th class="nonewline">专业</th>
+									<th class="width85">课程/环节号</th>
+									<th class="nonewline">课程/环节名称</th>
+									<th class="nonewline">开课单位</th>
+									<th class="width100">类别</th>
+									<th class="width85">课程/环节</th>
+									<th class="width48">学分</th>
+									<th class="width48">总</br>学时</th>
+									<th class="width48">理论</br>学时</th>
+									<th class="width48">实验</br>学时</th>
+									<th class="width48">实践</br>学时</th>
+									<th class="width48">其他</br>学时</th>
+									<th class="width48">周</br>学时</th>
+									<th class="width48">周数</th>
+									<th class="width48">考核方式</th>
+									<th class="width48">变更</br>类型</th>
+									<th class="width60">审核</br>状态</th>
+									<th class="width120">操作</th>
+								</tr>
+								</thead>
+								<tbody id="tbodycontent">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div id="pagination" class="pagination"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 内容 结束 --- -->
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+ <tr class="tr-checkbox">
+	<td class="width03"><div class="checkbox-con"><input type="checkbox" class="checNormal" id=${startclassPlanId} name='checNormal' /></div></td>
+	<td class="width48">${$index+1}</td>
+	<td class="width55" title='${grade}'>${grade}</td>
+	<td class="text-l min100" title='${departmentName}'>${departmentName}</td>
+	<td class="text-l min100" title='${majorName}'>${majorName}</td>
+	<td class="text-l width85" title='${courseNo}'>${courseNo}</td>
+	<td class="text-l min100" title='${courseName}'>${courseName}</td>
+	<td class="text-l min100" title='${startUnit}'>${startUnit}</td>
+	<td class="text-l width100">{{if courseOrTache == '1'}} ${courseTypeName}{{else}} ${tacheTypeName}{{/if}}</td>
+	<td class="width85" {{if courseOrTache == '1'}} title='理论课程' {{else}} title='实践环节'{{/if}} >{{if courseOrTache == '1'}} 理论课程{{else}} 实践环节{{/if}}</td>
+    <td title="${credit}" class="width48 text-r">${credit}</td>
+	<td class="width48 text-r">${totalPeriod}</td>
+	<td class="width48 text-r">${theoryPeriod}</td>
+	<td class="width48 text-r">${experiPeriod}</td>
+	<td class="width48 text-r">${practicePeriod}</td>
+	<td class="width48 text-r">${otherPeriod}</td>
+	<td class="width48 text-r">${weekPeriod}</td>
+    <td class="width48 text-r">${weekNum}</td>
+	<td class="width48">${checkWakyName}</td>
+	<td class="width48">
+    {{if changeType == '1'}}
+			  增开
+	{{else}}
+	{{if changeType == '2'}}
+                                    修改
+	{{else}}
+    {{if changeType == '3'}}
+                                    停开 
+    {{else}}
+    {{/if}}
+    {{/if}}
+	{{/if}}
+    </td >
+	<td class="width60">
+    {{if auditResult == '0'}}
+                      未审核
+    {{else}}
+    {{if auditResult == '1'}}
+                     已审核
+    {{else}}
+  	{{/if}}
+    {{/if}}
+    </td>
+	<td class="width120">
+     {{if changeType == '4'}}
+          <button type="button" class="btn-text" {{if courseOrTache == '1'}} name="editAuditCourse" {{else}}  name="editAuditTache" {{/if}}  id ="${startclassPlanId}" auth-code="TrainPlan_StartClassPlan_ApplyChange_Update">修改 </button>   
+		  <button type="button" class="btn-text" name ='stopbutton' id='${startclassPlanId}'>停开</button>
+     {{else}}
+         {{if changeType == '1' && auditResult == '0'}}
+             <button type="button" class="btn-text" name='cancelbutton'  changeType = '${changeType}' id=${startclassPlanId} auth-code="TrainPlan_StartClassPlan_ApplyChange_CancelAdd" >取消增开</button>
+         {{/if}}
+         {{if changeType == '1' && auditResult == '1'}}
+             <button type="button" class="btn-text disabled"   changeType = '${changeType}' id=${startclassPlanId}  auth-code="TrainPlan_StartClassPlan_ApplyChange_CancelAdd" >取消增开</button>
+         {{/if}}
+ 		 {{if changeType == '2' && auditResult == '0'}}
+   			 <button type="button" class="btn-text" {{if courseOrTache == '1'}} name="editAuditCourse" {{else}}  name="editAuditTache" {{/if}}  changeType = '${changeType}' id=${startclassPlanId}>修改</button>
+             <button type="button" class="btn-text"  name="cancelUpdate"  id=${startclassPlanId} >取消修改</button>
+         {{/if}}
+     {{/if}}
+     {{if changeType == '3' && auditResult == '0'}}
+		  <button type="button" class="btn-text" name ='cancelstopbutton' id='${startclassPlanId}'>取消停开</button>
+     {{/if}}
+     {{if changeType == '3' && auditResult == '1'}}
+		  <button type="button" class="btn-text disabled" >取消停开</button>
+     {{/if}}
+     {{if changeType == '2' && auditResult == '1'}}
+		     <button type="button" class="btn-text disabled">修改</button>
+             <button type="button" class="btn-text disabled">取消修改</button>
+     {{/if}}
+    
+    </td>
+ </tr>
+</script> 
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/apply",function(apply){
+		apply.init();
+	}); 
+	seajs.use("basePath/utils/authority");
+</script>			

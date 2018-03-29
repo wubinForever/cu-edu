@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>菜单管理</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+		<link href="../../../common/css/gta-fonts.css" rel="stylesheet"/>
+		<link href="../../../common/css/popup.css" rel="stylesheet"/>
+		<link href="../../../common/css/skins.css" rel="stylesheet"/>
+		<!-- jquery版本 -->
+		<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+		<!-- 树列表样式 -->
+		<link href="../../../common/js/base/treeTable/css/jquery.treetable.theme.default.css"	rel="stylesheet" />
+		<link href="../../../common/js/base/treeTable/css/jquery.treetable.css" rel="stylesheet" />
+		<!-- 树列表js -->
+		<script src="../../../common/js/base/treeTable/jquery.treetable.js"></script>
+		<!-- 模块渲染template -->
+		<script src="../../../common/js/base/jquery/jquery.loadTemplate-1.4.4.js"></script>
+		<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+		<!-- Seajs 模块化开发，请一定遵守 -->
+		<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+		<script src="../../../common/js/base/seajs/seajs-text.js"></script>
+		<!-- 弹窗 -->
+		<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+		<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!--加载meta IE兼容文件-->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+		<style>
+			div{ word-wrap: break-word;ord-break: normal; }
+		</style>
+	</head>
+	<body page-auth-code="Udf_MenuManage">
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success width-default" name="addMenu" auth-code="Udf_MenuManage_Add">新  增</button>
+							<button type="button" class="btn btn-danger width-default" auth-code="Udf_MenuManage_Delete" id="delete">删  除</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box tree-table-con">
+								<div class="table-box">
+									<table class="table table-bordered tstreeTable" id="treeTable">
+										<thead>
+										</thead>
+								         <tbody class="treetable"></tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript">
+	seajs.config({paths:{"basePath":"../../../common/js/utils","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/menu",function(menu){
+		 menu.init();
+	}); 
+	seajs.use("basePath/authority");
+</script>

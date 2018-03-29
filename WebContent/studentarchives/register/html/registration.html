@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>办理注册</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet"/>
+  <!-- jquery版本 -->
+  <script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+  <!-- bootstrap -->
+  <script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+  <!-- Seajs 模块化开发，请一定遵守 -->
+  <script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>  
+  <!-- 弹窗 -->
+  <script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+  <script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+  <!-- 验证 -->
+  <script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+  <script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+  
+</head>
+
+	<body>
+	<form id="addWorkForm">
+		<div class="pop-con mini-pop">
+			<div class="form-group form-inline formtext">
+				<label for="yearTerm"> 学年学期：</label>
+				<div class="tips-text verification-info vertical-align-mid">
+					<select class="form-control sel-com" id="academicYearSemesterSelect" name="academicYearSemesterSelect" >
+					</select>
+					<input type="hidden" id="academicYearSemester" name="academicYearSemester">
+				</div>
+			</div>
+			 <div class="form-group form-inline formtext">
+	        	<label for="state">注册状态：</label>
+	        	<div class="tips-text verification-info vertical-align-mid">
+					<select class="form-control sel-com" id="registerStatus" name="registerStatus">
+						
+					</select>
+	        	</div>
+			 </div>
+			<div class="form-group form-inline formtext">
+				<label for="state">强制注册：</label>
+				<div class="tips-text verification-info vertical-align-mid">
+					<select class="form-control sel-com" id="isForced" name="isForced">
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="remark">备注：</label>
+				<div class="tips-text verification-info vertical-align-mid">
+					<textarea class="form-control inp-com" rows="3" id="remark" name="remark"></textarea>
+				<span id="remarkCount" class="textarea-length"></span>
+				</div>
+			</div>
+		</div>	
+	</form>
+<script src="../../../common/js/utils/limit.js"></script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../common/js","localPath":"../js"}});
+	seajs.use("localPath/register",function(register){
+		register.registrationInit();
+	});
+	seajs.use("basePath/utils/authority");
+	new limit($("#remark"),$("#remarkCount"),200);
+</script>
+	</body>
+</html>

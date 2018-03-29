@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>成绩录入时间设置</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="ScoreService_Set_EntryTime_Set">
+<form id="setForm">
+	<input type="hidden" id="departmentIds" name="departmentIds" />
+	<div class="pop-con">
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>开始时间：</label>
+			<div class="tips-text verification-info">
+				<input id="beginTime" name="beginTime" type="text" class="form-control w280 wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',minDate:'%y-%M-%d',maxDate:'#F{$dp.$D(\'endTime\')}'});" />
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>结束时间：</label>
+			<div class="tips-text verification-info">
+				<input id="endTime" name="endTime" type="text" class="form-control w280 wdate" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm',minDate:'#F{$dp.$D(\'beginTime\',{m:+1})}'});" />
+			</div>
+		</div>
+	</div>
+</form>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+</script>
+<script type="text/javascript">
+			//方法引用
+		seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+seajs.use("localPath/scoreEnterTimeSet",function(scoreEnterTimeSet){
+	scoreEnterTimeSet.init();
+});
+seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

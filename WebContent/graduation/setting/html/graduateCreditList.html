@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>毕业学分要求</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+<body page-auth-code="Graduation_RuleSeting_RequirementCredit">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">毕业年届：</label>
+								<input type="text" class="form-control inp-com" id="graduateYear" name="graduateYear" maxlength="5" readonly/>
+								<input type="text" style="display: none;" />
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">院系：</label> 
+								<select class="form-control sel-com" id="departmentId" name="departmentId">									
+									<option value="-1">全部</option>
+								</select>
+							</div>
+						</div>		
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="query" id="query" auth-code="Graduation_RuleSeting_RequirementCredit_Query">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-left" style="height: 0px;line-height: 0px;">
+							<span style="height: 0px;line-height: 0px;">&nbsp;</span>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">序号</th>
+												<th width="100">年级</th>
+												<th>院系</th>
+												<th>专业</th>
+												<th width="80">计划总学分</th>
+												<th width="80">开设总学分</th>
+												<th width="100">毕业学分要求</th>
+												<th width="100">操作</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	<tr class="tr-checkbox" data-tt-id="">
+		<td class="width05" title="${index}">${index}</td>
+		<td width="100" title="${grade}">${grade}</td>
+		<td title="${departmentName}" class="text-l">${departmentName}</td>
+		<td title="${majorName}" class="text-l">${majorName}</td>
+		<td class="text-r" width="80" title="${planCredit}">${planCredit}</td>
+		<td class="text-r" width="80" title="${openCredit}">${openCredit}</td>
+		<td class="text-r" width="100" title="${requireCredit}">${requireCredit}</td>
+		<td width="100">
+			<button type="button" class="btn-text" name="set" grade="${grade}" majorId="${majorId}" majorName="${majorName}" departmentId="${departmentId}" auth-code="Graduation_RuleSeting_RequirementCredit_Set">设置</button>
+		</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/graduateCreditList", function(graduateCreditList) {
+		graduateCreditList.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

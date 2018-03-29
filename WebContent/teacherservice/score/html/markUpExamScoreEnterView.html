@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>补考成绩录入</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_Score_MakeUpExamScore_View">
+<!-- 内容框架 开始-->
+<div class="layout-index">
+	<div class="container-fluid">
+		<div class="header-con mb10">
+			<form id="queryForm">
+			
+			<input type="hidden" id="studyAcademicYear" name="studyAcademicYear" value="" >
+			<input type="hidden" id="studySemesterCode" name="studySemesterCode" value="" >
+			<input type="hidden" id="courseId" name="courseId" value="" >
+			<input type="hidden" id="openDepartmentId" name="openDepartmentId" value="" >
+			<input type="hidden" id="courseInfo" name="courseInfo" value="" >
+			
+<!-- 			<input type="hidden" id="optionHTML" name="optionHTML" value="" > -->
+			
+<!-- 			<input type="hidden" id="courseScoreSetId" name="courseScoreSetId" value="" > -->
+<!-- 			<input type="hidden" id="scoreRegimenId" name="scoreRegimenId" value="" > -->
+<!-- 			<input type="hidden" id="scoreRegimenName" name="scoreRegimenName" value="" > -->
+			
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"> 年级：</label>
+							<select class="form-control sel-com" id="grade" name="grade">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"> 院系：</label>
+							<select class="form-control sel-com" id="departmentId" name="departmentId">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"> 专业：</label>
+							<select class="form-control sel-com" id="majorId" name="majorId">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"> 班级：</label>
+							<select class="form-control sel-com" id="classId" name="classId">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="btnSearch"
+					id="btnSearch">查询</button>
+		</div>
+	</div>
+	<!--提示信息-->
+	<div class="care-tips"><p><!--<span>考试批次：2017-2018学年 第一学期补考</span>--><span title="课程：" id="spanCourse" class="ml20">课程：</span></p></div>
+	<!-- 正式内容区域 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="clearfix">
+<!-- 						<div class="pull-left care-tips2 mt20">温馨提示：课程中共有<span class="text-danger"> 2条 </span>未完成录入</div> -->
+						<div class="box-header pull-right">
+<!-- 							<div class="text-r inline-block"><label>分制：</label><select class="form-control sel-com inline-block valign-middle" id="scoreRegimenId" name="scoreRegimenId" style="width:80px;"> -->
+<!-- 							</select></div> -->
+<!-- 							<div class="inline-block ml20"><button type="button" class="btn btn-success width-default" auth-code="" id="btnSave">保存</button> -->
+<!-- 							<button type="button" class="btn btn-success width-default" auth-code="" id="btnReview">送审</button></div> -->
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+									<tr>
+										<th class="width48">序号</th>
+										<th class="width15">学号</th>
+										<th class="width15">姓名</th>
+										<th class="width55">性别</th>
+										<th class="width120">总评成绩</th>
+										<th class="width120">特殊情况</th>
+										<th>备注</th>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent" class="mh340 no-data-html">
+									<tr><td colspan='8'></td></tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="pagination" class="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 -->
+</div>
+<!-- 内容框架 结束 -->
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+									
+									
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+{{each(i,item) list}}
+<tr>
+	<td class="width48">${item.index}</td>
+	<td class="width15" title="${item.studentNo}">${item.studentNo}</td>
+	<td class="width15" title="${item.studentName}">${item.studentName}</td>
+	<td class="width55" title="${item.sexName}">${item.sexName}</td>
+{{if scoreRegimenName != null && scoreRegimenName == "百分制" }}
+	<td class="width120" title="${item.totalScore}">${item.totalScore}</td>
+{{else}}
+	<td class="width120" title="${item.totalScoreDesc}">${item.totalScoreDesc}</td>
+{{/if}}
+	<td class="width120" title="${item.specialCaseName}">${item.specialCaseName}</td>
+	<td title="${item.remark}">${item.remark}</td>
+</tr>
+{{/each}}
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/markUpExamScoreView",function(markUpExamScoreView){
+		markUpExamScoreView.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

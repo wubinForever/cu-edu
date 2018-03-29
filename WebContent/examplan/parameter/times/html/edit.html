@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>修改场次时间</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body>
+	<form id="addWorkForm">
+		<input type="text" class="form-control inp-com" id="timesId" name="timesId" style="display: none;">
+		<div class="pop-con">
+			<div class="form-group form-inline formtext">
+				<label for="number">考试批次：</label> <span id="batchName" class="tips-text"></span>
+			</div>
+			<div class="form-group form-inline formtext mt20">
+				<label for="number">开始时间：</label><span id="examStartDateStr" class="tips-text"></span>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number">结束时间：</label><span id="examEndDateStr" class="tips-text"></span>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number">场次性质：</label> <span id="timesPropertyCode" class="tips-text"></span>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number">考试日期：</label><span id="examDate" class="tips-text"></span>
+			</div>
+			<div id="examTime" class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>考试时间：</label>
+				<div class="tips-text verification-info">
+					<input id="examStartTime" name="examStartTime" type="text" class="form-control inp-com wdate"
+						maxlength="5" onClick="WdatePicker({maxTime:'#F{$dp.$D(\'examEndTime\')}',readOnly:true,dateFmt:'HH:mm'});" />
+				</div>
+				至
+				<div class="tips-text verification-info">
+					<input id="examEndTime" name="examEndTime" type="text" class="form-control inp-com wdate"
+						maxlength="5"
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examStartTime\',{m:1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});" />
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<!-- <script src="../js/base/bootstrap/bootstrap.min.js"></script> -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/times", function(times) {
+		times.initUpdate();
+	});
+</script>
+<script id="timesPropertyCodeTmpl" type="text/x-jquery-tmpl">
+<option value=${code}>${dataDictionaryName}</option>
+</script>

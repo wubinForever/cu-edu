@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>绩点计算方法设置</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="">
+<!-- 内容框架 开始------------------------------------------------------------->
+<form id="addForm">
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12 mt30">
+			<h3 class="pop-title" id="subtab-hd">初修成绩绩点计算方法：
+				<label class="radio-inline">
+					<div class="radio-con">
+						<input type="radio" name="check-tab" value="0">
+					</div> 公式计算
+				</label>
+				<label class="radio-inline">
+					<div class="radio-con">
+						<input type="radio" name="check-tab" value="1" >
+					</div> 分段计算
+				</label>
+				<input type="hidden" id="scorePointId" name="scorePointId"  />
+			</h3>
+		</div>
+		<!-- 内容 开始 ------>
+		<div class="sub-content" id="subtab-bd">
+			<div class="sub-bd row">
+				<div class="col-xs-12">
+					<div class="header-con clearfix">
+						<div class="form-inline form-inp-con">
+							<div class="form-group">
+							<p>总评成绩  <  60.0，  绩点  =  0.00</p>
+							<p>总评成绩  ≥  60.0，  绩点  = （总评成绩 - 50.0） / 10</p>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+			<div class="sub-bd row" style="display: none;">
+				<div class="col-xs-12">
+					<div class="header-con2 clearfix">
+						<div class="row">
+							<div class="col-md-6 form-inline form-inp-con pull-left">
+								<div class="form-group">
+									<label for="name">分制：</label>
+									<select class="form-control sel-com" id="scoreRegimenId" name="scoreRegimenId"></select>	
+								</div>
+							</div>
+							<div class="pull-right col-md-6 text-right">
+								<button type="button" class="btn btn-success width-default" id="addCourse" >新增分数段</button>
+							</div>
+						</div>
+						<div class="box-body mt20">
+							<div class="scorll-box" id="centesimalSystem">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>分数段</th>
+											<th>对应绩点</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="tbody" class="autoheight-normal" style="height: 265px !important;">
+									</tbody>
+								</table>
+							</div>
+							<div class="table-box" id="otherSystem">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>序号</th>
+											<th>分数段</th>
+											<th>对应绩点</th>
+										</tr>
+									</thead>
+									<tbody id="otherSystemBody">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>	
+			</div>
+			
+			<h3 class=" pop-title mt20">补考成绩绩点计算方法</h3>
+			<div class="header-con clearfix">
+				<div class="form-inline form-inp-con">
+					<div class="form-group">
+						<div>补考成绩  ≥  60：<label class="radio-inline">
+							<div class="radio-con"><input type="radio" name="makeupExam" value="0"></div> 绩点 = <input id="makeupExamPoint" type="text" class="form-control inp-minimum text-r inline-block disabled middlenum" value="0.00" style="width:60px;" >
+						</label><label class="radio-inline">
+							<div class="radio-con"><input type="radio" name="makeupExam" value="1"></div>  绩点  =  按初修成绩绩点计算方法处理 
+						</label>
+							</div>
+						<div class="mt8">缓考后补考成绩  ≥  60：<label class="radio-inline">
+							<div class="radio-con"><input type="radio" name="delayExam" value="0" checked></div> 绩点 = <input id="delayExamPoint" type="text" class="form-control inp-minimum text-r inline-block disabled middlenum" value="0.00" style="width:60px;" >
+						</label><label class="radio-inline">
+							<div class="radio-con"><input type="radio" name="delayExam" value="1"></div>  绩点  =  按初修成绩绩点计算方法处理
+						</label></div>
+					</div>
+				</div>
+			</div>
+			<div style="clear: both;"></div>
+			<!-- 内容 结束 ------>
+			<div class=" text-center mb20 mt30"><button type="button" class="btn btn-success width-default" id="formulaBtnSave" name="formulaBtnSave" auth-code="">保存</button></div>
+		</div>
+	</div>
+</form>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="centesimalSystemTmpl" type="text/x-jquery-tmpl">
+	<tr>
+		<td class="">${$index+1}</td>
+		<td class="scorepadding">
+			<div class="tip-text verification-info"><input type="text" class="form-control inp-minimum text-r inline-block maxnum" value="${scoreBeginFormat}" disabled="disabled" style="width:80px;"> {{if ($index+1) == 1}} ≥ 分数 ≥ {{else}} > 分数 ≥ {{/if}}   <input type="text" class="form-control inp-minimum text-r inline-block mininum" value="${scoreEndFormat}" style="width:80px;" {{if ($index+1)==length }} disabled="disabled" {{/if}}">
+				<label class="error"></label>
+			</div>
+		</td>
+		<td class="scorepadding"><div class="tip-text verification-info"><input type="text" class="form-control inp-minimum text-r middlenum" value="${scorePointFormat}" style="width:100px;"><label class="error"></label></div></td>
+		<td class=""><button type="button"  class="btn-text"  name="delete" scoreRegimenId = "${scoreRegimentId}" > {{if ($index+1)!=1  && ($index+1)!=length }} 删除 {{/if}}  </button></td>
+	</tr>
+</script>
+<!-- 列表内容 -->
+<script id="otherSystemTmpl" type="text/x-jquery-tmpl">
+	<tr>
+		<td scorePointDetailId="${scorePointDetailId}" scoreRegimenId="${scoreRegimenId}" scoreRegimenDetailId="${scoreRegimenDetailId}" scoreBegin="${scoreBeginFormat}" scoreEnd="${scoreEndFormat}">${$index+1}</td>
+		<td>${cnName}（${scoreBeginFormat} ≥ 分数 ≥ ${scoreEndFormat}）</td>
+		<td class="scorepadding"><div class="tip-text verification-info"><input type="text" class="form-control inp-minimum text-r middlenum" value="${scorePointFormat}" style="width:100px;"><label class="error"></label></div></td>
+	</tr>
+</script>
+
+<!-- 方法切换 -->
+<script type="text/javascript">
+var tabInp = $("#subtab-hd").children("label");
+$(tabInp).click(function(){
+	var	tabCon = $("#subtab-bd").children(".sub-bd"),
+	    indexOn = $(this).index();
+	$(tabCon).hide().eq(indexOn).fadeIn(300);
+});
+</script>
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/scorePointCalculateMethodSet",function(scorePointCalculateMethodSet){
+		scorePointCalculateMethodSet.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

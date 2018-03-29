@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>单位信息修改</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<!--基础模块样式表-->
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+
+</head>
+
+<body page-auth-code="BaseData_Department_Update">
+	<form id="addWorkForm">
+		<div class="pop-con box800">
+		<input type="hidden" id="level" name="level">
+			<div class="form-group form-inline formtext">
+				<label for="name">上级单位：</label>
+				<div class="tips-text verification-info w220">
+					<span id="parentName" name="parentName" class="fontspan fontspan-220 ellipsis"></span>
+					<input type="hidden" id="parentId" name="parentId" value="0">
+				</div>
+				<input type="hidden" id="departmentId" name="departmentId">
+				<label for="name" class="min160"><i class="text-danger">*</i>单位号：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="departmentNo" name="departmentNo" maxlength="10">
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>单位名称：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="departmentName"
+						name="departmentName" maxlength="50">
+				</div>
+				<label for="name" class="min160">单位简称：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="shortName"
+						name="shortName" maxlength="20">
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">单位英文名称：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="englishName"
+						name="englishName" maxlength="100">
+				</div>
+				<div id="departmentClassDiv" class="inline-block">
+				<label for="number" class="min160"><i class="text-danger">*</i>单位类别：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="departmentClass"
+						name="departmentClass">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+				</div>
+				<div id="departmentTypeDiv" class="inline-block" style="display: none;">
+				<label for="number" class="min160"><i class="text-danger">*</i>单位类型：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="departmentType"
+						name="departmentType">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number"><i class="text-danger">*</i>单位办别：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="startupType"
+						name="startupType">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+				<label for="name" class="min160"><i class="text-danger">*</i>所在校区：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="campusId" name="campusId">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">负责人：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="leader"
+						name="leader" maxlength="50">
+				</div>
+				<label for="name" class="min160">失效日期：</label>
+				<div class="tips-text verification-info">
+					<input id="outvalidityTime" name="outvalidityTime" type="text" class="form-control inp-com wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'});" />
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<div class=" inline-block w-384">
+					<label for="name" class="pull-left">是否有效：</label>
+					<label class="radio-inline on-radio">
+						<div class="radio-con"><input type="radio" name="isValidity" value="1" checked></div> 是
+					</label> 
+					<label class="radio-inline"> 
+						<div class="radio-con"><input type="radio" name="isValidity" value="0"></div> 否
+					</label> 
+				</div>
+				<div class=" inline-block">
+					<label for="name" class="pull-left min160">是否实体：</label>
+					<label class="radio-inline on-radio">
+						<div class="radio-con"><input type="radio" name="isEntity" value="1" checked></div> 是
+					</label> 
+					<label class="radio-inline"> 
+						<div class="radio-con"><input type="radio" name="isEntity" value="0"></div> 否
+					</label>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">建立年月：</label>
+				<div class="tips-text verification-info">
+					<input id="startupTime" name="startupTime" type="text"
+						class="form-control inp-com wdate"
+						onClick="WdatePicker({dateFmt:'yyyy-MM'});" />
+				</div>
+				<label for="number" class="min160">是否教务管理部门：</label>
+					<label class="radio-inline"><div class="radio-con"><input type="radio" name="isEducationAdministration" value="1"></div> 是 </label>
+					<label class="radio-inline on-radio"><div class="radio-con"><input type="radio" name="isEducationAdministration" value="0" checked></div> 否 </label>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">单位地址：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com-long" id="address"
+						   name="address" maxlength="100">
+
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">备注：</label>
+				<div class="tips-text verification-info">
+					<textarea class="form-control tarea-com-long" rows="3" id="remark"
+						name="remark" maxlength="200"></textarea>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
+
+<script id="dictionaryTmpl" type="text/x-jquery-tmpl">
+<option value=${code}>${dataDictionaryName}</option>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/department", function(department) {
+		department.initUpdate();
+	});
+</script>

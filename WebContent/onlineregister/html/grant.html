@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>软件注册</title>
+    
+ 	<style type="text/css">
+        body {
+            text-align: center;
+            font-size: 12px;
+        }
+
+        * {
+            margin: 0 auto;
+        }
+
+        .login {
+            background: none repeat scroll 0 0 #FFFFFF;
+            border: 1px solid #B0D6F4;
+            height: 375px;
+            left: 50%;
+            margin: -188px 0 0 -335px;
+            position: absolute;
+            top: 50%;
+            width: 670px;
+        }
+
+        .login .title {
+            background: none repeat scroll 0 0 #4DA9EB;
+            color: #FFFFFF;
+            font: 20px/48px Microsoft YaHei;
+            margin-bottom: 70px;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            text-align: left;
+        }
+
+        .login .input {
+            border: 1px solid #95C6F2;
+            height: 20px;
+            margin-bottom: 5px;
+            padding: 4px;
+            width: 240px;
+        }
+
+        .login input {
+            vertical-align: middle;
+        }
+
+        .login .btn {
+            background-color: #4DA9EB;
+            border: 0 none;
+            border-radius: 3px;
+            color: #FFFFFF;
+            cursor: pointer;
+            font: 16px Microsoft YaHei;
+            height: 43px;
+            margin-bottom: 5px;
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+	
+	<form method="post" > 
+	     <div class="page">
+        <div class="login">
+            <div class="title">
+                软件注册
+            </div>
+            <table>
+                <tr>
+                    <td>
+                        申请码：
+                    </td>
+                    <td>
+                        <input type="text" id="applyId" name="applyId" class="input" readonly="readonly" style="color:#999" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        注册码：
+                    </td>
+                    <td>
+                        <input type="text"   class="input" id="registerCode" name="registerCode" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        授权码：
+                    </td>
+                    <td>
+                        <input type="text" class="input" id="licenseCode" name="licenseCode" />
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                    </th>
+                    <td>
+                        <input id="shouquan"  type="button" value="注册" class="btn" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center" style="height: 42px; color: Red"  id="message">
+                    	
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    </form>
+	 
+</body>
+
+<!-- jquery版本 -->
+<script src="../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../common/js","localPath":"../js"}});
+	seajs.use("localPath/register",function(register){
+		register.initGrant();
+	});
+</script>
+</html>

@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>开课单位</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TrainPlan_CourseResource_Department">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm" onkeydown="if(event.keyCode==13)return false;">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">单位号：</label>
+							<input class="form-control inp-com" name="departmentNo" id="departmentNo" value="" />
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">单位名称：</label>
+							<input class="form-control inp-com" name="departmentName" id="departmentName" value="" />
+						</div>
+					</div>
+
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">是否开课单位：</label> <select
+								class="form-control sel-com" id="isStartClass" name="isStartClass">
+							<option value="">全部</option>
+							<option value="1">是</option>
+							<option value="0">否</option>
+						</select>
+						</div>
+					</div>
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="query"
+					id="query">查询</button>
+		</div>
+	</div>
+	<!-- 正式内容区域 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header pull-right">
+						<button type="button" class="btn btn-success width-long"  id="setingUnit"  auth-code="TrainPlan_CourseResource_Department_SetClassDept">设为开课单位</button>
+						<button type="button" class="btn btn-danger width-default" id="cancelUnit" auth-code="TrainPlan_CourseResource_Department_CancelClassDept">取消</button>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+									<tr>
+										<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+										<th class="width48">序号</th>
+										<th>单位号</th>
+										<th>单位名称</th>
+										<th class="width120">是否开课单位</th>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 --- -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->	
+<script id="tamplContent" type="text/x-jquery-tmpl">
+ <tr class="tr-checkbox">  
+        {{if readNum>=1}}
+    		 <td class="width03"><div class="checkbox-con disabled-check"><input type="checkbox" class="checNormal" name="checNormal" id="${departmentId}" disabled></div></td>
+    	 {{else}} 
+        	 <td class="width03"><div class="checkbox-con"><input type="checkbox" class="checNormal" name="checNormal" id="${departmentId}"></div></td>
+		{{/if}}
+         <td class="width48">${$index+1}</td>
+         <td class="text-l" title='${departmentNo}'>${departmentNo}</td>
+         <td class="text-l" title='${departmentName}'>${departmentName}</td>
+         <td class="width120">
+           {{if isStartClass == 1}}是{{else}}否{{/if}}
+        </td>  
+      </tr> 
+</script> 
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js/utils","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/department",function(department){
+		  department.init();
+	}); 
+	seajs.use("basePath/authority");
+</script>			

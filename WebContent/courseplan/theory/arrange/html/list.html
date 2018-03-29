@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>手动排课（列表）</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<!-- 下面这个是树目录控件的css -->
+<link href="../../../../common/css/ztree/zTreeStyle.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style>
+	@media (min-width: 992px){
+		.header-con .form-inline .form-group label {
+		    min-width: 90px;
+		    text-align: right;
+		    vertical-align: middle;
+		}
+	}
+
+</style>
+</head>
+<body page-auth-code="CoursePlan_TheoryArrange_Arrange">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label>
+								<select class="form-control sel-com" id="academicSemester" name="academicSemester">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">行政班校区：</label>
+								<select class="form-control sel-com" id="campusId" name="campusId">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">开课单位：</label>
+								<select class="form-control sel-com" id="departmentId" name="departmentId">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">课程号/名称：</label>
+								<input type="text" class="form-control inp-com" id="courseNoOrName" name="courseNoOrName" maxlength="100" />
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">课程类别：</label>
+								<select class="form-control sel-com" id="courseTypeCode" name="courseTypeCode">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">课程属性：</label>
+								<select class="form-control sel-com" id="courseAttributeCode" name="courseAttributeCode">
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">任课教师：</label>
+								<input type="text" class="form-control inp-com" id="teacherNoOrName" name="teacherNoOrName" maxlength="50" />
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">通识课：</label>
+								<select class="form-control sel-com" id="isCoreCurriculum" name="isCoreCurriculum">
+									<option value="">全部</option>
+									<option value="1">是</option>
+									<option value="0">否</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">课程状态：</label>
+								<select class="form-control sel-com" id="arrangeStatus" name="arrangeStatus">
+									<option value="">全部</option>
+									<option value="0">未排完</option>
+									<option value="1">已排完</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" id="query">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">序号</th>
+												<th>开课单位</th>
+												<th class="width85">课程号</th>
+												<th>课程名称</th>
+												<th class="width75">课程类别</th>
+												<th class="width45">课程属性</th>
+												<th>任课教师</th>
+												<th class="width110">教学班号</th>
+												<th class="width75">班数/人数</th>
+												<th class="width45">授课方式</th>
+												<th class="width45">周学时</th>
+												<th class="width45">排课周次</th>
+												<th class="width45">任务学时</th>
+												<th class="width45">已排学时</th>
+												<th class="width60">状态</th>
+												<th class="width05">操作</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<script id="tableTmpl" type="text/x-jquery-tmpl">
+	<tr class="trDataTT tr-checkbox">  
+		<td class="width05">${$index+1}</td>
+		<td class="text-l" title="${departmentName}">${departmentName}</td>
+		<td class="text-l width85" title="${courseNo}">${courseNo}</td>
+		<td class="text-l" title="${courseName}">${courseName}</td>
+		<td class="width75" title="${courseTypeName}">${courseTypeName}</td>
+		<td class="width45">${courseAttributeName}</td>
+		<td class="text-l" title="${teachers}">${teachers}</td>
+		<td class="text-l width110" title="${teachingClassNo}">${teachingClassNo}</td>
+		<td class="text-r width75">${classCount}/${teachingClassMemberCount}</td>
+		<td class="text-l width45">${teachingMethodsName}</td>
+		<td class="width45 text-r">${weeklyHours}</td>
+		<td class="width45 text-l" title=${arrangeWeeks}>${arrangeWeeks}</td>
+		<td class="width45 text-r">${taskPeriod}</td>
+		<td class="width45 text-r">${arrangePeriod}</td>
+	 		{{if taskPeriod<=arrangePeriod}}    
+				<td class="width60">已排完</td>
+	    	{{else}}        
+				<td class="width60">未排完</td>
+	    	{{/if}} 
+		<td class="width05">
+			<a class="" name="update" data-tt-id="${theoreticalTaskId}" auth-code="CoursePlan_TheoryArrange_Arrange_Add">排课</button>
+		</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/manualArrange", function(manualArrange) {
+		manualArrange.init();
+	});
+</script>

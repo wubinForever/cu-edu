@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>成绩构成修改设置</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="">
+<form id="addForm">
+	<div class="pop-con mt30">
+		<!--<div class="form-group form-inline form-big formtext">-->
+			<!--<label for="number">学年学期：</label>-->
+			<!--<div class="tips-text verification-info">-->
+				<!--<select class="form-control sel-com" name="departmentId">-->
+					<!--<option value="">2017-2018学年 第一学期</option>-->
+				<!--</select>-->
+			<!--</div>-->
+		<!--</div>-->
+		<div class="form-group form-inline formtext">
+			<div class="text-left ml80"><label class="checkbox-inline"> <div class="checkbox-con mr10 on-check"><input type="checkbox" class="checNormal" id="report" checked="checked"></div>允许录入人修改环节下班级的成绩构成</label></div>
+		</div>
+	</div>
+</form>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/courseScoreConstitutionSet",function(courseScoreConstitutionSet){
+		//courseScoreConstitutionSet.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

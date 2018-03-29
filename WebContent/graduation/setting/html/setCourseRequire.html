@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<title>毕业课程要求设置</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="../../../common/css/reset.css" rel="stylesheet" />
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+		<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+		<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+		<link href="../../../common/css/popup.css" rel="stylesheet" />
+		<link href="../../../common/css/skins.css" rel="stylesheet" />
+		<!--日期样式-->
+		<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+		<style>
+			@media (min-width: 992px){
+				.header-con .form-inline .form-group label {
+				    min-width: 90px;
+				    text-align: right;
+				    vertical-align: middle;
+				}
+			}
+
+		</style>
+	</head>
+	<body page-auth-code="Graduation_RuleSeting_RequirementCourseScroe_Set">
+		<div class="pop-con pop-con1">
+	       	<form id="queryForm">
+	        <div class="header-con" style="padding-right:100px;">
+	        	<div class="row">
+	        		<input type="hidden" id="departmentId" name="departmentId" maxlength="50" value="-1" readonly/>
+	        		<input type="hidden" id="graduateYear" name="graduateYear" maxlength="50" value="-1" readonly/>
+	        		<input type="hidden" id="majorId" name="majorId" maxlength="50" value="-1" readonly/>
+		        	<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar">年级：</label> 
+							<input type="text" class="form-control inp-com" id="grade" name="grade" maxlength="5" readonly/>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">院系：</label> 
+							<input type="text" class="form-control inp-com" id="departmentName" name="departmentName" maxlength="50" readonly/>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">专业：</label> 
+							<input type="text" class="form-control inp-com" id="majorName" name="majorName" maxlength="50" readonly/>
+						</div>
+					</div>
+		        </div>
+		        <div class="row">
+		        	<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">课程类别：</label> 
+							<select class="form-control sel-com" id="courseTypeCode" name="courseTypeCode">									
+								<option value="-1">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">课程属性：</label> 
+							<select class="form-control sel-com" id="courseAttributeCode" name="courseAttributeCode">									
+								<option value="-1">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">课程号/名称：</label> 
+							<input type="text" class="form-control inp-com" id="courseNoOrName" name="courseNoOrName"/>
+						</div>
+					</div>
+		        </div>
+		        <button type="button" class="btn btn-primary header-btn" name="query" id="query" auth-code="Graduation_RuleSeting_RequirementCourseScroe_Set_Query">查询</button>
+	        </div>
+	        </form>
+		</div>
+		<!-- 左右移动table -->
+        <div class="clearfix double-table-opra" id="shufflingId">
+			  
+			 
+		</div>
+		<!-- 左右移动table-End -->	
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/setCourseRequire", function(setCourseRequire) {
+		setCourseRequire.init();
+	});
+</script>

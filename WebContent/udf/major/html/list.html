@@ -1,0 +1,191 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>专业信息</title>
+<!-- ui提供的公共的样式 -->
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+</head>
+<body page-auth-code="BaseData_Major">
+	<!-- 内容框架 开始-->
+	<div class="layout-index">
+		<div class="container-fluid  col-xs-12">
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">所属院系：</label> <select class="form-control sel-com" id="departmentId"
+									name="departmentId">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">专业号：</label> <input class="form-control inp-com" name="majorNo"
+									id="majorNo" maxlength="10" value="" />
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">专业名称：</label> <input class="form-control inp-com" name="majorName"
+									id="majorName" maxlength="50" value="" />
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">学制：</label>
+								<div class="input-group spinner tips-text verification-info ">
+									<input class="form-control" name="educationSys" id="educationSys" maxlength="1"
+										min="1" max="9" />
+									<div class="input-group-btn-vertical major-list">
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-caret-up"></i>
+										</button>
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-caret-down"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">培养层次：</label> <select class="form-control sel-com" id="trainingLevelCode"
+									name="trainingLevelCode">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="query" id="query">查 询</button>
+			</div>
+		</div>
+		<!-- 正式内容区域 开始 -->
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success width-default" name="addMajor"
+								auth-code="BaseData_Major_Add">新 增</button>
+							<button type="button" class="btn btn-danger width-default" name="batchDeleteMajor"
+								auth-code="BaseData_Major_Delete">删 除</button>
+							<button type="button" class="btn btn-success width-default" name="import">导入</button>
+							<button type="button" class="btn btn-success width-default" name="export">导出</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<!-- table标题 -->
+										<thead>
+											<tr>
+												<th class="width03"><div class="checkbox-con">
+														<input type="checkbox" id="check-all" class="checNormal">
+													</div></th>
+												<th class="width48">序号</th>
+												<th class="width10">专业号</th>
+												<th>专业名称</th>
+												<th>所属院系</th>
+												<th class="width48">学制</th>
+												<th class="width65">培养层次</th>
+												<th>国标专业</th>
+												<th class="width10">学科门类</th>
+												<th class="width85">操作</th>
+											</tr>
+										</thead>
+										<!-- table内容 -->
+										<tbody id="tbody">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 正式内容区域 结束 -->
+	</div>
+	<!-- 内容框架 结束 -->
+	
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- js验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script id="treetableTmpl" type="text/x-jquery-tmpl">
+	<tr class="trDataTT tr-checkbox" data-tt-id="${majorId}">  
+    	<td class="width03">
+		{{if isExsitReference }}
+			<div class="checkbox-con disabled-check"><input type="checkbox" name="checNormal" value="${majorId}" class="checNormal" disabled="disabled"></div>
+		{{else}}
+			<div class="checkbox-con"><input type="checkbox" name="checNormal" value="${majorId}" class="checNormal"></div>
+		{{/if}}
+		</td>
+		<td class="width48">${id}</td>
+		<td class="text-l width10" title="${majorNo}">${majorNo}</td>
+		<td class="text-l" title="${majorName}">${majorName}</td>
+		<td class="text-l" title="${department}">${department}</td>
+		<td class="width48">${educationSys}</td>
+		<td class="width65">${trainingLevel}</td>
+		<td class="text-l"  title="[${subjectCode}]${subject}">[${subjectCode}]${subject}</td>
+		<td class="width10" title="${subjectCategory}">${subjectCategory}</td>
+		<td class="width85">
+			<button type="button" class="btn-text" name="update"  data-tt-id="${majorId}" auth-code="BaseData_Major_Update">修改</button>
+		{{if isExsitReference }}
+			<button type="button" class="btn-text disabled" disabled="disabled" name="delete" data-tt-id="${majorId}" auth-code="BaseData_Major_Delete">删除</button>
+		{{else}}
+			<button type="button" class="btn-text" name="delete" data-tt-id="${majorId}" auth-code="BaseData_Major_Delete">删除</button>
+		{{/if}}
+		</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/major", function(major) {
+		major.init();
+	});
+</script>
+<!--  <script id="trainingLevelCodeTmpl" type="text/x-jquery-tmpl">
+<option value=${code} title=${dataDictionaryName}>${dataDictionaryName}</option>
+</script> 
+<script id="departmentIdTmpl" type="text/x-jquery-tmpl">
+<option value=${departmentId} title=${departmentName}>${departmentName}</option>
+</script> -->
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>环节信息</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+</head>
+<body page-auth-code="TrainPlan_CourseResource_Tache">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<div class="container-fluid col-xs-12">
+		<div class="header-con ">
+			<form id="queryForm" onkeydown="if(event.keyCode==13)return false;">
+				<input type="hidden" id="courseOrTache" name="courseOrTache" value="2" />
+				<div class="row">
+					<div class="col-sm-6 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">开课单位：</label> 
+							<select	class="form-control sel-com" id="departmentId" name="departmentId">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-6 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name" class="min120">环节号/环节名称：</label>
+							<input class="form-control inp-com" name="courseNo" id="courseNo" value="" maxlength="100" />
+						</div>
+					</div>
+					<div class="col-sm-6 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">环节类别：</label> 
+							<select class="form-control sel-com" id="tacheTypeCode" name="tacheTypeCode">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-6 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name" class="min120">状态：</label> <select
+								class="form-control sel-com" id="enableStatus" name="enableStatus">
+							<option value="">全部</option>
+							<option value="1">启用</option>
+							<option value="2">禁用</option>
+						</select>
+						</div>
+					</div>
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="query"
+					id="query">查询</button>
+		</div>
+	</div>
+	<!-- 正式内容区域 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header pull-right">						
+						<button type="button" class="btn btn-success width-default" id="addCourse" auth-code="TrainPlan_CourseResource_Tache_Add">新增</button>
+						<button type="button" class="btn btn-danger width-default" id="batchDeleteCourse" auth-code="TrainPlan_CourseResource_Tache_Delete">删除</button>
+						<button type="button" class="btn btn-danger width-default" id="forbid" auth-code="TrainPlan_CourseResource_Tache_Enable" >禁  用</button>
+						<button type="button" class="btn btn-success width-default" id="exportCourse" auth-code="TrainPlan_CourseResource_Tache_Export">导出</button>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+									<tr>
+										<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+										<th class="width48">序号</th>
+										<th>环节号</th>
+										<th>环节名称</th>
+										<th>开课单位</th>
+										<th class="width120">环节类别</th>
+										<th class="width60">学分</th>
+										<th class="width48">周数</th>
+										<th class="width48">状态</th>
+										<th class="width130">操作</th>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="pagination" class="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 --- -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+	<td class="width03">
+		<div class="checkbox-con">
+			<input type="checkbox" class="checNormal" value="${courseId}" name="checNormal" relatedNum="${relatedNum}" />			
+		</div>
+	</td>
+	<td class="width48">${index}</td>
+	<td title="${courseNo}" class="text-l">${courseNo}</td>
+	<td title="${name}" class="text-l">${name}</td>
+	<td title="${departmentName}" class="text-l">${departmentName}</td>
+	<td title="${tacheTypeName}" class="text-l width120">${tacheTypeName}</td>
+	<td title="${credit}" class="width60 text-r">${credit}</td>
+	<td class="width48 text-r">${weekNum}</td>
+	<td class="width48"> {{if enableStatus ==1}}启用{{else}}禁用 {{/if}} </td>
+	<td class="width130">
+		{{if enableStatus ==1}}
+		<button type="button" name="enable" class="btn-text disabled" disabled data-tt-id="${courseId}" auth-code="TrainPlan_CourseResource_Tache_Enable" >	启用</button>
+		{{else}}
+		<button type="button" name="enable" class="btn-text" data-tt-id="${courseId}" auth-code="TrainPlan_CourseResource_Tache_Enable" >	启用</button>
+		{{/if}}
+		 <button type="button" class="btn-text" name="editCourse"  data-tt-id="${courseId}" auth-code="TrainPlan_CourseResource_Tache_Update">修改</button>
+		{{if relatedNum>=1}}    		
+    		<button type="button" class="btn-text disabled" disabled name="deleteCourse"  data-tt-id="${courseId}" auth-code="TrainPlan_CourseResource_Tache_Delete">删除</button>
+    	{{else}}         	 
+    		<button type="button" class="btn-text" name="deleteCourse"  data-tt-id="${courseId}" auth-code="TrainPlan_CourseResource_Tache_Delete">删除</button>
+		{{/if}}
+	</td>
+</tr>
+</script> 
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/tache",function(tache){
+		tache.init();
+	}); 
+	seajs.use("basePath/utils/authority");
+</script>		
+</html>

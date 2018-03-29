@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>课程成绩录入</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_Score_CourseScore_View">
+	<!-- 内容框架 开始-->
+	<div class="layout-index">
+		<div class="container-fluid mb10">
+			<form id="queryForm">
+				<input type="hidden" id="academicYear" name="academicYear" value="">
+				<input type="hidden" id="semesterCode" name="semesterCode" value="">
+				<input type="hidden" id="courseId" name="courseId" value="">
+				<input type="hidden" id="theoreticalTaskId" name="theoreticalTaskId" value="">
+				<input type="hidden" id="courseInfo" name="courseInfo" value="">
+				<input type="hidden" id="teachingClassNo" name="teachingClassNo" value="">
+
+				<input type="hidden" id="courseScoreSetId" name="courseScoreSetId" value="">
+				<input type="hidden" id="scoreRegimenId" name="scoreRegimenId" value="">
+				<input type="hidden" id="scoreRegimenName" name="scoreRegimenName" value="">
+			</form>
+		</div>
+		<!--提示信息-->
+		<div class="care-tips">
+			<p>
+				<span title="课程：" id="spanCourse">课程：</span>
+				<span title="教学班号：" class="ml50" id="spanTeachingClassNo">教学班号：</span>
+			</p>
+			<p class="mt8">
+				<span title="总评成绩：" id="spanScoreSet">总评成绩：</span>
+			</p>
+		</div>
+		<!-- 正式内容区域 开始 ------>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="clearfix">
+							<div class="pull-left care-tips2 mt20"></div>
+							<div class="box-header pull-right"></div>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead id="tbodytitle">
+											<tr>
+												<th class="width48">序号</th>
+												<th class="width13">学号</th>
+												<th class="width13">姓名</th>
+												<th class="width48">性别</th>
+												<th class="width80">平时成绩</th>
+												<th class="width80">期中成绩</th>
+												<th class="width80">期末成绩</th>
+												<th class="width80">技能成绩</th>
+												<th class="width110">总评成绩</th>
+												<th class="width100">特殊情况</th>
+												<th>备注</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent" class="mh510 no-data-html">
+											<tr>
+												<td colspan='11'></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 正式内容区域 结束 --- -->
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 分页 -->
+	<script src="../../../common/js/base/core/page/pagination.js"></script>
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+	<!--加载meta IE兼容文件-->
+	<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+	<!-- 列表标题 -->
+	<script id="bodyTitleImpl" type="text/x-jquery-tmpl">
+<tr>
+	<th class="width48">序号</th>
+	<th class="width13">学号</th>
+	<th class="width13">姓名</th>
+	<th class="width48">性别</th>
+{{if usualRatio != null }}
+	<th class="width80">平时成绩</th>
+{{/if}}
+{{if midtermRatio != null }}
+	<th class="width80">期中成绩</th>
+{{/if}}
+{{if endtermRatio != null }}
+	<th class="width80">期末成绩</th>
+{{/if}}
+{{if skillRatio != null }}
+	<th class="width80">技能成绩</th>
+{{/if}}
+	<th class="width110">总评成绩</th>
+	<th class="width100">特殊情况</th>
+	<th>备注</th>
+</tr>
+</script>
+
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+{{each(i,item) list}}
+<tr>
+	<td class="width48">${item.index}</td>
+	<td class="width13" title="${item.studentNo}">${item.studentNo}</td>
+	<td class="width13" title="${item.studentName}">${item.studentName}</td>
+	<td class="width48" title="${item.sexName}">${item.sexName}</td>
+{{if scoreRegimenName != null && scoreRegimenName == "百分制" }}
+	{{if usualRatio != null }}
+		<td class="width80" title="${item.usualScore}">${item.usualScore}</td>
+	{{/if}}
+	{{if midtermRatio != null }}
+		<td class="width80" title="${item.midtermScore}">${item.midtermScore}</td>
+	{{/if}}
+	{{if endtermRatio != null }}
+		<td class="width80" title="${item.endtermScore}">${item.endtermScore}</td>
+	{{/if}}
+	{{if skillRatio != null }}
+		<td class="width80" title="${item.skillScore}">${item.skillScore}</td>
+	{{/if}}	
+	<td class="width110" title="${item.totalScore}">${item.totalScore}</td>
+{{else}}
+	<td class="width110" title="${item.totalScoreDesc}">${item.totalScoreDesc}</td>
+{{/if}}
+
+	<td class="width100" title="${item.specialCaseName}">${item.specialCaseName}</td>
+	<td title="${item.remark}">${item.remark}</td>
+</tr>
+{{/each}}
+
+</script>
+	<script type="text/javascript">
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/courseScoreView", function(courseScoreView) {
+			courseScoreView.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

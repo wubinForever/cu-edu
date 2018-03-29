@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>学生报到</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_Counsellor_Report">
+   <!-- 内容框架 开始-->
+   <div class="layout-index" id="reportlist">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">学年学期：</label>
+								<select class="form-control sel-com" id="academicYearSemesterSelect" name="academicYearSemesterSelect" disabled="disabled"></select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">班级：</label>
+								<select class="form-control sel-com" id="classSelect" name="classSelect"></select>
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+			</div>
+		</div>
+
+		<!-- 内容 开始 -->
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header text-right">
+							<button type="button" class="btn btn-success width-default" name="transact"  id="transact" auth-code="TeacherService_Counsellor_Report_Add">办理报到</button>
+							<button type="button" class="btn btn-danger width-default" name="cancel" id="cancel" auth-code="TeacherService_Counsellor_Report_Cancel">撤销报到</button>
+							<button type="button" class="btn btn-success width-default" name="export" id="export"
+							auth-code="teacherService_Counsellor_Report_Export">导出</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+										<tr>
+											<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+											<th class="width48">序号</th>
+											<th class="width70">年级</th>
+											<th>院系</th>
+											<th>专业</th>
+											<th>班级</th>
+											<th>学号</th>
+											<th>姓名</th>
+											<th class="width55">性别</th>
+											<th class="width80">报到状态</th>
+											<th>备注</th>
+										</tr>
+										</thead>
+										<tbody id="tbodycontent">
+											
+										</tbody>	
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 内容 结束 -->
+   </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+		<tr class="tr-checkbox">
+			<td class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"  name="checNormal"userId="${userId}" reportStatus="${reportStatus}"></div></td>
+			<td class="width48">${$index+1}</td>
+			<td class="width70" title="${grade}">${grade}</td>
+			<td class="text-l" title="${departmentName}">${departmentName}</td>
+			<td class="text-l" title="${majorName}">${majorName}</td>
+			<td class="text-l" title="${className}">${className}</td>
+			<td class="text-l" title="${studentNo}">${studentNo}</td>
+			<td class="text-l" title="${studentName}">${studentName}</td>
+			<td class="width55" title="${sexName}">${sexName}</td>
+			<td class="width80" title="${reportStatusName}">${reportStatusName}</td>
+			<td class="text-l" title="${remark}">${remark}</td>
+		</tr>
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/reportList", function(reportList) {
+			reportList.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

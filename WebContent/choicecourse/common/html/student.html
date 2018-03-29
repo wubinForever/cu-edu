@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>设置禁选学生</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<!-- 下面这个是树目录控件的css -->
+<link href="../../../common/css/ztree/zTreeStyle.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+<body page-auth-code="ChoiceCourse_Parameter_ChoiceStudent_Set">
+	<div class="pop-con-header">
+		<div class="header-con">
+			<div class="row">
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="schoolCalendar">班 级：</label> <select class="form-control sel-com"
+							id="classId" name="classId">
+							<option value="" selected="selected">全部</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">学号/姓名：</label> <input type="text" class="form-control inp-com" id="studentName" name="studentName"
+								maxlength="50"/>
+					</div>
+				</div>
+				<div class="col-sm-4 form-inline margin-top10">
+					<label class="checkbox-inline">
+						<div id="register" class="checkbox-con">
+							<input type="checkbox" class="checkbox" id="registerStatus" name="registerStatus" />
+						</div> 限未注册
+					</label>
+				</div>
+				<button class="btn btn-primary header-btn" id="searchBtn">查询</button>
+			</div>
+		</div>
+	</div>
+	<!-- 左右移动table -->
+	<div class="clearfix double-table-opra" id="shufflingId"></div>
+	<!-- 左右移动table-End -->
+</body>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 验证 -->
+<script type="text/javascript">
+	seajs.use("../js/student", function(student) {
+		student.init();
+	});
+	seajs.use("../../../common/js/utils/authority");
+</script>
+</html>

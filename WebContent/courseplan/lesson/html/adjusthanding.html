@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>调课处理</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="pop-con">
+		<div class="box">
+			<div class="box-header row">
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group form-normal">
+						<label for="name">学年学期：</label> 
+						<span id="semester"></span>
+					</div>
+				</div>
+			</div>
+			<!-- table begin -->
+			<div class="box-body">
+				<div class="scorll-box">
+					<div class="table-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>课程</th>
+									<th>周次</th>
+									<th>节次</th>
+									<th>单双周</th>
+									<th>教室</th>
+									<th>教学班</th>
+								</tr>
+							</thead>
+							<tbody id="tbodycontent" style="min-height:0;height:auto;">
+								<tr>
+								    <td id="course"></td>
+								    <td id="adjustBeforeWeek"></td>
+								    <td id="adjustBeforeSection"></td>
+								    <td id="singleOrDoubleWeek"></td>   									    
+								    <td id="adjustBeforeClassroom"></td>
+								    <td id="teachclass"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>	
+			<div class="box-header pull-left" style="margin:10px 0 0 0;">
+				<span class="mr10">类型：<span id="adjustShutType"></span></span>
+				<span id="clashStatus">
+				<label class="checkbox-inline" style="padding:0 15px 0 20px;"> 
+					<div class="checkbox-con mr10">
+						<input type="checkbox" class="checNormal disabled" disabled="disabled" id="classClashStatus">
+					</div>检测班级冲突
+				</label>
+				<label class="checkbox-inline" style="padding:0 15px 0 0;"> 
+					<div class="checkbox-con mr10">
+						<input type="checkbox" class="checNormal disabled" disabled="disabled" id="teacherClashStatus">
+					</div>检测教师冲突
+				</label>
+				<label class="checkbox-inline" style="padding:0 15px 0 0;"> 
+					<div class="checkbox-con mr10">
+						<input type="checkbox" class="checNormal disabled" disabled="disabled" id="teachroomClashStatus">
+					</div>检测教室冲突
+				</label>
+				</span>
+			</div>
+			<div class="box-body" id="adjustDiv">
+				<div class="scorll-box">
+					<div class="table-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th class="width08">是否调整</th>
+									<th class="width08">项目</th>
+									<th>调前</th>
+									<th>调整</th>
+								</tr>
+							</thead>
+							<tbody id="tbodycontent" style="min-height:0px;height:auto;">
+								<tr>
+								    <td id="weekOption"  class="width08"></td>
+								    <td class="width08">周次</td>
+								    <td id="weekBefore"></td>
+								    <td id="weekAfter"> </td>   									    
+								</tr>
+								<tr>
+								    <td id="sectionOption"  class="width08"></td>
+								    <td class="width08">节次</td>
+								    <td id="sectionBefore"></td>
+								    <td id="sectionAfter"></td>   									    
+								</tr>
+								<tr>
+								    <td id="roomOption"  class="width08"></td>
+								    <td class="width08">教室</td>
+								    <td id="roomBefore"></td>
+								    <td id="roomAfter"> </td>   									    
+								</tr>
+								<tr>
+								    <td id="teacherOption"  class="width08"></td>
+								    <td class="width08">教师</td>
+								    <td id="teacherBefore"></td>
+								    <td id="teacherAfter"> </td>   									    
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="box-body mt20"  id="adjustDiv">
+				<div class="">
+					<table class="table table-bordered table-cm table-cm2">
+						<tbody id="">
+							<tr>												
+								<th class="text-right" width="100">调课原因：</th>
+								<td colspan="3" class="text-left" id="adjustShutReason"></td>
+							</tr>
+							<tr>												
+								<th class="text-right">提交人：</th>
+								<td class="text-left" id="adjustUser"></td>
+								<th class="text-right" width="100">提交时间：</th>
+								<td class="text-left" id="adjustTime"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+			</div>	
+			<div class="box-body mt20" id="shutDiv">
+				<div class="">
+					<table class="table table-bordered table-cm table-cm2">
+						<tbody id="">
+							<tr>												
+								<th class="text-right" width="100">停课周次：</th>
+								<td  class="text-left" id="shutWeek"></td>
+								<th class="text-right" width="100">停课节次：</th>
+								<td  class="text-left" id="shutSection"></td>
+							</tr>
+							<tr>												
+								<th class="text-right" width="100">停课原因：</th>
+								<td class="text-left" colspan="3" id="shutReason"></td>
+							</tr>
+							<tr>												
+								<th class="text-right" width="100" >提交人：</th>
+								<td  class="text-left" id="shutUser"></td>
+								<th class="text-right" width="100" >提交时间：</th>
+								<td  class="text-left" id="shutTime"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+			</div>	
+			<div class="box-header">
+				<span>处理信息：</span>
+			</div>
+			<div class="box-body mt20" id="detailDiv">
+				<div class="">
+					<table class="table table-bordered table-cm table-cm2">
+						<tbody id="">
+							<tr>								
+								<th class="text-right" width="100">处理结果：</th>
+								<td colspan="3" class="text-left">
+									<p class="text-danger" id="handingStatus"></p>
+								</td>
+							</tr>
+							<tr>												
+								<th class="text-right">处理意见：</th>
+								<td class="text-left" colspan="3">
+									<div class="tips-text verification-info" style="display: block;width:100%;" id="handingOption"></div>
+								</td>								
+							</tr>
+							<tr>												
+								<th class="text-right" width="100">处理人：</th>
+								<td class="text-left" id="disposeUser">
+								</td>
+								<th class="text-right" width="100">处理时间：</th>
+								<td class="text-left" id="disposeTime">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+			</div>
+			<div class="box-body mt20" id="handingDiv">
+				<div class="">
+					<table class="table table-bordered table-cm table-cm2">
+						<tbody id="">
+							<tr>												
+								<th class="text-right" width="100"><i class="text-danger">*</i>处理结果</th>
+								<td colspan="3" class="text-left">
+									<label class="radio-inline on-radio">
+										<div class="radio-con"><input type="radio" name="handingStatus" value="2" checked></div> 通过
+									</label>
+									<label class="radio-inline ">
+										<div class="radio-con"><input type="radio" name="handingStatus" value="1" ></div> 不通过
+									</label>
+								</td>
+							</tr>
+							<tr>												
+								<th class="text-right">处理意见：</th>
+								<td class="text-left" colspan="3">
+									<div class="tips-text verification-info" style="display: block;width:100%;height:95px;">
+									<textarea class="form-control"  rows="3" cols="" id="handingOption" name="handingOption" ></textarea>
+									<span id="handingOptionCount" class="textarea-length"></span>
+									</div>
+								</td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>	
+			</div>	
+		</div>
+	</div>
+</body>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/utils/limit.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/adjustdetail", function(adjustdetail) {
+		adjustdetail.init(true);
+	});
+</script>
+</html>

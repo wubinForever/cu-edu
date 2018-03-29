@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选择学生</title>
+		<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+        <link href="../../../../common/css/popup.css" rel="stylesheet"/>
+        <link href="../../../../common/css/skins.css" rel="stylesheet"/>
+        <!-- 下面这个是树目录控件的css -->
+        <link href="../../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+        <!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<style>
+		td.width04, th.width04{ width:70px;}
+		.pop-con .scorll-box .table>tbody, .double-table-opra .scorll-box .table>tbody {
+	       height: 280px;
+	    }
+    </style>
+	<body>
+		<div class="pop-con-header">
+			<div class="header-con">
+		     	<form id="queryForm">
+		     		<div class="row">
+			   		  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+								<label for="schoolCalendar">学年学期：</label> 
+								<span class="fontspan fontspan ellipsis" id="semesterName" name="semesterName"></span>
+								<input type="hidden" id="semester" name="semester" value=""/>
+							</div>
+					  	</div>
+					  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+								<label>年      级：</label> 
+								<select class="form-control sel-com" id="grade" name="grade">
+								</select>
+					  	    </div>
+					  	</div>
+					  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+								<label for="schoolCalendar">院       系：</label> 
+								<select class="form-control inp-com170" id="departmentId" name="departmentId">
+								</select>
+						    </div>
+					  	</div>
+		   		    </div>
+		   		    <div class="row">
+			   		  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+								<label>专 业：</label> 
+								<select class="form-control sel-com" id="majorId" name="majorId">
+									<option value="-1">全部</option>
+								</select>
+							</div>
+					  	</div>
+					  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+								<label for="name">班级：</label>
+								<select class="form-control sel-com" id="classId" name="classId">
+									<option value="">全部</option>
+								</select>
+							</div>
+					  	</div>
+					  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+								<label>学号/姓名：</label> 
+								<input type="text" class="form-control inp-com170" id="studentNo" name="studentNo" maxlength="50" />
+							  <input type="text" class="hide" />
+							</div>
+					  	</div>
+		   		    </div>
+		   		</form>    
+		   		<button type="button" class="btn btn-primary header-btn" name="query" id="query" >查询</button>
+			</div>  
+		</div>	
+		<div class="pop-con">
+			<div class="box">
+				<div class="box-body">
+					<div class="scorll-box">
+						<div class="table-box">
+							<table class="table table-bordered table-hover">
+								<thead>
+								   <tr>
+								  	 <th class="width05"></th>
+									 <th class="width05">序号</th>
+									 <th class="width05">年级</th>
+									 <th>院系</th>
+									 <th>专业</th>
+									 <th>班级</th>
+									 <th>学号</th>
+									 <th>姓名</th>
+									 <th class="width05">性别</th>
+									 <th class="width04">是否注册</th>
+								   </tr>
+								</thead>
+								<tbody id="tbodycontent" style="400px;">
+								</tbody>
+							</table>
+						</div>
+					</div>	
+				</div>
+			    <div id="pagination" class="pagination"></div>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]--> 
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+ <tr data-tt-id="${userId}" >  
+         <td class="width05">
+             <label>
+			         <div class="radio-con"><input type="radio" 
+                          data-tt-id='${userId}' data-tt-no='${studentNo}' data-tt-name='${studentName}' data-tt-class='${classId}' 
+                          name="radioButton" data-tt-majorId='${majorId}' data-tt-grade='${grade}' />
+                      </div>
+			 </label>
+         </td>
+         <td class="width05">${$index+1}</td>   
+         <td class="width05">${grade}</td>
+         <td class="text-l" title="${departmentName}">${departmentName}</td>
+         <td class="text-l" title="${majorName}">${majorName}</td>
+         <td class="text-l" title="${className}">${className}</td>
+         <td class="text-l" title="${studentNo}">${studentNo}</td>      
+         <td class="text-l" title="${studentName}">${studentName}</td> 
+         <td class="width05">${sexName}</td>
+         <td class="width04">${registerStatus}</td>
+ </tr> 
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/adjustchoice", function(adjustchoice) {
+		adjustchoice.initSelectStudent();
+	});
+	seajs.use("basePath/utils/authority");
+</script>			
+

@@ -1,0 +1,85 @@
+.school-infoList label{margin-bottom:0;}
+.school-infoList  table td,.school-infoList  table th{padding:10px 5px;}
+.school-infoList .avatar-upload{margin:0;}
+.school-infoList .avatar-tip{width:170px;}
+
+.table-cm tbody th{background:#DAE5EF;}
+.table-cm>tbody>tr>td{height:100px;}
+.table-cm>tbody>tr>td.selected{background:#F99864;}
+.table-cm>tbody>tr>td.unable{background:#F2F2F2;cursor:default;}
+.table-cm>tbody>tr>td.able{background:white;}
+#scoreBoxTwo tbody{height:69px !important;min-height:auto;}
+#rolltbodybox{height:550px !important}
+
+.tit-wrap{font-size: 18px;text-align: center;color: #666666;margin-bottom:15px;}
+.info-wrap>div{float: left;width:20%;color: #666666;}
+.info-tea-wrap>div{float: left;width:16.66%;color: #666666;}
+.info-tea-wrapt>div{float: left;width:33.33%;color: #666666;}
+.info-room-wrap>div{float: left;width:20%;color: #666666;}
+#printbox .info-tea-wrap>div{width:auto;margin-right:12px;font-size:12px;}
+.rollBookHead>div{width:auto;margin-right:20px;font-size:12px;float:left;}
+#boxbody,.link-box,#administrativeClassBox{display:none;}
+#tip-box{text-align:center;margin:50px auto;display:none;}
+.semesterName{font-size:14px;margin-top: 10px;}
+
+#border-left table thead {
+    width: calc( 100% - 17px );
+}
+#border-left table thead, #border-left table thead tr, #border-left tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+.border-left table{margin-bottom:0;}
+
+@media (min-width: 992px){
+  .col-md-3 {
+    width: 25%;
+  }
+}
+
+
+@media (max-width: 992px){
+  #rollrow .col-md-4 {
+    width: 33.33333333%;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .achievementsprint .col-md-3{
+    margin-right:25px;
+    float: left;
+  }
+}
+@media (min-width: 992px){
+  .header-con.mkupheader{
+    position:relative;
+  }
+  .header-con.mkupheader .form-inline .form-group label{
+    min-width:120px !important;
+  }
+  .header-con.mkupheader .header-btn{
+    position:absolute;
+    right:20px;
+    top:60px;
+  }
+}
+@media print{
+   
+   #boxbody .labs>div{width:auto;margin-right:12px;font-size:12px;float:left;}
+   #divBody .info-tea-wrap>div{width:auto;margin-right:12px;font-size:12px;float:left;}
+}
+#tbodycontentonet{border:none;border-collapse:initial;}
+#tbodycontentonet.no-data-html{border:1px solid #d6e2eb;}
+#tbodycontentonet.no-data-html tr:hover{background:none}
+#rolllistbox #tbodycontent{height:510px;}
+.webuploader-pick{width:100%;}
+
+#rollBookTable{overflow: auto !important;min-width: 1600px;}
+.mh510{height:512px !important;height: 513px\0 !important;}
+.mh340{height:342px !important;height: 342px\0 !important;}
+.mh306{height:357px !important;height: 358px\0 !important;}
+
+

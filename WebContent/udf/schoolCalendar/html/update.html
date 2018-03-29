@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>楼房</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+</head>
+</head>
+<body page-auth-code="BaseData_SchoolCalendar_Update">
+	<form id="addWorkForm">
+		<div class="pop-con box900">
+			
+			<div class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>学年：</label>
+
+				<div class="input-group spinner" style="width: 130px;">
+					<input id="academicYear" name="academicYear" type="text" class="form-control" value="" maxlength="4" min="0" max="9998">
+					<div class="input-group-btn-vertical">
+						<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+						<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+					</div>
+				</div>－<input type="text"
+					class="form-control fixed-mall inline-block" id="academicYearCreate"
+					name="academicYearCreate" readonly>
+			
+				<label for="number">周开始星期：</label>
+				<!-- 周开始星期0-周日，1-周一 -->
+				<label class="radio-inline">
+					<div class="radio-con"><input type="radio" name="weekStartDay" value="0"></div> 周日
+				</label>
+				<label class="radio-inline">
+					<div class="radio-con"><input type="radio" name="weekStartDay" value="1"></div> 周一
+				</label>
+			</div>
+			<!-- 表格区域 开始 ------>
+			<div class="sub-content">
+
+				<div class="box">
+
+					<div class="box-body">
+						<div class="scorll-box" id="div_demo"></div>
+						<div class="scorll-box">
+							<table class="table table-bordered table-hover">
+								<thead>
+								<tr>
+									<th width="110">学期</th>
+									<th><i class="text-danger">*</i> 上课起止日期</th>
+									<th><i class="text-danger">*</i> 假期起止日期</th>
+									<th width="90">当前学年学期</th>
+								</tr>
+								</thead>
+								<tbody id="tbody">
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div id="pagination"></div>
+				</div>
+
+			</div>
+			<!-- 表格区域 结束 --- -->
+		</div>
+	</form>
+</body>
+<script id="schoolCalendarTableTmpl" type="text/x-jquery-tmpl">
+	<tr>
+		<td style="display:none;" name="schoolCalendarId">${schoolCalendarId}</td>
+		<td style="display:none;" name="semesterCode">${semesterCode}</td>
+		<td width="110">${semesterCodeName}</td>
+		<td>
+			<input name="classStartDate" type="text" class="form-control wdate fixed-mall" value="${classStartDate}" id="classStartDate${$index}"/> 
+			至 
+			<input name="classStopDate" type="text" class="form-control wdate fixed-mall" value="${classStopDate}" id="classStopDate${$index}" />
+		</td>
+		<td>
+			<input name="vacationStartDate" type="text" class="form-control fixed-mall"  value="${vacationStartDate}" readonly id="vacationStartDate${$index}" />  
+			至
+			{{if lastColumn==1}}
+			<input name="vacationStopDate" type="text" class="form-control wdate fixed-mall" id="lastVacationStopDate" value="${vacationStopDate}" />
+			{{else}}
+			<input name="vacationStopDate" type="text" class="form-control fixed-mall" value="${vacationStopDate}" readonly id="vacationStopDate${$index}" />
+			{{/if}}
+		</td>
+		<td width="90">
+			{{if isCurrentSemester==1}}
+			<label class="radio-inline  on-radio"><div class="radio-con"><input type="radio" name="isCurrentSemester" value="1" ></div></label>
+			{{else}}
+			<label class="radio-inline"><div class="radio-con"><input type="radio" name="isCurrentSemester" value="0"></div></label>
+			{{/if}}	
+		</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js/utils","configPath":"../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/schoolCalendar", function(schoolCalendar) {
+		schoolCalendar.initUpdate();
+	});
+	
+	seajs.use("basePath/authority");
+</script>
+</html>

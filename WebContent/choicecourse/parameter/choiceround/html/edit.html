@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>选课轮次修改</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body page-auth-code="ChoiceCourse_Parameter_ChoiceRound_Update">
+	<form id="addForm">
+	<input type="text" class="form-control inp-com" id="roundId" name="roundId"
+			style="display: none;">
+		<div class="pop-con">
+			<div class="row">
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar"><i class="text-danger">*</i>学年学期：</label>
+					<div class="tips-text verification-info">
+						<select class="form-control sel-com170" id="semester" name="semester">						
+						</select>
+					</div>
+				</div>
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar"><i class="text-danger">*</i>选课轮次：</label>
+					<div class="tips-text verification-info">
+						<input type="text" class="form-control inp-com170" id="roundName" name="roundName" maxlength="20" />
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar"><i class="text-danger">*</i>选课开始时间：</label>
+					<div class="tips-text verification-info">
+						<input type="text" class="form-control wdate valid inp-com170"
+							 id="startTime" name="startTime" 
+							 onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', maxDate:'#F{$dp.$D(\'endTime\')}', enableKeyboard:false,enableInputMask:false});" readonly="readonly"
+							 />
+					</div>
+				</div>
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar"><i class="text-danger">*</i>选课结束时间：</label>
+					<div class="tips-text verification-info">
+						<input type="text" class="form-control wdate valid inp-com170"
+							 id="endTime" name="endTime" 
+							 onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'#F{$dp.$D(\'startTime\',{m:1})||\'0000-00-00 00:00\'}', enableKeyboard:false,enableInputMask:false});"  readonly="readonly"
+							/>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar">选课退选控制：</label> 
+					<label class="radio-inline on-radio">
+						<div class="radio-con">
+							<input type="radio" name="exitControl" value="1" checked="checked">
+						</div>可选可退
+					</label> 
+					<label class="radio-inline">
+						<div class="radio-con">
+							<input type="radio" name="exitControl" value="2">
+						</div>只可选课
+					</label> 
+					<label class="radio-inline">
+						<div class="radio-con">
+							<input type="radio" name="exitControl" value="3">
+						</div>只可退课
+					</label>
+				</div>
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar">要求学生在校：</label> 
+					<label class="radio-inline on-radio">
+						<div class="radio-con">
+							<input type="radio" name="isAtSchool" value="1" checked="checked">
+						</div>是
+					</label> 
+					<label class="radio-inline">
+						<div class="radio-con">
+							<input type="radio" name="isAtSchool" value="0">
+						</div>否
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar">要求学生在籍：</label> 
+					<label class="radio-inline on-radio">
+						<div class="radio-con">
+							<input type="radio" name="isArchive" value="1" checked="checked">
+						</div>是
+					</label> 
+					<label class="radio-inline">
+						<div class="radio-con">
+							<input type="radio" name="isArchive" value="0">
+						</div>否
+					</label>
+				</div>
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar">要求学生注册：</label> 
+					<label class="radio-inline on-radio">
+						<div class="radio-con">
+							<input type="radio" name="isRegister" value="1" checked="checked">
+						</div>是
+					</label> 
+					<label class="radio-inline">
+						<div class="radio-con">
+							<input type="radio" name="isRegister" value="0">
+						</div>否
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar">允许跨校区选课：</label> 
+					<label class="radio-inline">
+						<div class="radio-con">
+							<input type="radio" name="isTransCampus" value="1" >
+						</div>是
+					</label> 
+					<label class="radio-inline on-radio">
+						<div class="radio-con">
+							<input type="radio" name="isTransCampus" value="0" checked="checked">
+						</div>否
+					</label>
+				</div>
+				<div class="col-xs-6 form-inline form-group formtext formtext-120">
+					<label for="schoolCalendar">开放选课：</label> 
+					<label class="radio-inline on-radio">
+						<div class="radio-con">
+							<input type="radio" name="isOpened" value="1" checked="checked">
+						</div>是
+					</label> 
+					<label class="radio-inline">
+						<div class="radio-con">
+							<input type="radio" name="isOpened" value="0">
+						</div>否
+					</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 form-inline formtext formtext-120">
+					<label for="schoolCalendar">备注：</label>
+					<textarea class="form-control tarea-com75per" id="remark" name="remark" maxlength="200"></textarea>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/choiceround", function(choiceround) {
+		choiceround.initUpdate();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

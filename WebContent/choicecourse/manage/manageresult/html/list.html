@@ -1,0 +1,187 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>处理选课结果</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style>
+	@media (min-width: 992px){
+		.form-inline .form-control.inp-com, .form-inline .form-control.sel-com {
+		    width: 150px;
+		}
+	}
+	@media (min-width: 1280px){
+		.form-inline .form-control.inp-com, .form-inline .form-control.sel-com {
+		    width: 220px;
+		}
+	}
+</style>
+</head>
+<body page-auth-code="ChoiceCourse_Manage_ManageResult">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index"> 
+   <div class="container-fluid col-xs-12">
+   <input type="hidden" value="0" id="pageIndex" />
+        <div class="header-con">
+	     	<form id="queryForm">
+	     		<div class="row">
+		   		  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="schoolCalendar">学年学期：</label> 
+							<select class="form-control sel-com" id="semester" name="semester">
+						    </select>
+						</div>
+				  	</div>
+				  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="name">开课单位：</label> 
+							<select	class="form-control sel-com" id="departmentId" name="departmentId">
+								<option value="">全部</option>
+							</select>
+						</div>
+				  	</div>
+				  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label>课程号/名称：</label> 
+							<input type="text" class="form-control inp-com" id="courseNo" name="courseNo" maxlength="100" />
+						</div>
+				  	</div>
+	   		    </div>
+	   		    <div class="row">
+	   		    	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label>已选人数<=</label> 
+							<input type="text" class="form-control inp-com" onkeyup="this.value=/(^[1-9]([0-9]*)$|^[0-9]$)/.test(this.value) == false ? '': this.value" id="choicedNum" name="choicedNum"/>
+						</div>
+				  	</div>
+				  	<div class="col-sm-8 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="schoolCalendar">课程类型：</label> 
+							<select class="form-control sel-double-mid" id="courseTypeCode" name="courseTypeCode">
+							</select>
+							<select class="form-control sel-double-mid" id="courseAttributeCode" name="courseAttributeCode">
+							</select>
+						</div>
+				  	</div>
+				  	
+	   		    </div>
+	   		</form>    
+	   		<button type="button" class="btn btn-primary header-btn" name="query" id="query"  >查询</button>
+		</div>  	
+    </div>
+  	<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-danger" id="batchDelete" name="batchDelete" page-auth-code="ChoiceCourse_Manage_ManageResult_Delete">删除教学班</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+										   <tr>
+										   	 <th class="width03">
+										   	 	<div id="chkDiv" class="checkbox-con"><input type="checkbox" id="check-all" name="checkAll"></div>
+										   	 </th>
+											 <th class="width45">序号</th>
+											 <th width="120">开课单位</th>
+											 <th width="90">课程号</th>
+											 <th width="120">课程名称</th>
+											 <th width="60">学分</th>
+											 <th width="120">教学班</th>
+											 <th width="100">排课周次</th>
+											 <th width="130">任课教师</th>
+											 <th width="100">教学班人数</th>
+											 <th width="100">可选人数上限</th>
+											 <th width="100">已选人数</th>
+											 <th width="140">操作</th>
+										   </tr>
+										</thead>
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>	
+						</div>
+						 <div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div> 
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+ <tr class="tr-checkbox">  
+         <td class="width03"><div class="checkbox-con"><input type="checkbox" class="checNormal" name="checNormal" value="${theoreticalTaskId}" data-tt-choiced="${choicedNum}"></div></td>
+         <td class="width45">${$index+1}</td>   
+         <td width="120" class="text-l" title="${departmentName}">${departmentName}</td>
+         <td class="text-l" width="90" title="${courseNo}">${courseNo}</td>
+         <td width="120" class="text-l" title="${courseName}">${courseName}</td>
+         <td width="60" class="text-r">${credit}</td>
+         <td width="120" class="text-l" title="${teachingClassNo}">${teachingClassNo}</td>      
+         <td width="100" class="text-l" title="${arrangeWeeks}">${arrangeWeeks}</td> 
+         <td width="130" class="text-l" title="${teacherList}">${teacherList}</td>
+         <td class="text-r" width="100">${teachingClassMemberCount}</td> 
+         <td class="text-r" width="100">${choiceLimit}</td> 
+         <td class="text-r" width="100">
+             {{if choicedNum > 0}}
+                   <a href="#" class="table-a" name="studentList" data-tt-class="${classIds}" data-tt-id="${theoreticalTaskId}">${choicedNum}</a>
+             {{else}}
+                    ${choicedNum}
+             {{/if}}  
+        </td>
+         <td width="140">
+             {{if choicedNum > 0}}
+                <button type="button" class="btn-text disabled" disabled="disabled">删除教学班</button>
+                <button type="button" class="btn-text" data-tt-id="${theoreticalTaskId}" data-tt-course="${courseId}" id="popAdjust" auth-code="ChoiceCourse_Manage_ManageResult_Update" name="popAdjust">调剂</button>
+              {{else}}
+                <button type="button" class="btn-text" data-tt-id="${theoreticalTaskId}" data-tt-choiced="${choicedNum}" id="delete" auth-code="ChoiceCourse_Manage_ManageResult_Delete" name="delete">删除教学班</button>
+                <button type="button" class="btn-text disabled" disabled="disabled" >调剂</button>
+             {{/if}} 
+          </td>
+ </tr> 
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/manageresult", function(manageresult) {
+		manageresult.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>			

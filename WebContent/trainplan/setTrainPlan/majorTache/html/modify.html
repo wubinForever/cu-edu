@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>专业实践环节修改</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+
+<body page-auth-code="TrainPlan_SetTrainPlan_MajorTache_Update" >
+<form id="editForm">
+<input type="hidden" id="majorTheoryId" name="majorTheoryId" />
+	<div class="pop-con box900">
+		<h3 class=" school-titlle">年级专业信息</h3>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>年级：</label>
+			<div class="tips-text verification-info">
+			<select class="form-control inp-com" id="grade" name="grade" disabled>
+			</select>
+			</div>
+			<label for="name"><i class="text-danger">*</i>院系：</label>
+			<div class="tips-text verification-info">
+			<select class="form-control inp-com" id="departmentId" name="departmentId" disabled>
+			</select>
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>专业：</label>
+			<div class="tips-text verification-info">
+			<select class="form-control inp-com" id="majorId" name="majorId" disabled>
+			</select>
+			</div>
+		</div>
+		<h3 class=" school-titlle">环节设置</h3>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>开课单位：</label>
+			<div class="tips-text verification-info">
+			<select class="form-control inp-com" id="kkDepartmentId" name="kkDepartmentId" disabled>
+			</select>
+			</div>
+			<label for="name"><i class="text-danger">*</i>环节号：</label>
+			<div class="tips-text verification-info">
+			<input type="text" class="form-control inp-com" id="courseNo" name="courseNo" disabled />
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>环节名称：</label>
+			<div class="tips-text verification-info">
+			<input type="text" class="form-control inp-com" id="name" name="name" disabled />
+			</div>
+			<label for="name">英文名称：</label>
+			<div class="tips-text verification-info">
+			<input type="text" class="form-control inp-com" id="engLishName" name="engLishName" disabled />
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>环节类别：</label>
+			<div class="tips-text verification-info">
+			<select class="form-control inp-com" id="tacheTypeCode" name="tacheTypeCode" disabled>
+			</select>
+			</div>
+			<label for="name"><i class="text-danger">*</i>学分：</label>
+			<div class="tips-text verification-info">
+			<input type="text" class="form-control inp-com" id="credit" name="credit" disabled />
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>周数：</label>
+<!-- 			<div class="tips-text verification-info"> -->
+<!-- 			<input type="text" class="form-control inp-com" id="weekNum" name="weekNum" maxlength="2" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')"/> -->
+<!-- 			</div> -->
+<div class="input-group spinner num2">
+			<input type="text" class="form-control" name="weekNum"  id="weekNum" maxlength="2" min="0" max="99" >
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+				<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+			
+			<label for="name"><i class="text-danger">*</i>考核方式：</label>
+			<div class="tips-text verification-info">
+			<select class="form-control inp-com" id="checkWayCode" name="checkWayCode" >
+				<option value="">考试</option>
+				<option value="">考查</option>
+			</select>
+			</div>
+		</div>
+		<div class="form-group form-inline formtext"  id="treeid">
+			<label for="name"><i class="text-danger">*</i>开课学期：</label>	
+			<div class="s-dutyform">
+				<input class="form-control toggle-tree inp-com" readonly id="startclassSemester" name="startclassSemester"  onmouseover="this.title=this.value" type="text" value="" onmouseout="isOutForModify=true" title=""/>
+				<div class="s-mult" style=" display: none;width: 220px;" id="checkboxlist" onmouseover="isOutForModify=false;" onmouseout="isOutForModify=true;">
+					<label for="scsCheckBox1"  class="checkbox-con on-check">
+						<input type="checkbox" value="1" name="scsCheckBox" id="scsCheckBox1" class="checNormal" />1
+					</label>
+					<label for="scsCheckBox2" class="checkbox-con on-check">
+						<input type="checkbox" value="2" name="scsCheckBox" id="scsCheckBox2" />2
+					</label>
+					<label for="scsCheckBox3" class="checkbox-con on-check">
+						<input type="checkbox" value="3" name="scsCheckBox" id="scsCheckBox3" />3
+					</label>
+					<label for="scsCheckBox4" class="checkbox-con on-check">
+						<input type="checkbox" value="4" name="scsCheckBox" id="scsCheckBox4" />4
+					</label>
+					<label for="scsCheckBox5" class="checkbox-con on-check">
+						<input type="checkbox" value="5" name="scsCheckBox" id="scsCheckBox5" />5
+					</label>
+					<label for="scsCheckBox6" class="checkbox-con on-check">
+						<input type="checkbox" value="6" name="scsCheckBox" id="scsCheckBox6" />6
+					</label>
+					<label for="scsCheckBox7" class="checkbox-con on-check">
+						<input type="checkbox" value="7" name="scsCheckBox" id="scsCheckBox7" />7
+					</label>
+					<label for="scsCheckBox8" class="checkbox-con on-check">
+						<input type="checkbox" value="8" name="scsCheckBox" id="scsCheckBox8" />8
+					</label>
+					<label for="scsCheckBox9" class="checkbox-con on-check">
+						<input type="checkbox" value="9" name="scsCheckBox" id="scsCheckBox9" />9
+					</label>
+					<label for="scsCheckBox10" class="checkbox-con on-check">
+						<input type="checkbox" value="10" name="scsCheckBox" id="scsCheckBox10" />10
+					</label>
+					<label for="scsCheckBox11" class="checkbox-con on-check">
+						<input type="checkbox" value="11" name="scsCheckBox" id="scsCheckBox11" />11
+					</label>
+					<label for="scsCheckBox12" class="checkbox-con on-check">
+						<input type="checkbox" value="12" name="scsCheckBox" id="scsCheckBox12" />12
+					</label>
+					<label for="scsCheckBox13" class="checkbox-con on-check">
+						<input type="checkbox" value="13" name="scsCheckBox" id="scsCheckBox13" />13
+					</label>
+					<label for="scsCheckBox14" class="checkbox-con on-check">
+						<input type="checkbox" value="14" name="scsCheckBox" id="scsCheckBox14" />14
+					</label>
+				</div>
+			</div>			
+		</div>
+	</div>
+</form>
+</body>
+
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 树形结构 -->
+<script src="../../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/majortacheModify",function(majortacheModify){
+		majortacheModify.modifyInit();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</html>

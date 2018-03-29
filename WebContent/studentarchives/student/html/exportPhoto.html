@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>导出学生照片</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/webuploader/webuploader.css" rel="stylesheet" />
+<link href="../css/student.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentArchives_Information_Photo_Export">
+<!-- 内容框架 开始-->
+<div class="layout-index">
+    <!-- 内容 开始 -->
+    <div class="sub-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box photoContent">
+                	<form id="addForm">
+                    <div class="topbox">
+                        <div class="inlineblock words"><i class="text-danger requiretxt">*</i>导出照片命名方式:</div>
+                        <div class="form-inline form-inp-con inlineblock">
+                        <select class="form-control sel-com" id="firstSelect">
+                        <option></option>
+                        </select>
+                        </div>
+                        <div class="form-inline form-inp-con inlineblock splitSel">
+                        <select class="form-control sel-com" id="secondSelect">
+                        <option></option>   
+                        <option>_</option>   
+                        <option>-</option>   
+                        <option>+</option>           
+                        </select>
+                        </div>
+                        <div class="form-inline form-inp-con inlineblock">
+                        <select class="form-control sel-com" id="thirdSelect" >
+                        <option></option></select>
+                        </div>
+                        <div class="inlineblock">.JPG</div>
+                        <div class="inlineblock"><button type="button" class="btn btn-success width-default exportPhoto" id="exportPhoto" name="exportPhoto">导出</button></div>
+                    </div>
+                    </form>
+                    <div class="statebox"> 
+                       <p>导出说明：</p>
+                       <p>1.所有照片会导出为zip格式的压缩包；</p>
+                       <p>2.导出失败的记录会显示前100条错误提示信息，可通过“导出失败信息”导出所有提示信息，请根据提示信息再另行导出。</p>
+                    </div> 
+                    <div class="showBox">  
+                               <span>导出成功：<i class="successNum">0</i>，导出失败：<i class="failNum">0</i>。</span> 
+                               <button type="button" class="btn btn-success width-default exportFailMsg" id="exportFailMsg" name="exportFailMsg">导出失败信息</button>
+                    </div> 
+                    <div class="box-body">
+                       <div class="scorll-box">
+                        <div class="table-box">
+                              
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="width48">序号</th>
+                                        <th class="text-l width20">学号</th>
+                                        <th class="text-l width20">姓名</th>
+                                        <th class="text-l">原因</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodycontent" class="photoContent">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+             </div>
+           </div>
+        </div>
+    </div>
+    <!-- 内容 结束 -->
+</div>
+<!-- 内容框架 结束 -->
+
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+   <script src="../../../common/js/base/webuploader/webuploader.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr name="trName">
+<td class="width48" title="${$index+1}">${$index+1}</td>
+<td class="text-l width20" title="${studentNo}">${studentNo}</td>
+<td class="text-l width20" title="${studentName}">${studentName}</td>
+<td class="text-l" title="${message}">${message}</td>
+</tr>
+</script>
+<script type="text/javascript">
+    //方法引用
+    seajs.config({
+        paths : {
+            "basePath":"../../../common/js",
+            "configPath" : "../../../common/js/config",
+            "localPath" : "../js"
+        }
+    });
+    seajs.use("localPath/photo", function(photo) {
+    photo.exportPhotoInit();
+     }); 
+    seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>场地信息新增</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css"
+		  rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../common/css/skins.css" rel="stylesheet" />
+		<link href="../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+	<!--基础模块样式表-->
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<!-- Seajs 模块化开发，请一定遵守 -->
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+		<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<script type="text/javascript" src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+		<script type="text/javascript" src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+		
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+</head>
+
+<body>
+<form id="addWorkForm">
+	<div class="pop-con box760">
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>场地号：</label>
+			<div class="tips-text verification-info">
+				<input type="text" class="form-control inp-com" id="venueNo" name="venueNo" maxlength="10">
+			</div>
+			<label for="name"><i class="text-danger">*</i>场地名称：</label>
+			<div class="tips-text verification-info">
+				<input type="text" class="form-control inp-com" id="venueName" name="venueName" maxlength="20">
+			</div>
+		</div>
+			<div class="form-group form-inline formtext">
+				<label for="number"><i class="text-danger">*</i>所属单位：</label>
+				<div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+					<div class="tips-text verification-info w220">
+						<input class="form-control inp-com toggle-tree"
+							id="departmentName" name="departmentName" type="text"
+							readonly="readonly" /> <input style="display: none;" id="departmentId"
+							name="departmentId" value="" />
+					</div>
+					<ul id="treeCode" class="ztree input-tree toggle-ui-up"></ul>
+				</div>
+				<label for="name"><i class="text-danger">*</i>所在校区：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="campusId" name="campusId">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+			<label for="number"><i class="text-danger">*</i>所在楼房：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="buildingId"
+						name="buildingId">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+				<label for="name"><i class="text-danger">*</i>所在楼层：</label>
+				<div class="input-group spinner num1 tips-text verification-info">
+				<input type="text" class="form-control" value="1" id="floor" name="floor" maxlength="2" min="0" max="99">
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+		</div>
+        <div class="form-group form-inline formtext">
+			<label for="number"><i class="text-danger">*</i>场地类型：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="venueTypeCode"
+						name="venueTypeCode">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+			<label for="name"><i class="text-danger">*</i>座位数：</label>
+			<div class="input-group spinner num2 tips-text verification-info">
+				<input type="text" class="form-control " value="1" id="seatAmount" name="seatAmount" maxlength="4" min="0" max="9999">
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+		</div>
+        <div class="form-group form-inline formtext">
+			<label for="number"><i class="text-danger">*</i>有效座位数：</label>
+			<div class="input-group spinner num3 tips-text verification-info">
+				<input type="text" class="form-control" value="1" id="effectiveSeatAmount" name="effectiveSeatAmount" maxlength="4"  min="0" max="9999">
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+			<label for="name"><i class="text-danger">*</i>考试座位数：</label>
+			<div class="input-group spinner num4 tips-text verification-info">
+				<input type="text" class="form-control" value="1" id="examsSeatAmount" name="examsSeatAmount"  maxlength="4"  min="0" max="9999">
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<div class=" inline-block w-384">
+				<label for="name"><i class="text-danger">*</i>状态：</label>
+				<label class="radio-inline on-radio">
+					<div class="radio-con"><input type="radio" name="isEnabled" value="1" checked></div> 启用
+				</label>
+				<label class="radio-inline">
+					<div class="radio-con"><input type="radio" name="isEnabled" value="0"></div> 禁用
+				</label>
+			</div>
+		</div>
+	</div>
+</form>
+</body>
+
+<script id="campusSelectTmpl" type="text/x-jquery-tmpl">
+<option value=${campusId}>${campusName}</option>
+</script>
+<script id="buildingSelectTmpl" type="text/x-jquery-tmpl">
+<option value=${buildingId}>${buildingName}</option>
+</script>
+<script id="venueTypeSelectTmpl" type="text/x-jquery-tmpl">
+<option value=${value}>${name}</option>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js","configPath":"../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/venue", function(venue) {
+		venue.initAdd();
+	});
+</script>
+</html>

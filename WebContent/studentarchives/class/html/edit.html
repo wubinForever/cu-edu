@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>修改班级信息</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+
+<body>
+<form id="addWorkForm">
+	<div class="pop-con box820 mt30">
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>年级：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="grade" name="grade" disabled="disabled">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+			<label for="name" class="min160"><i class="text-danger">*</i>所在校区：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="campusId" name="campusId">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>所属院系：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="departmentId" name="departmentId" disabled="disabled">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+				<label for="name" class="min160"><i class="text-danger">*</i>所属专业：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="majorId" name="majorId" disabled="disabled">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="number"><i class="text-danger">*</i>班号：</label>
+			<div class="tips-text verification-info">
+				<input type="text" class="form-control inp-com" id="classNo" name="classNo" maxlength="10">
+			</div>
+			<label for="name" class="min160"><i class="text-danger">*</i>班级名称：</label>
+			<span class="tips-text verification-info">
+			<input type="text" class="form-control inp-com" id="className" name="className" maxlength="50">
+			</span>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">预设人数：</label>
+			<div class="tips-text verification-info input-group spinner" >
+				<input type="text" class="form-control" value="1" id="presetNumber" name="presetNumber" maxlength="3"  min="1" max="999">
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+			<label for="name" class="min160">实际人数：</label>
+			<div class="tips-text verification-info">
+				<input type="text" class="form-control inp-com" id="actualNumber" name="actualNumber"  myattr='period' disabled="disabled">
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">固定教室：</label>
+				<div class="tips-text verification-info w220">
+					<input type="hidden" id="venueId" name="venueId">
+					<div id="venueSelect" class="relative"></div>
+				</div>
+				<label for="name" class="min160">辅导员：</label>
+				<div class="tips-text verification-info w220">
+					<input type="hidden" id="userId" name="userId">
+					<div id="userSelect" class="relative"></div>
+				</div>
+			</div>
+		<div class="form-group form-inline formtext">
+			<div class="inline-block w-384">
+				<label for="name">班级状态：</label>
+				<label class="radio-inline on-radio">
+					<div class="radio-con"><input type="radio" name="isEnabled" value="1" checked></div> 启用
+				</label>
+				<label class="radio-inline">
+					<div class="radio-con"><input type="radio" name="isEnabled" value="0"></div> 禁用
+				</label>
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">备注：</label>
+			<div class="tips-text verification-info">
+				<textarea class="form-control tarea-com-long" rows="5" id="remark" name="remark" maxlength="1000"></textarea>
+					<span id="remarkCount" class="textarea-length"></span>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" id="classId" name="classId" >
+	<input type="hidden" id="isDeleted" name="isDeleted" >
+</form>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script src="../../../common/js/utils/limit.js"></script>
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../common/js","localPath":"../js"}});
+	seajs.use("localPath/classManage",function(classManage){
+		classManage.updateInit();
+	});
+	new limit($("#remark"),$("#remarkCount"),1000);
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>确认考试课程</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body>
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> <select class="form-control sel-com"
+									id="schoolCalendarSelect" name="schoolCalendarId">
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">考试批次：</label> 
+								<select class="form-control sel-com" id="batchId" name="batchId">									
+									<option value="1">2016-2017学年第二学期 期末考试</option>
+									<option value="2">2016-2017学年第二学期 期中考试</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">开课单位：</label> 
+								<select class="form-control sel-com" id="" name="">									
+									<option value="1">全部</option>
+									<option value="2">计算机科学与技术学院</option>
+									<option value="2">管理学院</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">课程类型：</label> 
+								<select class="form-control sel-double-mid" id="" name="">									
+									<option value="1" selected="selected">全部</option>
+									<option value="2">专业课</option>
+									<option value="3">公开课</option>
+									<option value="4">专业基础课</option>
+								</select>
+								<select class="form-control sel-double-mid" id="" name="">									
+									<option value="1" selected="selected">全部</option>
+									<option value="2">必修</option>
+									<option value="3">任选</option>
+									<option value="4">限选</option>
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">考试方式：</label> <select class="form-control sel-com"
+									id="" name="">									
+									<option value="1" selected="selected">全部</option>
+									<option value="2">统一考试</option>
+									<option value="2">随堂考</option>
+									<option value="2">不安排考试</option>
+								</select>
+							</div>
+						</div>		
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">场地类型：</label> 
+								<input type="text" class="form-control inp-com"/>
+							</div>
+						</div>		
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="delete">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-left">考试课程数：5</div>
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="addCourse">添加课程</button>
+							<button type="button" class="btn btn-success" name="setExam">设置考试方式</button>
+							<button type="button" class="btn btn-danger">删除</button>
+							<button type="button" class="btn btn-warning">导出</button>
+						</div>
+						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">
+													<div class="checkbox-con">
+														<input type="checkbox" id="check-all" class="checNormal">
+													</div>
+												</th>
+												<th>考试批次</th>
+												<th>开课单位</th>
+												<th>课程</th>
+												<th>课程类型</th>
+												<th>学分</th>
+												<th>课程结束时间</th>
+												<th>合班班数</th>
+												<th>合班人数</th>
+												<th>教学班号</th>
+												<th>考试方式</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+											<tr class="tr-checkbox">
+											    <td class="width05">      
+											        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+											    </td>
+											    <td>2016-2017第一学期期末考试</td>    
+											    <td>[1212]计科院</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td>专业必修课</td>
+											    <td>1</td>
+											    <td>第16周星期一，第2节</td>   
+											    <td>5</td>
+											    <td>90</td>
+											    <td>SK5213</td>
+											    <td>统一考试</td>
+											    <td><button type="button" class="btn-text">删除</button></td>
+											</tr>
+											<tr class="tr-checkbox">
+											    <td class="width05">      
+											        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+											    </td>
+											    <td>2016-2017第一学期期末考试</td>    
+											    <td>[1212]计科院</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td>专业必修课</td>
+											    <td>1</td>
+											    <td>第16周星期一，第2节</td>   
+											    <td>5</td>
+											    <td>90</td>
+											    <td>SK5213</td>
+											    <td>统一考试</td>
+											    <td><button type="button" class="btn-text">删除</button></td>
+											</tr>
+											<tr class="tr-checkbox">
+											    <td class="width05">      
+											        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+											    </td>
+											    <td>2016-2017第一学期期末考试</td>    
+											    <td>[1212]计科院</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td>专业必修课</td>
+											    <td>1</td>
+											    <td>第16周星期一，第2节</td>   
+											    <td>5</td>
+											    <td>90</td>
+											    <td>SK5213</td>
+											    <td>统一考试</td>
+											    <td><button type="button" class="btn-text">删除</button></td>
+											</tr>
+											<tr class="tr-checkbox">
+											    <td class="width05">      
+											        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+											    </td>
+											    <td>2016-2017第一学期期末考试</td>    
+											    <td>[1212]计科院</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td>专业必修课</td>
+											    <td>1</td>
+											    <td>第16周星期一，第2节</td>   
+											    <td>5</td>
+											    <td>90</td>
+											    <td>SK5213</td>
+											    <td>统一考试</td>
+											    <td><button type="button" class="btn-text">删除</button></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/examcourse", function(examcourse) {
+		examcourse.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

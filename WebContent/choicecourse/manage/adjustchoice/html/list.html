@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>按学生调整选课</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+td.width48, th.width48{
+	width:150px;
+}
+td.width50, th.width50{
+	width:110px;
+}
+td.width03, th.width03{ 
+	width:60px;
+}
+</style>
+<body page-auth-code="ChoiceCourse_Manage_AdjustChoice">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index"> 
+   <div class="container-fluid col-xs-12">
+        <div class="header-con">
+	     	<form id="queryForm">
+	     		<div class="row">
+		   		  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="schoolCalendar">学年学期：</label> 
+							<select class="form-control sel-com" id="semester" name="semester">
+						    </select>
+						</div>
+				  	</div>
+				  	<div class="col-sm-8 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label><i class="text-danger">*</i>学号/姓名：</label> 
+							<input type="text" class="form-control inp-com" readonly="readonly" id="studentNo" name="studentNo" />
+							<input type="hidden" id="userId" name="userId" value=""/>
+							<input type="hidden" id="classId" name="classId" value=""/>
+							<input type="hidden" id="majorId" name="majorId" value=""/>
+							<input type="hidden" id="grade" name="grade" value=""/>
+						</div>
+						<button type="button" class="btn btn-success" name="select-student">选择学生</button>
+				  	</div>
+	   		    </div>
+	   		</form>    
+	   		<button type="button" class="btn btn-primary header-btn" name="query" id="query" >查询</button>
+		</div>  	
+    </div>
+  	<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-primary" name="recourse-choosing" auth-code="ChoiceCourse_Manage_AdjustChoice_Add">补选课程</button>
+						</div>
+						<div class="box-header pull-left">
+							<span>选课门数最高上限：<i class="text-danger" id="topNumLimit">0</i></span>
+							<span>&nbsp;选课学分最高上限：<i class="text-danger" id="topCreditLimit">0</i></span>   
+							<span>&nbsp;已选课程门数：<i class="text-danger" id="choicedCourseCount">0</i></span>
+							<span>&nbsp;已选课程学分：<i class="text-danger" id="choicedCredit">0</i></span>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										 <thead>
+										   <tr>
+										   		<th class="width03">序号</th>
+												<th class="width10">课程号</th>
+												<th>课程名称</th>
+												<th class="width80">学分</th>
+												<th class="width140">教学班</th>
+												<th class="">任课教师</th>
+												<th class="width10">选课方式</th>
+												<th class="width10">可选人数上限</th>
+												<th class="width10">已选人数</th>
+												<th class="width50">操作</th>
+										   </tr>
+										</thead>	
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<script id="tamplContent" type="text/x-jquery-tmpl">
+ <tr>  
+         <td class="width03">${$index+1}</td>
+         <td class="width10 text-l" title="${courseNo}">${courseNo}</td>   
+         <td class="text-l" title="${courseName}">${courseName}</td>
+         <td class="width80 text-r">${credit}</td>
+         <td class="width140 text-l" title="${teachingClassNo}">${teachingClassNo}</td>
+         <td class="text-l" title="${teacherList}">${teacherList}</td>
+         <td class="width10">${choiceWayName}</td>      
+         <td class="width10 text-r">${choiceLimit}</td> 
+         <td class="width10 text-r">${choicedNum}</></td>
+         <td class="width50"><button type="button" class="btn-text" data-tt-id="${teachingClassStudentId}" name="btnDrop" auth-code="ChoiceCourse_Manage_AdjustChoice_Delete">退选</button></td>
+ </tr> 
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/adjustchoice", function(adjustchoice) {
+		adjustchoice.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>			

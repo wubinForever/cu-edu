@@ -1,0 +1,29 @@
+.relative{position:relative;}
+@media (min-width: 768px){
+  .form-control.sel-mall {
+    position: relative;
+    width: 32.6%;
+    display: inline-block;
+  }
+}
+.leftbox{width:calc(100% - 350px);float:left; }
+.rightbox{width:300px;height:100%;float:right;margin-left:5px;}
+.rightbox .tipbox{margin:10px 0;font-size:14px;}
+.rightbox .tipbox p{margin-bottom:10px;}
+.rightbox .avatar-upload{margin:25px 0 0 0;width:auto;}
+.rightbox .avatar-upload .avatar-photo{margin-left:60px;}
+.rightbox .btns{overflow:hidden;width:100%;padding-left:58px;margin-top:20px;}
+.rightbox .btns .btn-success{float:left;}
+.rightbox .btns #importBtn{margin-right:20px;}
+.topbox{margin:20px auto;}
+.topbox .words{margin-right:10px;}
+.inlineblock{display:inline-block;}
+.exportPhoto{margin-left:40px;}
+.statebox{margin:20px auto;}
+.statebox p{margin-bottom:5px;}
+.photoContent{max-height:342px;max-height: 343px\0;}
+.showBox{color: #ed5a4d;margin-bottom:10px;overflow:hidden;}
+.showBox i{font-style:normal;}
+.btn.exportFailMsg{width:100px;float:right;}
+.form-inline.splitSel .form-control.sel-com{width:100px;}
+.mt20import{margin-top:15px !important;}

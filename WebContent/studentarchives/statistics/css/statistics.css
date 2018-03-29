@@ -1,0 +1,35 @@
+.scorll-box{border-right:none;border-bottom:none;border-left:none;}
+.scorll-box .table-static{float:left;border-left: 1px solid #c9dae7;margin-left:-1px;}
+.scorll-box .table-static>tbody{overflow:hidden;float:left;}
+.scorll-box .table-static thead{width:100%;}
+
+
+.scorll-box .table-static{margin-bottom:0;}
+.scorll-box .table-static>thead{background-color: #dae5ef;width:100%;border-top: 1px solid #c9dae7;display: table;table-layout: fixed}
+.scorll-box .table-static>thead tr{display: table;table-layout: fixed;width:100%;}
+.scorll-box .table-static>thead:first-child>tr:first-child>th{border-top:0;}
+
+.scorll-box .table-static>tbody>tr>td, .scorll-box .table-static>tbody>tr>th, .scorll-box .table-static>thead>tr>td,.scorll-box .table-static>thead>tr>th{
+    border: none;
+    border-bottom: 1px solid #c9dae7;
+    border-right: 1px solid #c9dae7;
+    text-align: center;
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: middle;
+    white-space: inherit;
+    font-size: 12px
+}
+.scorll-box .table-static:first-child{margin-left:0;}
+.scorll-box .table-static:last-child{border-right:1px solid #c9dae7;border-bottom: none;}
+
+#theadcontentone th.rowspanone{border-bottom: none;position: relative;}
+#theadcontentone th.rowspanone span.name{position: absolute;top: 80%;left:50%;margin-left:-5px;margin-top:12px\0;}
+#tableone td.departmentName,#tabletwo td.departmentName{padding-left:20px;}
+
+.studentContentBody{table-layout: fixed;}
+.studentContentBody>tbody>tr>td, .table>tfoot>tr>td, .table>thead>tr>td{white-space:normal;word-break: break-all; word-wrap:break-word;}
+td.width200, th.width200 {
+    width:200px;
+}
+.no-data-html{height:200px}

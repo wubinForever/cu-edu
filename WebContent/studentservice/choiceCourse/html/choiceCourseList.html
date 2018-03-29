@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>进入选课</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+.pop-con .scorll-box .table>tbody, .double-table-opra .scorll-box .table>tbody {
+    max-height: 500px; 
+    height: 420px;
+}
+</style>
+<body page-auth-code="">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index pop-con"> 
+	<div class="tab-box">
+	     <form id="queryForm">
+				<div class="pull-right margin-bottom10">
+			     	<input type="hidden" id="roundId" name="roundId" value=""/>
+					<input type="hidden" id="semester" name="semester" value=""/>
+					<input type="hidden" id="grade" name="grade" value=""/>
+					<input type="hidden" id="majorId" name="majorId" value=""/>
+					<input type="hidden" id="userId" name="userId" value=""/>
+					<input type="hidden" id="classId" name="classId" value=""/>
+					<input type="hidden" id="isTransCampus" name="isTransCampus" value=""/>
+				</div>
+		</form>  
+		<!-- 左右切换开始 - 表头 -->
+		<div class="tab-hd">
+			<ul class="hd-list clearfix">
+				<li class="cur" auth-code="">选课</li>
+				<li auth-code="">选课门数及学分</li>
+			</ul>
+			<input type="hidden" id="roundId" name="roundId" value=""/>
+		</div>
+		<!-- 左右切换开始 - 内容 -->
+		<div class="tab-bd" id="courseTables">
+			<div id="divCourse" class="bd-con">
+				<!-- 切换 内容1 -->
+				<div class="sub-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-body">
+									<div class="scorll-box">
+										<div class="table-box">
+											<table class="table table-bordered table-hover">
+												<!-- table标题 -->
+												 <thead>
+												   <tr>
+													   	<th class="width05">序号</th>
+													   	<th class="width75">课程号</th>
+													   	<th>课程</th>
+													   	<th class="width55">学分</th>
+													   	<th class="width55">总学时</th>
+													   	<th class="width120">课程类型</th>
+													   	<th class="width75">考核方式</th>
+													   	<th class="width110">已选教师</th>
+													   	<th class="width75">选课方式</th>
+													   	<th class="width75">接受调剂</th>
+													   	<th class="width75">操作</th>
+												   </tr>
+												</thead>	
+												<!-- table内容 -->								
+												<tbody id="tbodycontent1" style="height:770px;">
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> 
+			</div>
+			<div id="divLimit" class="bd-con">
+				<div class="sub-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-body">
+									<div class="scorll-box">
+										<div class="table-box">
+											<table class="table table-bordered table-hover">
+												 <thead>
+												   <tr>
+													   	<th class="width05">序号</th>
+													   	<th class="width20">课程类型</th>
+													   	<th class="width95">学分上限</th>
+													   	<th class="width95">已选学分</th>
+													   	<th class="width95">门数上限</th>
+													   	<th class="width95">已选门数</th>
+												   </tr>
+												</thead>							
+												<tbody id="tbodycontent2" style="height:770px;">
+													<!-- <tr>
+														<td class="width05">1</td>
+													   	<td class="text-l">总计</th>
+													   	<td class="width95">45</td>
+													   	<td class="width95 text-danger text-r">23</td>
+													   	<td class="width95">11</td>
+													   	<td class="width95 text-danger text-r">6</td>
+													   		
+													</tr>
+													<tr>
+														<td class="width05">2</td>
+													   	<td class="text-l">公共课必修</th>
+													   	<td class="width95">3</td>
+													   	<td class="width95 text-danger text-r">3</td>
+													   	<td class="width95">1</td>
+													   	<td class="width95 text-danger text-r">1</td>
+													</tr>
+													<tr>
+														<td class="width05">3</td>
+													   	<td class="text-l">专业课必修</th>
+													   	<td class="width95">3</td>
+													   	<td class="width95 text-danger text-r">3</td>
+													   	<td class="width95">1</td>
+													   	<td class="width95 text-danger text-r">1</td>
+													</tr>
+													<tr>
+														<td class="width05">4</td>
+													   	<td class="text-l">公共基础课必修</th>
+													   	<td class="width95">不限</td>
+													   	<td class="width95 text-danger text-r">0</td>
+													   	<td class="width95">不限</td>
+													   	<td class="width95 text-danger text-r">1</td>
+													</tr>
+													<tr>
+														<td class="width05">5</td>
+													   	<td class="text-l">通识课必修</th>
+													   	<td class="width95">1</td>
+													   	<td class="width95 text-danger text-r">0</td>
+													   	<td class="width95">不限</td>
+													   	<td class="width95 text-danger text-r">1</td>
+													</tr> -->
+												</tbody> 
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div> 
+			</div>
+		</div>	
+	</div>
+	<!-- 左右切换结束 -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<!-- 列表内容 -->
+<script id="tamplContent" type="text/x-jquery-tmpl">
+<tr>
+	<td class="width05">${$index+1}</td>
+	<td class="width75 text-l" title="${courseNo}">${courseNo}</td>
+	<td class="text-l" title="${courseName}">${courseName}</td>
+	<td class="width55 text-r">${credit}</td>
+	<td class="width55 text-r">${totalPeriod}</td>
+	<td class="width120" title="${courseTypeName}">${courseTypeName}</th>
+	<td class="width75" title="${checkWayName}">${checkWayName}</td>
+	<td class="width110 text-danger text-l yellow-light" title="${teacherList}">${teacherList}</td>
+	<td class="width75" title="${choiceWayName}">${choiceWayName}</td>
+    <td class="width75">${isAdjust}</td>
+    <td class="width75">
+      {{if choiceWay != null}}           
+           <button type="button" name="checkHtml" class="btn-text" data-tt-id="${courseId}" data-tt-teachingClass="${theoreticalTaskId}">查看</button>
+     {{else}} 
+           <button type="button" name="choiceHtml" class="btn-text" data-tt-id="${courseId}">选择</button>
+     {{/if}}
+    </td>
+</tr>
+</script>
+<script id="tamplContent1" type="text/x-jquery-tmpl">
+<tr>
+	<td class="width05">${$index+1}</td>
+    <td class="width20">${courseTypeName}</th>
+	<td class="width95">
+     {{if creditLimit == null}}           
+                         不限
+     {{else}} 
+         ${creditLimit}
+     {{/if}} 
+    </td>
+	<td class="width95 text-danger">${choicedCredit}</td>
+	<td class="width95">
+    {{if numLimit == null}}           
+                         不限
+     {{else}} 
+         ${numLimit}
+     {{/if}} 
+    </td>
+	<td class="width95 text-danger">${choicedCourseCount}</td>
+</tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/choicecenter", function(choicecenter) {
+		choicecenter.initChoiceCourse();
+	});
+	seajs.use("basePath/utils/authority");
+</script>	
+		

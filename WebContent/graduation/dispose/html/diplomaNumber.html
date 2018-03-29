@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>生成毕业编号</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+<style type="text/css">
+	#minNum_error{
+		margin-left:208px;
+		color: #ed5a4d;
+	    font-size: 12px;
+	    font-weight: normal;
+	    left: 0;
+	    position: absolute;
+	    text-align: left;
+	    top: 32px;
+	    width: auto;
+	    z-index: 998;
+	    display:none;
+	}
+</style>
+</head>
+<body page-auth-code="Graduation_Process_DiplomaNoGenerate">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="sub-content text-center margin-top50">
+			<form id="queryForm">
+			<div class="single-row-form">
+				<div class="form-group form-inline form-big">
+					<label for="name">毕业年届：</label>
+					<div class="tips-text verification-info">
+						<select class="form-control sel-com" id="slc_graduateYear" name="slc-graduateYear" disabled="disabled">									
+							
+						</select>
+						<input type="hidden" id="graduateYear" name="graduateYear" />
+					</div>
+				</div>
+				<div class="form-group form-inline form-big">
+					<label for="name">学校代码（1-5位）：</label>
+					<div class="tips-text verification-info">
+						<!--  <select class="form-control sel-com" id="schollCode" name="schollCode">									
+						</select>-->
+						<label id="lbl_schoolCode" style="text-align:center"></label>
+						<input type="hidden" id="schollCode" name="schollCode" />
+					</div>
+					<span id="spn_schoolCode"></span>
+				</div>
+				<div class="form-group form-inline form-big">
+					<label for="name"><i class="text-danger">*</i>学校性质（第6位）：</label>
+					<div class="tips-text verification-info">
+						<select class="form-control sel-com" id="schollType" name="schollType">									
+						</select>
+					</div>
+					<span id="spn_schollType"></span>
+				</div>
+				<div class="form-group form-inline form-big">
+					<label for="name">毕业年份（第7-10位）：</label>
+					<div class="tips-text verification-info">
+						<input type="text" class="form-control inp-com " id="grade" name="grade" disabled="disabled"/>
+					</div>
+					<span id="spn_grade"></span>
+				</div>
+				<div class="form-group form-inline form-big">
+					<label for="name"><i class="text-danger">*</i>培养层次（第11-12位）：</label>
+					<div class="tips-text verification-info">
+						<select class="form-control sel-com" id="trainingLevelCode" name="trainingLevelCode">									
+						</select>
+					</div>
+					<span id="spn_trainingLevelCode"></span>
+				</div>
+				<div class="form-group form-inline" style="position:relative">
+					<div class="tips-text verification-info">
+						<label for="name"><i class="text-danger">*</i>顺序号（第13-18位）：</label>
+					</div>
+					<!--  <span>按顺序生成（000001-999999）</span>-->
+					<input type="text" class="form-control inp-com " id="minNum" name="minNum"   style=" display:inline-block; width:120px" />
+					-
+					<input type="text" class="form-control inp-com " id="maxNum" name="maxNum" disabled="disabled"  style=" display:inline-block; width:120px" />
+					<label id="minNum_error" >请先选择起始顺序号</label>
+				</div>
+				<div class="form-group form-inline">
+					<label for="name">&nbsp;</label>
+					<div class="checkbox-con on-check">
+						<input id="isNoUsed"  type="checkbox" checked="checked" value="1" name="isNoUsed">
+					</div>
+					限未生成过毕业证号的学生
+				</div>
+			</div>
+			</form>
+			<div class=" text-center mb20 mt30">
+				<button type="button" class="btn btn-success width-default" auth-code="Graduation_Process_DiplomaNoGenerate_Generate">生成</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	
+	seajs.use("localPath/diplomaNumber", function(diplomaNumber) {
+		diplomaNumber.init();
+	});
+</script>

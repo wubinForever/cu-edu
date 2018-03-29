@@ -1,0 +1,31 @@
+/**
+* desktop
+* 2017.1 桌面样式
+* yang.xiuying
+*
+*/
+.desktop{width:70%;margin:40px auto;}
+.desktop .title{overflow:hidden;font-size:24px;}
+.desktop .title span{font-size:18px;}
+.desktop .title .academic{margin-right:10px;}
+.desktop .box{margin-top:20px;}
+.desktop .box ul{overflow:hidden;margin:0;}
+.desktop .box li{padding:0 10px 10px 0;float:left;width:20%;text-align:center;}
+.desktop .box li:nth-child(2){width:40%;}
+.desktop .box li:nth-child(3){width:40%;}
+.desktop .box li:nth-child(4){width:40%;}
+.desktop .box li:nth-child(5){width:40%;}
+/*.desktop .box li:nth-child(2) .inner{background:#0F7CD9;}
+.desktop .box li:nth-child(3) .inner{background:#009CFF;}
+.desktop .box li:nth-child(4) .inner{background:#2280C0;}
+.desktop .box li:nth-child(5) .inner{background:#21B3EC;}
+.desktop .box li:nth-child(6) .inner{background:#009CFF;}
+.desktop .box li:nth-child(7) .inner{background:#0F7CD9;}
+.desktop .box li:nth-child(8) .inner{background:#009CFF;}
+.desktop .box li:nth-child(9) .inner{background:#2280C0;}
+.desktop .box li:nth-child(10) .inner{background:#0F7CD9;}
+.desktop .box li .inner{background:#21B3EC;}*/
+.desktop .box li a{color:#fff;}
+.desktop .box li .inner{color:#fff;font-size:18px;padding:30px 0;transition:all 1s;cursor:pointer;}
+.desktop .box li .inner:hover{opacity:0.7;filter:alpha(opacity=70);}
+.desktop .box li .inner .icon{font-size:50px;margin-bottom:15px;}

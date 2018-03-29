@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>调停课信息</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../studentService.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentService_TeachingArrangement_LessonDispose">
+   <!-- 内容框架 开始-->
+   <div class="layout-index">
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年学期：</label>
+							<select class="form-control sel-com" id="academicSemesterSelect" name="academicSemesterSelect"></select>
+						</div>
+					</div>				
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--筛选查询 结束-->
+	<!-- 内容 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body mt20">
+						<div>
+							<div class="table-box">
+								<table class="table table-bordered"  style="table-layout: fixed;">
+									<thead>
+										<tr>
+											<th class="width48" rowspan="2">序号</th>
+											<th rowspan="2">课程</th>
+											<th rowspan="2" class="width70">类型</th>
+											<th rowspan="2">调整项目</th>
+											<th colspan="2" class="width120">周次</th>
+											<th colspan="2">节次</th>
+											<th colspan="2">教室</th>
+											<th colspan="2">教师</th>
+										</tr>
+										<tr>
+											<th>调前</th>
+											<th>调后</th>
+                                            <th>调前</th>
+											<th>调后</th>
+											<th>调前</th>
+											<th>调后</th>
+                                            <th>调前</th>
+											<th>调后</th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontent" class="border-left">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+   </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+		<tr>
+			<td class="width48">${$index + 1}</td>
+			<td title="[${courseNo}]${courseName}" class="text-l width48">[${courseNo}]${courseName}</td>
+			<td class="width70" {{if adjustShutType==1}} title="调课" {{else adjustShutType==0}} title="停课" {{else adjustShutType==3}} title="批量停课"{{else adjustShutType==4}} title="批量调课" {{/if}}>{{if adjustShutType==1}} 调课 {{else adjustShutType==0}} 停课  {{else adjustShutType==3}} 批量停课 {{else adjustShutType==4}} 批量调课{{/if}}</td>
+			<td title="${adjustShutOptionName}" class="text-l">${adjustShutOptionName}</td>
+
+			<td title="{{if adjustShutType == 1|| adjustShutType == 4 }}${adjustBeforeWeek}{{else}}${adjustToWeek}{{/if}}" class="text-r">{{if adjustShutType == 1|| adjustShutType == 4}}${adjustBeforeWeek}{{else}}${adjustToWeek}{{/if}}</td>
+			<td title="{{if adjustShutType == 1 || adjustShutType ==4}}${adjustToWeek}{{/if}}" class=" text-r {{if $item.repairZero(adjustShutOption, 4).charAt(0) == '1'}}text-danger{{/if}}">{{if adjustShutType == 1 || adjustShutType ==4}}${adjustToWeek}{{/if}}</td>
+
+
+			<td title="${adjustBeforeSection}" class="text-l">${adjustBeforeSection}</td>
+			<td title="{{if adjustShutType == 1 || adjustShutType ==4}}${adjustToSection}{{/if}}" class=" text-l {{if $item.repairZero(adjustShutOption, 4).charAt(1) == '1'}}text-danger{{/if}}">{{if adjustShutType == 1 || adjustShutType ==4}}${adjustToSection}{{/if}}</td>
+
+
+
+			<td title="${adjustBeforeClassRoom}" class="text-l">${adjustBeforeClassRoom}</td>
+			<td title="{{if adjustShutType == 1 || adjustShutType ==4}}${adjustToClassRoom}{{/if}}" class=" text-l {{if $item.repairZero(adjustShutOption, 4).charAt(2) == '1'}}text-danger{{/if}}">{{if adjustShutType == 1 || adjustShutType ==4}}${adjustToClassRoom}{{/if}}</td>
+
+
+			<td class="text-l width145" title="${beforeTeacherName}">${beforeTeacherName}</td>
+			<td title="{{if adjustShutType == 1  || adjustShutType ==4}}${afterTeacherName}{{/if}}" class=" text-l w180 {{if $item.repairZero(adjustShutOption, 4).charAt(3) == '1'}}text-danger{{/if}}">{{if adjustShutType == 1  || adjustShutType ==4}}${afterTeacherName}{{/if}}</td>
+		</tr>
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/transferInformation", function(transferInformation) {
+			transferInformation.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>毕业率统计</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+<style>
+	.input-group-btn-vertical i {
+	    position: absolute;
+	    top: 0;
+	    left: 3px;
+	}
+</style>
+</head>
+<body page-auth-code="Graduation_Statistics_GraduationRate">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">毕业年届：</label> 
+								<div class="tips-text verification-info input-group spinner long-type-input">
+									<input type="text" class="form-control" id="graduateYear" name="graduateYear" maxlength="4" min="1" max="9999">
+									<div class="input-group-btn-vertical">
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-caret-up"></i>
+										</button>
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-caret-down"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">院系：</label> 
+								<select class="form-control sel-com" id="departmentId" name="departmentId">									
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">统计方式：</label> 
+								<select class="form-control sel-com" id="type" name="type">									
+									<option value="1">按院系统计</option>
+									<option value="2">按专业统计</option>
+								</select>
+							</div>
+						</div>	
+					</div>					
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="query" id="query" auth-code="Graduation_Statistics_GraduationRate_Query">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="" id="export" auth-code="Graduation_Statistics_GraduationRate_Export">导出</button>
+						</div>
+						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">序号</th>
+												<th width="80">毕业年届</th>
+												<th>院系</th>
+												<th class="tr_major">专业</th>
+												<th width="80">应毕业人数</th>
+												<th width="100">毕业人数</th>
+												<th width="100">结业人数</th>
+												<th width="100">延后毕业人数</th>
+												<th width="100">未处理人数</th>
+												<th width="100">毕业率</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+	<td class="width05">${$index+1}</td>
+	<td width="80" title="${graduateYear}">${graduateYear}</td>    
+	<td title="${departmentName}" class="text-l">${departmentName}</td>
+	<td class="tr_major text-l" title="${majorName}">${majorName}</td>
+	<td width="80" title="${allCount}">${allCount}</td>
+	<td width="100" title="${graduateCount}">${graduateCount}</td>
+	<td width="100" title="${completeCount}">${completeCount}</td>
+	<td width="100" title="${delayCount}">${delayCount}</td>
+	<td width="100" title="${unOperateCount}">${unOperateCount}</td>	
+	<td width="100" title="${rate}">${rate}</td>				    
+</tr>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	
+	seajs.use("localPath/graduationStatistics", function(graduationStatistics) {
+		//console.log(graduationStatistics);
+		graduationStatistics.init();
+	});
+</script>

@@ -1,0 +1,192 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>设置选择课程</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style>
+@media (min-width: 992px){
+	.header-con .form-inline .form-group label {
+    min-width: 90px;
+    text-align: right;
+    vertical-align: middle;
+}
+}
+
+</style>
+</head>
+<body page-auth-code="ChoiceCourse_Parameter_ChoiceCourse">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<input type="hidden" value="0" id="pageIndex" />
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="schoolCalendar">学年学期：</label> <select class="form-control sel-com" id="semester"
+									name="semester"></select>
+							</div>
+						</div>
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label>选课轮次：</label> <select class="form-control sel-com" id="roundId" name="roundId">
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="schoolCalendar">年 级：</label> <select class="form-control sel-com" id="grade"
+									name="grade">
+									<option value="-1">全部</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="schoolCalendar">院 系：</label> <select class="form-control sel-com"
+									id="departmentId" name="departmentId">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label>专 业：</label> <select class="form-control sel-com" id="majorId" name="majorId">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="schoolCalendar">培养层次：</label> <select class="form-control sel-com"
+									id="trainingLevelCode" name="trainingLevelCode">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="schoolCalendar">开课单位：</label> <select class="form-control sel-com"
+									id="openDepartmentId" name="openDepartmentId">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="schoolCalendar">课程号/名称：</label> <input type="text" class="form-control inp-com"
+									id="courseName" name="courseName" maxlength="100" /><input type="text" style="display: none;" />
+							</div>
+						</div>
+						<div class="col-sm-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label>通识课：</label> <select class="form-control inp-com" id="isCoreCurriculum"
+									name="isCoreCurriculum">
+									<option value="">全部</option>
+									<option value="1">是</option>
+									<option value="0">否</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" id="query" name="query">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-primary" id="selectCourse" name="selectCourse" page-auth-code="ChoiceCourse_Parameter_ChoiceCourse_Add">选择课程</button>
+							<button type="button" class="btn btn-primary" id="deleteCourse" name="deleteCourse" page-auth-code="ChoiceCourse_Parameter_ChoiceCourse_Delete">移除课程</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<!-- table标题 -->
+										<thead>
+											<tr>
+												<th class="width03">
+													<div class="checkbox-con">
+														<input type="checkbox" id="check-all" value="" class="checNormal">
+													</div>
+												</th>
+												<th class="width05">序号</th>
+												<th>开课单位</th>
+												<th>课程号</th>
+												<th>课程名称</th>
+												<th class="width05">学分</th>
+											</tr>
+										</thead>
+										<!-- table内容 -->
+										<tbody id="tbodycontent">											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->
+<script id="tamplContent" type="text/x-jquery-tmpl">
+ <tr class="tr-checkbox">  
+         <td class="width03"><div class="checkbox-con"><input type="checkbox" class="checNormal" name="checNormal" value="${choiceCourseId}"></div></td>
+         <td class="width05">${$index+1}</td>
+         <td class="text-l" title="${openDepartmentName}">${openDepartmentName}</td>   
+         <td class="text-l" title="${courseNo}">${courseNo}</td>
+         <td class="text-l" title="${courseName}">${courseName}</td>
+         <td class="width05 text-r">${credit}</td>
+ </tr> 
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/choicecourse", function(choicecourse) {
+		choicecourse.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

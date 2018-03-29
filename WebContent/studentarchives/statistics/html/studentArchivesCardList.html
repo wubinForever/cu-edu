@@ -1,0 +1,291 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>打印学籍卡</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/print.css" rel="stylesheet"/>
+<link rel="stylesheet" type="text/css" href="../css/statistics.css">
+</head>
+<body page-auth-code="StudentArchives_Statistics_StudentArchivesCard">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<!--筛选查询 开始-->
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">年级：</label>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="grade" name="grade">
+								
+							</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">院系：</label>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="departmentId" name="departmentId">
+								
+							</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">专业：</label>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="majorId" name="majorId">
+								
+							</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">班级：</label>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="classId" name="classId">
+								
+							</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">培养层次：</label>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="trainingLevelCode" name="trainingLevelCode">
+								
+							</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">学籍状态：</label>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="archievesStatusCode" name="archievesStatusCode">
+								
+							</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">在校状态：</label>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="schoolStatusCode" name="schoolStatusCode">
+								<option value="">全部</option>
+							</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">学号/姓名：</label>
+							<div class="tips-text verification-info">
+								<input class="form-control inp-com" id="studentNoOrName" name="studentNoOrName" maxLength="50" placeholder="学号/姓名" />
+								<input type="text" style="display: none;"><!-- 解决按回车提交表单问题 -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" id="pageIndex" name="pageIndex" value="0" />
+				<input type="hidden" id="pageSize" name="pageSize" value="1" />
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="query" id="query">查询</button>
+		</div>
+	</div>
+	<!--筛选查询 结束-->
+	<!-- 内容 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box-header text-right">
+					<button type="button" class="btn btn-success width-default" name="print" id="print" page-auth-code="StudentArchives_Statistics_StudentArchivesCard_Print">打印</button>
+					<button type="button" class="btn btn-success width-default" name="export" id="export" page-auth-code="StudentArchives_Statistics_StudentArchivesCard_Export">导出</button>
+				</div>
+				<div class="box">
+					<!--分页-->
+					<div class="card-page">
+						<a type="button" class="disabled" id="upPage">上一页</a><span>第<label id="currentPage">1</label>页</span><span>共<label id="totalRows">0</label>页</span><a type="button" class="current" id="nextPage">下一页</a>
+					</div>
+					<div class="box-body pagecon" id="studentContentBody">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="printBody">
+						
+	</div>
+	<!-- 内容 结束 --- -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<script src="../../../common/js/base/print/jquery.jqprint-0.3.js"></script>
+<script src="../../../common/js/base/print/jquery-migrate-1.2.1.min.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->
+<script id="studentContentImpl" type="text/x-jquery-tmpl">
+	<table class="table table-bordered studentContentBody">
+	<tbody>
+		<caption class="caption-title">${schoolName}学生学籍卡</caption>
+		<tr>
+			<td class="width10">学号</td>
+			<td class="width10">${studentNo}</td>
+			<td class="width10">姓名</td>
+			<td class="width15">${studentName}</td>
+			<td class="width15">性别</td>
+			<td class="width15">${sexName}</td>
+			<td rowspan="8" class="width200">
+			<div class="avatar-photo" style=" margin:0 auto;"><img src="${fileId}" /></div>
+			</td>
+		</tr>
+		<tr>
+			<td>出生日期</td>
+			<td>${$item.format(birthday,'yyyy-MM-dd')}</td>
+			<td>籍贯</td>
+			<td>${nativePlace}</td>
+			<td>民族</td>
+			<td>${nationName}</td>
+		</tr>
+		<tr>
+			<td>政治面貌</td>
+			<td>${politicalStatusName}</td>
+			<td>入学方式</td>
+			<td>${entranceWayName}</td>
+			<td>入学日期</td>
+			<td class="formtext">${$item.format(entranceDate,'yyyy-MM-dd')}</td>
+		</tr>
+		<tr>
+			<td>身份证号</td>
+			<td colspan="3">${idCard}</td>
+			<td>来源</td>
+			<td>${studentOriginName}</td>
+		</tr>
+		<tr>
+			<td>院系</td>
+			<td colspan="3">${departmentName}</td>
+			<td>培养层次</td>
+			<td>${trainingLevelName}</td>
+		</tr>
+		<tr>
+			<td>专业</td>
+			<td colspan="3">${majorName}</td>
+			<td>学制</td>
+			<td>${educationSystem}</td>
+		</tr>
+		<tr>
+			<td>行政班级</td>
+			<td colspan="3">${className}</td>
+			<td>家庭电话</td>
+    		<td>${contactPhone}</td>
+		</tr>
+    	<tr>
+        	<td>家庭住址</td>
+       	 	<td colspan="3">${address}</td>
+			<td>家庭邮编</td>
+			<td>${postalCode}</td>
+		</tr>
+		<tr>
+			<td colspan="7" class="blue-titlle font-bold">奖励情况</td>
+		</tr>
+		<tr>
+			<td colspan="2">奖励名称</td>
+			<td>学年学期</td>
+			<td>奖励日期</td>
+			<td>奖励级别</td>
+			<td>奖励等级</td>
+			<td>颁奖单位</td>
+		</tr>
+        <tr>
+			<td colspan="2">&nbsp</td>
+			<td>&nbsp</td>
+			<td>&nbsp</td>
+			<td>&nbsp</td>
+			<td>&nbsp</td>
+			<td>&nbsp</td>
+		</tr>
+		<tr>
+			<td colspan="7" class="blue-titlle font-bold">异动情况</td>
+		</tr>
+		<tr>
+			<td colspan="2">异动文号</td>
+			<td>异动日期</td>
+			<td>异动类别</td>
+			<td colspan="3">异动原因</td>
+		</tr>
+		{{each(i,alienChangeDto) alienChangeList}}
+		<tr>
+			<td colspan="2">${alienChangeDto.documentSymbol}&nbsp</td>
+			<td>${$item.format(alienChangeDto.alienChangeDate,'yyyy-MM-dd')}</td>
+			<td>${alienChangeDto.alienChangeCategoryCodeName}</td>
+			<td colspan="3">${alienChangeDto.alienChangeReasonCodeName}</td>
+		</tr>
+		{{/each}}
+		<tr>
+			<td colspan="7" class="blue-titlle font-bold">处分情况</td>
+		</tr>
+		<tr>
+			<td colspan="2">处分名称</td>
+			<td colspan="2">处分原因</td>
+			<td colspan="2">处分文号</td>
+			<td>撤销日期</td>
+		</tr>
+		<tr>
+			<td colspan="2">&nbsp</td>
+			<td colspan="2">&nbsp</td>
+			<td colspan="2">&nbsp</td>
+			<td></td>
+		</tr>
+	</tbody>
+	</table>
+	<div style="page-break-after:always;"></div>
+</script>
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/archivesCard", function(archivesCard) {
+		archivesCard.init();
+	});
+	
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>
+

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>开课计划修改申请</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+
+<body>
+<form id="addForm" onkeydown="if(event.keyCode==13)return false;">
+	<div class="pop-con box900">
+		<div class="form-group form-inline formtext mt30">
+			<label for="name">学年学期：</label>
+			<select class="form-control inp-com" disabled id="semester" name="semester">
+			</select>
+			<label for="name">年级：</label>
+			<select class="form-control inp-com" disabled id="grade" name="grade">
+			</select>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">院系：</label>
+			<select class="form-control inp-com" disabled id="departmentId" name="departmentId">
+			</select>
+			<label for="name">专业：</label>
+			<select class="form-control inp-com" disabled id="majorId" name="majorId">
+			</select>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">开课单位：</label>
+			<select class="form-control inp-com" disabled id="startUnit" name="startUnit">
+			</select>
+			<label for="name">环节号：</label>
+			<input type="text" class="form-control inp-com" disabled id="courseNo" name="courseNo">
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">环节名称：</label>
+			<input type="text" class="form-control inp-com" disabled id="courseName" name="courseName">
+			<label for="name">英文名称：</label>
+			<input type="text" class="form-control inp-com" disabled id="englishName" name="englishName">
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">环节类别：</label>
+			<select class="form-control inp-com" disabled id="courseType" name="courseType">
+			</select>
+			<label for="name"><i class="text-danger">*</i> 学分：</label>
+			<input type="text" class="form-control inp-com" disabled id="credit" name="credit">
+		</div>
+		<h3 class=" school-titlle">原有数据</h3>
+		<div class="form-group form-inline formtext">
+			<label for="name">周数：</label>
+			<input type="text" class="form-control inp-com" disabled id="weekNum" name="weekNum">
+			<label for="name">考核方式：</label>
+			<select class="form-control inp-com" disabled id="checkWayCode" name="checkWayCode">
+			</select>
+		</div>
+
+		<h3 class=" school-titlle">变更数据</h3>
+		<div class="form-group form-inline formtext">
+			<label for="name" >周数：</label>
+			<input type="text" class="form-control inp-com" id="weekNum2" name="weekNum2" maxlength="2">
+			<label for="name">考核方式：</label>
+			<select class="form-control inp-com" id="checkWayCode2" name="checkWayCode2">
+			</select>
+		</div>
+
+	</div>
+</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/apply",function(apply){
+		apply.innitUpdate();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

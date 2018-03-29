@@ -1,0 +1,203 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>课程特殊要求设置</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body>
+<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> <select class="form-control sel-com"
+									id="schoolCalendarSelect" name="schoolCalendarId">
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-big">
+								<label for="name">考试批次：</label> 
+								<select class="form-control sel-com" id="batchId" name="batchId">									
+									<option value="1">2016-2017学年第二学期 期末考试</option>
+									<option value="2">2016-2017学年第二学期 期中考试</option>
+								</select>
+							</div>
+						</div>
+					</div>	
+				</form>	
+			</div>
+			<div class="sub-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="content-header">
+							<h1>时间要求：</h1>
+						</div>
+						<div class="content-infoList">
+							<div class="form-inline">
+								<button class="btn btn-primary" name="selectSession" >选择场次</button>
+								<span class="text-primary">（已选择12场）</span>
+							</div>
+						</div>
+						<div class="content-header">
+							<h1>课程要求：</h1>
+						</div>
+						<div class="content-infoList">
+							<div class="form-inline">
+								<button class="btn btn-primary" name="selectCourse" >选择课程</button>
+								<span class="text-primary">（已选择12场）</span>
+							</div>
+						</div>
+						<div class="content-header">
+							<h1>考场要求：</h1>
+						</div>
+						<div class="content-infoList">
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con on-check">
+							     	 	<input type="checkbox" id="inlineCheckbox1" value="option1"> 
+									</div>使用单位自有教室
+								</label>
+							</div>
+							<div class="form-group checkbox form-inline">
+								<label>
+									<div class="checkbox-con on-check">
+							     	 	<input type="checkbox" id="inlineCheckbox2" value="option2"> 
+									</div>考场忽略余数：
+									<input type="text" class="form-control inp-small" placeholder="60">
+								</label>
+							</div>
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con on-check">
+							     	 	<input type="checkbox" id="inlineCheckbox3" value="option3"> 
+									</div>启用班级规则：
+									<label class="radio-inline on-radio">
+								  	 	<div class="radio-con"><input type="radio" name="classRule" value="1" checked=""></div>同一考场限安排同一行政班级
+									</label>
+									<label class="radio-inline">
+								  	 	<div class="radio-con"><input type="radio" name="classRule" value="2" checked=""></div>同一考场限安排同一教学班级
+									</label>
+								</label>
+							</div>
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con">
+							     	 	<input type="checkbox" id="inlineCheckbox4" value="option4"> 
+									</div>启用学生规则：
+									<label class="radio-inline on-radio">
+								  	 	<div class="radio-con"><input type="radio" name="studentRule" value="1" checked=""></div>一天最多安排一门
+									</label>
+									<label class="radio-inline">
+								  	 	<div class="radio-con"><input type="radio" name="studentRule" value="2" checked=""></div>当天隔开场次安排
+									</label>
+								</label>
+							</div>
+						</div>
+						<div class="content-header">
+							<h1>监考要求：</h1>
+						</div>
+						<div class="content-infoList">
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con">
+							     	 	<input type="checkbox" id="inlineCheckbox5" value="option5"> 
+									</div>监考人员只能安排所在校区监考
+								</label>
+							</div>
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con on-check">
+							     	 	<input type="checkbox" id="inlineCheckbox6" value="option6"> 
+									</div>同一场次同一考场安排相同监考人员
+								</label>
+							</div>
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con on-check">
+							     	 	<input type="checkbox" id="inlineCheckbox7" value="option7"> 
+									</div>监考人员不能监考本院系的学生
+								</label>
+							</div>
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con on-check">
+							     	 	<input type="checkbox" id="inlineCheckbox8" value="option8"> 
+									</div>监考人员尽量男女搭配 
+								</label>
+							</div>	
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con on-check">
+							     	 	<input type="checkbox" id="inlineCheckbox9" value="option9"> 
+									</div>相同院系教师不能监考同一考场 
+								</label>
+							</div>	
+							<div class="form-group checkbox form-inline">
+								<label>
+									<div class="checkbox-con on-check form-inline">
+							     	 	<input type="checkbox" id="inlineCheckbox10" value="option10"> 
+									</div>监考场次上限： 
+									<input type="text" class="form-control inp-small" placeholder="60">
+								</label>
+							</div>	
+							<div class="form-group checkbox">
+								<label>
+									<div class="checkbox-con on-check">
+							     	 	<input type="checkbox" id="inlineCheckbox10" value="option10"> 
+									</div>启用辅监考人数设置： 
+									<button class="btn btn-primary" name="setPeopleNumber">设置</button><span class="text-primary">（已选择12场）</span>
+								</label>
+							</div>	
+						</div>	
+					</div>
+					<div class=" text-center mb20"> 
+						<button type="button" class="btn btn-success " name="autoarrange">自动排考</button>
+						<button type="button" class="btn btn-danger margin-left15">清除排考</button>	
+					</div>
+				</div>
+			</div>	
+		</div>
+	</div>		
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/autoarrange", function(autoarrange) {
+		autoarrange.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>				

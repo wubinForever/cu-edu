@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>异动信息修改</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+    <link href="../../../common/css/ztree/zTreeStyle.css" rel="stylesheet" />
+    <link href="../css/alienChange.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentArchives_AlienChange_ApplyRegister_Update">
+	<form id="addForm">
+	 <input type="hidden" id="recordId" name="recordId" value=""/>
+	 <input type="hidden" id="userId" name="userId" value=""/>
+		<div class="pop-con box860 mt20">
+			<div class="form-group form-inline formtext">
+				<label for="name">学号：</label>
+				<div class=" inline-block w220" id="studentNo" name="studentNo"></div>
+				<label for="name">姓名：</label>
+				<div class=" inline-block w220" id="studentName" name ="studentName"></div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">院系：</label>
+				<div class=" inline-block w220" id="departmentName" name="departmentName"></div>
+				<label for="name">专业：</label>
+				<div class=" inline-block w220" id="majorName" name="majorName"></div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">班级：</label>
+				<div class=" inline-block w220" id="className" name="className"></div>
+				<label for="name">在校状态：</label>
+				<div class=" inline-block w220" id="schoolStatusCodeName" name="schoolStatusCodeName"></div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>生效学年学期：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="academicYearSemester" name="academicYearSemester">
+					</select>
+				</div>
+				<label for="number"><i class="text-danger">*</i>申请日期：</label>
+				<div class="tips-text verification-info">
+					<input id="applyDate" name="applyDate" type="text" class="form-control inp-com wdate"/>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<div class="form-group formtext">
+					<label for="name"><i class="text-danger">*</i> 异动类别：</label>
+					<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="alienChangeCategoryCode" name="alienChangeCategoryCode">
+					</select>
+					</div>
+				</div>
+				<div class="form-group form-inline formtext">
+					<label for="name"><i class="text-danger">*</i> 异动原因：</label>
+					<div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+						<div class="tips-text verification-info w220">
+							<input class="form-control inp-com toggle-tree" id="alienChangeReasonCodeName"
+								name="alienChangeReasonCodeName" type="text" readonly="readonly" value="--请选择--" /> 
+								<input type="hidden" id="alienChangeReasonCode" name="alienChangeReasonCode" value="" />
+						</div>
+						<ul id="alienChangeReasonCodeTree" class="ztree input-tree toggle-ui-up"></ul>
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number">备注：</label>
+				<div class="tips-text verification-info">
+					<textarea class="form-control inp-com-long" rows="3" id="remark" name="remark" maxlength="200"></textarea>
+					<span id="remarkCount" class="textarea-length"></span>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+    <!-- 树结构 -->
+    <script src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+    <script src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+    <!-- 长度限制 -->
+    <script src="../../../common/js/utils/limit.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/alienChange", function(alienChange) {
+			alienChange.initUpdateRegister();
+		});
+		seajs.use("basePath/utils/authority");
+		// 备注长度控制
+		new limit($("#remark"), $("#remarkCount"), 200);
+	</script>
+</body>
+</html>

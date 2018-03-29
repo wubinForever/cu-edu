@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>学生添加（弹窗）</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+  <body>
+		<div class="pop-con-header">
+			<div class="header-con">
+					<div class="row">
+							<div class="col-xs-6 form-inline form-inp-con">
+								<div class="form-group form-normal">
+									<label for="schoolCalendar">班级：</label> 
+									<select class="form-control sel-com170" id="class" name="class">
+									</select>
+								</div>
+							</div>						
+							<div class="col-xs-6 form-inline form-inp-con">
+								<div class="form-group form-normal">
+									<label for="">学号/姓名：</label> 
+									<input type="text" class="form-control inp-double-mid" id="studentNoName" name="studentNoName"/>
+								</div>
+							</div>	
+						</div>
+					<button type="button" class="btn btn-primary header-btn" name="searchInp">查询</button>
+			</div>
+		</div>	
+		<div class="pop-con">
+			<div class="box">
+				<div class="box-body">
+					<div class="scorll-box">
+						<div class="table-box">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th class="width05">
+											<div class="checkbox-con">
+												<input type="checkbox" id="check-all" class="checNormal">
+											</div>
+										</th>
+										<th class="width06">序号</th>
+										<th>班级</th>
+										<th class="width75">实践周次</th>
+										<th>学号</th>
+										<th>姓名</th>
+										<th class="width140">性别</th>
+									</tr>
+								</thead>
+								<tbody id="addtbodycontent" class="heigth460" class="no-data-html">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 内容框架 结束 ------------------------------------------------------------>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+  <tr class="tr-checkbox" studentId=${studentId}> 
+  	<td class="width05">
+			<div class="checkbox-con">
+				<input type="checkbox" name="checNormal">
+			</div>
+		</th>
+  	<td class="width06">${id}</td>
+    <td classId=${classId} title=${className}>${className}</td>    
+    <td class="width75" title=${practiceWeeks}>${practiceWeeks}</td>
+    <td title=${studentNo}>${studentNo}</td>
+    <td title=${studentName}>${studentName}</td>
+    <td class="width140" title=${sexName}>${sexName}</td>
+  </tr> 
+</script> 
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/addStudents", function(addStudents) {
+		addStudents.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>设置选课轮次</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body page-auth-code="ChoiceCourse_Parameter_ChoiceRound">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index"> 
+   <div class="container-fluid col-xs-12">
+   <input type="hidden" value="0" id="pageIndex" />
+        <div class="header-con">
+	     	<form id="">
+	     		<div class="row">
+		   		  	<div class="col-sm-12 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="schoolCalendar">学年学期：</label> 
+							<select class="form-control sel-com" id="semester" name="semester">									
+							</select>
+						</div>
+				  	</div>
+	   		    </div>
+	   		</form>    
+	   		<button type="button" class="btn btn-primary header-btn" id="query" name="query">查询</button>
+		</div>  	
+    </div>
+  	<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-primary" name="addRound" auth-code="ChoiceCourse_Parameter_ChoiceRound_Add">新增</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<!-- table标题 -->
+										 <thead>
+										   <tr>
+										   	<th class="width05">序号</th>
+										   	<th class="width20">选课轮次</th>
+										   	<th>选课开始时间</th>
+										   	<th>选课结束时间</th>
+										   	<th class="width08">选课退选控制</th>
+										   	<th class="width08">要求学生在校</th>
+										   	<th class="width08">要求学生在籍</th>
+										   	<th class="width08">要求学生注册</th>
+										   	<th class="width08">允许跨校区选课</th>
+										   	<th class="width05">开放选课</th>
+										   	<th width="100">操作</th>
+										   </tr>
+										</thead>	
+										<!-- table内容 -->								
+										<tbody id="tbodycontent">										
+										</tbody> 
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<!-- 列表内容 -->
+<script id="tamplContent" type="text/x-jquery-tmpl">
+ <tr class="tr-checkbox">  
+         <td class="width05">${$index+1}</td>
+         <td class="width20 text-l" title="${academicYear}-${academicYear+1}学年${semesterName} ${roundName}">${academicYear}-${academicYear+1}学年${semesterName} ${roundName}</td>   
+         <td title="${$item.format(startTime,'yyyy-MM-dd hh:mm')}">${$item.format(startTime,'yyyy-MM-dd hh:mm')}</td>
+         <td title="${$item.format(endTime,'yyyy-MM-dd hh:mm')}">${$item.format(endTime,'yyyy-MM-dd hh:mm')}</td>
+         <td class="width08">
+        {{if exitControl==1}}
+                               可选可退
+        {{else exitControl==2}} 
+			只可选课
+        {{else exitControl==3}} 
+			只可退课
+		{{else}}
+        {{/if}} 
+        </td>
+        <td class="width08">
+        {{if isAtSchool==1}}
+                               是
+        {{else isAtSchool==0}} 
+			否        
+		{{else}}
+        {{/if}} 
+        </td>
+        <td class="width08">
+        {{if isArchive==1}}
+                               是
+        {{else isArchive==0}} 
+			否        
+		{{else}}
+        {{/if}} 
+        </td>
+        <td class="width08">
+        {{if isRegister==1}}
+                               是
+        {{else isRegister==0}} 
+			否        
+		{{else}}
+        {{/if}} 
+        </td>
+        <td class="width08">
+        {{if isTransCampus==1}}
+                               是
+        {{else isTransCampus==0}} 
+			否        
+		{{else}}
+        {{/if}} 
+        </td>
+        <td class="width05">
+        {{if isOpened==1}}
+                               是
+        {{else isOpened==0}} 
+			否        
+		{{else}}
+        {{/if}} 
+        </td>
+        <td width="100">            
+             <button type="button" class="btn-text" data-tt-id="${roundId}" name="updateRound" auth-code="ChoiceCourse_Parameter_ChoiceRound_Update">修改</button>
+             {{if isExist}}
+    	          <button type="button" class="btn-text disabled" disabled="disabled" name="deleteRound"  data-tt-id="${roundId}" auth-code="ChoiceCourse_Parameter_ChoiceRound_Delete">删除</button> 
+             {{else}}		 
+                  <button type="button" class="btn-text" data-tt-id="${roundId}" name="deleteRound" auth-code="ChoiceCourse_Parameter_ChoiceRound_Delete">删除</button>
+             {{/if}}         
+        </td>  
+ </tr> 
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/choiceround", function(choiceround) {
+		choiceround.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>	
+		

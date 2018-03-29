@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>按院系统计在校学生数</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../css/statistics.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentArchives_Statistics_StudentNumberOfDepartment">
+<!-- 内容框架 开始-->
+<div class="layout-index">
+	<!--筛选查询 开始-->
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年学期：</label>
+							<select class="form-control sel-com" id="academicYearSemesterSelect" name="academicYearSemesterSelect" >
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">年级：</label>
+							<select class="form-control sel-com" id="grade" name="grade">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label class="checkbox-inline"><div class="checkbox-con on-check"><input type="checkbox" class="checNormal" name="containTrainingLevel" checked="checked" /></div> 含培养层次</label>
+						</div>
+					</div>
+
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="query"
+					id="query">查询</button>
+		</div>
+	</div>
+	<!--筛选查询 结束-->
+	<!-- 内容 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box-header text-right">
+					<button type="button" class="btn btn-success width-default" auth-code="StudentArchives_Statistics_StudentNumberOfDepartment_Export" name="export" id="export">导出</button>
+				</div>
+				<div class="box">
+                  <div class="print-title"><p id="schoolName"></p><p id="semesterName" class="font-14 mt10"></p></div>
+
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered" id="tableone" style="display:none;">
+									<thead id="theadcontentone"></thead>
+									<tbody id="tbodycontentone"></tbody>
+								</table>
+
+                               <table class="table table-bordered" id="tabletwo" style="display:none;">
+									<thead id="theadcontenttwo"></thead>
+									<tbody id="tbodycontenttwo"></tbody>
+								</table>
+
+							</div>
+						</div>
+					</div>
+					<div id="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+</div>
+<!-- 内容框架 结束 -->
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 表头内容 -->
+<script id="bodyHeadImplOne" type="text/x-jquery-tmpl">
+	{{if $index < 1}}
+	 <tr>
+		<th class="width20 rowspanone"><span class="name">院系</span></th>
+		{{each(i,sudent) grades}}
+          <th colspan="3">${sudent.grade}</th>
+        {{/each}}
+        <th class="rowspanone"><span class="name">合计</span></th>
+	  </tr>
+
+	  <tr>
+	  	 <th class="width20"></th>
+	   	 {{each(i,sudent) grades}}
+	   	  <th>共计</th>
+	  	  <th>本科</th>
+		  <th>专科</th>
+         {{/each}}
+         <th></th>
+	  </tr>
+	{{/if}}
+</script>
+<!-- 列表内容 -->
+<script id="bodyContentImplOne" type="text/x-jquery-tmpl">
+    <tr>
+    	<td class="width20 text-l departmentName" title="[${departmentNo}]${departmentName}" id="${$index}">[${departmentNo}]${departmentName}</td>
+    	 {{each(i,sudent) grades}}
+    	    <td title="${sudent.studentTotal}">${sudent.studentTotal}</td>
+	    	<td title="${sudent.bachelorStudentTotal}">${sudent.bachelorStudentTotal}</td>
+	    	<td title="${sudent.specialistStudentTotal}">${sudent.specialistStudentTotal}</td>
+    	 {{/each}}
+    	<td title="${studentTotal}">${studentTotal}</td>
+    </tr>
+</script>
+<!-- 表头内容 -->
+<script id="bodyHeadImplTwo" type="text/x-jquery-tmpl">
+	{{if $index < 1}}
+	 <tr>
+		<th class="width20">院系</th>
+		{{each(i,sudent) grades}}
+          <th>${sudent.grade}</th>
+        {{/each}}
+        <th>合计</th>
+	  </tr>
+	{{/if}}
+</script>
+<!-- 列表内容 -->
+<script id="bodyContentImplTwo" type="text/x-jquery-tmpl">
+    <tr>
+    	<td class="width20 text-l departmentName" title="[${departmentNo}]${departmentName}"  id="${$index}"> [${departmentNo}]${departmentName}</td>
+    	 {{each(i,sudent) grades}}
+    	    <td title="${sudent.num}">${sudent.studentTotal}</td>
+    	 {{/each}}
+    	<td title="${total}">${studentTotal}</td>
+    </tr>
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/numberOfDepartmentList", function(numofdeptlist) {
+		numofdeptlist.init();
+	});
+	
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>
+

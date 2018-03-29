@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据字典新增</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+		<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	    <!-- jquery版本 -->
+	    <script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	    <!-- bootstrap -->
+	    <!-- <script src="../js/base/bootstrap/bootstrap.min.js"></script> -->
+	    <script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	    <!-- Seajs 模块化开发，请一定遵守 -->
+	    <script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>  
+	    <!-- 弹窗 -->
+	    <script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	    <script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	    <!-- 验证 -->
+        <script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+        <script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>  
+	</head>
+	<body page-auth-code="Udf_DataDictionaryManage_Add">
+			<form id="addDataDiction">
+		    <div class="pop-con">
+		      <input type="hidden"   value=""  name="parentId" id="parentId"/>
+			  <div class="form-group form-inline formtext">
+			        <label for="name"><i class="text-danger"></i>上级名称：</label>
+		        	<span id="firstName" class="fontspan ellipsis"></span>
+		        	<label for="number"><i class="text-danger">*</i>编号：</label>
+			        <div class="tips-text verification-info vertical-align-mid">
+			       		<input type="text" class="form-control inp-com" id="code" name="code" maxlength="20">
+			       		<div for="code" generated="true" class="error" style="display: none;" id="datacode">编号同级不能重复</div>
+			       	</div>
+		        	<div class="tips-text" style="float: right;color: red;" id="codeMessge" ></div>
+			  </div>
+			  <div class="form-group form-inline formtext">
+		        	<label for="name"><i class="text-danger">*</i>名称：</label>
+		        	 <div class="tips-text verification-info vertical-align-mid">
+			       		<input type="text" class="form-control inp-com error" id="dataDictionaryName" name="dataDictionaryName" maxlength="30">
+			       		<div for="dataDictionaryName" generated="true" class="error" style="display: none;" id="datad">名称同级不能重复</div>
+			       	</div>
+			  </div>
+			  <div class="form-group form-inline formtext">
+		        	<label for="number"><i class="text-danger">*</i>类型：</label>
+		        	 <div class="tips-text verification-info vertical-align-mid">
+		        	  <select class="form-control sel-com" id="dataDictionaryType" name="dataDictionaryType" >
+		        		<option value="">--请选择--</option>
+		        		<option value="1">国标</option>
+		        		<option value="2">省标</option>
+		        		<option value="3">市标</option>
+		        		<option value="4">校标</option>
+		        		<option value="5">其他</option>
+		        	 </select>
+		        	</div>
+			  </div>
+			  <div class="form-group form-inline formtext">
+			  	<label for="number">是否启用：</label>
+			  	<label class="radio-inline on-radio">
+				  <div class="radio-con"><input type="radio" name="isEnabled"  value="1" checked="checked" id="start"></div> 启用
+				</label>
+				<label class="radio-inline">
+				  <div class="radio-con"><input type="radio" name="isEnabled" value="2" id="forbid"></div> 禁用
+				</label>
+			  </div>
+			 	<div class="form-group form-inline formtext">
+			  		<label for="number">备注：</label>
+			  		 <div class="tips-text verification-info">
+			  		<textarea class="form-control tarea-com" rows="3" id="description" name="description" maxlength="100"></textarea>
+			  		</div>
+			  </div>
+		</div>
+		</form>
+	</body>
+</html>
+<script id="tableWrapper" type="text/x-jquery-tmpl">
+      <tr data-tt-id="${dataDictionaryId}" data-tt-parent-id="${parentId}" class="trDataTT tr-checkbox" >  
+         <td width="10%"><input type="checkbox" id="Checkbox" value="" data-tt-id="${dataDictionaryId}"  issystem=${isSystem} name="checNormal"  dictionaryName=${dataDictionaryName}></td> 
+         <td style="width: 20%">${dataDictionaryName}</td>   
+         <td style="width: 10%">${code}</td>   
+         <td style="width: 10%">
+          {{if dataDictionaryType == '1'}}国标{{else}}
+          {{if dataDictionaryType == '2'}}省标{{else}}
+          {{if dataDictionaryType == '3'}}市标{{else}}
+          {{if dataDictionaryType == '4'}}校标 {{else}}其他{{/if}}
+          {{/if}}                                 
+          {{/if}}
+	      {{/if}}
+         </td>   
+         <td style="width: 10%">
+         	{{if isSystem == '1'}}
+				系统级别
+			{{else}}
+				用户级别
+	     	{{/if}}
+         </td> 
+         <td style="width: 5%" >
+           {{if isEnabled == '1'}}
+				启用{{else}}禁用
+	       {{/if}}
+         </td>  
+         <td style="width: 35%">
+         	<button type="button"  name="update"  data-tt-id="${dataDictionaryId}"  {{if isSystem=='1'}}  class="btn btn-primary btn-xs disabled" disabled  {{else}}  class="btn btn-primary btn-xs" {{/if}}  auth-code='Udf_DataDictionaryManage_Modify">修改</button>
+			<button type="button" class="btn btn-primary btn-xs" name="up" id=${dataDictionaryId} auth-code='Udf_DataDictionaryManage_MoveUpAndDown">上移</button>
+			<button type="button" class="btn btn-primary btn-xs" name="down" id=${dataDictionaryId} auth-code='Udf_DataDictionaryManage_MoveUpAndDown">下移</button>
+         </td>  
+      </tr> 
+    </script>
+<script type="text/javascript">	
+    seajs.config({paths:{"basePath":"../../../common/js/utils","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/dictionary",function(dictionary){
+		 dictionary.initAdd();
+	}); 
+	seajs.use("basePath/authority");
+</script>

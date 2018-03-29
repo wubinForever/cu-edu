@@ -1,0 +1,164 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>设置学分及门数上限</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+<style>
+.form-control.inp-double-mid1,
+	.form-control.sel-double-mid1{
+		width:130px;
+	}
+.form-control.inp-double-mid2,
+	.form-control.sel-double-mid2{
+		width:110px;
+	}
+.form-control.inp-double-mid3,
+.form-control.sel-double-mid3{
+	width:90px;
+}
+td.width03, th.width03{ 
+	width:60px;
+}
+.per100{
+	width:99.9%;
+}
+.table>tbody>tr>td{
+	padding:8px 3px;
+}
+</style>
+</head>
+<body page-auth-code="ChoiceCourse_Parameter_CreditAndNumLimit">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index"> 
+   <div class="container-fluid col-xs-12">
+   <input type="hidden" value="0" id="pageIndex" />
+        <div class="header-con">
+	     	<form id="queryForm">
+	     		<div class="row">
+		   		  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="schoolCalendar">学年学期：</label> 
+							<select class="form-control sel-com" id="semester" name="semester">
+						    </select>
+						</div>
+				  	</div>
+				  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label>年      级：</label> 
+							<select class="form-control sel-com" id="grade" name="grade">		
+								
+							</select>
+						</div>
+				  	</div>
+				  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="schoolCalendar">院       系：</label> 
+							<select class="form-control sel-com" id="departmentId" name="departmentId">
+							</select>
+						</div>
+				  	</div>
+	   		    </div>
+	   		</form>    
+	   		<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>  	
+    </div>
+  	<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+					    <div class="box-header pull-left">
+							<span><i class="text-danger">温馨提示：单击学分上限、门数上限单元格，可进行行内编辑，光标移开输入框后，会自动保存输入值。</i></span>
+						</div>
+						<div class="box-header pull-right">
+							<div class="form-group form-inline">
+								<label for="schoolCalendar">课程类型：</label> 
+								<select class="form-control sel-double-mid1" id="courseType" name="courseType">
+								</select>
+								<select class="form-control sel-double-mid2" id="limitType" name="limitType">
+									<option title="学分上限" value="1">学分上限</option>
+									<option title="门数上限" value="2">门数上限</option>
+								</select>
+								<input type="text" id="creditLimitValue" name="creditLimitValue"  class="form-control inp-double-mid3"
+								 maxlength="4" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;" onkeyup="this.value=/^\d+\.?\d{0,1}$/.test(this.value) == false || this.value >= 100 ? '': this.value"/>
+								<input type="text" id="numLimitValue" name="numLimitValue"
+								 class="form-control inp-double-mid3" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;" onkeyup="this.value=/(^[1-9]([0-9]*)$|^[0-9]$)/.test(this.value) == false || this.value >= 100 ? '': this.value" maxlength="2" />
+								<button type="button" class="btn btn-primary" name="batchSave"  auth-code="ChoiceCourse_Parameter_CreditAndNumLimit_Set" id="batchSave">批量设置</button>
+							    <input type="hidden" id="list" name="list" value=""/>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="">
+								<div class="table-box" style="overflow-x: auto;">
+									<table class="table table-bordered margin0" style="table-layout: fixed;min-width:1300px;">
+										<!-- table标题 -->
+										 <thead>
+										   <tr>
+												<th class="width45" rowspan="2">序号</th>
+												<th class="width20" rowspan="2">院系</th>
+												<th class="width20" rowspan="2">专业</th>
+												<th style="display:none" id="topLimit" colspan="2"></th>
+										   </tr>
+										   <tr>
+												<th style="display:none" id = "numLimit0"></th>
+										   </tr>
+										</thead>	
+										<!-- table内容 -->								
+										<tbody id="tbodycontent">
+										</tbody> 
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<!-- 列表内容 -->
+<script id="templContent" type="text/x-jquery-tmpl">
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/creditandnumlimit", function(creditandnumlimit) {
+		creditandnumlimit.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>			

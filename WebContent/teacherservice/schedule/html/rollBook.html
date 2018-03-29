@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>打印上课点名册</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_TeachingArrangement_NameRoll">
+
+   <!-- 内容框架 开始-->
+    <div class="layout-index">
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年学期：</label>
+							<select class="form-control sel-com" id="academicYearSemesterSelect" name="academicYearSemesterSelect"></select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">课程：</label>
+							<select class="form-control sel-com" id="courseSelect" name="courseSelect"></select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">教学班：</label>
+							<select class="form-control sel-com" id="teachingClassSelect" name="theoreticalTaskId"></select>
+						</div>
+					</div>				
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>
+	</div>
+
+	<!-- 内容 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header text-right">
+						<button type="button" class="btn btn-success width-default" name="export" id="export" auth-code="TeacherService_TeachingArrangement_NameRoll_Export">导出</button>
+					</div>
+					<div class="box-body">
+						<div class="print-title mt20 mb10">
+							<p><span id="schoolName"></span>上课点名册</p>
+							<p id="academicYearSemesterName" class="font-14 mt10"></p>
+						</div>
+						<div class="labs mb10 row rollBookHead">
+							<div class="col-md-3">课程：<span id="courseName"></span></div>
+							<div class="col-md-3">教师：<span id ="teacherName"></span></div>
+							<div class="col-md-3">教学班：<span id ="teachingClassName"></span></div>
+							<div class="col-md-3">人数：<span id ="studentSum"></span></div>
+						</div>
+						<div class="scorll-box scorll-boxauto">
+							<div class="table-box" >
+								<table class="table table-bordered table-hover" id="rollBookTable">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th class="width110">行政班</th>
+											<th class="width110">学号</th>
+											<th class="width110">姓名</th>
+											<th class="width70">性别</th>
+											<th >1</th>
+											<th >2</th>
+											<th >3</th>
+											<th >4</th>
+											<th >5</th>
+											<th >6</th>
+											<th >7</th>
+											<th >8</th>
+											<th >9</th>
+											<th >10</th>
+											<th >11</th>
+											<th >12</th>
+											<th >13</th>
+											<th >14</th>
+											<th >15</th>
+											<th >16</th>
+											<th >17</th>
+											<th >18</th>
+											<th >19</th>
+											<th >20</th>
+											<th >21</th>
+											<th >22</th>
+											<th >23</th>
+											<th >24</th>
+											<th >25</th>
+											<th >26</th>
+											<th >27</th>
+											<th >28</th>
+											<th >29</th>
+											<th >30</th>
+											<th >31</th>
+											<th >32</th>
+											<th >33</th>
+											<th >34</th>
+											<th >35</th>
+											<th >36</th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontent">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+   </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<table>
+	</table>
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+		<tr class ="element">
+			<td class="width48" title="${index}">${index}</td>
+			<td class="width110 text-l" title ="${className}">${className}</td>
+			<td class="width110 text-l" title ="${studentNo}">${studentNo}</td>
+			<td class="width110 text-l" title ="${studentName}">${studentName}</td>
+			<td class="width70" title ="${sexName}">${sexName}</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</script>
+	<script type="text/javascript">		
+		// 方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/rollBook", function(rollBook) {
+			rollBook.init();
+		});
+
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

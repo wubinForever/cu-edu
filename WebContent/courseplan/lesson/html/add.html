@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>调停课新增</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+
+</head>
+
+<body>
+	<div class="pop-con">
+		<div class="box">
+			<div class="box-header row">
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group form-normal">
+						<label for="name">学年学期：</label> 
+						<select class="form-control sel-com" id="semester" name="semester"></select>
+					</div>
+				</div>
+			  	<div class="col-md-4 form-inline form-inp-con" id="teacherDiv">
+					<div class="form-group form-normal">
+						<label for=""><i class="text-danger">*</i>教师工号/姓名：</label> 
+						<div id="teacher"></div>
+					</div>
+				</div>
+				<input type="hidden" id="teacherId" name="teacherId"/>
+			  	<button type="button" class="btn btn-primary header-btn" name="queryBtn">查询</button>
+			</div>
+			<!-- table begin -->
+			<div class="box-body">
+				<div class="scorll-box">
+					<div class="table-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th class="width05">&nbsp;</th>
+									<th class="width05">序号</th>
+									<th>课程</th>
+									<th>周次</th>
+									<th>节次</th>
+									<th class="width05">单双周</th>
+									<th>教室</th>
+									<th width="80">人数</th>
+									<th>教学班</th>
+								</tr>
+							</thead>
+							<tbody id="tbodycontent">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>	
+			<div class="box-header pull-left" style="margin:10px 0 10px 0;">
+				<div class="form-group form-normal" style="display: inline-block;">
+					<label for=""><i class="text-danger">*</i>类型：</label> 
+					<label class="radio-inline rangebtn on-radio">
+						<div class="radio-con "><input type="radio" name="weekStartDay" value="1" checked="checked"/></div> 调课
+					</label>
+					<label class="radio-inline stopbtn">
+						<div class="radio-con"><input type="radio" name="weekStartDay" value="0" /></div> 停课
+					</label>
+				</div>
+				<div class="ctrl-cm" style="display: inline-block;">
+					<div class="checkbox-inline" style="padding:0 15px 0 20px;"> 
+						<label class="checkbox-con mr10 on-check">
+							<input type="checkbox" class="checNormal" checked="checked" id="classAdjust"/>
+						</label>检测班级冲突
+					</div>
+					<div class="checkbox-inline" style="padding:0 15px 0 0;" > 
+						<label class="checkbox-con mr10 on-check">
+							<input type="checkbox" class="checNormal"  checked="checked" id="teacherAdjust"/>
+						</label>检测教师冲突
+					</div>
+					<div class="checkbox-inline" style="padding:0 15px 0 0;"> 
+						<label class="checkbox-con mr10 on-check">
+							<input type="checkbox" class="checNormal"  checked="checked" id="roomAdjust"/>
+						</label>检测教室冲突
+					</div>
+				</div>				
+			</div>
+			<div class="box-header reason-cm" style="margin:55px 0 10px 13px;display: none;">
+				<div class=" form-inline form-inp-con" style="display: inline-block;">
+					<div class="form-group form-normal">
+						<label for=""><i class="text-danger">*</i>停课周次：</label> 
+						<input type="text" class="form-control inp-com" id="stopWeek"/>
+					</div>
+				</div>	
+				<div class=" form-inline form-inp-con" style="display: inline-block;">
+					<div class="form-group form-normal">
+						<label for=""><i class="text-danger">*</i>停课节次：</label> 
+						 <input type="text" class="form-control inp-com" disabled="disabled" id="stopSection" />
+					</div>
+				</div>
+			</div>
+			<div class="box-body tab-cm">
+				<div class="scorll-box">
+					<div class="table-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th width="100">项目</th>
+									<th>调前</th>
+									<th>调整</th>
+								</tr>
+							</thead>
+							<tbody id="tbodycontent" style="height:204px;">
+								<tr>
+								    <td  width="100">周次</td>
+								    <td id="beforeWeekHtml"></td>
+								    <td data>
+								    	<div style="width:301px;text-align: left;margin:0 auto;"><i class="text-danger">*</i>
+								    		原第 <input type="text" class="form-control inp-small" style="width:100px;display: inline-block;" id="beforeWeek"/>
+								    	 周 , 调至 <input type="text" class="form-control inp-small" style="width:100px;display: inline-block;" id="afterWeek"/> 周
+								    	</div>								    	
+								    </td>   									    
+								</tr>
+								<tr>
+								    <td  width="100">节次</td>
+								    <td id="beforeSectionHtml"></td>
+								    <td data>
+								    	<i class="text-danger" style="margin-left:-8px;">*</i>
+								    	<div class="tips-text verification-info vertical-align-mid">
+							        	    <input type="text" class="form-control inp-com" disabled="disabled" id="afterSection"/>
+							        	</div>
+							        	<button class="btn btn-success width-default chooseclassnum">请选择</button>
+								    </td>   									    
+								</tr>
+								<tr>
+								    <td  width="100">教室</td>
+								    <td  id="beforeRoomHtml"></td>
+								    <td data>
+								    	<div class="tips-text verification-info vertical-align-mid">
+							        	    <input type="text" class="form-control inp-com"  disabled="disabled" id="afterRoom" />
+							        	</div>
+							        	<button class="btn btn-success width-default chooseroom" >请选择</button>
+								    </td>   									    
+								</tr>
+								<tr>
+								    <td  width="100">教师</td>
+								    <td id="beforeTeacherHtml"></td>
+								    <td data>
+								    	<div class="tips-text verification-info vertical-align-mid">
+							        	    <input type="text" class="form-control inp-com" disabled="disabled" id="afterTeacher"/>
+							        	</div>
+							        	<button class="btn btn-success width-default chooseteacher">请选择</button>
+								    </td>  								    
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		    <div class="form-group form-inline formtext mt20 reason-range">
+				<label for="name" style="width:90px;"><i class="text-danger">*</i>调课原因：</label>
+				<div class="tips-text verification-info">
+					<textarea class="form-control tarea-com-long" rows="3" id="rangeRemark" name="rangeRemark" maxlength="200" style="width:1058px;"></textarea>
+					<span id="rangeRemarkCount" class="textarea-length"></span>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext mt20 reason-stop" style="display: none;">
+				<label for="name" style="width:90px;"><i class="text-danger">*</i>停课原因：</label>
+				<div class="tips-text verification-info">
+					<textarea class="form-control tarea-com-long" rows="3" id="stopRemark" name="stopRemark" maxlength="200" style="width:1058px;"></textarea>
+					<span id="stopRemarkCount" class="textarea-length"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script id="tableTmpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox" scheduling="${schedulingTaskId}">
+	<td class="width05">
+		<label class="radio">
+		    <div class="radio-con"><input type="radio" name="isEnabled" scheduling="${schedulingTaskId}"></div>
+		</label>
+	</td> 
+    <td class="width05">${$index + 1}</td>    
+    <td title="[${courseNo}]${courseName}">[${courseNo}]${courseName}</td>
+    <td title="${courseArrangeWeekly}">${courseArrangeWeekly}</td>
+    <td>${arrangeSection}</td>
+    <td class="width05">${singleOrDoubleWeekString}</td>
+    <td title="${buildingName}${venueName}">${buildingName}${venueName}</td>   									    
+    <td width="80">${teachingClassMemberCount}</td>
+    <td data="{{each(i, item) classes.split(',')}}${item}#@#{{/each}}" class="open-message">${teachingClassNo}(${classes})</td>
+</tr>
+</script>
+
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<script src="../../../common/js/utils/limit.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths: {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/add", function(add) {
+		add.init();
+	});
+</script>
+</html>

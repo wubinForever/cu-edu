@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>确认课程补考学生</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body>
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> <select class="form-control sel-com"
+									id="schoolCalendarSelect" name="schoolCalendarId">
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">考试批次：</label> 
+								<select class="form-control sel-com" id="batchId" name="batchId">									
+									<option value="1">2016-2017学年第二学期 期末考试</option>
+									<option value="2">2016-2017学年第二学期 期中考试</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">开课单位：</label> 
+								<select class="form-control sel-com" id="" name="">									
+									<option value="1">全部</option>
+									<option value="2">计算机科学与技术学院</option>
+									<option value="2">管理学院</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">课程：</label> 
+								<select class="form-control sel-com" id="" name="">									
+									<option value="1" selected="selected">全部</option>
+									<option value="2">软件工程</option>
+									<option value="3">网络工程</option>
+									<option value="4">公共管理</option>
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">年纪：</label> 
+								<select class="form-control sel-com"
+									id="" name="">									
+									<option value="1" selected="selected">全部</option>
+									<option value="2">2017级</option>
+									<option value="3">2016级</option>
+									<option value="4">2015级</option>
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">所属院系：</label> 
+								<select class="form-control sel-com"
+									id="" name="">									
+									<option value="1" selected="selected">全部</option>
+									<option value="2">计算机学院</option>
+									<option value="3">管理学院</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">所属专业：</label> 
+								<select class="form-control sel-com"
+									id="" name="">									
+									<option value="1" selected="selected">全部</option>
+									<option value="2">软件工程</option>
+									<option value="3">网络工程</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">所属班级：</label> 
+								<select class="form-control sel-com"
+									id="" name="">									
+									<option value="1" selected="selected">全部</option>
+									<option value="2">07级信息化一班</option>
+									<option value="3">07级信息化二班</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">学号/姓名：</label> 
+								<input type="text" class="form-control inp-com"/>
+							</div>
+						</div>		
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="delete">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="addMakeupstudent">添加</button>
+							<button type="button" class="btn btn-danger">删除</button>
+							<button type="button" class="btn btn-warning">导出</button>
+						</div>
+						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">
+													<div class="checkbox-con">
+														<input type="checkbox" id="check-all" class="checNormal">
+													</div>
+												</th>
+												<th>考试批次</th>
+												<th>开课单位</th>
+												<th>课程</th>
+												<th>学分</th>
+												<th>课程类别</th>
+												<th>学生</th>
+												<th>年级</th>
+												<th>院系</th>
+												<th>专业</th>
+												<th>班级</th>
+												<th>考试得分</th>
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+											<tr class="tr-checkbox">
+											    <td class="width05">      
+											        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+											    </td>
+											    <td>2016-2017第一学期期末考试</td>    
+											    <td>[1212]计科院</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td>1</td>
+											    <td>专业必修课</td>
+											    <td>[201609011]张三</td>   
+											    <td>2016级</td>
+											    <td>[1123]计科院</td>
+											    <td>所属专业</td>
+											    <td>07计科一班</td>
+											    <td>35</td>
+											    <td><button type="button" class="btn-text">删除</button></td>
+											</tr>
+											<tr class="tr-checkbox">
+											    <td class="width05">      
+											        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+											    </td>
+											    <td>2016-2017第一学期期末考试</td>    
+											    <td>[1212]计科院</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td>1</td>
+											    <td>专业必修课</td>
+											    <td>[201609011]张三</td>   
+											    <td>2016级</td>
+											    <td>[1123]计科院</td>
+											    <td>所属专业</td>
+											    <td>07计科一班</td>
+											    <td>35</td>
+											    <td><button type="button" class="btn-text">删除</button></td>
+											</tr>
+											<tr class="tr-checkbox">
+											    <td class="width05">      
+											        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+											    </td>
+											    <td>2016-2017第一学期期末考试</td>    
+											    <td>[1212]计科院</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td>1</td>
+											    <td>专业必修课</td>
+											    <td>[201609011]张三</td>   
+											    <td>2016级</td>
+											    <td>[1123]计科院</td>
+											    <td>所属专业</td>
+											    <td>07计科一班</td>
+											    <td>35</td>
+											    <td><button type="button" class="btn-text">删除</button></td>
+											</tr>
+											<tr class="tr-checkbox">
+											    <td class="width05">      
+											        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+											    </td>
+											    <td>2016-2017第一学期期末考试</td>    
+											    <td>[1212]计科院</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td>1</td>
+											    <td>专业必修课</td>
+											    <td>[201609011]张三</td>   
+											    <td>2016级</td>
+											    <td>[1123]计科院</td>
+											    <td>所属专业</td>
+											    <td>07计科一班</td>
+											    <td>35</td>
+											    <td><button type="button" class="btn-text">删除</button></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/makeupstudent", function(makeupstudent) {
+		makeupstudent.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

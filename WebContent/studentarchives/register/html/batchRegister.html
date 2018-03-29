@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>批量注册</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+<body page-auth-code="StudentArchives_ReportRegister_BatchRegister">
+<!-- 内容框架 开始 -->
+<form id="addForm">
+	<div class="layout-index">
+		<div class="sub-content text-center mt50 w500">
+			<div class="">
+			<div class="form-group form-inline form-big formtext">
+				<label for="name">学年学期：</label>
+				<div class="tips-text verification-info text-left">
+						<select class="form-control sel-com" id="academicYearSemester" name="academicYearSemester" >
+							</select>
+				</div>
+			</div>
+			<div class="form-group form-inline form-big formtext">
+				<div class="text-left ml80"><label class="checkbox-inline"> <div class="checkbox-con mr10 on-check" ><input type="checkbox" class="checNormal" id="report" checked="checked"></div>只允许本学期已报到学生注册</label></div>
+			</div>
+				<div class="form-group form-inline form-big formtext">
+					<div class="text-left ml80"> <label class="checkbox-inline"> <div class="checkbox-con mr10"><input type="checkbox" class="checNormal" id="register"></div>只允许上学期已注册的学生注册</label></div>
+				</div>
+			</div>
+
+		</div>
+	<div class=" text-center mb20 mt30"  ><button type="button" class="btn btn-success width-default" id="btnSave" name="btnSave" auth-code="StudentArchives_ReportRegister_BatchRegister">批量注册</button></div>
+</div>
+</form>
+<!-- 内容框架 结束 -->
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../common/js","localPath":"../js"}});
+	seajs.use("localPath/register",function(register){
+		register.batchRegisterInit();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>
+
+

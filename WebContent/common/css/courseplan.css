@@ -1,0 +1,180 @@
+/*
+ * 排课系统新增样式
+ */
+.cont-list-box{border:1px solid #c9dae7;min-width:100px;max-height:70px;overflow-y: auto;word-break: break-all;white-space: normal;height:70px;text-align: left;background-color:white}
+.long-type-input{width:320px;}
+.spinner.long-type-input .form-control{width: 100%!important;}
+.block-center{margin:0 auto;}
+.table-bordered th>.table-out {position: relative;height: 36px;}
+.table-bordered th>.table-out b {
+    font-style: normal;
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+}
+.table-bordered th>.table-out em {
+    font-style: normal;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
+}
+.pop-con1 .header-con {
+    padding: 17px 105px 17px 35px;
+    margin: 15px 0 10px;
+    position: relative;
+}
+.formtext.formtext-80 label {
+    width: 112px;
+}
+.header-con1 label{min-width:100px;width:90px;}
+.form-inline .form-control.inp-small, .form-control.inp-small {width: 100%;min-width:60px;}
+.icon-list i{display:inline-block;width:14px;height:14px;border:1px solid #CCCCCC;vertical-align: middle;margin-left:10px;}
+.icon-list i.selected-icon{background:#F99864;}
+.icon-list i.choose-icon{background:white;}
+.icon-list i.cannot-icon{background:#F2F2F2;}
+.table-cm tbody th{background:#DAE5EF;}
+.table-cm>tbody>tr>td{cursor:pointer;height:100px;}
+.table-cm>tbody>tr>td.unable{background:#F2F2F2;cursor:default;}
+.table-cm>tbody>tr>td.selected{background:#F99864;}
+.table-cm>tbody>tr>td.able{background:white;}
+.text-blue{color:#0066FF;cursor:pointer;}
+.dele-cm{display: inline-block;vertical-align:middle;background-image: url(../images/ico-sprite.png);background-position:0px -242px;width:16px;height:16px;margin:-2px 0 0 3px;}
+.table-cm1>tbody>tr>td{cursor:default;height:auto;}
+.table-cm2>tbody>tr>th{text-align:right;}
+.table-cm2>tbody>tr>td{cursor:default;height:auto;text-align:left;}
+/*课表样式*/
+.banner {
+	position: relative;
+	min-height: 800px;
+	overflow: hidden;
+}
+.banner .pre-nex {
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	top: 30%;
+	width: 47px;
+	height: 95px;
+	margin-top: -40px;
+	font: bold 46px/60px Simsun;
+	color: #fff;
+	text-align: center;
+	border: none;
+	background: none;
+	cursor: pointer;
+	z-index: 3;
+	-webkit-transition: opacity 0.7s;
+	-moz-transition: opacity 0.7s;
+	-o-transition: opacity 0.7s;
+	transition: all 0.7s;
+	background:url(../img/arrow.png) no-repeat;
+}
+.banner .prev { left: 7%; background:red; }
+.banner .next { right: 7%; background:red;  }
+.banner .pre-nex.show {
+	visibility: visible;
+	opacity: 1;
+	-webkit-transition: opacity 0.7s;
+	-moz-transition: opacity 0.7s;
+	-o-transition: opacity 0.7s;
+	transition: all 0.7s;
+}
+.banner .prev.show { left: 9%; }
+.banner .next.show { right: 9%; }
+.banner .banner-con {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 1920px;
+	min-height: 800px;
+	margin-left: -960px;
+	overflow: hidden;
+}
+.banner-con .img-list {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 99999px;
+	min-height: 800px;
+}
+.banner-con .img-list li {
+	float: left;
+	width: 1920px;
+	min-height: 800px;
+}
+.banner-con .img-list li a {
+	position: relative;
+	display: block;
+	height: 100%;
+	width: 1000px;
+	margin:0 auto;
+	cursor: default;
+}
+.tit-wrap{font-size: 18px;text-align: center;color: #666666;margin-bottom:15px;}
+.info-wrap>div{float: left;width:20%;color: #666666;}
+.info-tea-wrap>div{float: left;width:20%;color: #666666;}
+.info-room-wrap>div{float: left;width:20%;color: #666666;}
+.disabled{
+	background:#eee;
+}
+.auto-break{
+	word-break: break-all;
+    white-space: normal !important;
+}
+.btn-more{margin:0 auto 30px;display: block;}
+.table-cm-normal>tbody>tr>td{cursor:default;height:100px;}
+@media (min-width: 992px){
+	.header-con .form-inline .form-group label {
+	    min-width: 103px;
+	    text-align: right;
+	    vertical-align: middle;
+   }
+}
+.input-group-btn-vertical i {
+    position: absolute;
+    top: 0;
+    left: 4px;
+    margin:0px;
+}
+.tooltip-inner {
+    max-width:400px;
+    padding: 3px 8px;
+    color: #666;
+    text-align: center;
+    background-color: white;
+    border-radius: 4px;
+    border:1px solid #25a5d3;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    top: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 0 5px 5px;
+    border-bottom-color: #25a5d3;
+}
+
+
+bootstrap.css:6016
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+.open-message{
+	color: #25a5d3;
+    cursor: pointer;
+}
+.list-con {
+    width: 46%;
+}
+.pop-con .scorll-boxt .table>tbody, .double-table-opra .scorll-box .table>tbody{
+		max-height: 540px;
+		height: 510px !important;
+		max-height: 545px\0;
+		height: 512px\0;
+}

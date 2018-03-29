@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>菜单修改</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+		<link href="../../../common/css/skins.css" rel="stylesheet"/>
+		<link href="../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+		<!-- jquery版本 -->
+		<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+		<!-- bootstrap -->
+		<!-- <script src="../js/base/bootstrap/bootstrap.min.js"></script> -->
+		<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+		<!-- Seajs 模块化开发，请一定遵守 -->
+		<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+		<script src="../../../common/js/base/seajs/seajs-text.js"></script>
+		<!-- 弹窗 -->
+		<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+		<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+		<script type="text/javascript" src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+		<script type="text/javascript" src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+		<!-- 验证 -->
+		<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+		<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+		<!--[if lt IE 9]>
+		   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body page-auth-code="Udf_MenuManage_Modify">
+		<form id="updateDataMenu">
+			<div class="pop-con form-big pl30">
+			  <div class="form-group form-inline formtext">
+			      <label for="name">父菜单：</label>
+		          <span id="parentMenuName" class="fontspan fontspan-320 ellipsis"></span>
+		          <input type="hidden" id="parentId" name="parentId">
+			  </div>
+			  <div class="form-group form-inline formtext">
+		          <label><i class="text-danger">*</i>菜单名称：</label>
+		          <div class="tips-text verification-info vertical-align-mid">
+		          	<input type="text" class="form-control inp-com" id="menuName" name="menuName" maxlength="30">
+		          	<input type="hidden" id="menuId" name="menuId">
+		          	<div for="name" generated="true" class="error" style="display: none;" id="datad">菜单名称同级不能重复</div>
+		          </div>
+			  </div>
+			  <div class="form-group form-inline formtext">
+			  	 <label for="number">类型：</label>
+			  	 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="menuType" value="2"></div> 菜单
+				 </label>
+				 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="menuType" value="3"></div> 按钮
+				 </label>
+				 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="menuType" value="1"></div> 空节点
+				 </label>
+			  </div>
+			  <div class="form-group form-inline formtext">
+		          <label for="menuname"><i class="text-danger">*</i>菜单地址：</label>
+		          <div class="tips-text verification-info vertical-align-mid">
+		          	<input type="text" class="form-control inp-com" id="url" name="url" maxlength="200">
+		          </div>
+			  </div>
+			  
+			  <div class="form-group form-inline formtext">
+			  	 <label for="number">状态：</label>
+			  	 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="isEnabled" value="1"></div> 启用
+				 </label>
+				 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="isEnabled" value="2"></div> 禁用
+				 </label>
+			  </div>
+			  <div class="form-group form-inline formtext">
+			  	 <label for="number">目标窗体位置：</label>
+			  	 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="target" value="1"></div> 框架内显示
+				 </label>
+				 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="target" value="2"></div> 新页面
+				 </label>
+			  </div>
+			  <div class="form-group form-inline formtext">
+			  	 <label for="number">默认展开子菜单：</label>
+			  	 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="isExpand" value="1"></div> 是
+				 </label>
+				 <label class="radio-inline">
+				    <div class="radio-con"><input type="radio" name="isExpand" value="2"></div> 否
+				 </label>
+			  </div>
+			  <div class="form-group form-inline formtext">
+			  	 <label for="number">图标样式：</label>
+			  	 <span id="className" class=""></span>
+			  	 <input type="hidden" id="imageClass" name="imageClass">
+			  	 <div class="btn btn-success width-default" name="ico-selpop">请选择</div>
+			  </div>
+			  <div class="form-group form-inline formtext">
+		          <label for="number">所属用户：</label>
+		          <select class="form-control sel-com" id="ownerUserId" name="ownerUserId">
+		        	
+		          </select>
+			  </div>
+			  <div class="form-group form-inline formtext">
+		          <label for="menuname"><i class="text-danger">*</i>权限码：</label>
+		          <div class="toggle-tree-con vertical-align-mid">
+			          <div class="tips-text verification-info">
+							<input class="form-control inp-com toggle-tree" id="permissionName" name="permissionName" type="text" readonly="readonly"/>	
+			           	    <input type="hidden" id="permissionCode" value="" name="permissionCode"/>
+			          </div>
+			          <ul id="treeCode" class="ztree input-tree toggle-ui-up"></ul>	
+		          </div>
+			  </div>
+			  
+			  <div class="form-group form-inline formtext">
+			  	 <label for="number">描述：</label>
+			  	 <textarea class="form-control tarea-com" id="description" name="description" rows="3" maxlength="200"></textarea>
+			  </div>
+			</div>
+		</form>
+		
+		<script type="text/javascript">	
+		    /*
+		    **修改菜单
+		    */
+		    seajs.config({paths:{"basePath":"../../../common/js/utils","configPath":"../../../common/js/config","localPath":"../js"}});
+			seajs.use("localPath/menu",function(menu){
+				menu.initUpdate();
+			}); 
+			seajs.use("basePath/authority");
+		
+		</script>
+	</body>
+</html>

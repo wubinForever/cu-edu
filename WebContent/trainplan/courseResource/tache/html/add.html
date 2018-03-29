@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>环节信息新增</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+
+<body page-auth-code="TrainPlan_CourseResource_Tache_Add,TrainPlan_CourseResource_Tache_Update">
+<form id="addForm">
+	<input type="hidden" id="courseId" name="courseId" />
+	<div class="pop-con box900">
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>开课单位：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="departmentId" name="departmentId">
+					<option value="">请选择</option>
+				</select>
+			</div>
+			<label for="name"><i class="text-danger">*</i>环节号：</label>
+			<div class="tips-text verification-info">
+				<input type="text" class="form-control inp-com" id="courseNo" name="courseNo" maxlength="20">
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>环节名称：</label>
+			<div class="tips-text verification-info">
+				<input type="text" class="form-control inp-com" id="name" name="name" maxlength="50">
+			</div>
+			<label for="name">英文名称：</label>
+			<div class="tips-text verification-info">
+				<input type="text" class="form-control inp-com" id="engLishName" name="engLishName" maxlength="100">
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="number"><i class="text-danger">*</i>环节类别：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="tacheTypeCode" name="tacheTypeCode">
+					<option value="">实习</option>
+				</select>
+			</div>
+			<label for="number"><i class="text-danger">*</i>学分：</label>
+			<div class="tips-text verification-info">
+				<input type="text" class="form-control inp-com" id="credit" name="credit" maxlength="5">
+			</div>
+		</div>
+        <div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>周数：</label>
+			<!-- <div class="tips-text verification-info">
+			 	<input type="text" class="form-control inp-com" id="weekNum" name="weekNum" maxlength="2" onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+			</div> -->
+			<div class="input-group spinner num2">
+			<input type="text" class="form-control" name="weekNum"  id="weekNum" maxlength="2" min="0" max="99" >
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+				<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+			
+			<label for="name"><i class="text-danger">*</i>考核方式：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="checkWayCode" name="checkWayCode">
+					<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+        <div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>状态：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="enableStatus" name="enableStatus">
+					<option value="">启用</option>
+				</select>
+			</div>
+		</div>
+        <div class="form-group form-inline formtext">
+			<label for="name">环节简介：</label>
+			<div class="tips-text verification-info">
+				<textarea class="form-control tarea-com-long" rows="5" id="courseSummary" name="courseSummary" maxlength="1000"></textarea>
+			    <span id="courseSummaryCount" class="textarea-length"></span>
+			</div>
+		</div>
+	</div>
+</form>
+</body>
+
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script src="../../../../common/js/utils/limit.js"></script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/tache",function(tache){
+		tache.addInit();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</html>

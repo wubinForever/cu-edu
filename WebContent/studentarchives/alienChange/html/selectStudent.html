@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>选择异动学生</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+    <link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+<body page-auth-code="StudentArchives_AlienChange_ApplyRegister_Register">
+<form id="queryForm">
+    <input type="hidden" id="alienChangeCategoryCode" name="alienChangeCategoryCode" value=""/>
+    <input type="hidden" id="academicYear" name="academicYear" value=""/>
+    <input type="hidden" id="semesterCode" name="semesterCode" value=""/>
+	<div class="pop-con box900">
+		<div class="container-fluid  col-xs-12">
+			<div class="header-con clearfix major">
+				<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">年级：</label>
+						<select class="form-control sel-com" id="grade" name="grade">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">院系：</label>
+						<select class="form-control sel-com" id="departmentId" name="departmentId">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">专业：</label>
+						<select class="form-control sel-com" id="majorId" name="majorId">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">班级：</label>
+						<select class="form-control sel-com" id="classId" name="classId">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col-sm-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">学号/姓名：</label>
+						<input class="form-control inp-com" id="studentNoOrName" name="studentNoOrName" maxLength="50" placeholder="" />
+						<input type="text" style="display: none;"><!-- 解决按回车提交表单问题 -->
+					</div>
+				</div>
+				<button type="button" class="btn btn-primary header-btn width-mini"  style="margin-bottom: -13px;" name="query"
+						id="query">查询</button>
+			</div>
+		</div>
+
+		<!--表格区域-->
+		<div class="col-xs-12 mt10">
+		<div class="box-body">
+			<div class="scorll-box">
+				<div class="table-box">
+					<table class="table table-bordered table-hover">
+						<thead>
+						<tr>
+							<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+							<th class="width48">序号</th>
+							<th class="width60">年级</th>
+							<th>院系</th>
+							<th>专业</th>
+							<th>班级</th>
+							<th>学号</th>
+							<th>姓名</th>
+							<th class="width48">性别</th>
+							<th class="width70">在校状态</th>
+						</tr>
+						</thead>
+						<tbody id="tbodycontent" class="autoheight-long">
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+			<div id="pagination" class="pagination"></div>
+		</div>
+	</div>
+</form>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+<td class="width03">
+<div class="checkbox-con"><input type="checkbox" class="checNormal" name ="checNormal" value="${userId}"></div></td>
+    <td class="width48" title="${$index+1}">${$index+1}</td>
+    <td class="width60" title="${classGrade}">${classGrade}</td>
+    <td class="text-l" title="${departmentName}">${departmentName}</td>
+	<td class="text-l" title="${majorName}">${majorName}</td>
+	<td class="text-l" title="${className}">${className}</td>
+	<td class="text-l" title="${studentNo}">${studentNo}</td>
+	<td class="text-l" title="${studentName}">${studentName}</td>
+	<td class="width48" title="${sexName}">${sexName}</td>
+	<td class="width70" title="${schoolStatusName}">${schoolStatusName}</td>
+</tr>
+</script>
+<script type="text/javascript">	
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/alienChange", function(alienChange) {
+		alienChange.initRegisterSelectStudent();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+</head>
+    <body>
+		<div class="pop-con pop-con1">
+	        <div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width20">序号</th>
+												<th id="messageTitle"></th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+	<script id="tableTmpl" type="text/x-jquery-tmpl">
+	<tr class="tr-checkbox">
+		<td class="width20">${$index + 1}</td>
+		<td title="${value}">${value}</td>    
+	</tr>
+	</script>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<!-- Seajs 模块化开发，请一定遵守 -->
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 验证 -->
+	<script type="text/javascript">
+		seajs.use("../js/openMessage", function(teacher) {
+			teacher.open();
+		});
+	</script>
+</html>

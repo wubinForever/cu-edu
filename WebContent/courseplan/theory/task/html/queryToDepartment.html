@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>理论任务查询（按开课单位）</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../../common/css/courseplan.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+<body   page-auth-code="CoursePlan_Theory_Query_CourseUnit">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> 
+								<select class="form-control sel-com" id="semester"  name="semester" >
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">开课单位：</label> 
+								<select	class="form-control sel-com" id="departmentId" name="departmentId">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">课程号/名称：</label> 
+								<input type="text" class="form-control inp-com" id="course" name="course"  maxlength="50"/>
+							</div>
+						</div>		
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">教师工号/姓名：</label> 
+								<input type="text" class="form-control inp-com" id="teacher" name="teacher"  maxlength="50"/>
+							</div>
+						</div>					
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" id="queryBtn">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button"  auth-code="CoursePlan_Theory_Query_CourseUnit_Export" class="btn btn-success" name="exportBtn">导出</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover" style="min-width: 1500px;">
+										<thead>
+											<tr>
+												<th class="width45">序号</th>
+												<th class="">开课单位</th>
+												<th class="width85">课程号</th>
+												<th class="">课程名称</th>
+												<th class="width45">学分</th>
+												<th class="width45">总学时</th>
+												<th class="width45">理论学时</th>
+												<th class="width45">实验学时</th>
+												<th class="width45">实践学时</th>
+												<th class="width45">其他学时</th>
+												<th class="width120">任课教师</th>
+												<th class="width45">授课方式</th>
+												<th class="width45">周学时</th>
+												<th class="width45">连排节次</th>
+												<th class="width55">周次</th>
+												<th class="width45">单双周</th>
+												<th class="width45">考核方式</th>
+												<th class="width120">教学班</th>
+												<th class="">行政班</th>
+												<th class="">上课地点要求</th>
+												<th class="">节次要求</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent" class="no-data-html">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+<script id="tableTmpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+	<td class="width45">${$index+1}</td>
+	<td class="text-l" title="${departmentName}">${departmentName}</td>
+	<td class="text-l width85" title="${courseNo}">${courseNo}</td>
+	<td class="text-l" title="${courseName}">${courseName}</td>
+	<td class="text-r width45">${credit}</td>
+	<td class="text-r width45">${totalPeriod}</td>
+	<td class="text-r width45">${theoryPeriod}</td>
+	<td class="text-r width45">${experiPeriod}</td>
+	<td class="text-r width45">${practicePeriod}</td>
+	<td class="text-r width45">${otherPeriod}</td>
+	<td class="text-l width120" title="{{each(i,item) teachers}}${item}&#10;{{/each}}">
+		{{each(i,item) teachers}}
+ 			{{if i < 4}}
+			<div class='ellipsis' >${item}</div>
+			{{/if}}
+		{{/each}}
+	</td>
+	<td class="width45" title="${teachingMethodsName}">${teachingMethodsName}</td>
+	<td class="text-r width45">${weeklyHours}</td>
+	<td class="text-r width45">${continBlwdwnCount}</td>
+	<td class="text-r width55" title="${arrangeWeeks}">${arrangeWeeks}</td>
+	<td class="text-r width45">${weekName}</td>
+	<td class="text-r width45">${checkWayName}</td>
+	<td class="text-l width120" title="${teachingClassNo}(${teachingClassMemberCount})">${teachingClassNo}(${teachingClassMemberCount})</td>
+	<td class="text-l open-message" data="{{each(i,item) classInfos}}${item.className}(${item.studentCount})#@#{{/each}}">
+		{{each(i,item) classInfos}}
+			{{if i < 4}}
+			<div class='ellipsis' >${item.className}(${item.studentCount})</div>
+			{{/if}}
+		{{/each}}
+	</td>
+	<td class="text-l" title="{{if teachroomTypeName}}${teachroomTypeName}&#10;{{/if}}{{if campusName}}${campusName}&#10;{{/if}}{{if buildingName}}${buildingName}&#10;{{/if}}{{if teachroomName}}${teachroomName}&#10;{{/if}}">
+		{{if teachroomTypeName}}${teachroomTypeName}<br/>{{/if}}
+		{{if campusName}}${campusName}<br/>{{/if}}
+		{{if buildingName}}${buildingName}<br/>{{/if}}
+		{{if teachroomName}}${teachroomName}<br/>{{/if}}
+	</td>
+	<td title="${sectionNameTitle}" class="auto-break">{{html sectionName}}</td>
+</tr>
+</script>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/queryToDepartment", function(query) {
+		query.init();
+	});
+</script>
+</html>

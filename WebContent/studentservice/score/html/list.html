@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>查询个人成绩</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../studentService.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentService_StudentArchives_AlienChange">
+   <!-- 内容框架 开始-->
+    <div class="layout-index">
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年：</label>
+							<select class="form-control sel-com" id="academicYear" name="academicYear"></select>
+						</div>
+					</div>	
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学期：</label>
+							<select class="form-control sel-com" id="semesterCode" name="semesterCode"></select>
+						</div>
+					</div>				
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>
+	</div>
+	<!--筛选查询 结束-->
+	<!-- 内容 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header pull-right">
+						<button type="button" class="btn btn-success width-default" name="export" id="export" page-auth-code="StudentArchives_Statistics_StudentArchivesCard_Export">导出</button>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box scorll-boxauto">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th>学年学期</th>
+											<th>课程</th>
+											<th class="width48">学分</th>
+											<th class="width120">类别</th>
+											<th class="width70">考核方式</th>
+											<th class="width70">总评成绩</th>
+											<th class="width70">取得学分</th>
+											<th class="width70">绩点</th>
+											<th class="width70">学分绩点</th>
+											<th>备注</th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontent">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					    <div class="scorll-box mt20 scorll-boxauto">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th>类别</th>
+											<th>修读课程/环节数</th>
+											<th>学分</th>
+											<th>获得学分</th>
+											<th>获得绩点</th>
+											<th>获得学分绩点</th>
+											<th>获得学分平均绩点</th>
+										</tr>
+									</thead>
+									<tbody id="statisticsContent">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+   </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+		<tr>
+			<td class="width48" title="${$index+1}">${$index+1}</td>
+			<td title="${studySemesterYearName}">${studySemesterYearName}</td>
+			<td class="text-l" title="[${courseNo}]${courseName}">[${courseNo}]${courseName}</td>
+			<td class="width48 text-r" title="${credit}">${credit}</td>
+			<td class="width120" title="${courseOrTacheName}">${courseOrTacheName}</td>
+			<td class="width70" title="${checkWayName}">${checkWayName}</td>
+			<td class="width70 text-r" title="${finalTotalScore}">${finalTotalScore}</td>
+			<td class="width70 text-r" title="${getCredit}">${getCredit}</td>
+			<td class="width70 text-r" title="${scorePoint}">${scorePoint}</td>
+			<td class="width70 text-r" title="${finalScorePoint}">${finalScorePoint}</td>
+			<td class="text-l" title="${remark}">${remark}</td>
+		</tr>
+	</script>
+	<script id="statisticsContentImpl" type="text/x-jquery-tmpl">
+		<tr>
+			<td class="width48" title="${index}">${index}</td>
+			<td title="${courseTypeName}">${courseTypeName}</td>
+			<td title="${courseCount}">${courseCount}</td>
+			<td title="${credit}">${credit}</td>
+			<td title="${getCredit}">${getCredit}</td>
+			<td title="${scorePoint}">${scorePoint}</td>
+			<td title="${finalScorePoint}">${finalScorePoint}</td>
+			<td title="${aveFinalScorePoint}">${aveFinalScorePoint}</td>
+		</tr>
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/scoreQueryByStudent",function(scoreQueryByStudent){
+			scoreQueryByStudent.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

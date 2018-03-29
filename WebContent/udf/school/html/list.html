@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>学校信息</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../common/css/skins.css" rel="stylesheet" />
+	<!--基础模块样式表-->
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<!--日期样式-->
+	<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+<body page-auth-code="BaseData_School">
+<form id="updateSchoolForm">
+	<input type="text" class="form-control inp-com" id="schoolId"
+		   name="schoolId" style="display: none;">
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class=" school-titlle mt20">基本信息</h3>
+				<div  class="school-infoList" >
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+						<tr>
+							<th><label for="name"><i class="text-danger">*</i>学校代码：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="schoolCode" id="schoolCode" value="" maxlength="10"/>
+								</div>
+							</td>
+							<th><label for="name"><i class="text-danger">*</i>学校名称：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="schoolName" id="schoolName" value="" maxlength="100"/>
+								</div>
+							</td>
+							<th><label for="name">学校英文名称：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="englishName" id="englishName" value="" maxlength="200"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="name"><i class="text-danger">*</i>学校性质：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<select class="form-control" id="schoolQualityCode" name="schoolQualityCode">
+										<option value="">--请选择--</option>
+									</select>
+								</div>
+							</td>
+							<th><label for="name"><i class="text-danger">*</i>办学类型：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<select class="form-control" id="schoolTypeCode" name="schoolTypeCode">
+										<option value="">--请选择--</option>
+									</select>
+								</div>
+							</td>
+							<th><label for="name">举办者：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<select class="form-control" id="sponsorCode" name="sponsorCode">
+										<option value="">--请选择--</option>
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="name">主管部门：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="managementDepartment" id="managementDepartment" value="" maxlength="50"/>
+								</div>
+							</td>
+							<th><label for="name">法定代表人号：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="legalPersonNo" id="legalPersonNo" value="" maxlength="20"/>
+								</div>
+							</td>
+							<th><label for="name">法人证书号：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="legalPersonCertificateNo" id="legalPersonCertificateNo" value="" maxlength="20"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="name">校长：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="principal" id="principal" value="" maxlength="50"/>
+								</div>
+							</td>
+							<th><label for="name">党委负责人：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="partycommitteeSuperintendent" id="partycommitteeSuperintendent" value="" maxlength="50"/>
+								</div>
+							</td>
+							<th><label for="name">建校年月：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input id="schoolCreateYear" name="schoolCreateYear" type="text" class="form-control wdate valid" onclick="WdatePicker({dateFmt:'yyyy-MM'});">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="name">校庆日：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<select class="form-control sel-mini" id="schoolDateMonth" name="schoolDateMonth">
+										<option value="">--请选择--</option>
+									</select>
+									<select class="form-control sel-mini" id="schoolDateDay" name="schoolDateDay">
+										<option value="">--请选择--</option>
+									</select>
+								</div>
+							</td>
+							<th><label for="name">学科门类数：</label></th>
+							<td>
+								<div class="input-group spinner num2">
+									<input type="text" class="form-control" id="subjectCategoryAmount" name="subjectCategoryAmount" maxlength="3" min="0" max="999" >
+									<div class="input-group-btn-vertical major-list">
+										<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+										<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+									</div>
+								</div>
+							</td>
+							<th></th>
+							<td></td>
+						</tr>
+						<tr>
+							<th><label for="name">历史沿革：</label></th>
+							<td colspan="5"><div class="tips-text verification-info" ><textarea class="form-control"  rows="3" cols="" id="history" name="history" maxlength="1000"></textarea></div></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<h3 class=" school-titlle mt20">联系信息</h3>
+				<div  class="school-infoList" >
+					<table width="100%" border="0"cellspacing="0" cellpadding="0">
+						<tbody>
+						<tr>
+							<th><label for="name">行政区划：</label></th>
+							<td colspan="3">
+								<div class="tips-text verification-info">
+									<select class="form-control sel-mall" id="province" name="province">
+										<option value="">--请选择--</option>
+									</select>
+									<select class="form-control sel-mall" id="city" name="city">
+										<option value="">--请选择--</option>
+									</select>
+									<select class="form-control sel-mall" id="area" name="area">
+										<option value="">--请选择--</option>
+									</select>
+								</div>
+							</td>
+							<th><label for="name">联系电话：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="telephone" id="telephone" value="" />
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="name">传真号码：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="fax" id="fax" value="" />
+								</div>
+							</td>
+							<th><label for="name">电子信箱：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="email" id="email" value="" maxlength="30"/>
+								</div>
+							</td>
+							<th><label for="name">邮政编码：</label></th>
+							<td>
+								<div class="tips-text verification-info">
+									<input class="form-control" name="postalCode" id="postalCode" value="" maxlength="6"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="name">学校地址：</label></th>
+							<td colspan="5">
+								<div class="tips-text verification-info">
+									<input class="form-control" name="schoolAddress" id="schoolAddress" value="" maxlength="100"/>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th><label for="name">主页地址：</label></th>
+							<td colspan="5">
+								<div class="tips-text verification-info">
+									<input class="form-control" name="website" id="website" value="" maxlength="100"/>
+								</div>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<div class=" text-center mb20"> <button type="button" id="updateButton" auth-code="BaseData_School_Add"
+											class="btn btn-success width-default">保 存</button></div>
+</form>
+</body>
+</html>
+
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css"
+	rel="stylesheet" />
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script id="dictionaryTmpl" type="text/x-jquery-tmpl">
+<option value=${code}>${dataDictionaryName}</option>
+</script>
+<script id="cantonTmpl" type="text/x-jquery-tmpl">
+<option value=${cantonCode}>${cantonName}</option>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js/utils","configPath":"../../../common/js/config","modulePath":"../../../common/js/module",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/school", function(school) {
+		school.initUpdate();
+	});
+	seajs.use("basePath/authority");
+</script>

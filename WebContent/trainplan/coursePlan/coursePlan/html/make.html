@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>生成开课计划</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body>
+<form id="addForm" onkeydown="if(event.keyCode==13)return false;">
+	<div class="pop-con">
+
+	  <div class="form-group form-inline formtext mt20">		
+			<label for="number">学年学期：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="semester" name='semester'>
+				</select>
+			</div>
+           
+	  </div>
+		<div class="form-group form-inline formtext">
+		  <label for="name">年级：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="grade"
+						name="grade">
+					<option value="-1">全部</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">院系：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="departmentId"
+						name="departmentId">
+					<option value="">全部</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group form-inline formtext">
+			<label for="name">专业：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="majorId"
+						name="majorId">
+					<option value="">全部</option>
+				</select>
+			</div>
+		</div>
+        <div class="care-tips2 mt20 text-center">待追加生成专业的课程数：<span class=" text-danger" id="coursePlanNumber">0门</span></div>
+	</div>
+</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/build",function(build){
+		build.initAdd();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

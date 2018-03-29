@@ -1,0 +1,607 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>排考安排</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<!-- basic styles -->
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+  </head>
+  <body>
+		<div class="page-content">
+    		<div class="row">
+				<div class="col-xs-12">
+		    		<div class="tabbable tabbable-big">
+		    			<!-- tabs -->
+						<div class="tabs-list">
+							<ul class="nav nav-tabs row">
+								<li class="active col-md-4">    
+									<a data-toggle="tab" aria-expanded = "true" href="#arrangeTime">
+										<span>安排时间</span>
+									</a>
+								</li>
+								<li class="col-md-4">    
+									<a data-toggle="tab" aria-expanded = "false" href="#arrangeSession">
+										<span>安排考场</span>
+									</a>
+								</li>
+								<li class="col-md-4">    
+									<a data-toggle="tab" aria-expanded = "false" href="#arrangeInvigilate">
+										<span>安排监考人员</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>	
+					<!-- tabiframe -->
+					<div class="tab-content sub-content-big clearfix">
+						<div class="content-line"></div>
+						<!-- 安排时间 -->
+						<div id="arrangeTime" class="tab-pane active">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="box">
+										<div class="box-header row">
+											<div class="content-infoList">
+												<label class="checkbox-inline">
+													<div class="checkbox-con on-check">
+											     	 	<input type="checkbox" id="inlineCheckbox1" value="option1"> 
+													</div>学生时间安排：
+													<label class="radio-inline on-radio">
+												  	 	<div class="radio-con"><input type="radio" name="studentTime" value="1" checked=""></div>当天隔开场次安排
+													</label>
+													<label class="radio-inline">
+												  	 	<div class="radio-con"><input type="radio" name="studentTime" value="2" checked=""></div>一天最多安排一门
+													</label>
+												</label>
+											</div>
+											<button type="button" class="btn btn-primary header-btn" name="delete">确定时间</button>
+										</div>
+										<!-- table begin -->
+										<div class="box-body">
+											<div class="scorll-box">
+												<div class="table-box">
+													<table class="table table-bordered table-hover">
+														<thead>
+														  <tr>
+															<th>日期</th>
+															<th>时间</th>
+															<th>空闲容量</th>
+														  </tr>	
+														</thead>
+														<tbody>
+															<tr>
+																<td>2017-10-02（第18周 星期一）</td>
+																<td>10:00-12:00</td>
+																<td>200112</td>
+															</tr>
+															<tr>
+																<td>2017-10-02（第18周 星期二）</td>
+																<td>10:00-12:00</td>
+																<td>2036</td>
+															</tr>
+															<tr>
+																<td>2017-10-02（第18周 星期三）</td>
+																<td>10:00-12:00</td>
+																<td>4556</td>
+															</tr>
+															<tr>
+																<td>2017-10-02（第18周 星期四）</td>
+																<td>10:00-12:00</td>
+																<td>9632</td>
+															</tr>
+															<tr>
+																<td>2017-10-02（第18周 星期五）</td>
+																<td>10:00-12:00</td>
+																<td>200112</td>
+															</tr>
+															<tr>
+																<td>2017-10-02（第18周 星期六）</td>
+																<td>10:00-12:00</td>
+																<td>999</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>	
+										</div>	
+									</div>
+								</div>
+							</div>
+							
+						</div>	
+						
+						<!-- 安排考场 -->
+						<div id="arrangeSession" class="tab-pane">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="box">
+										<div class="clearfix double-table-opra">
+											<!-- 第一个table -->
+											<div class="list-con2 pull-left border-box">
+												<div class="box">
+													<div class="box-header">
+														<label class="radio-inline on-radio">
+													  	 	<div class="radio-con"><input type="radio" name="selectRoom" value="1" checked=""></div>按教学班
+														</label>
+														<label class="radio-inline">
+													  	 	<div class="radio-con"><input type="radio" name="selectRoom" value="2" checked=""></div>按行政班
+														</label>
+													</div>
+													<div class="box-body">
+														<div class="scorll-box">
+															<div class="table-box">
+																<table class="table table-bordered table-hover">
+																	<thead>
+																		<tr>
+																			<th class="width05">
+																				<div class="checkbox-con">
+																					<input type="checkbox" id="check-all" class="checNormal">
+																				</div>
+																			</th>
+																			<th>校区</th>
+																			<th>任课教师</th>
+																			<th>教学班</th>
+																			<th>应排人数</th>
+																			<th>已排人数</th>
+																			<th>未排人数</th>
+																		</tr>
+																	</thead>
+																	<tbody class="heigth460">
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>本部校园</td>
+																			<td>王老师</td>
+																			<td>17-120236</td>
+																			<td>1200</td>
+																			<td>600</td>
+																			<td>600</td>
+																		</tr>
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>本部校园</td>
+																			<td>王老师</td>
+																			<td>17-120236</td>
+																			<td>1200</td>
+																			<td>600</td>
+																			<td>600</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>	
+														</div>	
+													</div>	
+												</div>
+											</div>	
+											
+											<!-- 第二个 table  -->
+											<div class="list-con2 pull-right border-box">
+												<!-- 搜索条件 -->
+												<div class="header-con ">
+													<form id="">
+														<div class="row">
+															<div class="col-md-6 form-inline form-inp-con">
+																<div class="form-group form-normal">
+																	<label for="schoolCalendar">校区：</label> 
+																	<select class="form-control sel-com170">
+																		<option>全部</option>
+																		<option>本部校区</option>
+																	</select>
+																</div>
+															</div>		
+															<div class="col-md-6 form-inline form-inp-con">
+																<div class="form-group form-normal">
+																	<label for="schoolCalendar">楼栋：</label> 
+																	<select class="form-control sel-com170">
+																		<option>全部</option>
+																		<option>逸夫楼</option>
+																	</select>
+																</div>
+															</div>		
+														</div>
+														<div class="row">
+															<div class="col-md-6 form-inline form-inp-con">
+																<div class="form-group form-normal">
+																	<label for="schoolCalendar">场地类型：</label> 
+																	<select class="form-control sel-com170">
+																		<option>全部</option>
+																		<option>一般教师</option>
+																	</select>
+																</div>
+															</div>		
+															<div class="col-md-6 form-inline form-inp-con">
+																<div class="form-group form-normal">
+																	<label for="schoolCalendar">考场剩余容量≥ </label> 
+																	<input type="text" class="form-control inp-com170"/>
+																</div>
+															</div>		
+														</div>
+													</form>	
+													<button type="button" class="btn btn-primary header-btn" >查询考场</button>
+												</div>
+												<div class="box">
+													<div class="box-body">
+														<div class="scorll-box">
+															<div class="table-box">
+																<table class="table table-bordered table-hover">
+																	<thead>
+																		<tr>
+																			<th class="width05">
+																				<div class="checkbox-con">
+																					<input type="checkbox" id="check-all" class="checNormal">
+																				</div>
+																			</th>
+																			<th>校区</th>
+																			<th>楼栋</th>
+																			<th>场地</th>
+																			<th>场地类型</th>
+																			<th>有效座位数</th>
+																			<th>考场容量</th>
+																			<th>剩余容量</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>本部校园</td>
+																			<th>逸夫楼</th>
+																			<th>[11-0105]11栋105室</th>
+																			<th>一般教室</th>
+																			<td>1200</td>
+																			<td>600</td>
+																			<td>600</td>
+																		</tr>
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>本部校园</td>
+																			<th>逸夫楼</th>
+																			<th>[11-0105]11栋105室</th>
+																			<th>一般教室</th>
+																			<td>1200</td>
+																			<td>600</td>
+																			<td>600</td>
+																		</tr>
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>本部校园</td>
+																			<th>逸夫楼</th>
+																			<th>[11-0105]11栋105室</th>
+																			<th>一般教室</th>
+																			<td>1200</td>
+																			<td>600</td>
+																			<td>600</td>
+																		</tr>
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>本部校园</td>
+																			<th>逸夫楼</th>
+																			<th>[11-0105]11栋105室</th>
+																			<th>一般教室</th>
+																			<td>1200</td>
+																			<td>600</td>
+																			<td>600</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>	
+														</div>	
+													</div>	
+													
+													<!-- 安排考场 -->
+													<div class="content-infoList box-search">
+														<label class="checkbox-inline">
+															<div class="checkbox-con on-check">
+													     	 	<input type="checkbox" id="inlineCheckbox1" value="option1"> 
+															</div>多个考场时平均分布
+															<label class="checkbox-inline">
+																<div class="checkbox-con on-check">
+														     	 	<input type="checkbox" id="inlineCheckbox1" value="option1"> 
+																</div>安排人数：
+																<div class="inline-block"><input type="text" class="form-control inp-small"/></div>
+															</label>
+															<label class="checkbox-inline">
+																<div class="checkbox-con on-check">
+														     	 	<input type="checkbox" id="inlineCheckbox1" value="option1"> 
+																</div>随机生成座位号
+															</label>
+														</label>
+														<button type="button" class="btn btn-primary header-btn">安排考场</button>
+													</div>
+												</div>
+											</div>	
+											
+										</div>
+										
+										<!-- 第三个table -->
+										<div class="box-body">
+											<div class="scorll-box">
+												<div class="table-box">
+													<table class="table table-bordered table-hover">
+														<thead>
+															<tr>
+																<th>校区</th>
+																<th>楼栋</th>
+																<th>场地</th>
+																<th>场地类型</th>
+																<th>教学班级</th>
+																<th>行政班级</th>
+																<th>安排人数</th>
+																<th>操作</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>本部校园</td>
+																<td>逸夫楼</td>
+																<td>[11-0105]11栋105室</td>
+																<td>一般教室</td>
+																<td>17-120236</td>
+																<td></td>
+																<td>120</td>
+																<td><button type="button" class="btn-text">删除</button><button type="button" class="btn-text" name="studentView">查看考生</button></td>
+															</tr>
+															<tr>
+																<td>本部校园</td>
+																<td>逸夫楼</td>
+																<td>[11-0105]11栋105室</td>
+																<td>一般教室</td>
+																<td>17-120236</td>
+																<td></td>
+																<td>120</td>
+																<td><button type="button" class="btn-text">删除</button><button type="button" class="btn-text">查看考生</button></td>
+															</tr>
+															<tr>
+																<td>本部校园</td>
+																<td>逸夫楼</td>
+																<td>[11-0105]11栋105室</td>
+																<td>一般教室</td>
+																<td>17-120236</td>
+																<td></td>
+																<td>120</td>
+																<td><button type="button" class="btn-text">删除</button><button type="button" class="btn-text">查看考生</button></td>
+															</tr>
+															<tr>
+																<td>本部校园</td>
+																<td>逸夫楼</td>
+																<td>[11-0105]11栋105室</td>
+																<td>一般教室</td>
+																<td>17-120236</td>
+																<td></td>
+																<td>120</td>
+																<td><button type="button" class="btn-text">删除</button><button type="button" class="btn-text">查看考生</button></td>
+															</tr>
+														</tbody>
+													</table>	
+												</div>	
+											</div>	
+										</div>	
+									</div>
+								</div>
+							</div>	
+						</div>	
+						
+						<!-- 安排监考人员 -->
+						<div id="arrangeInvigilate" class="tab-pane">
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="box">
+										<div class="clearfix double-table-opra">
+											<!-- 第一个table -->
+											<div class="list-con2 pull-left border-box">
+												<div class="box">
+													<div class="box-header">
+														<span class="margin-right15">已安排考场：2</span>    
+														<span>共需监考员：5</span>
+													</div>
+													<div class="box-body">
+														<div class="scorll-box">
+															<div class="table-box">
+																<table class="table table-bordered table-hover">
+																	<thead>
+																		<tr>
+																			<th class="width05">
+																				<div class="checkbox-con">
+																					<input type="checkbox" id="check-all" class="checNormal">
+																				</div>
+																			</th>
+																			<th>考场</th>
+																			<th>考试人数</th>
+																			<th>需监考人数</th>
+																			<th>主监考</th>
+																			<th>辅监考</th>
+																			<th>操作</th>
+																		</tr>
+																	</thead>
+																	<tbody class="heigth460">
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>本部校园</td>
+																			<td>王老师</td>
+																			<td>17-120236</td>
+																			<td>1200</td>
+																			<td>600</td>
+																			<td>600</td>
+																		</tr>
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>[11-0105]11栋105室</td>
+																			<td>120</td>
+																			<td>2</td>
+																			<td>张老师</td>
+																			<td>李老师</td>
+																			<td><button type="button" class="btn-text">撤销</button></td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>	
+														</div>	
+													</div>	
+												</div>
+											</div>	
+											
+											<!-- 第二个 table  -->
+											<div class="list-con2 pull-right border-box">
+												<!-- 搜索条件 -->
+												<div class="header-con ">
+													<form id="">
+														<div class="row">
+															<div class="col-md-6 form-inline form-inp-con">
+																<div class="form-group form-normal">
+																	<label for="schoolCalendar">校区：</label> 
+																	<select class="form-control sel-com170">
+																		<option>全部</option>
+																		<option>本部校区</option>
+																	</select>
+																</div>
+															</div>		
+															<div class="col-md-6 form-inline form-inp-con">
+																<div class="form-group form-normal">
+																	<label for="schoolCalendar">院系：</label> 
+																	<select class="form-control sel-com170">
+																		<option>全部</option>
+																		<option>一般教室</option>
+																	</select>
+																</div>
+															</div>		
+														</div>
+														<div class="row">
+															<div class="col-md-6 form-inline form-inp-con">
+																<div class="form-group form-normal">
+																	<label for="schoolCalendar">教师类别：</label> 
+																	<select class="form-control sel-com170">
+																		<option>全部</option>
+																		<option>一般教师</option>
+																	</select>
+																</div>
+															</div>		
+															<div class="col-md-6 form-inline form-inp-con">
+																<div class="form-group form-normal">
+																	<label for="schoolCalendar">工号/姓名：</label> 
+																	<input type="text" class="form-control inp-com170"/>
+																</div>
+															</div>		
+														</div>
+													</form>	
+													<button type="button" class="btn btn-primary header-btn" >查询</button>
+												</div>
+												<div class="box">
+													<div class="box-body">
+														<div class="scorll-box">
+															<div class="table-box">
+																<table class="table table-bordered table-hover">
+																	<thead>
+																		<tr>
+																			<th class="width05">
+																				<div class="checkbox-con">
+																					<input type="checkbox" id="check-all" class="checNormal">
+																				</div>
+																			</th>
+																			<th>校区</th>
+																			<th>院系</th>
+																			<th>教师</th>
+																			<th>性别</th>
+																			<th>教师类别</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>校园本部</td>
+																			<td>[23423]计算机系</td>
+																			<td>[090632]张老师</td>
+																			<td>男</td>
+																			<td>校内</td>
+																		</tr>
+																		<tr>
+																			<td class="width05">      
+																		        <div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>
+																		    </td>
+																			<td>校园本部</td>
+																			<td>[23423]计算机系</td>
+																			<td>[090632]张老师</td>
+																			<td>男</td>
+																			<td>校内</td>
+																		</tr>
+																		
+																	</tbody>
+																</table>
+															</div>	
+														</div>	
+													</div>	
+													
+													<!-- 安排考场 -->
+													<div class="content-infoList box-search">
+														<button type="button" class="btn btn-primary pull-right margin-left15">设为辅监考</button>
+														<button type="button" class="btn btn-primary pull-right">设为主监考</button>
+													</div>
+												</div>
+											</div>	
+											
+										</div>
+									</div>
+								</div>	
+							</div>	
+						</div>	
+					</div>
+		    	</div>
+			</div> 
+		</div>
+  </body>
+  </html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/manualarrange", function(manualarrange) {
+		manualarrange.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

@@ -1,0 +1,318 @@
+/*左 侧菜单栏样式*/
+.side-bar {
+    position: relative;
+    float: left;
+    width: 230px;
+}
+.side-bar-header {
+    position: relative;
+    max-height: 100px;
+    min-height: 50px;
+    z-index: 1030;
+    padding-left: 16px;
+}
+
+/*sidebarLarge*/
+.side-bar-shortcuts-large {
+    float: left;
+    font-size: 16px;
+    line-height: 50px;
+}
+.side-bar-shortcuts-large h1{
+	padding:8px 0;
+	font-size:18px;
+}
+.side-bar-shortcuts-large i {
+    margin-right: 6px;
+    font-size: 120%;
+}
+li [class^="fa"], li [class*=" fa"], .nav-list li [class^="fa"], .nav-list li [class*=" fa"] {
+    width: auto;
+}
+.nav-expanded li .fa{
+    margin-right:3px;
+}
+.nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.nav-list>li {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.nav-list>li:first-child {
+    border-top: 0;
+}
+.nav-list>li>a, .nav-list .nav-header {
+    margin: 0;
+}
+.nav-list>li>a {
+    display: block;
+    padding: 12px 5px 12px 15px;
+}
+.nav-list li.active>a>.fa-angle-right {
+    -webkit-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.nav-list>li>a>[class*="fa"]:first-child {
+    display: inline-block;
+    margin-right: 2px;
+    min-width: 20px;
+    vertical-align: middle;
+}
+.nav-list>li a>.arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-top: -7px;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin-right: 10px;
+}
+
+/*二级列表样式*/
+.nav-list>li .submenu {
+	display: none;
+    margin: 0;
+    padding: 0 0 0 5px;
+    list-style: none;
+}
+.nav-list li .submenu {
+    overflow: hidden;
+}
+ .nav-list>li>.submenu:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    border-style: solid;
+    border-width: 0 0 0 3px;
+    content: "";
+} 
+.nav-list>li .submenu>li {
+    position: relative;
+    margin-left: 0;
+}
+.nav-list>li .submenu>li>a {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 10px 5px 10px 20px;
+    border-top: none;
+}
+
+.menu-min .nav-list>li .submenu>li {
+    position: relative;
+    margin-left: 0;
+}
+
+.menu-min .nav-list>li .submenu>li>a {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 10px 5px 10px 20px;
+    border-width: 1px 0 0 0;
+    border-style: dotted;
+}
+
+/*二级列表样式end*/
+
+/*左侧菜单状态样式*/
+.nav-list>li .submenu>li>a:hover,
+.nav-list>li .submenu>li>a:focus,
+.nav-list>li .submenu>li.active>a {
+    text-decoration: none;
+}
+.nav-list>li .submenu>li a>[class*="fa"]:first-child {
+    width: 20px;
+    height: auto;
+    font-weight: normal;
+    font-size: 80%;
+    line-height: 14px;
+}
+.nav-list>li .submenu>li.active>a>[class*="fa"]:first-child, .nav-list>li .submenu>li:hover>a>[class*="fa"]:first-child{
+	display:inline-block;
+}
+
+/*左侧菜单状态样式end*/
+
+/*---------sidebarMini-------------*/
+.side-bar-shortcuts-mini {
+    display: none;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    width: 42px;
+    height: 42px;
+    font-size: 0;
+    line-height: 18px;
+}
+.side-bar-shortcuts-mini h1{
+	padding:8px 0;
+	font-size:18px;
+}
+
+.menu-min.side-bar {
+	width: 50px;
+    overflow-y: visible;
+}
+
+.menu-min.side-bar:before {
+	width: 50px;
+}
+
+.menu-min.side-bar+.main-content {
+	margin-left: 50px;
+}
+
+.menu-min.side-bar+.main-content .breadcrumbs.fixed,.menu-min.side-bar+.main-content .breadcrumbs.breadcrumbs-fixed {
+	left: 50px;
+}
+
+.menu-min .nav-list a .badge,.menu-min .nav-list a .label {
+	position: relative;
+	top: -1px;
+	right: auto;
+	left: 4px;
+}
+
+.menu-min .nav-list .submenu .submenu a .badge,.menu-min .nav-list .submenu .submenu a .label {
+	top: 0;
+}
+
+.menu-min .nav-list>li>a {
+	position: relative;
+}
+
+.menu-min .nav-list>li>a>.menu-text {
+	position: absolute;
+	top: -2px;
+	left: 46px;
+	z-index: 121;
+	display: none;
+	padding-left: 30px;
+	width: 174px;
+	height: 46px;
+	-webkit-box-shadow: 2px 1px 2px 0 rgba(0,0,0,0.2);
+	box-shadow: 2px 1px 2px 0 rgba(0,0,0,0.2);
+	line-height: 46px;
+}
+
+.menu-min .nav-list>li>a.dropdown-toggle>.menu-text {
+	top: -1px;
+	left: 46px;
+	width: 176px;
+	border: 0;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+.menu-min .nav-list>li>a .arrow {
+	display: none;
+}
+.menu-min .nav-list>li>a:hover:before {
+	width: 2px;
+}
+.menu-min .nav-list>li:hover>a>.menu-text {
+	display: block;
+}
+.menu-min .nav-list>li.active>a:after {
+	top: 8px;
+	border-width: 10px 6px;
+}
+
+.menu-min .nav-list>li>.submenu {
+	position: absolute;
+	top: 4px;
+	left: 49px;
+	z-index: 120;
+	display: none!important;
+	padding-top: 40px;
+	padding-bottom: 2px;
+	width: 176px;
+	border-width: 1px 0 0 0;
+	border-style: dotted;
+	-webkit-box-shadow: 2px 1px 2px 0 rgba(0,0,0,0.2);
+	box-shadow: 2px 1px 2px 0 rgba(0,0,0,0.2);
+}
+.menu-min .nav-list>li>.submenu:before {
+	display: none;
+}
+.menu-min .nav-list>li>.submenu li:before {
+	display: none;
+}
+.menu-min .nav-list>li>.submenu li>a {
+	margin-left: 0;
+	padding-left: 24px;
+}
+.menu-min .nav-list>li>.submenu li>a>[class*="icon-"]:first-child {
+	left: 4px;
+}
+.menu-min .nav-list>li:hover>.submenu {
+	display: block!important;
+}
+.menu-min .side-bar-shortcuts {
+	position: relative;
+}
+.menu-min .side-bar-shortcuts-mini {
+	display: block;
+}
+.menu-min .side-bar-shortcuts-large {
+	position: absolute;
+	top: -1px;
+	left: 42px;
+	z-index: 20;
+	display: none;
+	padding: 0 2px 1px;
+	width: 182px;
+	border-width: 1px;
+	border-style: solid;
+	-webkit-box-shadow: 2px 1px 2px 0 rgba(0,0,0,0.2);
+	box-shadow: 2px 1px 2px 0 rgba(0,0,0,0.2);
+}
+.menu-min .side-bar-shortcuts:hover .side-bar-shortcuts-large {
+	display: block;
+}
+.menu-min .side-bar-collapse:before {
+	right: 5px;
+	left: 5px;
+}
+.menu-min .side-bar-collapse>[class*="icon-"] {
+	padding: 0 4px;
+	border-width: 1px;
+	font-size: 13px;
+	line-height: 15px;
+}
+.menu-min .nav-list>li>.submenu li>.submenu>li>a {
+	margin-left: 0;
+	padding-left: 30px;
+}
+.menu-min .nav-list>li>.submenu li>.submenu>li>.submenu>li>a {
+	margin-left: 0;
+	padding-left: 45px;
+}
+.menu-min .nav-list>li>.submenu li.active>a:after {
+	display: none;
+}
+.menu-min .nav-list li.active.open>.submenu>li.active>a:after {
+	display: none;
+}
+/*Mini菜单end*/
+
+/*菜单收缩按钮*/
+.side-bar-collapse {
+	float: right;
+    padding: 0 17px;
+    font-family: fontAwesome;
+    line-height: 50px;
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>异动规定设置</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentArchives_AlienChange_RuleSetting_Setting">
+	<form id="addForm">
+	<input type="hidden" name="settingId"></input>
+ 		<div class="pop-con mt30">
+			<div class="form-group form-inline formtext">
+				<label for="name" class="min160">异动类别：</label>
+				<span name ="categoryName" id="categoryName"></span>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number" class="min160">需要认定成绩：</label>
+				<label class="radio-inline on-radio">
+					<div class="radio-con"><input type="radio" name="isAffirmScore" value="1" checked></div> 是
+				</label>
+				<label class="radio-inline">
+					<div class="radio-con"><input type="radio" name="isAffirmScore" value="0"></div> 否
+				</label>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name" class="min160">更改在校状态：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="schoolStatusCode" name="schoolStatusCode">
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name" class="min160">更改学生当前状态：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="currentStatusCode" name="currentStatusCode">
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name" class="min160">更改学籍状态：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="archievesStatusCode" name="archievesStatusCode">
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name" class="min160">确定所在班级：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="confirmClassCode" name="confirmClassCode">						
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name" class="min160">培养层次：</label>
+				<span name="trainingLevelCodeName" id="trainingLevelCodeName"></span>
+			</div>
+		</div>
+	</form>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<!-- Seajs 模块化开发，请一定遵守 -->
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 模块渲染template -->
+    <script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+    <script type="text/javascript">
+	//方法引用	
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/setting", function(setting) {
+		setting.initSet();
+	});
+	seajs.use("basePath/utils/authority");
+    </script>
+</body>
+</html>
+
+
+

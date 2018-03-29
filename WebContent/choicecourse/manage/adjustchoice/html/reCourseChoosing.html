@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>补选课程</title>
+		<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+        <link href="../../../../common/css/popup.css" rel="stylesheet"/>
+        <link href="../../../../common/css/skins.css" rel="stylesheet"/>
+        <!-- 下面这个是树目录控件的css -->
+        <link href="../../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+        <!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<style>
+	    .form-control.inp-double-mid1,
+		.form-control.sel-double-mid1{
+			width:130px;
+		}
+		td.width48, th.width48{
+			width:110px;
+		}
+		td.width50, th.width50{
+			width:80px;
+		}
+		td.width03, th.width03{ 
+			width:40px;
+    </style>
+	<body>
+		<div class="pop-con-header">
+			<div class="header-con">
+		     	<form id="queryForm">
+		     		<div class="row">
+			   		  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+					  		    <input type="hidden" id="semester" name="semester" value=""/>
+					  		    <input type="hidden" id="userId" name="userId" value=""/>
+					  		    <input type="hidden" id="classId" name="classId" value=""/>
+					  		    <input type="hidden" id="alienChangeCategoryCode" name="alienChangeCategoryCode" value=""/>
+								<label for="schoolCalendar">课程类别：</label> 
+								<select class="form-control sel-double-mid1" id="courseTypeCode" name="courseTypeCode">
+								</select>
+								<select class="form-control inp-double-mini" id="courseAttributeCode" name="courseAttributeCode">
+								</select>
+							</div>
+					  	</div>
+					  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+								<label>课程号/名称：</label> 
+								<input type="text" class="form-control inp-com170" id="courseNo" name="courseNo" maxlength="100" />
+							</div>
+					  	</div>
+					  	<div class="col-xs-4 form-inline form-inp-con">
+					  		<div class="form-group">
+								<label>通识课：</label> 
+								<select class="form-control inp-double-mini" id="isCoreCurriculum" name="isCoreCurriculum">
+								    <option value="">全部</option>
+									<option value="1">是</option>
+									<option value="0">否</option>
+								</select>
+							</div>
+					  	</div>
+		   		    </div>
+		   		</form>    
+		   		<button type="button" class="btn btn-primary header-btn"  name="query" id="query"  >查询</button>
+			</div>  
+		</div>	
+		<div class="pop-con">
+			<div class="box">
+				<div class="box-body">
+					<div class="scorll-box">
+						<div class="table-box">
+							<table class="table table-bordered table-hover">
+								<thead>
+								   <tr>
+									 <th class="width03">序号</th>
+									 <th class="width50">课程号</th>
+									 <th class="width48">课程名称</th>
+									 <th class="width50">课程类型</th>
+									 <th width="35">学分</th>
+									 <th class="width03">通识课</th>
+									 <th width="45">操作</th>
+								   </tr>
+								</thead>
+								<tbody id="tbodycontent">
+								</tbody>
+							</table>
+						</div>
+					</div>	
+				</div>
+				 <div id="pagination" class="pagination"></div>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]--> 
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+ <tr>  
+         <td class="width03">${$index+1}</td>
+         <td class="width50 text-l" title="${courseNo}">${courseNo}</td>   
+         <td class="width48 text-l" title="${courseName}">${courseName}</td>
+         <td class="width50">${courseTypeName}</td>
+         <td class="text-r" width="35">${credit}</td>
+         <td class="width03">${isCoreCurriculumDesc}</td>
+         <td width="45"><button type="button" class="btn-text" data-tt-id="${courseId}" data-tt-academicyear='${academicYear}' 
+                                                   data-tt-semestercode='${semesterCode}' name="btnTeachingClass" auth-code="ChoiceCourse_Manage_AdjustChoice_Add">选教学班</button></td>
+ </tr> 
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/adjustchoice", function(adjustchoice) {
+		adjustchoice.initReCourseChoose();
+	});
+	seajs.use("basePath/utils/authority");
+</script>			
+

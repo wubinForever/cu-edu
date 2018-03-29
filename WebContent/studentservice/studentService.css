@@ -1,0 +1,39 @@
+.box-header>span{margin-right:50px;}
+.relative{position:relative;}
+.school-infoList label{margin-bottom:0;}
+.school-infoList  table td,.school-infoList  table th{padding:10px 5px;}
+.school-infoList .avatar-tip{width:170px;display:none;margin-left:105px;}
+.school-infoList #importBtn{display:none;margin-left:50px;}
+.school-infoList table th{width:100px;}
+
+.table-cm tbody th{background:#DAE5EF;}
+.table-cm>tbody>tr>td{height:100px;}
+.table-cm>tbody>tr>td.selected{background:#F99864;}
+.table-cm>tbody>tr>td.unable{background:#F2F2F2;cursor:default;}
+.table-cm>tbody>tr>td.able{background:white;}
+
+.tableBox .verification-info{display:none;}
+#saveButton{display:none;}
+
+.tit-wrap{font-size: 18px;text-align: center;color: #666666;margin-bottom:15px;}
+.info-wrap>div{float: left;width:20%;color: #666666;}
+.info-tea-wrap>div{float: left;width:16.66%;color: #666666;}
+.info-room-wrap>div{float: left;width:20%;color: #666666;}
+#printbox .info-tea-wrap>div{width:auto;margin-right:12px;font-size:12px;}
+.deal.header-con .form-inline label{margin-bottom:3px;}
+.deal.header-con .form-inline .remarkBox span,.deal.header-con .form-inline .studentNoBox span,.deal.header-con .form-inline .studentNameBox span{margin-bottom:3px;}
+.requiretxt{display:none;}
+.webuploader-pick{width:100%;}
+
+@media print{
+   #divBody .info-tea-wrap>div{width:auto;margin-right:12px;font-size:12px;float:left;}
+}
+@media (min-width: 768px){
+    .form-control.sel-mall {
+        position: relative;
+        width:32.7%;
+        display: inline-block;
+    }
+}
+
+

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>理论任务查询（按年级/专业）</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../../common/css/courseplan.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+<body  page-auth-code="CoursePlan_Theory_SetUp">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> <select class="form-control sel-com"
+									id="schoolCalendarSelect" name="schoolCalendarId">
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">年级：</label> 
+								<select class="form-control sel-com" id="batchId" name="batchId">									
+									<option value="1">2016-2017学年第二学期 期末考试</option>
+									<option value="2">2016-2017学年第二学期 期中考试</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">院系：</label> 
+								<select class="form-control sel-com" id="batchId" name="batchId">									
+									<option value="1">2016-2017学年第二学期 期末考试</option>
+									<option value="2">2016-2017学年第二学期 期中考试</option>
+								</select>
+							</div>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">专业：</label> 
+								<select class="form-control sel-com" id="batchId" name="batchId">									
+									<option value="1">2016-2017学年第二学期 期末考试</option>
+									<option value="2">2016-2017学年第二学期 期中考试</option>
+								</select>
+							</div>
+						</div>					
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="delete">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-warning">导出</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">序号</th>
+												<th>年级</th>
+												<th>院系</th>
+												<th>专业</th>
+												<th>课程</th>
+												<th>开课单位</th>
+												<th>学分</th>
+												<th>总学时</th>
+												<th>理论学时</th>
+												<th>实验学时</th>
+												<th>实践学时</th>
+												<th>其他学时</th>
+												<th>任课教师</th>
+												<th>授课方式</th>
+												<th>周学时</th>
+												<th>连排节次</th>
+												<th>周次</th>
+												<th>单双周</th>
+												<th>教学组</th>
+												<th>考核方式</th>
+												<th>教学班</th>
+												<th>行政班</th>
+												<th>上课地点要求</th>
+												<th>节次要求</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+											<tr class="tr-checkbox">
+											    <td class="width05">1</td>
+											    <td>[10023]JAVA课程设计</td>    
+											    <td>[23423]计算机系</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											</tr>
+											<tr class="tr-checkbox">
+											    <td class="width05">1</td>
+											    <td>[10023]JAVA课程设计</td>    
+											    <td>[23423]计算机系</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											</tr>
+											<tr class="tr-checkbox">
+											    <td class="width05">1</td>
+											    <td>[10023]JAVA课程设计</td>    
+											    <td>[23423]计算机系</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>校内</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/task", function(task) {
+		task.init();
+	});
+</script>

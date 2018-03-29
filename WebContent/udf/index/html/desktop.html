@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>国泰安高校智慧教务管理平台</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/desktop.css" rel="stylesheet"/>
+	<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  	<![endif]-->
+  </head>
+  <body class="skin-blue">
+  	<div id="desktop" class="desktop">
+  		<div class="title">
+  			<div class="time pull-left"></div> 
+  			<div class="academic pull-right"></div>
+  		</div>
+  		<div class="box">
+  		  <ul class="list" id="list">
+  	     </ul>
+  	   </div>
+  	</div>
+  	
+  </body>
+  <script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+  <script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+  <script src="../../../common/js/base/bootstrap/bootstrap.min.js"></script>
+  <script src="../../../common/js/base/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+  <script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+  <script src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+  <script src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+  <script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+  <script id="ulListImpl" type="text/x-jquery-tmpl">
+    <li><div class="inner"><a href="javascript:;" menu-type="${menuType}" menu-id="${menuId}" parent-id="${parentId}" menu-name="${name
+}"><div class="icon ${imageClass}"></div><div class="words">{{if parentId == 0 }} ${menuName} {{else}} ${name} {{/if}} ${list.url}</div></a></div></li>
+  </script>
+   <script type="text/javascript">
+    seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+		seajs.use("localPath/desktop",function(desktop){
+		   desktop.init();
+	  });
+    </script>
+</html>

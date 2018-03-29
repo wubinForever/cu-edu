@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>成绩修改查看</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="ScoreService_Entry_Update_Detail">
+<form id="addForm">
+	<div class="pop-con box900">
+		<div class="container-fluid ">
+			<div class="row">
+				<!--学生基本信息-->
+				<div class="header-con clearfix"><p class="pb10 ml20">学生：<span id="student"></span><span class="ml20">课程：<span id="courseName"></span></span><span class="ml20">学分：<span id="credit"></span></span><span class="ml20">考核方式：<span id="checkWakyName"></span></span> </p>
+				</div>
+				<div class="pop-title mt20">当前成绩</div>
+				<div class="header-con clearfix deal">
+					<div class="col-sm-4 form-inline form-inp-con" ungrade="usualScore">
+						<div class="form-group">
+							<label for="name">平时成绩：</label>
+							<div class=" inline-block"><span id="oldUsualScore"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con" ungrade="midtermScore">
+						<div class="form-group">
+							<label for="name">期中成绩：</label>
+							<div class=" inline-block" name=""><span id="oldMidtermScore"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con" ungrade="endtermScore">
+						<div class="form-group">
+							<label for="name">期末成绩：</label>
+							<div class=" inline-block" name=""><span id="oldEndtermScore"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con" ungrade="skillScore">
+						<div class="form-group">
+							<label for="name">技能成绩：</label>
+							<div class=" inline-block" name=""><span id="oldSkillScore"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">总评成绩：</label>
+							<div class=" inline-block" name=""><span id="oldTotalScore"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">特殊情况：</label>
+							<div class=" inline-block w220 ellipsis" ><span id="oldSpecialCaseId"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"> 录入人：</label>
+							<div class=" inline-block w220 ellipsis"><span id="oldEntryUserName"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"> 录入时间：</label>
+							<div class="inline-block"><span id="oldEntryTime"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"> 成绩类型：</label>
+							<div class="inline-block"><span id="oldScoreTypeName"></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--修改成绩-->
+		<div class="container-fluid ">
+			<div class="row">
+				<div class="pop-title mt20">修改成绩</div>
+				<div class="header-con clearfix">
+					<div class="col-sm-4 form-inline form-inp-con"  ungrade="usualScore">
+						<div class="form-group formtext">
+							<label for="name">平时成绩：</label>
+							<div class="tips-text verification-info">
+<span id="usualScore"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con" ungrade="midtermScore">
+						<div class="form-group formtext">
+							<label for="name">期中成绩：</label>
+<span id="midtermScore"></span>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con" ungrade="endtermScore">
+						<div class="form-group formtext">
+							<label for="name">期末成绩：</label>
+							<div class="tips-text verification-info">
+<span id="endtermScore"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con" ungrade="skillScore">
+						<div class="form-group formtext">
+							<label for="name">技能成绩：</label>
+							<div class="tips-text verification-info">
+<span id="skillScore"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">总评成绩：</label>
+							<div class="tips-text verification-info">
+<span id="totalScore"></span>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name">特殊情况：</label>
+							<div class="tips-text verification-info"><span id="specialCaseName"></span></div>
+						</div>
+					</div>
+					<div class="col-sm-12 form-inline form-inp-con">
+						<div class="form-group formtext">
+							<label for="name"><i class="text-danger">*</i> 修改原因：</label>
+							<div class="tips-text verification-info">
+<span id="modifyReason"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/scoreModify",function(scoreModify){
+		scoreModify.initView();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>培养方案查询</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../studentService.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentService_TrainPlan">
+   <!-- 内容框架 开始-->
+    <div class="layout-index">
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+				<input id="grade" value="" type="hidden" name="grade"/>
+				<input id="majorId" value="" type="hidden" name="majorId"/>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年：</label>
+							<select class="form-control sel-com" id="academicYear" name="academicYear"></select>
+						</div>
+					</div>	
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学期：</label>
+							<select class="form-control sel-com" id="semesterCode" name="semesterCode"></select>
+						</div>
+					</div>				
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>
+	</div>
+
+	<!-- 内容 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="print-title">年级：<span id="grades"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;专业：<span id="majorIds"></span></div>
+					<div class="box-header pull-left">理论课程培养方案：</div>
+					<div class="box-body">
+						<div class="scorll-box scorll-boxauto">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th>学年学期</th>
+											<th>课程</th>
+											<th>开课单位</th>
+											<th class="width48">学分</th>
+											<th class="width80">课程大类</th>
+											<th class="width110">课程类别</th>
+											<th class="width48">课程属性</th>
+											<th class="width48">总学时</th>
+											<th class="width48">理论学时</th>
+											<th class="width48">实验学时</th>
+											<th class="width48">实践学时</th>
+											<th class="width48">其他学时</th>
+											<th class="width48">周学时</th>
+											<th class="width48">考核方式</th>
+										</tr>
+									</thead>
+									<tbody id="courseContent" class="trainPlanboxOne">
+									</tbody>
+								</table>
+							</div>
+						</div>
+						
+						<div class="box-header pull-left">实践环节培养方案：</div>
+					    <div class="scorll-box mt20  scorll-boxauto">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th>学年学期</th>
+											<th>环节</th>
+											<th>开课单位</th>
+											<th class="width70">学分</th>
+											<th class="width110">环节类别</th>
+											<th class="width70">周数</th>
+											<th class="width70">考核方式</th>
+										</tr>
+									</thead>
+									<tbody id="tacheContent" class="trainPlanboxTwo">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+   </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="courseContentImpl" type="text/x-jquery-tmpl">
+		<tr>
+		<td class="width48">${$index+1}</td>
+		<td title="${semesterName}">${semesterName}</td>
+		<td class="text-l" title="[${courseNo}]${courseName}">[${courseNo}]${courseName}</td>
+		<td class="text-l" title="${departmentName}">${departmentName}</td>
+		<td class="width48 text-r" title="${credit}">${credit}</td>
+		<td class="width80" title="${bigCourseName}">${bigCourseName}</td>
+		<td class="width110" title="${courseTypeName}">${courseTypeName}</td>
+		<td class="width48" title="${courseAttributeName}">${courseAttributeName}</td>
+		<td class="width48 text-r" title="${totalPeriod}">${totalPeriod}</td>
+		<td class="width48 text-r" title="${theoryPeriod}">${theoryPeriod}</td>
+		<td class="width48 text-r" title="${experiPeriod}">${experiPeriod}</td>
+		<td class="width48 text-r" title="${practicePeriod}">${practicePeriod}</td>
+		<td class="width48 text-r" title="${otherPeriod}">${otherPeriod}</td>
+		<td class="width48 text-r" title="${weekPeriod}">${weekPeriod}</td>
+		<td class="width48" title="${checkWayName}">${checkWayName}</td>
+		</tr>
+	</script>
+	
+	<script id="tacheContentImpl" type="text/x-jquery-tmpl">
+	<tr>
+		<td class="width48">${$index+1}</td>
+		<td title="${semesterName}">${semesterName}</td>
+		<td class="text-l" title='[${courseNo}]${courseName}'>[${courseNo}]${courseName}</td>
+		<td class="text-l" title='${departmentName}'>${departmentName}</td>
+		<td class="width70 text-r" title="${credit}">${credit}</td>
+		<td class="width110" title="${tacheTypeName}">${tacheTypeName}</td>
+		<td class="width70 text-r"  title="${weekNum}">${weekNum}</td>
+		<td class="width70"  title="${checkWayName}">${checkWayName}</td>
+	</tr>
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		 seajs.use("localPath/studentTrainplan", function(studentTrainplan) {
+			 studentTrainplan.init();
+		 });
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

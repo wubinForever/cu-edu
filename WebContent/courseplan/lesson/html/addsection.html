@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>调后节次选择</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+<!--日期样式-->
+</head>
+
+<body>
+	<div class="pop-con">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box" >
+					<div class="box-header">
+						<div class="icon-list">
+							 调整周次：<span id="beforeWeek"></span>&nbsp;&nbsp;
+							调整节次：<span id="beforeSection"></span>&nbsp;&nbsp;
+							<span> 调整教室：<span id="beforeRoom"></span>&nbsp;&nbsp;</span>
+							<span> 调整教师：<span id="beforeTeacher"></span> </span>
+						</div>
+					</div>	
+					<div class="box-header pull-right">
+						<div class="icon-list">
+							<i class="selected-icon"></i>
+							<span>选中</span>
+							<i class="choose-icon"></i>
+							<span>可排</span>
+							<i class="cannot-icon"></i>
+							<span>不可排</span>
+						</div>
+					</div>						
+					<div class="box-body">
+						<div class="">
+								<table class="table table-bordered table-cm table-cm1" id="sectionTable">
+								</table>
+						</div>	
+					</div>	
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/addsection", function(addsection) {
+		addsection.init();
+	});
+</script>
+</html>

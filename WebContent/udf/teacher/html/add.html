@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>教师信息新增</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+<link href="../../../common/css/webuploader/webuploader.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+<body>
+	<form id="addWorkForm">
+		<div class="pop-con box900">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3 class=" school-titlle">基本信息</h3>
+					<div  class="school-infoList" >
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+						<tr>
+						<th><label for="name"><i class="text-danger">*</i>工号：</label></th>
+						<td>
+						<div class="tips-text verification-info">
+						<input class="form-control  inp-com" name="teacherNo" id="teacherNo" value=""  maxlength="10" />
+						</div>
+						</td>
+						<th><label for="name"><i class="text-danger">*</i>姓名：</label></th>
+						<td>
+						<div class="tips-text verification-info">
+						<input class="form-control inp-com" name="teacherName" id="teacherName" value=""  maxlength="50"  />
+						</div></td>
+						<th colspan="2" rowspan="6" align="center" valign="top">
+                        <div class="avatar-upload clearfix">
+                        <div class="avatar-photo"><img src="../../../common/images/avatar.png" id="teacherImage" /></div>
+                        <input style="display: none;" id="fileId" name="fileId">
+                        <div class="btn btn-success width-default mt20 clearfix" name="ico-selpop" id="importBtn">上传照片</div>
+                        </div>
+                        <p class="text-center font-12 text-danger ml50">支持小于1M且JPG格式的1寸大小照片</p>
+                        </th>
+						</tr>
+						<tr>
+							<th><label for="name">曾用名：</label></th>
+							<td><input class="form-control" name="usedName" id="usedName" value=""  maxlength="50"  /></td>
+							<th><label for="name"><i class="text-danger">*</i>性别：</label></th>
+							<td>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="sexCode" name="sexCode">
+							</select>
+							</div></td>
+						  </tr>
+                        <tr>
+							<th><label for="name"><i class="text-danger">*</i>教学单位：</label></th>
+							<td><div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+					<div class="tips-text verification-info w220">
+						<input class="form-control inp-com toggle-tree"
+							id="teachingUnitName" name="teachingUnitName" type="text"
+							readonly="readonly" /> <input style="display: none;" id="teachingUnitId"
+							name="teachingUnitId" value="" />
+					</div>
+					<ul id="teachingUnitTree" class="ztree input-tree toggle-ui-up"></ul>
+				</div>
+				</td>
+							<th><label for="name"><i class="text-danger">*</i>行政单位：</label></th>
+							<td>
+						<div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+					<div class="tips-text verification-info w220">
+						<input class="form-control inp-com toggle-tree"
+							id="administrativeUnitName" name="administrativeUnitName" type="text"
+							readonly="readonly" /> <input style="display: none;" id="administrativeUnitId"
+							name="administrativeUnitId" value="" />
+					</div>
+					<ul id="administrativeUnitTree" class="ztree input-tree toggle-ui-up"></ul>
+					</div>
+							</td>
+						  </tr>
+                        <tr>
+							<th><label for="name"><i class="text-danger">*</i>身份证件类型：</label></th>
+							<td>
+							<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="idCardTypeCode" name="idCardTypeCode">
+							</select>
+							</div></td>
+                            <th><label for="name"><i class="text-danger">*</i>身份证件号：</label></th>
+							<td>
+							<div class="tips-text verification-info">
+							<input class="form-control inp-com" name="idCard" id="idCard" value=""  maxlength="20"/>
+							</div>
+							</td>
+						  </tr>
+						 <tr>
+							<th><label for="name">出生日期：</label></th>
+							<td class=" formtext"><input id="birthday" name="birthday" type="text" class="form-control wdate valid" onclick="WdatePicker();"></td>
+							<th><label for="name">籍贯：</label></th>
+							<td><input class="form-control" name="nativePlace" id="nativePlace" value=""  maxlength="50"  /></td>
+						  </tr>
+						<tr>
+							<th><label for="name">民族：</label></th>
+							<td >
+										<div class="tips-text verification-info w220">
+											<input style="display: none;" id="nationCode" name="nationCode">
+											<div id="nationSelect"></div>
+										</div></td>
+							<th><label for="name">国籍：</label></th>
+							<td>
+							<div class="tips-text verification-info w220">
+											<input style="display: none;" id="nationalityCode" name="nationalityCode">
+											<div id="nationalitySelect"></div>
+										</div></td>
+						  </tr>
+						<tr>
+							<th><label for="name">婚姻状况：</label></th>
+							<td><select class="form-control" id="maritalStatusCode" name="maritalStatusCode">
+							</select>
+								</td>
+							<th><label for="name">港澳台侨外：</label></th>
+							<td><select class="form-control" id="overseasChineseCode" name="overseasChineseCode">
+							</select></td>
+
+							<th><label for="name">政治面貌：</label></th>
+							<td><select class="form-control" id="politicalStatusCode" name="politicalStatusCode">
+							</select></td>
+						</tr>
+                        <tr>
+							<th><label for="name">健康状况：</label></th>
+							<td><select class="form-control" id="healthCode" name="healthCode">
+							</select>
+						  </td>
+							<th><label for="name">所在校区：</label></th>
+							<td><select class="form-control" id="campusId" name="campusId">
+							</select></td>
+							<th><label for="name">最高学历：</label></th>
+							<td>
+							<div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+					<div class="tips-text verification-info w220">
+						<input class="form-control inp-com toggle-tree"
+							id="highestEducationName" name="highestEducationName" type="text"
+							readonly="readonly" /> <input style="display: none;" id="highestEducationCode"
+							name="highestEducationCode" value="" />
+					</div>
+					<ul id="highestEducationTree" class="ztree input-tree toggle-ui-up"></ul>
+					</div>
+							</td>
+						</tr>
+                        <tr>
+							<th><label for="name">最高学位：</label></th>
+							<td>
+							<div class="toggle-tree-con vertical-align-mid drop-down-normal p-relative need-clear">
+					<div class="tips-text verification-info w220">
+						<input class="form-control inp-com toggle-tree"
+							id="highestDegreeName" name="highestDegreeName" type="text"
+							readonly="readonly" /> <input style="display: none;" id="highestDegreeCode"
+							name="highestDegreeCode" value="" />
+					</div>
+					<ul id="highestDegreeTree" class="ztree input-tree toggle-ui-up"></ul>
+					</div>
+						  </td>
+							<th><label for="name">最高职称：</label></th>
+							<td>
+							<div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+					<div class="tips-text verification-info w220">
+						<input class="form-control inp-com toggle-tree"
+							id="highestTitleName" name="highestTitleName" type="text"
+							readonly="readonly" /> <input style="display: none;" id="highestTitleCode"
+							name="highestTitleCode" value="" />
+					</div>
+					<ul id="highestTitleTree" class="ztree input-tree toggle-ui-up"></ul>
+					</div>
+							</td>
+							<th><label for="name">行政职务：</label></th>
+							<td><input class="form-control" name="administrativeDuty" id="administrativeDuty" value=""  maxlength="20"  /></td>
+						</tr>
+                        <tr>
+							<th><label for="name"><i class="text-danger">*</i>教师类型：</label></th>
+							<td><select class="form-control" id="teacherTypeCode" name="teacherTypeCode">
+							</select>
+						  </td>
+							<th><label for="name">参加工作年月：</label></th>
+							<td><input id="workingDate" name="workingDate" type="text" class="form-control wdate valid" onclick="WdatePicker({dateFmt:'yyyy-MM'});"></td>
+
+							<th><label for="name">来校日期：</label></th>
+							<td><span class=" formtext">
+							  <input id="arrivalDate" name="arrivalDate" type="text" class="form-control wdate valid" onclick="WdatePicker();">
+							</span></td>
+						</tr>
+                        <tr>
+							<th><label for="name">从教年月：</label></th>
+							<td><input id="teachingDate" name="teachingDate" type="text" class="form-control wdate valid" onclick="WdatePicker({dateFmt:'yyyy-MM'});"></td>
+							
+							<th><label for="name">编制类别：</label></th>
+							<td><select class="form-control" id="compilationCategoryCode" name="compilationCategoryCode">
+							</select></td>
+
+							<th><label for="name">教职工类别：</label></th>
+							<td>
+							<div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+					<div class="tips-text verification-info w220">
+						<input class="form-control inp-com toggle-tree"
+							id="staffCategoryName" name="staffCategoryName" type="text"
+							readonly="readonly" /> <input style="display: none;" id="staffCategoryCode"
+							name="staffCategoryCode" value="" />
+					</div>
+					<ul id="staffCategoryTree" class="ztree input-tree toggle-ui-up"></ul>
+					</div>
+							</td>
+						</tr>
+                        <tr>
+							<th><label for="name">任课状况：</label></th>
+							<td>
+							<div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+					<div class="tips-text verification-info w220">
+						<input class="form-control inp-com toggle-tree"
+							id="classroomSituationName" name="classroomSituationName" type="text"
+							readonly="readonly" /> <input style="display: none;" id="classroomSituationCode"
+							name="classroomSituationCode" value="" />
+					</div>
+					<ul id="classroomSituationTree" class="ztree input-tree toggle-ui-up"></ul>
+					</div>
+						  </td>
+							<th><label for="name"><i class="text-danger">*</i>当前状态：</label></th>
+							<td><select class="form-control" id="currentState" name="currentState">
+							</select></td>
+
+							<th><label for="name">研究方向：</label></th>
+							<td><input class="form-control" name="researchDirection" id="researchDirection" value=""  maxlength="50"  /></td>
+						</tr> 
+						</tbody>
+					</table>
+					</div>
+					<h3 class=" school-titlle mt20">联系信息</h3>
+					<div  class="school-infoList" >
+						<table width="100%" border="0"cellspacing="0" cellpadding="0">
+							<tbody>
+							<tr>
+								<th><label for="name">办公电话：</label></th>
+								<td>
+								<div class="tips-text verification-info">
+						<input class="form-control inp-com" name="officePhone" id="officePhone" maxlength="50" value="" />
+						</div>
+								</td>
+								<th><label for="name">移动电话：</label></th>
+								<td>
+								<div class="tips-text verification-info">
+						<input class="form-control inp-com" name="mobilePhone" id="mobilePhone" value="" />
+						</div></td>
+								<th><label for="name">传真号码：</label></th>
+								<td>
+								<div class="tips-text verification-info">
+						<input class="form-control inp-com" name="fax" id="fax" maxlength="50" value="" />
+						</div></td>
+							</tr>
+							<tr>
+								<th><label for="name">电子信箱：</label></th>
+								<td class=" formtext"><div class="tips-text verification-info">
+						<input class="form-control inp-com" name="email" id="email" maxlength="30"  value="" />
+						</div></td>
+								<th><label for="name">QQ号：</label></th>
+								<td><div class="tips-text verification-info">
+						<input class="form-control inp-com" name="qq" id="qq" maxlength="15"   value="" />
+						</div></td>
+								<th><label for="name">微信号：</label></th>
+								<td><input class="form-control" name="wechat" id="wechat" value=""  maxlength="20"  /></td>
+							</tr>
+							<tr>
+								<th><label for="name">邮政编码：</label></th>
+								<td>
+								<div class="tips-text verification-info">
+						<input class="form-control inp-com" name="postalCode" id="postalCode" value="" maxlength="6" />
+						</div></td>
+								<th><label for="name">通信地址：</label></th>
+								<td colspan="3"><input class="form-control" name="address" id="address" value=""  maxlength="100"  /></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</form>
+</body>
+</html>
+
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript" src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+<script type="text/javascript" src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+<script src="../../../common/js/base/webuploader/webuploader.js"></script>
+
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/teacher", function(teacher) {
+		teacher.initAdd();
+	});
+
+</script>
+

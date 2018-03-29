@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>单位信息</title>
+<!-- ui提供的公共的样式 -->
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<!-- 下面这个是树目录控件的css -->
+<link href="../../../common/css/ztree/zTreeStyle.css" rel="stylesheet" />
+</head>
+<body>
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index pl15" page-auth-code="BaseData_Department">
+	<!--左侧树-->
+	<div class="lefttree-con">
+		<input type="hidden" id="departmentLevel" value="0" />
+		<input type="hidden" id="parentName" />
+		<ul  id="ztree" class="ztree"> </ul>
+	</div>
+	<!--右侧内容-->
+	<div class="y-rightCon">
+		<div class="col-xs-12">
+				<form id="queryForm">
+					<input type="hidden" id="departmentId" name="departmentId" />
+					<div class="container-fluid header-small header-con">
+						<div class="col-sm-6 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">所在校区：</label> <select
+									class="form-control sel-com" id="campusId" name="campusId">
+									<option value="">全部</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-sm-6 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">单位号：</label> <input
+									class="form-control inp-com" name="departmentNo" id="departmentNo" maxlength="10" 
+									value="" />
+							</div>
+						</div>
+						<div class="col-sm-6 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">单位名称：</label> <input
+									class="form-control inp-com" name="departmentName" id="departmentName" maxlength="50" 
+									value="" />
+							</div>
+						</div>
+						<button type="button"
+							class="btn btn-primary header-btn " name="query"
+							id="query">查询</button>
+					</div>
+				</form>
+			</div>
+		<!-- 正式内容区域 开始 ------>
+		<div class="sub-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box">
+							<div class="box-header pull-right">
+								<button type="button" class="btn btn-success"
+									name="add" auth-code="BaseData_Department_Add">新增</button>
+								<button type="button" class="btn btn-danger"
+									name="batchDelete" auth-code="BaseData_Department_Delete">删除</button>
+								<button type="button" class="btn btn-success"
+									name="import">导入</button>
+								<button type="button" class="btn btn-success"
+									name="export">导出</button>
+							</div>
+							<div class="box-body">
+								<div class="scorll-box">
+									<div class="table-box">
+										<table class="table table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="width03"><div class="checkbox-con">
+															<input type="checkbox" id="check-all" value=""
+																class="checNormal">
+														</div></th>
+													<th class="width45">序号</th>
+													<th>上级单位</th>
+													<th>单位号</th>
+													<th class="width15">单位名称</th>
+													<th class="width07">单位类别</th>
+													<th class="width07">单位类型</th>
+													<th>单位办别</th>
+													<th>所在校区</th>
+													<th class="width07">负责人</th>
+													<th class="width65">是否有效</th>
+													<th class="width85">操作</th>
+												</tr>
+											</thead>
+											<tbody id="tbody">
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div id="pagination" class="pagination"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- 正式内容区域 结束 --- -->
+
+	</div>
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 树形结构 -->
+<script src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css"
+	  rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<script id="treetableTmpl" type="text/x-jquery-tmpl">
+	<tr class="tr-checkbox">
+        <td class="width03">
+		{{if childCount=='1' || isExist}}
+			<div class="checkbox-con disabled-check">
+				<input type="checkbox" name="checNormal"  value="${departmentId}" class="checNormal" disabled="disabled">
+			</div>
+		{{else}}
+			<div class="checkbox-con">
+				<input type="checkbox" name="checNormal"  value="${departmentId}" class="checNormal">
+			</div>
+		{{/if}}
+		</td>
+   		<td class="width45">${indexNum}</td>
+		<td class="text-l"><span title="${parentName}">${parentName}</span></td>
+		<td class="text-l"><span title="${departmentNo}">${departmentNo}</span></td>
+		<td class="text-l width15"><span title="${departmentName}">${departmentName}</span></td>
+		<td class="width07"><span title="${departmentClass}">${departmentClass}</span></td>
+		<td class="width07"><span title="${departmentType}">${departmentType}</span></td>
+		<td><span title="${startupType}">${startupType}</span></td>
+		<td class="text-l"><span title="${campusName}">${campusName}</span></td>
+        <td class="text-l width07"><span title="${superintendent}">${superintendent}</span></td>
+        <td class="width65">
+			{{if isValidity=='1'}}是{{else}}否{{/if}}
+		</td>
+		<td class="width85">
+			<button type="button" class="btn-text" name="update" data-tt-id="${departmentId}" auth-code="BaseData_Department_Update">修改</button>
+		{{if childCount == '1' || isExist}}
+			<button type="button" class="btn-text disabled" disabled="disabled" name="delete" data-tt-id="${departmentId}">删除</button>
+		{{else}}
+			<button type="button" class="btn-text" name="delete" data-tt-id="${departmentId}" auth-code="BaseData_Department_Delete">删除</button>
+		{{/if}}
+		</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/department", function(department) {
+		department.init();
+	});
+</script>
+</body>
+</html>

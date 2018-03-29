@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>个人信息</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+    <link href="../../../common/css/webuploader/webuploader.css" rel="stylesheet" />
+    <link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_Information">
+  <form id="infoForm">
+	<div class="sub-content mt20">
+		<div class="row">
+			<div class="col-xs-12">
+				 <div class="tableBox1">
+					<h3 class="school-titlle">基本信息</h3>
+					<div class="school-infoList">
+						<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						  <tbody>
+							<tr>
+								<th><label for="name">工号：</label></th>
+		                        <td width="210"><span id="teacherNo"></span></td>
+		                        <th><label for="name">姓名：</label></th>
+		                        <td width="210"><span id="teacherName"></span></td>
+		                        <th><label for="name">性别：</label></th>
+		                        <td width="210"><span id="sexName"></span></td>								
+								<th colspan="1" rowspan="7" align="center">
+			                        <div class="avatar-upload clearfix">
+			                        <div class="avatar-photo"><img src="../../../common/images/avatar.png" id="studentImage" /></div>
+			                        <input type="hidden" id="fileId" name="fileId">
+			                        <div class="btn btn-success width-default mt10" name="ico-selpop" id="importBtn">上传</div>
+			                        </div>
+		                        </th>
+							</tr>
+		                    <tr>
+		                    	<th><label for="name">所在校区：</label></th>
+		                        <td width="210"><span id="campusName"></span></td>
+		                        <th><label for="name">教学单位：</label></th>
+		                        <td width="210"><span id="teachingUnitName"></span></td>
+		                        <th><label for="name">行政单位：</label></th>
+		                        <td width="210"><span id="administrativeUnitName"></span></td>					
+		                    </tr>
+		                    <tr>
+		                    	<th><label for="name">身份证件类型：</label></th>
+		                        <td width="210"><span id="idCardTypeName"></span></td>
+		                        <th><label for="name">身份证件号码：</label></th>
+		                        <td width="210"><span id="idCard"></span></td>
+		                        <th><label for="name">出生日期：</label></th>
+		                        <td width="210"><span id="birthday"></span></td>					
+		                    </tr>
+		                    <tr>
+		                    	<th><label for="name">籍贯：</label></th>
+		                        <td width="210"><span id="nativePlace"></span></td>
+		                        <th><label for="name">民族：</label></th>
+		                        <td width="210"><span id="nationName"></span></td>
+		                        <th><label for="name">政治面貌：</label></th>
+		                        <td width="210"><span id="politicalStatusName"></span></td>					
+		                    </tr>
+		                    <tr>
+		                    	<th><label for="name">最高学历：</label></th>
+		                        <td width="210"><span id="highestEducationName"></span></td>
+		                        <th><label for="name">最高学位：</label></th>
+		                        <td width="210"><span id="highestDegreeName"></span></td>
+		                        <th><label for="name">最高职称：</label></th>
+		                        <td width="210"><span id="highestTitleName"></span></td>					
+		                    </tr>
+		                    <tr>
+		                    	<th><label for="name">当前状态：</label></th>
+		                        <td width="210"><span id="currentStateName"></span></td>				
+		                    </tr>
+						   </tbody>
+						</table>
+					</div>
+					<h3 class="school-titlle mt20">联系信息</h3>
+					<div class="school-infoList">
+					<table width="100%" border="0" cellspacing="0" cellpadding="0">
+						<tbody>
+							<tr>
+		                        <th><label for="name">办公电话：</label></th>
+		                        <td><div class="tips-text verification-info"><input class="form-control" name="officePhone" id="officePhone" maxlength="50"></div></td>
+		                        <th><label for="name">移动电话：</label></th>
+		                        <td><div class="tips-text verification-info"><input class="form-control" name="mobilePhone" id="mobilePhone"></div></td>
+		                        <th><label for="name">传真号码：</label></th>
+		                        <td><div class="tips-text verification-info"><input class="form-control" name="fax" id="fax" maxlength="50"></div></td>
+							</tr>
+							<tr>
+								<th><label for="name">QQ号：</label></th>
+								<td><div class="tips-text verification-info"><input class="form-control" name="qq" id="qq" maxlength="15"></div></td>
+								<th><label for="name">微信号：</label></th>
+								<td><div class="tips-text verification-info"><input class="form-control" name="wechat" id="wechat"maxlength="20"></div></td>
+								<th><label for="name">电子邮箱：</label></th>
+		                        <td><div class="tips-text verification-info"><input class="form-control" name="email" id="email" maxlength="30"></div>
+		                        </td>
+							</tr>
+	                        <tr>
+		                        <th><label for="name">邮政编码：</label></th>
+		                        <td><div class="tips-text verification-info"><input class="form-control" name="postalCode" id="postalCode" value="" maxlength="6"></div></td>
+		                        <th><label for="name">通信地址：</label></th>
+		                        <td colspan="5"><div class="tips-text verification-info"><input class="form-control" name="address" id="address" value="" maxlength="100"></div></td>
+	                        </tr>
+						</tbody>
+					</table>
+					</div>
+				  </div>
+				</div>
+			</div>
+		</div>
+	<div class=" text-center mb20 mt20"> 
+		<button type="button" id="saveButton" class="btn btn-success width-default" auth-code="TeacherService_Information_Update"">保 存</button>
+	</div>
+	</form>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+    <!-- 树结构 -->
+    <script src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+    <script src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+    <script src="../../../common/js/base/webuploader/webuploader.js"></script>
+    <!-- 长度限制 -->
+    <script src="../../../common/js/utils/limit.js"></script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/teacherInformation", function(teacherInformation) {
+			teacherInformation.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

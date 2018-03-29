@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>复制年级开设专业</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+
+<body page-auth-code="TrainPlan_SetTrainPlan_GradeMajor_Copy" > 
+<form id="copyForm">
+	<div class="pop-con">
+<div class="care-tips2 mt20">
+	<span class="text-danger">说明：</span>
+此复制功能将会把源年级所开设的专业记录全部追加复制到目标年级（如选择了院系，则仅处理对应院系的数据）
+</div>
+	  <div class="form-group form-inline formtext mt20">		
+			<label for="number">院系：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="departmentId" name="departmentId">
+					<option value="">全部</option>
+				</select>
+			</div>
+	  </div>
+		<div class="form-group form-inline formtext">
+		  <label for="name"><i class="text-danger">*</i>源年级：</label>
+			<div class="tips-text verification-info">
+				<select class="form-control sel-com" id="sourceGrade" name="sourceGrade">
+				<option value="">请选择</option>
+				</select>
+			</div>
+		</div>
+        <div class="form-group form-inline formtext">
+			<label for="name"><i class="text-danger">*</i>目标年级：</label>
+			<div class="inline-block" style="vertical-align: middle;">
+			<div class="input-group spinner" style="width: 220px;">
+				<input type="text" class="form-control" style="width: 204px;" id="goalGrade" disabled="disabled">
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+			</div>
+		</div>
+        <div class="care-tips2 mt20 text-center">待复制的年级开设专业数：<span class=" text-danger" id="waitcopyNum">0</span>个！</div>
+	</div>
+</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 院系下拉框选择 -->
+<script id="departmentImpl" type="text/x-jquery-tmpl">
+  <option value=${departmentId} title=${departmentName}>${departmentName}</option>
+</script>  
+<!-- 加载所有的源年级下拉框 -->
+<script id="sourceGradeImpl" type="text/x-jquery-tmpl">
+  <option value=${grade} title=${grade}>${grade}</option>
+</script> 
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/grademajor",function(grademajor){
+		grademajor.initcopy();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

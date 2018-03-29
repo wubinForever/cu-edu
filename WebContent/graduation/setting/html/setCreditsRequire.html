@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<title>毕业学分要求设置</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="../../../common/css/reset.css" rel="stylesheet" />
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+		<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+		<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+		<link href="../../../common/css/popup.css" rel="stylesheet" />
+		<link href="../../../common/css/skins.css" rel="stylesheet" />
+		<!--日期样式-->
+		<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+		<style>
+			.table>tbody>tr>td{
+				padding:15px 10px;
+			}
+		</style>
+	</head>
+	<body page-auth-code="Graduation_RuleSeting_RequirementCredit_Set">
+		<div class="sub-content">
+			<p style="line-height:60px;"><span>年级：</span><span id="grade"></span> <span class="ml20">专业：</span><span id="majorName"></span></p>
+			<div class="box">
+				<form id="setCredit">
+				<div class="box-body">
+					<div class="scorll-box">
+						<div class="table-box">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<th>类别</th>
+										<th>计划学分</th>
+										<th>开设学分</th>
+										<th>毕业学分要求</th>
+									</tr>
+								</thead>
+								<tbody id="tbodycontent">
+									<!--<tr>
+									    <td id="typeName0"></td> 
+									    <td id="typeCreditPlan0"></td>
+									    <td id="typeCreditOpen0"></td>
+									    <td>
+									    	<input type="text" id="typeCreditRequire0" class="form-control inp-com block-center credit-require"/>
+									    </td>									    
+									</tr>
+									<tr>
+									    <td>专业专业专业</td> 
+									    <td>专业专业专业</td>
+									    <td>专业专业专业</td>
+									    <td>
+									    	<input type="text" class="form-control inp-com block-center"/>
+									    </td>									    
+									</tr>
+									<tr>
+									    <td>专业专业专业</td> 
+									    <td>专业专业专业</td>
+									    <td>专业专业专业</td>
+									    <td>
+									    	<input type="text" class="form-control inp-com block-center"/>
+									    </td>									    
+									</tr>
+									<tr>
+									    <td>专业专业专业</td> 
+									    <td>专业专业专业</td>
+									    <td>专业专业专业</td>
+									    <td>
+									    	<input type="text" class="form-control inp-com block-center"/>
+									    </td>									    
+									</tr>-->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	<tr>
+	    <td>${creditTypeName}</td> 
+	    <td class="typeCreditPlan">${planCredit}</td>
+	    <td class="typeCreditOpen">${openCredit}</td>
+	    <td>
+	    	<div class="tips-text verification-info">
+	    	<input type="text" class="form-control inp-com block-center credit-require" creditFormat name="ct${creditType}" id="${creditTypeName}" value="${requireCredit}" required maxlength="4" min="0" credit-type="${creditType}" data-id="${creditSetId}"/>
+	    	</div>
+	    </td>									    
+	</tr>
+</script>
+<script id="bodyContentImplTotal" type="text/x-jquery-tmpl">
+	<tr>
+	    <td>总学分</td> 
+	    <td class="typeCreditPlanTotal">${planCredit}</td>
+	    <td class="typeCreditOpenTotal" id="CreditOpenTotal">${openCredit}</td>
+	    <td>
+	    	<input type="text" readonly class="form-control inp-com block-center credit-require-total" id="requireCreditTotal" value="${requireCredit}"/>
+	    </td>									    
+	</tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/setCreditsRequire", function(setCreditsRequire) {
+		setCreditsRequire.init();
+	});
+</script>

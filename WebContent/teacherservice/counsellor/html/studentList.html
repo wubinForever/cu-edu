@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>查询学生名单</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_Counsellor_StudentRoll">
+   <!-- 内容框架 开始-->
+    <div class="layout-index">
+    <!-- 内容 开始 -->
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">年级：</label>
+							<select class="form-control sel-com" id="gradeSelect" name="gradeSelect"></select>
+						</div>
+					</div>	
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">班级：</label>
+							<select class="form-control sel-com" id="classSelect" name="classSelect"></select>
+						</div>
+					</div>		
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>
+	</div>
+
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header text-right">
+						<button type="button" class="btn btn-success width-default" name="export" id="export" auth-code="TeacherService_Counsellor_StudentRoll_Export">导出</button>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th>班级</th>
+											<th>学号</th>
+											<th>姓名</th>
+											<th class="width110">性别</th>
+											<th>学籍状态</th>
+											<th>在校状态</th>
+											<th>学生当前状态</th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontent">
+										
+									</tbody>	
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	 </div>
+	<!-- 内容 结束 -->
+    </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+			<tr>
+				<td class="width48">${$index+1}</td>
+				<td title="${className}" class="text-l">${className}</td>
+				<td title="${studentNo}" class="text-l">${studentNo}</td>
+			    <td title="${studentName}" class="text-l">${studentName}</td>
+				<td title="${sexCode}" class="width110">${sexName}</td>
+				<td title="${archievesStatusName}">${archievesStatusName}</td>
+				<td title="${schoolStatusName}">${schoolStatusName}</td>
+				<td title="${currentStatusName}">${currentStatusName}</td>
+			</tr>
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/studentList", function(studentList) {
+			studentList.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

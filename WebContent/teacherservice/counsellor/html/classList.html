@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>班级课表</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_Counsellor_ClassSchedule">
+	<!-- 内容框架 开始-->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="academicYearSemesterSelect">学年学期：</label> <select class="form-control sel-com" id="academicYearSemesterSelect" name="academicYearSemesterSelect">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">班级：</label>
+								<select class="form-control sel-com" id="classSelect" name="classSelect"></select>
+							</div>
+					    </div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="isCoreCurriculum">含通识课：</label> <select class="form-control sel-com" id="isCoreCurriculum"
+									name="isCoreCurriculum">
+									<option value="1">是</option>
+									<option value="0">否</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" id="query">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" id="print" auth-code="TeacherService_Counsellor_ClassSchedule_Export">打印</button>
+						</div>
+						<div style="clear: both;"></div>
+						<div class="banner" id="divBody"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束-->
+</body>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<script src="../../../common/js/base/print/jquery.jqprint-0.3.js"></script>
+<script src="../../../common/js/base/print/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/classList", function(classList) {
+		classList.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</html>

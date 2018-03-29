@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>预计毕业学生</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<style>
+	@media (min-width: 992px){
+		.header-con .form-inline .form-group label {
+		    min-width: 96px;
+		    text-align: right;
+		    vertical-align: middle;
+		}
+	}
+
+</style>
+</head>
+<body page-auth-code="Graduation_Seting_AnticipatedGraduates">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">毕业年届：</label>
+								<input type="text" class="form-control inp-com" id="graduateYear" name="graduateYear" maxlength="5" readonly/>
+								<input type="hidden" id="graduateDate" name="graduateDate" maxlength="20" readonly/>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">年级：</label> 
+								<select class="form-control sel-com" id="grade" name="grade">									
+									<option value="-1">全部</option>
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">院系：</label> 
+								<select class="form-control sel-com" id="departmentId" name="departmentId">									
+									<option value="-1">全部</option>
+								</select>
+							</div>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">专业：</label> 
+								<select class="form-control sel-com" id="majorId" name="majorId">									
+									<option value="-1">全部</option>
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">班级：</label> 
+								<select class="form-control sel-com" id="classId" name="classId">									
+									<option value="-1">全部</option>
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">学生当前状态：</label> 
+								<select class="form-control sel-com" id="currentStatusCode" name="currentStatusCode">									
+									<option value="-1">全部</option>
+								</select>
+							</div>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">学号/姓名：</label> 
+								<input type="text" class="form-control inp-com" id="studentNoOrName" name="studentNoOrName" maxlength="50" />
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">毕业类别：</label> 
+								<select class="form-control sel-com" id="graduateType" name="graduateType">									
+									<option value="-1">全部</option>
+								</select>
+							</div>
+						</div>	
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="query" id= "query" auth-code="Graduation_Seting_AnticipatedGraduates_Query">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="loadAnticipatedGraduate" id="loadAnticipatedGraduate" auth-code="Graduation_Seting_AnticipatedGraduates_LoadAnticipatedGraduates">读取预计毕业学生</button>
+							<button type="button" class="btn btn-success" name="addGraduateAdvance" id="addGraduateAdvance" auth-code="Graduation_Seting_AnticipatedGraduates_AddGraduateAdvance">添加提前毕业学生</button>
+							<button type="button" class="btn btn-success" name="setPostpone" id="setPostpone" auth-code="Graduation_Seting_AnticipatedGraduates_SetPostpone">设置延迟毕业</button>
+							<button type="button" class="btn btn-success" name="export" id="export" auth-code="Graduation_Seting_AnticipatedGraduates_Export">导出</button>
+						</div>
+						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th width="50">
+													<div class="checkbox-con">
+														<input type="checkbox" id="check-all" class="checNormal">
+													</div>
+												</th>
+												<th width="70">序号</th>
+												<th width="70">年级</th>
+												<th>院系</th>
+												<th>专业</th>
+												<th width="80">培养层次</th>
+												<th>班级</th>
+												<th width="120">学号</th>
+												<th width="120">姓名</th>
+												<th width="60">性别</th>
+												<th width="80">学生当<br>前状态</th>
+												<th width="80">毕业类别</th>
+												<th width="130">操作</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+											<!--<tr class="tr-checkbox">
+												<td class="width05">
+													<div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>                           </td>
+											    <td class="width05">1</td>
+											    <td>[10023]JAVA课程设计</td>    
+											    <td>[23423]计算机系</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td><button type="button" class="btn-text">取消延迟</button></td>							    
+											</tr>
+											<tr class="tr-checkbox">
+												<td class="width05">
+													<div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>                           </td>
+											    <td class="width05">1</td>
+											    <td>[10023]JAVA课程设计</td>    
+											    <td>[23423]计算机系</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td><button type="button" class="btn-text">删除</button></td>										    
+											</tr>
+											<tr class="tr-checkbox">
+												<td class="width05">
+													<div class="checkbox-con"><input type="checkbox" name="checNormal"  class="checNormal"></div>                           </td>
+											    <td class="width05">1</td>
+											    <td>[10023]JAVA课程设计</td>    
+											    <td>[23423]计算机系</td>
+											    <td>[090632]张老师</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>
+											    <td>校内</td>
+											    <td>男</td>											    
+											</tr>-->
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!--
+
+
+
+-->
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox" data-tt-id="${graduateStudentId}">
+        <td width="50">
+        {{if graduateType == 3}}
+			<div class="checkbox-con disabled-check"><input type="checkbox" name="checDisabled" id="${graduateStudentId}" class="checNormal" disabled="disabled"></div>
+		{{else}}
+			{{if graduateStatus == 0}}
+			<div class="checkbox-con"><input type="checkbox" class="checNormal" id="${graduateStudentId}" name="checNormal" /></div>
+			{{else}}
+			<div class="checkbox-con disabled-check"><input type="checkbox" name="checDisabled" id="${graduateStudentId}" class="checNormal" disabled="disabled"></div>
+			{{/if}}
+		{{/if}}
+		<!--<div class="checkbox-con"><input type="checkbox" name="checNormal"  id="${graduateStudentId}" class="checNormal"></div>-->
+        </td>
+		<td width="70" title="${index}">${index}</td>
+		<td width="70" title="${classGrade}">${classGrade}</td>
+		<td title="${departmentName}" class="text-l">${departmentName}</td>
+		<td title="${majorName}" class="text-l">${majorName}</td>
+		<td width="80" title="${trainingLevelName}">${trainingLevelName}</td>
+		<td class="text-l" title="${className}">${className}</td>
+		<td width="120" class="text-l" title="${studentNo}">${studentNo}</td>
+		<td width="120" class="text-l" title="${studentName}">${studentName}</td>
+		<td width="60" title="${sexName}">${sexName}</td>
+		<td width="80" title="${currentStatusName}">${currentStatusName}</td>
+		<td width="80" title="{{if graduateType != 4}}${graduateTypeName}{{else}}${graduateTypeName}(${postponeYears}){{/if}}">{{if graduateType != 4}}${graduateTypeName}{{else}}${graduateTypeName}(${postponeYears}){{/if}}</td>
+		<td width="130" >
+	{{if graduateType == 4}}
+		{{if graduateStatus == 0}}
+			<button type="button" class="btn-text" name="cancelPostpone" data-tt-id="${graduateStudentId}" auth-code="Graduation_Seting_AnticipatedGraduates_CancelPostpone">取消延迟</button>
+		{{else}}
+			<button type="button" class="btn-text disabled">取消延迟</button>
+		{{/if}}
+	{{else}}
+		{{if graduateType == 3}}
+			{{if graduateStatus == 0}}
+			<button type="button" class="btn-text" name="deleteGraduateAdvance" data-tt-id="${graduateStudentId}" auth-code="Graduation_Seting_AnticipatedGraduates_RemoveGraduateAdvance">删除</button>
+			{{else}}
+			<button type="button" class="btn-text disabled">删除</button>
+			{{/if}}
+		{{/if}}
+	{{/if}}
+		</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/graduatingStudentsList", function(graduatingStudentsList) {
+		graduatingStudentsList.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

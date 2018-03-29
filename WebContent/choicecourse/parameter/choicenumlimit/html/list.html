@@ -1,0 +1,195 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>设置选课人数上限</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+@media (min-width: 992px){
+	.header-con .form-inline .form-group label {
+    min-width: 100px;
+    text-align: right;
+    vertical-align: middle;
+    }
+}
+td.width03, th.width03{ 
+	width:60px;
+}
+</style>
+<body page-auth-code="ChoiceCourse_Parameter_ChoiceNumLimit">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index"> 
+   <div class="container-fluid col-xs-12">
+   <input type="hidden" value="0" id="pageIndex" />
+        <div class="header-con">
+	     	<form id="queryForm">
+	     		<div class="row">
+		   		  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="schoolCalendar">学年学期：</label> 
+							<select class="form-control sel-com" id="semester" name="semester">
+						    </select>
+						</div>
+				  	</div>
+				  	<!-- <div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label>年      级：</label> 
+							<select class="form-control sel-com" id="grade" name="grade">	
+							</select>
+						</div>
+				  	</div> -->
+				  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="name">开课单位：</label> 
+							<select	class="form-control sel-com" id="departmentId" name="departmentId">
+								<option value="">全部</option>
+							</select>
+						</div>
+				  	</div>
+	   		    </div>
+	   		    <div class="row">
+		   		  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="schoolCalendar">课程号/名称：</label> 
+							<input type="text" class="form-control inp-com" id="courseNo" name="courseNo" maxlength="100" />
+							<input type="text" style="display: none;" />
+						</div>
+				  	</div>
+				  	<div class="col-sm-4 form-inline form-inp-con">
+				  		<div class="form-group">
+							<label for="name">授课方式：</label> 
+							<select	class="form-control sel-com" id="teachingMethodsCode" name="teachingMethodsCode">
+								<option value="">全部</option>
+							</select>
+						</div>
+				  	</div>
+	   		    </div>
+	   		</form>    
+	   		<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>  	
+    </div>
+  	<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box">
+						<div class="box-header pull-left">
+							<span><i class="text-danger">温馨提示：可选人数上限输入框，光标移开输入框后，会自动保存输入值。</i></span>
+						</div>
+						<div class="box-header pull-right">
+							<div class="form-group form-inline">
+								<label for="schoolCalendar">可选人数上限：</label> 
+								<select class="form-control sel-double-mid" name="choiceLimitType" id="choiceLimitType">
+									<option title="教学班人数" value="1">教学班人数</option>
+									<option title="上课地点最小容量" value="2">上课地点最小容量</option>
+								</select>
+								<select class="form-control sel-double-mid" name="calculationWay" id="calculationWay">
+									<option title="加" value="1">加</option>
+									<option title="减" value="2">减</option>
+									<option title="乘" value="3">乘</option>
+									<option title="除" value="4">除</option>
+								</select>
+								<input type="hidden" id="list" name="list" value=""/>
+								<input type="text" class="form-control inp-double-mid" value="0" id="choiceNum" name="choiceNum" 
+								       maxlength="3" onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;" onkeyup="this.value=/(^([1-4][0-9]{2}|500|[1-9]?[0-9])$)/.test(this.value) == false || this.value > 500 ? '': this.value"/>
+								<button type="button" class="btn btn-primary" auth-code="ChoiceCourse_Parameter_ChoiceNumLimit_Set" name="batchSetup" id="batchSetup">批量设置</button>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<!-- table标题 -->
+										 <thead>
+										   <tr>
+										       <th class="width03">序号</th>
+										   		<th width="140">开课单位</th>
+										   		<th width="120">课程号</th>
+										   		<th width="140">课程名称</th>
+										   		<th width="120">教学班</th>
+										   		<th width="180">任课教师</th>
+										   		<th width="70">授课方式</th>
+										   		<th width="100">教学班人数</th>
+										   		<th width="100" >上课地点<br>最小容量</th>
+										   		<th width="100">排课周次</th>
+										   		<th width="100">可选人数上限</th>
+										   		<th width="90">已选人数</th>
+										   </tr>
+										</thead>	
+										<!-- table内容 -->								
+										<tbody id="tbodycontent">
+										</tbody> 
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<script id="tamplContent" type="text/x-jquery-tmpl">
+ <tr>  
+         <td class="width03">${$index+1}</td>
+         <td width="140" class="text-l" title="${departmentName}">${departmentName}</td>
+         <td class="text-l" width="120" title="${courseNo}">${courseNo}</td>   
+         <td width="140" class="text-l" title="${courseName}">${courseName}</td>
+         <td class="text-l" title="${teachingClassNo}" width="120">${teachingClassNo}</td>
+         <td width="180" class="text-l" title="${teacherList}">${teacherList}</td>
+         <td width="70" >${teachingMethodsName}</td>      
+         <td class="text-r" width="100">${teachingClassMemberCount}</td>
+         <td class="text-r" width="100" >${minCapacity}</td>
+         <td title="${arrangeWeeks}" width="100">${arrangeWeeks}</td>   
+         <td class='text-r edit-td' width="100">
+               <input type='text' value='${choiceLimit}' onKeypress="javascript:if(event.keyCode == 32)event.returnValue = false;"
+                      data-tt-id='${theoreticalTaskId}'
+                      data-tt-capacity='${minCapacity}' 
+                      data-tt-choiced='${choicedNum}' myattr='limit' 
+                      class='per100'/></td>
+         <td class="text-r" width="90">${choicedNum}</td>
+ </tr> 
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/choicenumlimit", function(choicenumlimit) {
+		choicenumlimit.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>			

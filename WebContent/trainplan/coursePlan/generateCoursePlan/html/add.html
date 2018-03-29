@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>通积课开课计划新增</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+
+<body>
+<form id="addWorkForm" onkeydown="if(event.keyCode==13)return false;">
+	<div class="pop-con box900">
+		<div class="container-fluid">
+			<h3 class=" pop-title">选择开课学年学期 ：</h3>
+			<div class="header-con generate">
+			<div class=" form-inline">
+				<label for="name"><i class="text-danger">*</i> 学年学期：</label>
+				<select class="form-control inp-com" id="semester"  name="semester">
+				</select>
+			  </div>
+				</div>
+			<h3 class=" pop-title mt20">选择课程：</h3>
+			<div class="header-con generate">
+					<div class="form-inline">
+					<label for="name">开课单位：</label>
+					<select class="form-control inp-com" id="departmentId" name="departmentId" >
+						<option value="">全部</option>
+					</select>
+
+					<label for="name">课程大类：</label>
+					<select class="form-control inp-com" id="bigCourseCode" name="bigCourseCode">
+						<option value="">全部</option>
+					</select>
+					<div class="ml80 inline-block"><div class="checkbox-con" name='cyrr'><input type="checkbox" class="checNormal" id="coreCurriculum"></div> 上学期开设通识课程</div>
+					</div>
+				<div class="form-inline mt10">
+					<label for="name">通识课：</label>
+					<select class="form-control inp-com" id="isCoreCurriculum" name="isCoreCurriculum">
+						<option value="0">否</option>
+						<option value="1">是</option>
+					</select>
+						<label for="name">课程号/名称：</label>
+					<input type="text" class="form-control inp-com" value="" id="courseNo" name="courseNo" maxlength="50"/>
+				  </div>
+				<button type="button" class="btn btn-primary header-btn"  name="query"
+						id="query">查询</button>
+			</div>
+		</div>
+		<!--表格区域-->
+		<div class="col-xs-12 mt10 mb20">
+			<div class="box-body">
+				<div class="scorll-box">
+					<div class="table-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+							<tr>
+								<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+								<th class="width48">序号</th>
+								<th class="width85">课程号</th>
+								<th>课程名称</th>
+								<th>开课单位</th>
+								<th class="width85">课程大类</th>
+								<th class="width48">学分</th>
+								<th class="width48">总</br>学时</th>
+								<th class="width80">理论学时</th>
+								<th class="width80">实验学时</th>
+								<th class="width80">实践学时</th>
+								<th class="width80">其他学时</th>
+								<th width="80px">考核方式</th>
+								<th class="width80">周学时</th>
+							</tr>
+							</thead>
+							<tbody id=courseTable>
+							</tbody>
+						</table>
+					</div>
+					<div id="pagination" class="pagination"></div>
+				</div>
+			</div>
+		</div>
+<!--选择专业-->
+		<div class="container-fluid">
+			<h3 class=" pop-title">选择专业：</h3>
+			<div class="header-con generate">
+			    <form id="addmajorForm" onkeydown="if(event.keyCode==13)return false;">
+					<div class="form-inline">
+						<label for="name">年级：</label>
+						<select class="form-control inp-com" id="grade" name="grade">
+							<option value="-1">全部</option>
+						</select>
+						<label for="number">校区：</label>
+						<select class="form-control inp-com" id="campusId" name="campusId">
+							<option value="">全部</option>
+						</select>
+						<label for="name">院系：</label>
+						<select class="form-control inp-com" id="departmentIds" name="departmentIds">
+							<option value="">全部</option>
+						</select>
+					</div>
+					<div class="form-inline mt10">
+						<label for="name">专业号：</label>
+						<input type="text" class="form-control inp-com" value="" id="majorNo" name="majorNo" maxlength="50"/>
+						<label for="number"  class="w110">专业名称：</label>
+						<input type="text" class="form-control inp-com" value="" id="majorName" name="majorName" maxlength="50"/>
+						<label for="name"  class="w110">培养层次：</label>
+						<select class="form-control inp-com" id="trainingLevelCode" name="trainingLevelCode">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="leftquery" id="leftquery">查询</button>
+			</div>
+		</div>
+		<!--表格区域-->
+		<div id="addUsers" class="grade double-table-opra">
+
+				<div class="clearfix">
+					<div class="list-con pull-left">
+						<div class="box">
+							<div>
+								待选择：<span class="text-danger" id="leftNumber">0</span>
+							</div>
+							<div class="box-body mt10">
+								<div class="scorll-box grade">
+									<div class="table-box">
+										<table class="table table-bordered table-hover">
+											<thead>
+											<tr>
+												<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all-left" class="checNormal"></div></th>
+												<th class="width48">年级</th>
+												<th class="width70">校区</th>
+												<th>院系</th>
+												<th class="width60">专业号</th>
+												<th>专业名称</th>
+												<th class="width48">学制</th>
+												<th class="width48">培养<br/>层次</th>
+											</tr>
+											</thead>
+											<tbody id="leftTable">
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div id="pagination" class="pagination"></div>
+						</div>
+					</div>
+					<div class="btn-team">
+						<button type="button" class="btn btn-opre btn-block btn-success fa fa-angle-double-right" name="btnAdd">添加</button>
+						<button type="button" class="btn btn-opre btn-block btn-danger fa fa-angle-double-left" name="btnDelete">移除</button>
+					</div>
+					<div class="list-con pull-right">
+						<div class="box">
+							<div>
+								已选择：<span class="text-danger" id="rightNumber">0</span>
+							</div>
+							<div class="box-body mt10">
+								<div class="scorll-box grade">
+									<div class="table-box">
+										<table class="table table-bordered table-hover">
+											<thead>
+											<tr>
+												<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all-right" class="checNormal"></div></th>
+												<th class="width48">年级</th>
+												<th class="width70">校区</th>
+												<th>院系</th>
+												<th class="width60">专业号</th>
+												<th>专业名称</th>
+												<th class="width48">学制</th>
+												<th class="width48">培养<br/>层次</th>
+											</tr>
+											</thead>
+											<tbody id="rightTable">
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+
+<!-- 列表内容 -->
+<script id="courseTableImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+	<td class="width03"><div class="checkbox-con"><input type="checkbox" class="checNormal" name='checNormal' value ='${courseId}'/></div></td>
+	<td class="width48">${$index+1}</td>
+	<td class="text-l width85" title='${courseNo}'>${courseNo}</td>
+	<td class="text-l" title='${name}'>${name}</td>
+	<td class="text-l" title='${departmentName}'>${departmentName}</td>
+	<td class="text-l width85" title='${bigCourseName}'>${bigCourseName}</td>
+	<td title="${credit}" class="width48 text-r">${credit}</td>
+	<td name='totalPeriod' class="width48 text-r">${totalPeriod}</td>
+	<td class="width80">
+    <div class="input-group spinner classhour">
+		<input type="text" class="form-control inp-minimum" name="theoryPeriod" myattr="period" maxlength="2" min="0" max="99" value="${theoryPeriod}">
+			<div class="input-group-btn-vertical major-list">
+				<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+			    <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+			</div>
+		</div>
+   </td>
+   <td class="width80">
+    <div class="input-group spinner classhour">
+		<input type="text" class="form-control inp-minimum" name="experiPeriod" myattr="period" maxlength="2" min="0" max="99" value="${experiPeriod}">
+			<div class="input-group-btn-vertical major-list">
+				<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+			<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+			</div>
+		</div>
+    </td>
+	<td class="width80">
+    <div class="input-group spinner classhour">
+		<input type="text" class="form-control inp-minimum" name="practicePeriod" myattr="period" maxlength="2" min="0" max="99" value="${practicePeriod}">
+			<div class="input-group-btn-vertical major-list">
+				<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+			<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+			</div>
+		</div>
+   </td>
+	<td class="width80">
+    <div class="input-group spinner classhour">
+		<input type="text" class="form-control inp-minimum" name="otherPeriod" myattr="period" maxlength="2" min="0" max="99" value="${otherPeriod}">
+			<div class="input-group-btn-vertical major-list">
+				<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+			<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+			</div>
+		</div>
+   </td>
+    <td width="80px">
+    <select class="form-control inp-mini" id="checkWayCode${$index+1}" style="min-width:60px;" name="checkWayCode" value="${checkWayCode}">
+    </select>
+    </td>
+    <td class="width80">
+   		 <div class="input-group spinner classhour">
+			<input type="text" class="form-control inp-minimum" name="weekPeriod" myattr="period" maxlength="2" min="0" max="99" value="${weekPeriod}">
+			<div class="input-group-btn-vertical major-list">
+				<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+			<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+			</div>
+		</div>
+    </td>
+</tr>
+</script>
+
+
+<!-- 左列表内容 -->
+<script id="leftTableImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+	<td class="width03"><div class="checkbox-con"><input type="checkbox" class="checNormal" name='checNormals' value = '${gradeMajorId}' majorId = ${majorId}></div></td>
+	<td name='grade' class="width48" title='${grade}'>${grade}</td>
+	<td name='campusName' class="text-l width70" title='${campusName}'>${campusName}</td>
+	<td	name='departmentName' class="text-l" title = '${departmentName}'>${departmentName}</td>
+	<td name='majorNo' class="text-l width60" title='${majorNo}'>${majorNo}</td>
+	<td name='majorName' class="text-l" title = '${majorName}'>${majorName}</td>
+	<td name='educationSys' class="width48">${educationSys}</td>
+	<td name='trainLevelName' class="width48" >${trainLevelName}</td>
+</tr>
+</script>
+
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/curricul",function(curricul){
+		     curricul.initAdd();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

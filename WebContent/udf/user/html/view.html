@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>查看用户</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+  <!-- jquery版本 -->
+  <script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+  <!-- bootstrap -->
+  <script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+  <!-- Seajs 模块化开发，请一定遵守 -->
+  <script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>  
+  <!-- 弹窗 -->
+  <script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+  <script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+  <!-- 验证 -->
+  <script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+  <script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>  
+  <!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+
+</head>
+	<body page-auth-code="Udf_UserManage_ViewDetail">			
+		<div id="userView" class="pop-con">
+		<input type="hidden" id="userId" />
+		<!-- 用户基本信息 -->
+			<div class="box-header">用户基本信息：</div>
+			 <div class="box-body">
+				<table class="table table-bordered pop-table-special">
+					<tbody>
+						<tr>
+						  <th class="width20">用户状态：</th>
+							<td id="isEnabled" class="width20">启用</td>
+							<th class="width20">用户账号：</th>
+							<td id="accountName" class="width20"></td>
+						</tr>
+						<tr>
+							<th>用户类型：</th>
+							<td id="userType"></td>
+							<th>姓名：</th>
+							<td id="userName"></td>
+						</tr>
+						<tr>
+							<th>所属单位：</th>
+							<td colspan="3" id="departmentName"></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+
+			<!-- 角色分配 -->
+			<div class="box-header">角色分配：</div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<td>序号</td>
+						<td>角色名称</td>
+					</tr>
+				</thead>
+				<tbody id="roleList">					
+				</tbody>
+			</table>
+		</div>	
+		<script id="roleListScript" type="text/x-jquery-tmpl">
+      <tr>  
+         <td>${$index+1}</td>
+         <td>${roleName}</td> 
+      </tr> 
+		</script>
+		<script type="text/javascript">	
+		    //用户详情查看
+		    seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+			seajs.use("localPath/user",function(user){
+				user.initView();
+			}); 
+			seajs.use("basePath/utils/authority");
+		
+		</script>
+	</body>
+</html>

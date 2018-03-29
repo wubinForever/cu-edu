@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>环节成绩录入</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="ScoreService_Entry_Tache_ScoreEntry">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid">
+			<div class="header-con mb10">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">学年学期：</label>
+								<select class="form-control sel-com" id="semester" name="semester">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">
+									<i class="text-danger">*</i>
+									年级：
+								</label>
+								<select class="form-control sel-com" id="grade" name="grade">
+									<option value="">--请选择--</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">
+									<i class="text-danger">*</i>
+									院系：
+								</label>
+								<select class="form-control sel-com" id="departmentId" name="departmentId">
+									<option value="">--请选择--</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">
+									<i class="text-danger">*</i>
+									专业：
+								</label>
+								<select class="form-control sel-com" id="majorId" name="majorId">
+									<option value="">--请选择--</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">
+									<i class="text-danger">*</i>
+									班级：
+								</label>
+								<select class="form-control sel-com" id="classId" name="classId">
+									<option value="">--请选择--</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">
+									<i class="text-danger">*</i>
+									环节：
+								</label>
+								<select class="form-control sel-com" id="courseId" name="courseId">
+									<option value="">--请选择--</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="btnSearch" id="btnSearch">查询</button>
+			</div>
+		</div>
+		<!--提示信息-->
+		<div class="care-tips">
+			<p>
+				<span title="班级：" id="spanClass">班级：</span>
+				<span title="环节：" id="spanCourse" class="ml20">环节：</span>
+				<span title="总评成绩分制：" id="spanScoreSet" class="ml20">总评成绩分制：</span>
+				<a class="ml80" auth-code="ScoreService_Entry_Tache_ScoreEntry_regimenSet" id="set" name="set">设置成绩分制</a>
+			</p>
+		</div>
+		<!-- 正式内容区域 开始 ------>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="clearfix">
+							<div class="pull-left care-tips2 mt20">
+								温馨提示：班级环节共有
+								<span id="spanWaitEntry" class="text-danger"> 0 </span>
+								条未完成录入
+							</div>
+							<div class="box-header pull-right">
+								<button type="button" class="btn btn-success width-default" id="btnSave" auth-code="ScoreService_Entry_Tache_ScoreEntry_Save">保存</button>
+								<button type="button" class="btn btn-success width-default" id="btnReview" auth-code="ScoreService_Entry_Tache_ScoreEntry_Submit">送审</button>
+							</div>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width48">序号</th>
+												<th class="width120">学号</th>
+												<th class="width120">姓名</th>
+												<th class="width60">性别</th>
+												<th>题目</th>
+												<th class="width120">总评成绩</th>
+												<th class="width120">特殊情况</th>
+												<th>备注</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent" class="no-data-html">
+											<tr>
+												<td colspan='8'></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 正式内容区域 结束 --- -->
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 分页 -->
+	<script src="../../../common/js/base/core/page/pagination.js"></script>
+	<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+	<!--加载meta IE兼容文件-->
+	<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	{{each(i,item) list}}
+	<tr>
+		<td class="width48">${item.index}</td>
+		<td class="text-l width120" title="${item.studentNo}">${item.studentNo}</td>
+		<td class="text-l width120" title="${item.studentName}">${item.studentName}</td>
+		<td class="width60" title="${item.sexName}">${item.sexName}</td>
+		<td><input class="form-control" index="${item.index}" id="tacheSubject${item.index}" name="tacheSubject" value="${item.tacheSubject}" maxlength="50" /></td>
+	
+	{{if scoreRegimenName != null && scoreRegimenName == "百分制" }}
+		<td class="width120">
+	<input class="form-control inp-com text-r" index="${item.index}" id="totalScore${item.index}" name="totalScore" value="${item.totalScore}" originalScoreId="${item.originalScoreId}" studentId="${item.userId}" maxlength="5" style="min-width:50px;" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onafterpaste="this.value=this.value.replace(/[^\d.]/g,'')" />
+	</td>
+	{{else}}
+		<td class="width120">
+		<select class="form-control sel-com" index="${item.index}" id="selectTotalScore${item.index}" name="selectTotalScore" value="${item.totalScore}" originalScoreId="${item.originalScoreId}" studentId="${item.userId}">
+		</select>
+		<input type="hidden" index="${item.index}" id="totalScore${item.index}" name="totalScore" value="${item.totalScore}" originalScoreId="${item.originalScoreId}" studentId="${item.userId}" percentageScore="${item.percentageScore}"  />
+		</td>
+	{{/if}}
+		<td class="width120">
+			<select class="form-control sel-com" index="${item.index}" id="specialCaseId${item.index}" name="specialCaseId" value="${item.specialCaseId}">
+			</select>
+		</td>
+		<td><input class="form-control" index="${item.index}" id="remark${item.index}" name="remark" value="${item.remark}" maxlength="50" /></td>
+	</tr>
+	{{/each}}
+	</script>
+	<script type="text/javascript">
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/tacheScoreEnter", function(tacheScoreEnter) {
+			tacheScoreEnter.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

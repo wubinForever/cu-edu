@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>国泰安高校智慧教务管理平台</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- basic styles -->
+	<link href="common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="common/css/font-awesome.min.css" rel="stylesheet" /> 
+	<link href="common/css/reset.css" rel="stylesheet"/>
+	<link href="common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="common/css/sideBar.css" rel="stylesheet"/>
+	<link href="common/css/popup.css" rel="stylesheet"/>
+	<link href="common/css/skins.css" rel="stylesheet"/>
+	<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  	<![endif]-->
+  </head>
+  <body class="skin-blue">
+  	<div class="indexcontent">
+	  		<div class="navbar navbar-default">
+	    	<div class="navbar-container">
+	    		<!--nav-header-->
+	    		<div class="navbar-header pull-left logo-header"></div>
+	    		<div class="navbar-header pull-right">
+	    			<!--gta-nav-->
+ 
+	   				<ul class="nav gta-nav">
+	   					<li>
+	   						<div class="subnav-text"><i class="fa fa-user-o fa-lg width-12"></i><span class="text-a">在线人数：<i id="onlineCount">0</i></span></div>
+	   					</li>
+	   					<!--<li class="mail">
+	   						<a href="#" class="margin-5" name="mail-pop"><i class="fa fa-envelope-o fa-lg"></i><span class="text-a">消息6条</span></a>
+	   					</li>-->
+ 
+	   					<li class=" systemic-nav" id="navbarDropdownId">
+	   						<div class="larger-tab clearfix">
+	   							<ul class="nav-expanded">
+	   							</ul>
+	   						</div>
+	   						<div class="mini-tab">   						
+		   						<a href="#">
+		   							<i class="fa fa-list-ul fa-lg width-12"></i>
+		   						</a>
+		   						<ul class="dropdown-menu dropdown-navbar dropdown-caret dropdown-close dropdown-menu-right">
+			    				</ul>
+	   						</div>
+	   					</li>
+	   					<li class=" desktop">
+	   						<a href="#"><i class="fa fa-home fa-lg width-12"></i></a>
+	   					</li>
+	   					<!-- 
+	   					<li class="">
+	   						<a href="#"><i class="fa fa-gear fa-lg"></i></a>
+	   					</li>
+	   					<li class="">
+	   						<a href="#"><i class="fa fa-question-circle fa-lg"></i></a>
+	   					</li>
+	   					 -->
+	   					<li class="user-nav">
+	   						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		    					 <img class="nav-user-photo" src="common/images/user.png" alt="">
+		    					 <span><span id="userName"></span></span>
+		    					 <i class="fa fa-angle-down"></i>
+		    				</a>
+		    				<ul class="user-menu dropdown-menu dropdown-caret dropdown-menu-right dropdown-close">
+		    					<li class="ssoHide">
+		    						<a href="#" id="updatePassword"><i class="fa fa-unlock-alt fa-lg width-12"></i>修改密码</a>
+		    					</li>
+		    					<li class="divider ssoHide"></li>
+		    					<li>
+		    						<a href="javascript:;" id="loginOutId"><i class="fa fa-power-off fa-lg width-12"></i>退出系统</a>
+		    					</li>
+		    				</ul>
+	   					</li>
+	   					<li class="skins-setting">
+                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                <div class="setting-dropdown">
+                	<h4 class="control-sidebar-heading">皮肤切换</h4>
+                	<p>点击下列主题切换风格</p>
+	                <ul class="clearfix" id="skin-list">
+	                </ul>
+                </div>
+              </li>
+	   				</ul>
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="main-container">
+	    	<div class="main-container-inner">
+	    		<div class="side-bar" id="sidebar">
+		    		 
+		    	<!--sideBar End-->
+		    	</div>
+		    	<div class="main-content">
+		    		<!--main-content-->
+		    		<div class="page-content">
+			    		<div class="row">
+		    				<div class="col-xs-12">
+					    		<div class="tabbable">
+						    			<!-- tabs -->
+											<div class="tabs-list">
+												<ul class="nav nav-tabs" id="myTab">
+												</ul>
+											</div>
+											<!-- tabsmore -->
+											<div class="tabs-more">
+												 <span class="fa fa-sort-down"></span>
+												 <ul class="moretab-list" id="tabMore"> 
+												 </ul>	
+											</div>
+									</div>	
+									<!-- tabiframe -->
+									<div class="tab-content" id="myIframe">
+									</div>
+					    	</div>
+		    			</div> 
+		    		</div>
+		    		<!--main-content End-->
+		    	</div>	
+	    	</div>
+	    </div>
+  	</div>
+  	<div class="loading" style="display: none"></div>
+  	<div class="loading-back" style="display: none"></div>
+  </body>
+  <script src="common/js/base/jquery/jquery-1.9.1.min.js"></script>
+  <script src="common/js/base/jquery/jquery.artDialog.source.js"></script>
+  <script src="common/js/base/bootstrap/bootstrap.min.js"></script>
+  <script src="common/js/base/jquery/jquery-ui-1.10.3.custom.min.js"></script>
+  <script src="common/js/base/seajs/2.2.0/sea.js"></script>
+  <script src="common/js/base/jquery/iframeTools.source.js"></script>
+  <script src="common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+  <script src="common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+  <script src="common/js/base/jquery/jquery.tmpl.js"></script>
+   <script id="menuTmpl" type="text/x-jquery-tmpl">
+	<div class="side-bar-header">
+		<div class="side-bar-shortcuts-large" url="${url}" menu-name="${name}" menu-id="${menuId}">${name}</div>
+	    <a href="javascript:;" role="button" class="fa fa-bars side-bar-collapse" id="sidebar-collapse"></a>
+    </div>
+    <ul class="nav nav-list">
+		{{each(i,menu) list}}
+	    	<li class="menuli">
+			{{if menu.menuType=='1'}}
+				<a href="javascript:;"  menu-name="${menu.name}" menu-id="${menu.menuId}" class="dropdown-toggle">
+   		  		<i class="{{if menu.imageClass == null}}fa fa-th-large{{else}}${menu.imageClass}{{/if}}"></i>
+   		  		<span class="menu-text">${menu.name}</span>
+				{{if menu.list.length > 0}}
+   		  			<b class="arrow fa fa-angle-right"></b>
+				{{/if}}
+   		  		</a>
+				{{if menu.list.length > 0}}
+					<ul class="submenu">
+						{{each(i,item) menu.list}} 
+							<li>
+								{{if item.menuType=='1'}}
+									<a href="javascript:;"  menu-name="${item.name}" menu-id="${item.menuId}" class="dropdown-toggle">
+   		  							<i class="{{if item.imageClass == null}}fa fa-th-large{{else}}${item.imageClass}{{/if}}"></i>
+   		  							<span class="menu-text">${item.name}</span>
+									{{if item.list.length > 0}}
+   		  								<b class="arrow fa fa-angle-right"></b>
+									{{/if}}
+   		  							</a>
+									{{if item.list.length > 0}}
+										<ul class="submenu">
+											{{each(j,bean) item.list}} 
+												<li>
+													{{if bean.menuType=='2'}}
+													{{if bean.targetName == '2'}}
+														<a href="${bean.url}" target="_blank" class="dropdown-toggle">
+													{{else}}
+														<a href="javascript:;" url="${bean.url}" menu-name="${bean.name}" menu-id="${bean.menuId}" class="dropdown-toggle">
+													{{/if}}
+   		  											<i class="{{if bean.imageClass == null}}fa fa-th-large{{else}}${bean.imageClass}{{/if}}"></i>
+   		  											<span class="menu-text">${bean.name}</span>
+   		  											</a>				
+												{{/if}}
+	    										</li>
+											{{/each}}
+	    		  						</ul>
+									{{/if}}				
+							  	{{else item.menuType=='2'}}
+									{{if item.targetName == '2'}}
+										<a href="${item.url}" target="_blank" class="dropdown-toggle">
+									{{else}}
+										<a href="javascript:;" url="${item.url}" menu-name="${item.name}" menu-id="${item.menuId}" class="dropdown-toggle">
+									{{/if}}
+									<i class="{{if item.imageClass == null}}fa fa-th-large{{else}}${item.imageClass}{{/if}}"></i>
+ 										<span class="menu-text">${item.name}</span>
+ 									</a>
+								{{/if}}
+	    					</li>
+						{{/each}}
+	    		  	</ul>
+				{{/if}}
+			{{else menu.menuType=='2'}}
+				{{if menu.targetName == '2'}}
+					<a href="${menu.url}" target="_blank" class="dropdown-toggle">
+				{{else}}
+					<a href="javascript:;" url="${menu.url}" menu-name="${menu.name}" menu-id="${menu.menuId}" class="dropdown-toggle">
+				{{/if}}
+				<i class="{{if menu.imageClass == null}}fa fa-th-large{{else}}${menu.imageClass}{{/if}}"></i>
+ 					<span class="menu-text">${menu.name}</span>
+ 				</a>
+			{{/if}}
+			</li>
+		{{/each}}
+    </ul>
+	</script>
+	 <script id="tabTmpl" type="text/x-jquery-tmpl">
+	 	<li>
+			<a data-toggle="tab" href="#${code}" > 
+				 <i class="fa fa-times"></i>
+				 <span>${name}</span>
+			</a>
+		</li>
+	</script>
+	<script id="tabMoreTmpl" type="text/x-jquery-tmpl">
+	 	<li>
+			<a href="#${code}"> 
+				 <i class="fa fa-times"></i>
+				 <span>${name}</span>
+			</a>
+		</li>
+	</script>
+	<script id="iframeTmpl" type="text/x-jquery-tmpl">
+		<div class="content-line"></div>
+	 	<div id="${code}" class="tab-pane active">											
+			<iframe class="iframe" id="iframe-${code}" src="${url}" height="0" width="100%" style="border:none"></iframe>
+		</div>
+	</script>
+	<script id="navbarTmpl" type="text/x-jquery-tmpl">
+		{{if target == '2'}}
+			 <li><a href="${url}" target="_blank"><i class="{{if imageClass == null}}fa fa-th-large{{else}}${imageClass}{{/if}}"></i>${menuName}</a></li>
+		{{else}}
+	 		<li><a href="javascript:;" menu-bar=true menu-id="${menuId}"><i class="{{if imageClass == null}}fa fa-th-large{{else}}${imageClass}{{/if}}"></i>${menuName}</a></li>
+		{{/if}}
+	</script>
+	<script id="navbarDropdownTmpl" type="text/x-jquery-tmpl">
+		{{if target == '2'}}
+			<li><a href="${url}" target="_blank"><i class="{{if imageClass == null}}fa fa-th-large{{else}}${imageClass}{{/if}} width-12"></i>${menuName}</a></li>
+		{{else}}
+	 		<li><a href="javascript:;" class="ellipsis" menu-bar=true menu-id="${menuId}"><i class="{{if imageClass == null}}fa fa-th-large{{else}}${imageClass}{{/if}} width-12"></i>${menuName}</a></li>
+		{{/if}}
+	</script>
+  
+   <script type="text/javascript">
+   	seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"./udf/index/js"}});
+	seajs.use("localPath/index",function(index){
+		  index.init();
+	 }); 
+   </script>
+</html>

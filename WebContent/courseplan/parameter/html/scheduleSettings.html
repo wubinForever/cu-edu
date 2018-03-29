@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>排课进度设置</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+<style>
+	@media (min-width: 992px){
+		.form-inline .form-control.inp-com, .form-inline .form-control.sel-com {
+		    width: 215px;
+		}
+	}
+
+</style>
+
+<body page-auth-code="CoursePlan_Parameters_Plan">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="sub-content text-center margin-top50">
+			<form id="addForm">
+				<div class="single-row-form">
+					<div class="form-group form-inline ">
+						<label for="name"><i class="text-danger">*</i>学年学期：</label>
+						<div class="tips-text verification-info">
+							<select class="form-control sel-com" id="semester" name="semester">
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-inline ">
+						<label for="name"><i class="text-danger">*</i>实践任务设置时间范围：</label> 
+						<div class="tips-text verification-info"><input id="practiceTaskStartTime"
+							name="practiceTaskStartTime" type="text" class="form-control inp-com wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', maxDate:'#F{$dp.$D(\'practiceTaskEndTime\')}', enableKeyboard:false,enableInputMask:false});" />
+							</div>
+						- 
+						<div class="tips-text verification-info"><input id="practiceTaskEndTime" name="practiceTaskEndTime" type="text" class="form-control inp-com wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'#F{$dp.$D(\'practiceTaskStartTime\')}', enableKeyboard:false,enableInputMask:false});" />
+							</div>
+					</div>
+					<div class="form-group form-inline ">
+						<label for="name"><i class="text-danger">*</i>实践安排时间范围：</label> 
+						<div class="tips-text verification-info"><input id="practiceArrangeStartTime"
+							name="practiceArrangeStartTime" type="text" class="form-control inp-com wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', maxDate:'#F{$dp.$D(\'practiceArrangeEndTime\')}', enableKeyboard:false,enableInputMask:false});" />
+							</div>
+						- 
+						<div class="tips-text verification-info"><input id="practiceArrangeEndTime" name="practiceArrangeEndTime" type="text" class="form-control inp-com wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'#F{$dp.$D(\'practiceArrangeStartTime\')}', enableKeyboard:false,enableInputMask:false});" />
+							</div>
+					</div>
+					<div class="form-group form-inline ">
+						<label for="name"><i class="text-danger">*</i>理论任务设置时间范围：</label> 
+						<div class="tips-text verification-info"><input id="theoreticalTaskStartTime"
+							name="theoreticalTaskStartTime" type="text" class="form-control inp-com wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', maxDate:'#F{$dp.$D(\'theoreticalTaskEndTime\')}', enableKeyboard:false,enableInputMask:false});" />
+							</div>
+						- 
+						<div class="tips-text verification-info"><input id="theoreticalTaskEndTime" name="theoreticalTaskEndTime" type="text" class="form-control inp-com wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'#F{$dp.$D(\'theoreticalTaskStartTime\')}', enableKeyboard:false,enableInputMask:false});" />
+							</div>
+					</div>
+					<div class="form-group form-inline ">
+						<label for="name"><i class="text-danger">*</i>课表编排时间范围：</label> 
+						<div class="tips-text verification-info"><input id="scheduleArrangeStartTime"
+							name="scheduleArrangeStartTime" type="text" class="form-control inp-com wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', maxDate:'#F{$dp.$D(\'scheduleArrangeEndTime\')}', enableKeyboard:false,enableInputMask:false});" />
+							</div>
+						- 
+						<div class="tips-text verification-info"><input id="scheduleArrangeEndTime" name="scheduleArrangeEndTime" type="text" class="form-control inp-com wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm', minDate:'#F{$dp.$D(\'scheduleArrangeStartTime\')}', enableKeyboard:false,enableInputMask:false});" />
+							</div>
+					</div>
+				</div>
+			</form>
+			<div class=" text-center mb20 mt30">
+				<button type="button" class="btn btn-success width-default" id="submitBtn" auth-code="CoursePlan_Parameters_Plan_Add">保存</button>
+			</div>
+		</div>
+	</div>
+</body>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/scheduleSettings", function(scheduleSettings) {
+		scheduleSettings.init();
+	});
+</script>
+</html>

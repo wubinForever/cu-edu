@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>环节成绩录入</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+<body page-auth-code="TeacherService_Score_TacheScore">
+<!-- 内容框架 开始-->
+<div class="layout-index">
+	<div class="container-fluid">
+		<div class="header-con mb10">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年学期：</label>
+							<select	class="form-control sel-com" id="semester" name="semester">
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	
+	<!-- 正式内容区域 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">					
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead id="tbodytitle">
+									<tr>
+										<th class="width48">序号</th>
+										<th class="width13">环节</th>
+										<th class="width80">环节类别</th>
+										<th class="width80">行政班</th>
+										<th class="width80">需录入</th>
+										<th class="width80">已录入</th>
+										<th class="width80">未录入</th>
+										<th class="width80">状态</th>
+										<th class="width110">操作</th>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent" class="no-data-html">
+									<tr><td colspan='9'></td></tr>
+
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="pagination" class="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 --- -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+	<td class="width48">${index}</td>
+	<td class="width13 text-l" title="[${courseNo}]${courseName}">[${courseNo}]${courseName}</td>
+	<td class="width80" title="${tacheTypeName}">${tacheTypeName}</td>
+	<td class="width80" title="${className}">${className}</td>
+	<td class="width80" title="${needEntry}">${needEntry}</td>
+	<td class="width80" title="${hasEntry}">${hasEntry}</td>
+	<td class="width80" title="${needEntry - hasEntry}">${needEntry - hasEntry}</td>
+	
+	{{if auditStatus ==3}}
+		<td class="width80" title="已审核">已审核</td>
+	{{else}}
+		{{if auditStatus ==2}}
+			<td class="width80" title="已送审">已送审</td>
+		{{else}}
+			<td class="width80" title="未送审">未送审</td>	
+		{{/if}}		
+	{{/if}}
+	
+
+	<td class="width110">
+		{{if auditStatus ==3 || auditStatus==2 }}
+		<button type="button" name="entry" class="btn-text disabled" disabled data-tt-id="${courseId}" auth-code="TeacherService_Score_TacheScore_Entry" >录入</button>
+		{{else}}
+		<button type="button" name="entry" class="btn-text" courseInfo="[${courseNo}]${courseName}" className="${className}" academicYear="${academicYear}" semesterCode="${semesterCode}" courseId="${courseId}" classId="${classId}" auth-code="TeacherService_Score_TacheScore_Entry" >录入</button>
+		{{/if}}
+
+		 
+		{{if hasEntry > 0 }}
+		 	<button type="button" class="btn-text" name="view" courseInfo="[${courseNo}]${courseName}" className="${className}" academicYear="${academicYear}" semesterCode="${semesterCode}" courseId="${courseId}" classId="${classId}" auth-code="TeacherService_Score_TacheScore_View">查看</button> 
+		{{else}}
+			<button type="button" class="btn-text disabled" disabled name="view" auth-code="TeacherService_Score_TacheScore_View">查看</button> 
+		{{/if}}
+	</td>
+</tr>
+
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/tacheScoreIndex",function(tacheScoreIndex){
+		tacheScoreIndex.init();
+	});
+	seajs.use("basePath/utils/authority");
+	
+
+</script>
+</body>
+</html>

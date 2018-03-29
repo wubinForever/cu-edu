@@ -1,0 +1,27 @@
+/*Login CSS*/
+
+.login-box{
+	width: 450px;
+	margin:10% auto;
+	padding: 45px 15px 15px;
+	box-shadow:-webkit-box-shadow:0 0 10px rgba(0,0,0,0.2);
+  	-moz-box-shadow:0 0 10px rgba(0,0,0,0.2);
+  	box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+.login-btn{
+	padding:6px 30px;
+}
+.marked{
+	padding-left: 15px;
+}
+.marked i{
+	margin:0 5px;
+}
+.verification-code{
+	height:34px;
+	border: 1px solid #ccc
+}
+.pop-con .scorll-box .table>tbody.departContent{
+	height:512px;
+	max-height:none;
+}

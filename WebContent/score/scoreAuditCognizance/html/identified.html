@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>异动学生成绩认定</title>	
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+
+<body>
+	<div class="pop-con box900">
+		<div class="container-fluid">
+			<div class="header-con major row">
+				<div class="form-inline col-xs-3">
+					<label for="name">学生：</label>
+					<span>[12345]张三</span>
+				</div>
+				<div class="form-inline col-xs-3">
+					<label for="name">异动类型：</label>
+					<span>转专业</span>
+				</div>
+			</div>
+			<!--表格区域-->
+			<div class="margin-bottom10 clearfix">
+				<div class="per50">
+					<h3 class="school-titlle">异动前未认定课程/环节（100）</h3>
+					<div class="box">
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">&nbsp;</th>
+												<th>课程/环节</th>
+												<th>类别</th>
+												<th>学分</th>
+												<th>考核方式</th>
+												<th>总评成绩</th>
+												<th>学年学期</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent" class="">
+											<tr class="tr-checkbox" >  
+												<td class="width05" title="">   
+													<label class="radio">       
+														<div class="radio-con">
+															<input type="radio" name="isEnabled">
+														</div>   
+													</label>  
+												</td>
+												<td>[32222]军训</td>
+												<td>环节</td>
+												<td>2</td>
+												<td>考查</td>
+												<td>合格</td>
+												<td>2017-2018 第一学期</td>
+											</tr>
+											<tr class="tr-checkbox" >  
+												<td class="width05" title="">   
+													<label class="radio">       
+														<div class="radio-con">
+															<input type="radio" name="isEnabled">
+														</div>   
+													</label>  
+												</td>
+												<td>[32222]汇编语言</td>
+												<td>课程</td>
+												<td>2</td>
+												<td>考试</td>
+												<td>90.0</td>
+												<td>2017-2018 第一学期</td>
+											</tr>
+										</tbody>	
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="per50 margin-left15 pull-right">
+					<h3 class=" school-titlle">异动后需修读课程/环节（100）</h3>
+					<div class="box">
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">&nbsp;</th>
+												<th>课程/环节</th>
+												<th>类别</th>
+												<th>学分</th>
+												<th>考核方式</th>
+												<th>总评成绩</th>
+												<th>学年学期</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent" class="">
+											<tr class="tr-checkbox" >  
+												<td class="width05" title="">   
+													<label class="radio">       
+														<div class="radio-con">
+															<input type="radio" name="isEnabled">
+														</div>   
+													</label>  
+												</td>
+												<td>[32222]军训</td>
+												<td>环节</td>
+												<td>2</td>
+												<td>考查</td>
+												<td>合格</td>
+												<td>2017-2018 第一学期</td>
+											</tr>
+											<tr class="tr-checkbox" >  
+												<td class="width05" title="">   
+													<label class="radio">       
+														<div class="radio-con">
+															<input type="radio" name="isEnabled">
+														</div>   
+													</label>  
+												</td>
+												<td>[32222]汇编语言</td>
+												<td>课程</td>
+												<td>2</td>
+												<td>考试</td>
+												<td>90.0</td>
+												<td>2017-2018 第一学期</td>
+											</tr>
+										</tbody>	
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 按钮 -->
+			<div class="btn-vertical">
+				<div class="btn-verticalbg btn-green inline-block" id="btnAdd" name="btnAdd"></div>
+				<div class="btn-verticalbg btn-red inline-block" id="btnRemove" name="btnRemove"></div>
+			</div>
+			
+			<!-- 下部table -->
+			<div class="box">
+				<h3 class=" school-titlle">已认定课程/环节（10）</h3>
+				<div class="box-body mt8">
+					<div class="scorll-box">
+						<div class="table-box">
+							<table class="table table-bordered table-hover">
+								<thead>
+								<tr>
+									<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+									<th>课程/环节</th>
+									<th>类别</th>
+									<th>学分</th>
+									<th>考核方式</th>
+									<th>总评成绩</th>
+									<th>学年学期</th>
+									<th>认定前课程/环节</th>
+								</tr>
+								</thead>
+								<tbody id="tbodycontentHasChosen">
+									<tr class="tr-checkbox">
+										<td class="width03"><div class="checkbox-con"><input type="checkbox" class="checNormal" name="checNormal"/></div></td>
+										<td>[22334]数据库设计</td>
+										<td>课程</td>
+										<td>2</td>
+										<td>考试</td>
+										<td>95.0</td>
+										<td>2017-2018 第一学期</td>
+										<td>[22334]JAVA程序设计</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+</body>
+
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+
+
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/abnormalChangeStudentScoreCognizanceList",function(abnormalChangeStudentScoreCognizanceList){
+		abnormalChangeStudentScoreCognizanceList.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</html>

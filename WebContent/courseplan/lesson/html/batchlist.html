@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>批量调停课</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+
+<body page-auth-code="CoursePlan_Lesson_Batch">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> 
+								<select class="form-control sel-com" id="semester" name="semester">
+								</select>
+							</div>
+						</div>						
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn queryBtn" name="delete">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="addmulty">新增</button>
+						</div>					
+						<div class="box-body">
+							<div class="">
+								<div class="table-box">
+									<table class="table table-bordered ">
+										<thead>
+											<tr>
+												<th class="width48" rowspan="2">序号</th>
+												<th rowspan="2">类型</th>
+												<th colspan="2">周次</th>
+												<th colspan="2">星期</th>
+												<th rowspan="2">调课原因</th>
+												<th rowspan="2">提交人</th>
+												<th rowspan="2">提交时间</th>
+											</tr>
+											<tr>
+												<th class="width10">调前</th>
+												<th class="width10">调后</th>
+												<th class="width10">调前</th>
+												<th class="width10">调后</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent" class="no-data-html">
+											<tr><td colspan="9"></td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+<script id="tableTmpl" type="text/x-jquery-tmpl">
+<tr code="${adjustShutId}">
+    <td  class="width48">${$index + 1}</td>    
+    <td class="width10">${adjustShutTypeName}</td>
+    <td class="width10">${adjustWeek}</td>
+    <td class="width10">${adjustToWeek}</td>
+    <td class="width10">${adjustWeekDays}</td>
+    <td class="width10">${adjustToWeekDays}</td>										    
+    <td class="text-l" title="${adjustShutReason}"><div class="ellipsis w500">${adjustShutReason}</div></td>   
+    <td class="width10">[${createNo}]${createName}</td>
+    <td class="width10">${$item.format(createTime,'yyyy-MM-dd hh:mm')}</td>
+</tr>
+</script>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/batchlist", function(lesson) {
+		lesson.init();
+	});
+</script>
+</html>

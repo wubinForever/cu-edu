@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+	<title>毕业审核</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../../common/css/popup.css" rel="stylesheet" />
+	<link href="../../../common/css/skins.css" rel="stylesheet" />
+	<!--日期样式-->
+	<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+	<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+<body page-auth-code="Graduation_Audit">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">毕业年届：</label> 
+								<input type="text" class="form-control inp-com" id="graduateYear" name="graduateYear" maxlength="5" readonly />
+								<input type="text" style="display: none;" />
+							</div>
+						</div>	
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-left">
+							<span id="notPassTotal">未通过毕业审核的学生：0</span>
+						</div>
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="audit" id="audit" auth-code="Graduation_Audit">毕业审核</button>
+						</div>
+						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th width="60">序号</th>
+												<th width="70">年级</th>
+												<th>院系</th>
+												<th>专业</th>
+												<th>班级</th>
+												<th width="120">学号</th>
+												<th width="100">姓名</th>
+												<th width="70">毕业要求<br>学分</th>
+												<th width="70">取得学分</th>
+												<th width="70">毕业要求<br>课程数</th>
+												<th width="70">达到要求<br>课程数</th>
+												<th width="70">毕业审核<br>结果</th>
+												<th>未通过原因</th>
+												<th width="90">操作</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	<tr >
+	    <td width="60" title="${index}">${index}</td>
+	    <td width="70" title="${classGrade}">${classGrade}</td>    
+	    <td title="${departmentName}" class="text-l">${departmentName}</td>
+	    <td title="${majorName}" class="text-l">${majorName}</td>
+	    <td title="${className}" class="text-l">${className}</td>
+	    <td width="120" class="text-l" title="${studentNo}">${studentNo}</td>
+	    <td width="100" class="text-l" title="${studentName}">${studentName}</td>
+	    <td width="70" title="${creditRequireTotal}">${creditRequireTotal}</td>
+	    <td width="70" title="${creditGotTotal}">${creditGotTotal}</td>
+	    <td width="70" title="${courseRequireTotal}">${courseRequireTotal}</td>
+	    <td width="70" title="${courseFinishTotal}">${courseFinishTotal}</td>
+	    <td width="70" title="${auditResultsName}">${auditResultsName}</td>
+	    <td title="${rejectReasonName}"><span class="text-danger">${rejectReasonName}</span></td>
+	    {{if rejectReason == 4}}
+	    <td width="90"></td>
+	    {{else}}
+	    <td width="90"><button type="button" class="btn-text" grade="${grade}" majorId="${majorId}" majorName="${majorName}" departmentId="${departmentId}" graduateStudentId="${graduateStudentId}" studentName="${studentName}" studentNo="${studentNo}" auth-code="Graduation_Audit_Detail" name="detail">查看详情</button></td>
+	    {{/if}}
+	</tr>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/graduationAuditList", function(graduationAuditList) {
+		graduationAuditList.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

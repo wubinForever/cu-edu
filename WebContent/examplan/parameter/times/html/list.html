@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>考试时间设置</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body page-auth-code="ExamPlan_Parameter_Times">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="schoolCalendar">学年学期：</label> 								
+								<select class="form-control sel-com" id="schoolCalendarId" name="schoolCalendarId">									
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">考试批次：</label> 
+								<select class="form-control sel-com" id="batchId" name="batchId">									
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con"></div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="delete" id="delete" auth-code="ExamPlan_Parameter_Times_Delete">清除场次时间</button>
+				<button type="button" class="btn btn-primary header-btn-2" name="add" id="add" auth-code="ExamPlan_Parameter_Times_Add">生成场次时间</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="forbid"
+								auth-code="ExamPlan_Parameter_Times_Forbid">设置禁考时段</button>
+							<button type="button" class="btn btn-danger" name="cancle"
+								auth-code="ExamPlan_Parameter_Times_Cancle">取消禁考设置</button>
+						</div>
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05"><div class="checkbox-con">
+														<input type="checkbox" id="check-all" class="checNormal">
+													</div></th>
+												<th>序号</th>
+												<th>场次性质</th>
+												<th>场次</th>
+												<th>考试日期</th>
+												<th>考试时间</th>
+												<th>禁考</th>												
+												<th>操作</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+    <td class="width05">      
+        <div class="checkbox-con"><input type="checkbox" name="checNormal"  value="${timesId}" class="checNormal"></div>
+    </td>
+    <td>${indexNum}</td>    
+    <td>${timesProperty}</td>
+    <td>${timesWeek}</td>
+    <td>${examDateName}</td>
+    <td>${examStartTime}-${examEndTime}</td>
+    <td>${forbidStatusName}</td>   
+    <td>    	
+        <button type="button" class="btn-text" name="update" data-tt-id="${timesId}" auth-code="ExamPlan_Parameter_Times_Modify">修改</button>   
+   </td>
+</tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/times", function(times) {
+		times.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

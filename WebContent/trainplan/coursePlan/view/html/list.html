@@ -1,0 +1,325 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>查询开课计划</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<div class="tab-box">
+		<div class="tab-hd">
+			<ul class="hd-list clearfix">
+				<li class="cur">列表样式（到行政班级）</li>
+				<li id="clname">列表样式（不到行政班级）</li>
+			</ul>
+		</div>
+		<div class="tab-bd">
+			<div class="bd-con">
+				<!--筛选查询 开始-->
+				<div class="container-fluid col-xs-12">
+					<div class="header-con">
+						<form id="queryForm">
+							<div class="row">
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">学年学期：</label>
+										<select class="form-control sel-com" id="semester" name="semester">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">年级：</label>
+										<select class="form-control sel-com" id="grade" name="grade">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">院系：</label>
+										<select class="form-control sel-com" id="departmentId" name="departmentId">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">专业：</label>
+										<select class="form-control sel-com" id="majorId" name="majorId">
+										<option value="">全部 </option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">课程/环节：</label>
+										<select class="form-control sel-com" id="classType" name="classType">
+											<option value="">全部 </option>
+											<option value="1">理论课程 </option>
+											<option value="2">实践环节 </option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+						<button type="button" class="btn btn-primary header-btn"  name="query"
+								id="query">查询</button>
+					</div>
+				</div>
+				<!--筛选查询 结束-->
+				<!-- 内容一 开始 ------>
+				<div class="sub-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header pull-right">
+									<button type="button" class="btn btn-success width-default" name="export">导出</button>
+								</div>
+								<div class="box-body">
+									<div class="scorll-box">
+										<div class="table-box min1600">
+											<table class="table table-bordered">
+												<thead>
+												<tr>
+													<th class="width48">序号</th>
+													<th class="width48">年级</th>
+													<th>专业</th>
+													<th class="width85">校区</th>
+													<th class="width85">课程/环节号</th>
+													<th>课程/环节名称</th>
+													<th class="width85">课程/环节</th>
+													<th class="width85">类别</th>
+													<th class="width48">课程<br/>属性</th>
+													<th class="width48">考核<br/>方式</th>
+													<th class="width48">学分</th>
+													<th class="width48">总<br/>学时</th>
+													<th class="width48">理论<br/>学时</th>
+													<th class="width48">实验<br/>学时</th>
+													<th class="width48">实践<br/>学时</th>
+													<th class="width48">其它<br/>学时</th>
+													<th class="width48">周<br/>学时</th>
+													<th class="width48">周数</th>
+													<th>开课单位</th>
+													<th>行政班级</th>
+													<th class="width85">班级代码</th>
+													<th class="width48">班级<br/>人数</th>
+												</tr>
+												</thead>
+												<tbody id="classtbodycontent">
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div id="pagination" class='pagination'></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 内容一 结束 --- -->
+			</div>
+			<div class="bd-con">
+				<!--筛选查询 开始-->
+				<div class="container-fluid col-xs-12">
+					<div class="header-con">
+						<form id="queryForm1" onkeydown="if(event.keyCode==13)return false;">
+							<div class="row">
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">学年学期：</label>
+										<select class="form-control sel-com" id="semester1" name="semester1">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">年级：</label>
+										<select class="form-control sel-com" id="grade1" name="grade1">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">院系：</label>
+										<select class="form-control sel-com" id="departmentId1" name="departmentId1">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">专业：</label>
+										<select class="form-control sel-com" id="majorId1" name="majorId1">
+											<option value="">全部</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">培养层次：</label>
+										<select class="form-control sel-com" id="trainingLevelCode" name="trainingLevelCode">
+											<option value="">全部</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">课程/环节：</label>
+										<select class="form-control sel-com" id="classType1" name="classType1">
+											<option value="">全部 </option>
+											<option value="1">理论课程 </option>
+											<option value="2">实践环节 </option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+						<button type="button" class="btn btn-primary header-btn"  name="query1"
+								id="query1">查询</button>
+					</div>
+				</div>
+				<!--筛选查询 结束-->
+				<!-- 内容二 开始 ------>
+				<div class="sub-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header pull-right">
+									<button type="button" class="btn btn-success width-default" name="export1">导出</button>
+								</div>
+								<div class="box-body">
+									<div class="scorll-box">
+										<div class="table-box min1600">
+											<table class="table table-bordered">
+												<thead>
+												<tr>
+													<th class="width48">序号</th>
+													<th class="width48">年级</th>
+													<th>专业</th>
+													<th class="width48">培养<br/>层次</th>
+													<th class="width48">班级<br/>数</th>
+													<th class="width85">课程/环节号</th>
+													<th>课程/环节名称</th>
+													<th class="width85">课程/环节</th>
+													<th class="width85">类别</th>
+													<th class="width48">课程<br/>属性</th>
+													<th class="width48">考核<br/>方式</th>
+													<th class="width48">学分</th>
+													<th class="width48">总<br/>学时</th>
+													<th class="width48">理论<br/>学时</th>
+													<th class="width48">实验<br/>学时</th>
+													<th class="width48">实践<br/>学时</th>
+													<th class="width48">其它<br/>学时</th>
+													<th class="width48">周<br/>学时</th>
+													<th class="width48">周数</th>
+													<th>开课单位</th>
+												</tr>
+												</thead>
+												<tbody id="noclasstbodycontent">
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div id="pagination1" class="pagination"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 内容二 结束 --- -->
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->	
+<script id="classbodyContentImpl" type="text/x-jquery-tmpl">
+<tr style="height:23px;">
+	<td class="width48">${$index+1}</td>
+	<td class="width48" title='${grade}'>${grade}</td>
+	<td class="text-l" title='${majorName}'>${majorName}</td>
+	<td class="text-l width85" title='${campusName}'>${campusName}</td>
+	<td class="text-l width85" title='${courseNo}'>${courseNo}</td>
+	<td class="text-l" title='${name}'>${name}</td>
+	<td class="width85" {{if classType == '1'}}title='理论课程'{{else}}title='实践环节'{{/if}} >{{if classType == '1'}}理论课程{{else}}实践环节{{/if}}</td>
+	<td class="width85">{{if classType == '1'}}${courseTypeName}{{else}}${tacheTypeName}{{/if}}</p></td>
+	<td class="width48" title='${courseAttributeName}'>${courseAttributeName}</p></td>
+	<td class="width48" title='${checkWakyName}'>${checkWakyName}</p></td>
+	<td title="${credit}" class="width48 text-r">${credit}</td>
+	<td class="width48 text-r">${totalPeriod}</td>
+	<td class="width48 text-r">${theoryPeriod}</td>
+	<td class="width48 text-r">${experiPeriod}</td>
+	<td class="width48 text-r">${practicePeriod}</td>
+	<td class="width48 text-r">${otherPeriod}</td>
+	<td class="width48 text-r">${weekPeriod}</td>
+	<td class="width48 text-r">${weekNum}</td>
+	<td class="text-l" title='${startUnit}'>${startUnit}</td>
+	<td class="text-l" title='${className}'>${className}</td>
+	<td class="text-l width85" title='${classNo}'>${classNo}</td>
+	<td class="width48"><p class="text-right">${presetNumber}</p></td>
+</tr>
+</script> 
+<script id="noclassbodyContentImpl" type="text/x-jquery-tmpl">
+ <tr style="height:23px;">
+	<td class="width48">${$index+1}</td>
+	<td class="width48"  title='${grade}'>${grade}</td>
+	<td class="text-l" title='${majorName}'>${majorName}</td>
+    <td class="text- width48" title='${trainLevelName}'>${trainLevelName}</td>
+	<td class="text-r width48" title='${classNumber}'>${classNumber}</td>
+	<td class="width85" title='${courseNo}'>${courseNo}</td>
+	<td class="text-l" title='${name}'>${name}</td>
+	<td class="width85" {{if classType == '1'}}title='理论课程'{{else}}title='实践环节'{{/if}}>{{if classType == '1'}}理论课程{{else}}实践环节{{/if}}</td>
+	<td class="width85">{{if classType == '1'}}${courseTypeName}{{else}}${tacheTypeName}{{/if}}</td>
+	<td class="width48" title='${courseAttributeName}'>${courseAttributeName}</td>
+	<td class="width48" title='${checkWakyName}'>${checkWakyName}</td>
+    <td title="${credit}" class="width48 text-r">${credit}</td>
+	<td class="width48 text-r">${totalPeriod}</td>
+	<td class="width48 text-r">${theoryPeriod}</td>
+	<td class="width48 text-r">${experiPeriod}</td>
+	<td class="width48 text-r">${practicePeriod}</td>
+	<td class="width48 text-r">${otherPeriod}</td>
+	<td class="width48 text-r">${weekPeriod}</td>
+	<td class="width48 text-r">${weekNum}</td>
+	<td title='${startUnit}'><p class="text-left ellipsis">${startUnit}</p></td>
+</tr>
+</script> 
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/view",function(view){
+		  view.init();
+	}); 
+	seajs.use("basePath/utils/authority");
+</script>			

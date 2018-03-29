@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>查询学生成绩</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+	<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="">
+<!-- 内容框架 开始-->
+<div class="layout-index">
+	<div class="container-fluid mb10">
+		<div class="header-con ">
+			<form id="queryForm">
+				<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="academicYearSemesterSelect">学年学期：</label> <select class="form-control sel-com" id="academicYearSemesterSelect" name="academicYearSemesterSelect">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group">
+								<label for="name">班级：</label>
+								<select class="form-control sel-com" id="classSelect" name="classSelect"></select>
+							</div>
+					    </div>	
+					<div class="col-md-4 form-inline form-inp-con"  >
+						<div class="form-group">
+							<label for="name">课程/环节：</label>
+							<input class="form-control " id="courseId" name="courseId" /> 
+						</div>
+					</div>
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="btnSearch"
+					id="btnSearch">查询</button>
+		</div>
+	</div>
+	<!-- 正式内容区域 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header text-right">
+						<button type="button" class="btn btn-success width-default" name="import" id="import">导出</button>
+					</div>
+					<div class="box-body">
+						    <div class="scorll-box mb20 scoreBox" id="scoreBoxOne">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead id="tbodytitle">
+										<tr>
+											<th class="width48">序号</th>
+											<th>班级</th>
+											<th>学号</th>
+											<th>姓名</th>
+											<th class="width48">性别</th>
+											<th class="width13">课程/环节</th>
+											<th class="width110">总评成绩</th>
+											<th class="width70">取得学分</th>
+											<th class="width70">绩点</th>
+											<th class="width70">学分绩点</th>
+											<th class="width100">特殊情况</th>
+											<th>备注</th>
+										</tr>
+										</thead>
+										<tbody id="tbodycontent" >
+										<tr class="no-data-html"><td colspan='11'></td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="scorll-box">
+							   <div class="table-box" id="scoreBoxTwo">
+								  <table class="table table-bordered table-hover">
+									<thead id="ttotalbodytitle">
+									<tr>
+										<th>分数段</th>
+										<th>[100-90]优秀</th>
+										<th>(90-80]良好</th>
+										<th>(80-70]中等</th>
+										<th>(70-60]及格</th>
+										<th>(60-0]不及格</th>
+										<th>缓考</th>
+										<th>缺考</th>
+										<th>舞弊</th>
+									</tr>
+									</thead>
+									<tbody id="ttotalbodycontent" >
+									
+									</tbody>
+								</table>
+							</div>
+							
+						</div>
+						   </div>
+						<div class="mt10 scorestate">平均成绩：<font id="average"></font> <span class="ml80">及格率：<font id="passRate"></font></span></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 -->
+</div>
+<!-- 内容框架 结束 -->
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+		<tr>
+			<td class="width48" title="${index}">${index}</td>
+			<td class="text-l" title="${className}">${className}</td>
+			<td class="text-l" title="${studentNo}">${studentNo}</td>
+			<td class="text-l" title="${studentName}">${studentName}</td>
+			<td class="width48" title="${sexName}">${sexName}</td>
+			<td class="width13 text-l" title="${courseNoAndName}">${courseNoAndName}</td>
+			<td class="width110 text-r" >${totalScore}</td>
+			<td class="width70 text-r" >${credit}</td>
+			<td class="width70 text-r" >${scorePoint}</td>
+			<td class="width70 text-r" >${finalScorePoint}</td>
+			<td class="width100" title="${specialCaseName}">${specialCaseName}</td>
+			<td class="text-l" title="${remark}">${remark}</td>
+		</tr>		
+</script>
+<script id="ttotalbodycontentImpl" type="text/x-jquery-tmpl">
+		<tr>
+			<td>${name}</td>
+			<td>${excellent}</td>
+			<td>${good}</td>
+			<td>${secondary}</td>
+			<td>${pass}</td>
+			<td>${fail}</td>
+			<td>${special1}</td>
+			<td>${special2}</td>
+			<td>${special3}</td>
+		</tr>		
+</script>
+	<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/queryStudentScoreList",function(queryStudentScoreList){
+		queryStudentScoreList.init();
+	});
+	seajs.use("basePath/utils/authority");
+	
+
+</script>
+</body>
+</html>

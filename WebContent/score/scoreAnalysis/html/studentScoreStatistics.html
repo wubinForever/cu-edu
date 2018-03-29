@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>学生成绩统计</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<style>
+			th.rowspanone {
+			    border-bottom: none!important;
+			    position: relative;
+			}
+			th.rowspanone span.name {
+			    position: absolute;
+			    top: 80%;
+			    left: 50%;
+			    margin-left: -13px;
+			    margin-top: 12px\0;
+			}
+			th.rowspanone div.checkbox-con{
+				position: absolute;
+			    top: 80%;
+			    left: 50%;
+			    margin-left: -7px;
+			    margin-top: 12px\0;
+			}
+		</style>
+</head>
+<body page-auth-code="">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<div class="container-fluid">
+		<div class="header-con ">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年：</label>
+							<select	class="form-control sel-com" id="semester" name="semester">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学期：</label>
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">年级：</label>
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 院系：</label> 
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 专业：</label> 
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 班级：</label> 
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 学号/姓名：</label> 
+							<input class="form-control inp-com" id="" name="" maxlength="">
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 是否在校生：</label> 
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 包含通识课：</label> 
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 类别：</label> 
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 未通过数：</label> 
+							<input class="form-control inp-com inp-small" id="" name="" maxlength=""> - <input class="form-control inp-com inp-small" id="" name="" maxlength="">
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 未通过学分：</label> 
+							<input class="form-control inp-com inp-small" id="" name="" maxlength=""> - <input class="form-control inp-com inp-small" id="" name="" maxlength="">
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 获得学分：</label> 
+							<input class="form-control inp-com inp-small" id="" name="" maxlength=""> - <input class="form-control inp-com inp-small" id="" name="" maxlength="">
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar"> 获得学分未达到修读学分的：</label> 
+							<input class="form-control inp-com inp-small" id="" name="" maxlength=""> %
+						</div>
+					</div>
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>
+	</div>
+	<!-- 正式内容区域 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="clearfix">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success width-default" id="import" name="import" auth-code="">导出</button>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box min1600">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th><span>序号</span></th>
+											<th><span>年级</span></th>
+											<th><span>院系</span></th>
+											<th><span>专业</span></th>
+											<th><span>班级</span></th>
+											<th><span>学号</span></th>
+											<th><span>姓名</span></th>
+											<th>修读课程/环节数</th>
+											<th>修读学分</th>
+											<th>未通过课程/环节数</th>
+											<th>获得学分</th>
+											<th>未通过学分</th>
+											<th><span>学分绩点</span></th>
+											<th><span>平均学分绩点</span></th>
+											<th><span>总分</span></th>
+											<th><span>平均分</span></th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontent">
+										<tr>
+											<td>1</td>
+											<td>2017</td>
+											<td>计算机系</td>
+											<td>软件工程</td>
+											<td>17软工1班</td>
+											<td>12312</td>
+											<td>张三</td>
+											<td>60</td>
+											<td>120.0</td>
+											<td><a href="javascript:void(0);" name="course-check">5</a></td>
+											<td>110.0</td>
+											<td>10</td>
+											<td>4.50</td>
+											<td>4.40</td>
+											<td>500.0</td>
+											<td>93.0</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="pagination" class="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 --- -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	<!--<tr>
+		<td>${index}</td>
+		<td class="text-l" title="${departmentName}">${departmentName}</td>
+		<td class="text-l" title="${courseNo}">${courseNo}</td>
+		<td class="text-l" title="${courseName}">${courseName}</td>
+		<td class="text-l " title="${teachingClassNo}">${teachingClassNo}</td>
+		<td class="text-l" title="${teacherNames}">${teacherNames}</td>
+		<td class="text-r" title="${totalNum}">${totalNum}</td>
+		<td class="text-r" title="${excellent}">${excellent}</td>
+		<td class="text-r" title="${excellentPercent}">${excellentPercent}</td>
+		<td class="text-r" title="${good}">${good}</td>
+		<td class="text-r" title="${goodPercent}">${goodPercent}</td>
+		<td class="text-r" title="${secondary}">${secondary}</td>
+		<td class="text-r" title="${secondaryPercent}">${secondaryPercent}</td>
+		<td class="text-r" title="${pass}">${pass}</td>
+		<td class="text-r" title="${passPercent}">${passPercent}</td>
+		<td class="text-r" title="${fail}">${fail}</td>
+		<td class="text-r" title="${failPercent}">${failPercent}</td>
+		<td class="text-r" title="${maxscore}">${maxscore}</td>
+		<td class="text-r" title="${minscore}">${minscore}</td>
+		<td class="text-r" title="${avgscore}">${avgscore}</td>
+		<td class="text-r" title="${totalPasspercent}">${totalPasspercent}</td>
+	</tr>-->
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/studentScoreStatistics",function(studentScoreStatistics){
+		studentScoreStatistics.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

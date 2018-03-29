@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>课程课表</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+<body page-auth-code="CoursePlan_Schedule_CourseQuery">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> <select class="form-control sel-com" id="academicSemester"
+									name="academicSemester">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">开课单位：</label> <select class="form-control sel-com" id="departmentId"
+									name="departmentId">
+								</select>
+								<input type="text" class="hide" /><input type="text" class="hide" />
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">课程：</label> <input type="text" class="form-control inp-com" id="courseNoOrName" name="courseNoOrName" />
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" id="query">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="">
+				<div class="col-xs-12 scroll-box2">
+					<div class="box">
+						<div class="box-header pull-left">
+							<span>课程总数：
+								<span id="courseCount" style="color: red;">0</span>
+							</span>
+						</div>
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" id="print" auth-code="CoursePlan_Schedule_CourseQuery_Export">打印</button>
+						</div>
+						<div style="clear: both;"></div>
+						<div class="banner" id="divBody"></div>
+						<div id="printBody"></div>
+
+						<button type="button" class="btn-more mb10" name="" id="btnLoadMore">
+							加载更多 <i class="fa fa-angle-double-down"></i>
+						</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 打印 -->
+<script src="../../../common/js/base/print/jquery.jqprint-0.3.js"></script>
+<script src="../../../common/js/base/print/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/courselist", function(item) {
+		item.init();
+	});
+</script>
+</html>

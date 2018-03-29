@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>教室选择（弹窗）</title>
+		<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+        <link href="../../../../common/css/popup.css" rel="stylesheet"/>
+        <link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+        <link href="../../../../common/css/skins.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="../../../../common/css/courseplan.css"/>
+        <!-- 下面这个是树目录控件的css -->
+        <link href="../../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+        <!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>
+		<!-- 内容框架 开始------------------------------------------------------------->
+		<div class="layout-index">
+			<div class="container-fluid col-xs-12">
+				<div class="header-con">
+					<form id="">
+						<div class="row">
+							<div class="col-md-6 form-inline form-inp-con">
+								<div class="form-group form-normal">
+									<label for="schoolCalendar">校区：</label> 
+									<select class="form-control sel-com" id="campusId" name="campusId">
+									</select>
+								</div>
+							</div>	
+							<div class="col-md-6 form-inline form-inp-con">
+								<div class="form-group form-normal">
+									<label for="schoolCalendar">楼房：</label> 
+									<select class="form-control sel-com" id="buildingId" name="buildingId">
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 form-inline form-inp-con">
+								<div class="form-group form-normal">
+									<label for="schoolCalendar">教室类型：</label> 
+									<select class="form-control sel-com" id="venueTypeCode" name="venueTypeCode">
+									</select>
+								</div>
+							</div>
+						<div class="col-md-6 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">有效座位数：</label>
+								<div class="input-group spinner" style="width: 85px !important;">
+									<input id="minSeatNum" name="minSeatNum" type="text" class="form-control" value="" maxlength="3" min=1 max=999
+										style="min-width: 80px; width: 85px !important;">
+									<div class="input-group-btn-vertical">
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-caret-up"></i>
+										</button>
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-caret-down"></i>
+										</button>
+									</div>
+								</div>
+								-
+								<div class="input-group spinner" style="width: 85px !important;">
+									<input id="maxSeatNum" name="maxSeatNum" type="text" class="form-control" value="" maxlength="3" min=1 max=999
+										style="min-width: 80px; width: 85px !important;">
+									<div class="input-group-btn-vertical">
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-caret-up"></i>
+										</button>
+										<button class="btn btn-default" type="button">
+											<i class="fa fa-caret-down"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</form>
+					<button type="button" class="btn btn-primary header-btn" id="query">查询</button>
+				</div>
+			</div>
+			<div class="sub-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="box" >
+							<div class="box-header pull-left" style="margin:10px 0 0 0;">
+								<label class="checkbox-inline" style="padding:0 15px 0 0;"> 
+									<div class="checkbox-con mr10 on-check">
+										<input type="checkbox" class="checNormal" id="isUsed" checked="checked">
+									</div>限空闲教室
+								</label>
+							</div>
+												
+							<div class="box-body">
+								<div class="scorll-box">
+									<div class="table-box">
+										<table class="table table-bordered table-hover">
+											<thead>
+												<tr>
+													<th class="width55">&nbsp;</th>
+													<th class="width05">序号</th>
+													<th>校区</th>
+													<th>楼房</th>
+													<th>教室</th>
+													<th>教室类型</th>
+													<th class="width95">有效座位数</th>
+												</tr>
+											</thead>
+											<tbody id="tbodycontent">
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>			
+							<div id="pagination" class="pagination"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 内容框架 结束 ------------------------------------------------------------>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script id="teachRoomTmpl" type="text/x-jquery-tmpl">
+	<tr class="tr-checkbox">
+		<td class="width55">
+			<label class="radio-inline padding0">
+				<div class="radio-con">
+					<input type="radio" name="isEnabled" campusId="${campusId}" 
+						buildingId="${buildingId}" venueId="${venueId}" venueTypeCode="${venueTypeCode}">
+				</div>
+			</label>
+		</td> 
+		<td class="width05">${$index+1}</td>    
+		<td>${campusName}</td>
+		<td name="buildingName">${buildingName}</td>
+		<td name="venueName">${venueName}</td>
+		<td>${venueTypeName}</td>
+		<td class="text-r width95">${seatCount}</td>   									    
+	</tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/classroomlist", function(item) {
+		item.init();
+	});
+</script>

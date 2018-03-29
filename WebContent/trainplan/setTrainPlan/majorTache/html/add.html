@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>专业实践环节新增</title>	
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet" />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet" />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+
+<body page-auth-code="TrainPlan_SetTrainPlan_MajorTache_Add">
+	<div class="pop-con box900">
+		<div class="container-fluid">
+			<h3 class=" pop-title">选择年级专业 ：</h3>
+			<form id="queryForm">
+				<input type="hidden" id="courseOrTache" name="courseOrTache" value="2" />
+				<div class="header-con major">
+					<div class="form-inline">
+						<label for="name"><i class="text-danger">*</i> 年级：</label>
+						<select class="form-control inp-com" id="grade" name="grade">
+						</select>
+						<label for="name">院系：</label>
+						<select class="form-control inp-com" id="departmentId" name="departmentId">
+						</select>
+						<label for="name"><i class="text-danger">*</i> 专业：</label>
+						<select class="form-control inp-com" id="majorId" name="majorId">
+						</select>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!--表格区域-->
+		<div id="addUsers" class="double-table-opra">
+		<h3 class=" school-titlle">选择实践环节</h3>
+		<div class="box">
+		<form id="courseQueryForm" onkeydown="if(event.keyCode==13)return false;">
+			<div class="box-header">
+				<div class="per60 mt10">
+					待选择：<span class="text-danger" id="waitChosenCount"></span>
+				</div>
+				<div class="per40">
+					<div class="form-inline pull-left mr10">
+						<select class="form-control inp-com-small" id="kkDepartmentId" name="kkDepartmentId">
+						</select></div>
+					<div class="input-group input-group-m">
+						<input type="text" class="form-control" placeholder="环节号/环节名称" id="courseNo" name="courseNo" maxlength="100" />
+						<span class="input-group-btn">
+	                      <button class="btn btn-info btn-flat fa fa-search" type="button" id="btnSearch" name="btnSearch"></button>
+	                    </span>
+					</div>
+				</div>
+			</div>
+			</form>
+			<div class="box-body mt10">
+				<div class="scorll-box">
+					<div class="table-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+							<tr>
+								<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all-waitchosen" class="checNormal"></div></th>
+								<th class="width48">序号</th>
+								<th class="width10">环节号</th>
+								<th>环节名称</th>
+								<th>开课单位</th>
+								<th class="width85">环节类别</th>
+								<th class="width60">学分</th>
+								<th class="width48">周数</th>
+								<th class="width65">考核方式</th>
+							</tr>
+							</thead>
+							<tbody id="tbodycontentWaitChosen">
+							
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="pagination" class="pagination"></div>
+		</div>
+		<div class="btn-vertical">
+			<div class="btn-verticalbg btn-green inline-block" id="btnAdd" name="btnAdd"></div>
+			<div class="btn-verticalbg btn-red inline-block" id="btnRemove" name="btnRemove"></div>
+		</div>
+		<div class="box">
+			<div>
+				已选择：<span class="text-danger" id="hasChosenCount"></span>
+			</div>
+			<div class="box-body mt8">
+				<div class="scorll-box">
+					<div class="table-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+							<tr>
+								<th class="width03"><div class="checkbox-con"><input type="checkbox" id="check-all-haschosen" class="checNormal"></div></th>
+								<th class="width48">序号</th>
+								<th class="width10">环节号</th>
+								<th>环节名称</th>
+								<th>开课单位</th>
+								<th class="width85">环节类别</th>
+								<th class="width60">学分</th>
+								<th class="width80"><i class="text-danger">*</i>周数</th>
+								<th class="width120">考核方式</th>
+								<th class="width120"><i class="text-danger">*</i>开课学期</th>
+							</tr>
+							</thead>
+							<tbody id="tbodycontentHasChosen">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+</body>
+
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 树形结构 -->
+<script src="../../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+<script src="../../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+
+<!-- 带选择列表内容 -->
+<script id="bodycontentWaitChosenImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+	<td class="width03"><div class="checkbox-con"><input type="checkbox" class="checNormal" value="${index}" name="waitChosen" /></div></td>
+	<td class="width48">${index+1}</td>
+	<td title="${courseNo}" class="text-l width10">${courseNo}</td>
+	<td title="${name}" class="text-l">${name}</td>
+	<td title="${departmentName}" class="text-l">${departmentName}</td>
+	<td title="${tacheTypeName}" class="width85">${tacheTypeName}</td>
+	<td title="${credit}" class="width60 text-r">${credit}</td>
+	<td class="width48 text-r">${weekNum}</td>
+	<td title="${checkWayName}" class="width65">${checkWayName}</td>
+</tr>
+</script> 
+
+<!-- 已选择列表内容 -->
+<script id="bodycontentHasChosenImpl" type="text/x-jquery-tmpl">	
+<tr class="tr-checkbox" id="tr${index}">
+	<td class="width03">
+		<div class="checkbox-con">
+		{{if relatedNum>=1}} 
+			<input type="checkbox" class="checNormal disabled" disabled value="${index}" courseno="${courseNo}" name="hasChosen" />
+		{{else}}
+			<input type="checkbox" class="checNormal" value="${index}" courseno="${courseNo}" name="hasChosen" />
+		{{/if}}			
+		</div>
+	</td>
+	<td class="width48">${index+1}</td>
+	<td title="${courseNo}" class="text-l width10">${courseNo}</td>
+	<td title="${name}" class="text-l">${name}</td>
+	<td title="${kkDepartmentName}" class="text-l">${kkDepartmentName}</td>
+	<td title="${tacheTypeName}" class="width85">${tacheTypeName}</td>
+	<td title="${credit}" class="width60 text-r">${credit}</td>
+	<td class="width80">
+
+<div class="input-group spinner classhour">
+<input type="text" class="form-control {{if relatedNum>=1}}disabled{{/if}}" {{if relatedNum>=1}}disabled{{/if}} style="min-width: 40px;" index="${index}" maxlength="2" id="weekNum${index}" name="weekNum" value="${weekNum}" min="0" max="99" >
+				<div class="input-group-btn-vertical major-list">
+					<button class="btn btn-default mybutton" type="button" {{if relatedNum>=1}}disabled{{/if}}><i class="fa fa-caret-up"></i></button>
+					<button class="btn btn-default mybutton" type="button" {{if relatedNum>=1}}disabled{{/if}}><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div>
+	</td>
+	<td class="width120">
+		<select class="form-control {{if relatedNum>=1}}disabled{{/if}}" {{if relatedNum>=1}}disabled{{/if}} style="min-width: 80px;" index="${index}" id="checkWayCode${index}" name="checkWayCode" value="${checkWayCode}">
+		</select>
+	</td>
+	<td style=" overflow: visible;"  class="width120">
+		<div class="s-dutyform">
+			<input class="form-control toggle-tree {{if relatedNum>=1}}disabled{{/if}}" {{if relatedNum>=1}}disabled{{else}}readonly{{/if}}  style="position: relative;min-width: 40px;" id="startclassSemester${index}" index="${index}" name="startclassSemester"  onmouseover="this.title=this.value" type="text" value="${startclassSemester}"  onmouseout="isOut=true" title="">
+			<div class="s-mult" style=" display: none; width: 102px; position: absolute " id="checkboxlist${index}" onmouseover="isOut=false" onmouseout="isOut=true">
+				<label for="scsCheckBox01${index}"  class="checkbox-con on-check">
+					<input type="checkbox" value="1" index="${index}" name="scsCheckBox" id="scsCheckBox01${index}" class="checNormal">1
+				</label>
+				<label for="scsCheckBox02${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="2" index="${index}" name="scsCheckBox" id="scsCheckBox02${index}" >2
+				</label>
+				<label for="scsCheckBox03${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="3" index="${index}" name="scsCheckBox" id="scsCheckBox03${index}" >3
+				</label>
+				<label for="scsCheckBox04${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="4" index="${index}" name="scsCheckBox" id="scsCheckBox04${index}" >4
+				</label>
+				<label for="scsCheckBox05${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="5" index="${index}" name="scsCheckBox" id="scsCheckBox05${index}" >5
+				</label>
+				<label for="scsCheckBox06${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="6" index="${index}" name="scsCheckBox" id="scsCheckBox06${index}" >6
+				</label>
+				<label for="scsCheckBox07${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="7" index="${index}" name="scsCheckBox" id="scsCheckBox07${index}" >7
+				</label>
+				<label for="scsCheckBox08${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="8" index="${index}" name="scsCheckBox" id="scsCheckBox08${index}" >8
+				</label>
+				<label for="scsCheckBox09${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="9" index="${index}" name="scsCheckBox" id="scsCheckBox09${index}" >9
+				</label>
+				<label for="scsCheckBox10${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="10" index="${index}" name="scsCheckBox" id="scsCheckBox10${index}" >10
+				</label>
+				<label for="scsCheckBox11${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="11" index="${index}" name="scsCheckBox" id="scsCheckBox11${index}" >11
+				</label>
+				<label for="scsCheckBox12${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="12" index="${index}" name="scsCheckBox" id="scsCheckBox12${index}" >12
+				</label>
+				<label for="scsCheckBox13${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="13" index="${index}" name="scsCheckBox" id="scsCheckBox13${index}" >13
+				</label>
+				<label for="scsCheckBox14${index}" class="checkbox-con on-check">
+					<input type="checkbox" value="14" index="${index}" name="scsCheckBox" id="scsCheckBox14${index}" >14
+				</label>
+			</div>
+		</div>
+	</td>
+</tr>
+</script> 
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/majortache",function(majortache){
+		majortache.addInit();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</html>

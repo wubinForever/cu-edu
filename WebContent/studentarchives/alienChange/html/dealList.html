@@ -1,0 +1,219 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>异动申请处理</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentArchives_AlienChange_ApplyDeal">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<!--筛选查询 开始-->
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name" class="min100">生效学年学期：</label>
+							<select class="form-control sel-com" id="academicYearSemester" name="academicYearSemester">
+								<option value="">2016-2017学年第二学期</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">异动类别：</label>
+							<select class="form-control sel-com" id="alienChangeCategoryCode" name="alienChangeCategoryCode">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">数据来源：</label>
+							<select class="form-control sel-com" id="dataSourceCode" name="dataSourceCode">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name" class="min100">处理状态：</label>
+						<select class="form-control sel-com" id="dealStatus" name="dealStatus">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">年级：</label>
+							<select class="form-control sel-com" id="grade" name="grade">
+								<option value="-1">全部</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">院系：</label>
+							<select class="form-control sel-com" id="departmentId" name="departmentId">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name" class="min100">专业：</label>
+							<select class="form-control sel-com" id="majorId" name="majorId">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+					<div class="form-group">
+						<label for="name">班级：</label>
+						<select class="form-control sel-com" id="classId" name="classId">
+							<option value="">全部</option>
+						</select>
+					</div>
+				</div>
+
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学号/姓名：</label>
+							<input class="form-control inp-com" id="name" name="name" maxLength="50" placeholder="学号/姓名" />
+							<input type="text" style="display: none;"><!-- 解决按回车提交表单问题 -->
+						</div>
+					</div>
+
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="query"
+					id="query">查询</button>
+		</div>
+	</div>
+	<!--筛选查询 结束-->
+	<!-- 内容 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header pull-right">
+						<button type="button" class="btn btn-success width-default" id="export" name="export" auth-code="StudentArchives_AlienChange_ApplyDeal_Export">导出</button>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+									<tr>
+									    <th class="width48">序号</th>
+										<th>学号</th>
+										<th>姓名</th>
+										<th class="width55">原年级</th>
+										<th>原专业</th>
+										<th>原班级</th>
+										<th class="width55">新年级</th>
+										<th>新专业</th>
+										<th>新班级</th>
+										<th class="width120">异动类别</th>
+										<th>异动原因</th>
+										<th class="width85">异动日期</th>
+										<th>异动文号</th>
+										<th class="width85">数据来源</th>
+										<th class="width65">处理状态</th>
+										<th class="width75">操作</th>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 --- -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">
+    <td class="width48" title="${index}">${index}</td>
+	<td class="text-l" title="${studentNo}">${studentNo}</td>
+	<td class="text-l" title="${studentName}">${studentName}</td>
+	<td class="width55" title="${beforeGrade}">${beforeGrade}</td>
+	<td class="text-l" title="${beforeMajorName}">${beforeMajorName}</td>
+	<td class="text-l" title="${beforeClassName}">${beforeClassName}</td>
+	<td class="width55" title="${afterGrade}">${afterGrade}</td>
+	<td class="text-l" title="${afterMajorName}">${afterMajorName}</td>
+	<td class="text-l" title="${afterClassName}">${afterClassName}</td>
+	<td class="text-l width120" title="${alienChangeCategoryCodeName}">${alienChangeCategoryCodeName}</td>
+	<td class="text-l" title="${alienChangeReasonCodeName}">${alienChangeReasonCodeName}</td>
+	<td class="width85" title="${$item.format(alienChangeDate,"yyyy-MM-dd")}">${$item.format(alienChangeDate,"yyyy-MM-dd")}</td>
+	<td class="text-l" title="${documentSymbol}">${documentSymbol}</td>
+	<td class="text-l width85" title="${dataSourceCodeName}">${dataSourceCodeName}</td>
+	<td class="width65" title="${dealStatusName}">${dealStatusName}</td>
+	<td class="width75">
+		{{if dealStatus == 3}}
+			<button type="button" class="btn-text" name="deal" recordId="${recordId}" userId="${userId}" academicYear="${academicYear}" semesterCode="${semesterCode}" auth-code="StudentArchives_AlienChange_ApplyDeal_Deal">异动处理</button><br/>
+			<button type="button" class="btn-text disabled" name="" auth-code="StudentArchives_AlienChange_ApplyDeal_Cancel" disabled>取消异动</button>
+		{{else}}
+			{{if dealStatus == 1}}
+			<button type="button" class="btn-text disabled" name="" auth-code="StudentArchives_AlienChange_ApplyDeal_Deal" disabled>异动处理</button><br/>
+			<button type="button" class="btn-text" name="cancelDeal" recordId="${recordId}" userId="${userId}" isCancel="${isCancel}" academicYear="${academicYear}" semesterCode="${semesterCode}" auth-code="StudentArchives_AlienChange_ApplyDeal_Cancel">取消异动</button>
+			{{else}}
+			<button type="button" class="btn-text disabled" name="" auth-code="StudentArchives_AlienChange_ApplyDeal_Deal" disabled>异动处理</button><br/>
+			<button type="button" class="btn-text disabled" name="" auth-code="StudentArchives_AlienChange_ApplyDeal_Cancel" disabled>取消异动</button>
+			{{/if}}
+		{{/if}}
+	</td>
+</tr>
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/alienChange", function(alienChange) {
+		alienChange.initDeal();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>
+

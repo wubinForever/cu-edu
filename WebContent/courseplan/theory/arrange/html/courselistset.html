@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>课程固排禁排设置弹窗</title>
+		<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+        <link href="../../../../common/css/popup.css" rel="stylesheet"/>
+        <link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+        <link href="../../../../common/css/skins.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="../../../../common/css/courseplan.css"/>
+        <!-- 下面这个是树目录控件的css -->
+        <link href="../../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+        <!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+    <body>
+		<div class="pop-con-header">
+			<div class="box">
+				<div class="box-header row">
+					<div class="form-inline formtext formtext-80 col-sm-4">
+				      <label for="name">已选课程：</label>
+			          <span class="fontspan ellipsis" title="">软件工程</span>
+				  	</div>
+				  	
+				</div>
+				<div class="box-header pull-left">注：点击单元格实现禁排、取消的切换</div>
+				<div class="box-body">
+					<div class="">
+							<table class="table table-bordered">
+								<thead>
+								   <tr>
+								     <td>&nbsp;</td>
+								  	 <th width="120" style="background:url(../../../../common/images/talbe-line.png) 0 0 no-repeat;height: 53px;">
+								  	 	<div class="table-out"><b>日期</b><em>教学周</em></div>
+								  	 </th>
+								  	 <th>星期日
+								  	 	<div>
+									  	 	<label class="radio-inline on-radio">
+												<div class="checkbox-con" style="margin-top:-2px;"><input type="checkbox" name="checNormal"  class="checNormal"></div>禁排
+											</label> 
+								  	    </div>
+								  	 </th>
+								  	 <th>星期一
+								  	 	<div>
+									  	 	<label class="radio-inline on-radio">
+												<div class="checkbox-con" style="margin-top:-2px;"><input type="checkbox" name="checNormal"  class="checNormal"></div>禁排
+											</label> 
+								  	    </div>
+								  	 </th>
+								  	 <th>星期二
+								  	 	<div>
+									  	 	<label class="radio-inline on-radio">
+												<div class="checkbox-con" style="margin-top:-2px;"><input type="checkbox" name="checNormal"  class="checNormal"></div>禁排
+											</label> 
+								  	    </div>
+								  	 </th>
+								  	 <th>星期三
+								  	 	<div>
+									  	 	<label class="radio-inline on-radio">
+												<div class="checkbox-con" style="margin-top:-2px;"><input type="checkbox" name="checNormal"  class="checNormal"></div>禁排
+											</label> 
+								  	    </div>
+								  	 </th>
+								  	 <th>星期四
+								  	 	<div>
+									  	 	<label class="radio-inline on-radio">
+												<div class="checkbox-con" style="margin-top:-2px;"><input type="checkbox" name="checNormal"  class="checNormal"></div>禁排
+											</label> 
+								  	    </div>
+								  	 </th>
+								  	 <th>星期五
+								  	 	<div>
+									  	 	<label class="radio-inline on-radio">
+												<div class="checkbox-con" style="margin-top:-2px;"><input type="checkbox" name="checNormal"  class="checNormal"></div>禁排
+											</label> 
+								  	    </div>
+								  	 </th>
+								  	 <th>星期六
+								  	 	<div>
+									  	 	<label class="radio-inline on-radio">
+												<div class="checkbox-con" style="margin-top:-2px;"><input type="checkbox" name="checNormal"  class="checNormal"></div>禁排
+											</label> 
+								  	    </div>
+								  	 </th>
+								   </tr>
+								</thead>
+								<tbody id="">
+									<tr>
+										<td rowspan="4">上午</td>
+										<td width="120">1</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td width="120">2</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td width="120">3</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td width="120">4</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td rowspan="4">下午</td>
+										<td width="120">5</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td width="120">6</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td width="120">7</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td width="120">8</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td rowspan="4">晚上</td>
+										<td width="120">9</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td width="120">10</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+					</div>	
+				</div>	
+			    <div class="form-group form-inline formtext">
+					<span>备注：</span>
+					<div class="tips-text verification-info">
+						<textarea class="form-control inp-com-long" rows="2" id="address" name="address" ></textarea>
+						<span id="addressCount" class="textarea-length"></span>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/arrange", function(arrange) {
+		arrange.init();
+	});
+</script>

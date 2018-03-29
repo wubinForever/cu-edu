@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>数据字典修改</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+		<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	    <!-- jquery版本 -->
+	    <script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	    <!-- bootstrap -->
+	    <!-- <script src="../js/base/bootstrap/bootstrap.min.js"></script> -->
+	    <script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	    <!-- Seajs 模块化开发，请一定遵守 -->
+	    <script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>  
+	    <!-- 弹窗 -->
+	    <script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	    <script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	    <!-- 验证 -->
+        <script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+        <script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>  
+	</head>
+	<body page-auth-code="Udf_DataDictionaryManage_Modify">
+			<form id="updateDataDiction">
+			 <input type="hidden" id="updateName">
+			 <input type="hidden" id="upname">
+		    <div class="pop-con">
+			  <div class="form-group form-inline formtext">
+			        <label for="name"><i class="text-danger">*</i>上级名称：</label>
+		        	<span id="firstName" class="fontspan ellipsis"></span>
+		        	<label for="number"><i class="text-danger">*</i>编号：</label>
+		        	<div class="tips-text verification-info vertical-align-mid">
+		        	<input type="text" class="btn form-control inp-com disabled" disabled="disabled" id="code" name="code">
+		        	</div>
+			  </div>
+			  <div class="form-group form-inline formtext">
+		        	<label for="name" ><i class="text-danger">*</i>名称：</label>
+		        	 <div class="tips-text verification-info vertical-align-mid">
+		        	 <input type="text" class="form-control inp-com" id="dataDictionaryName" name="dataDictionaryName" maxlength="30">
+		        	 <div for="dataDictionaryName" generated="true" class="error" style="display: none;" id="datad">名称同级不能重复</div>
+		        	 </div>
+			  </div>
+			  <div class="form-group form-inline formtext">
+		        	<label for="number"><i class="text-danger">*</i>类型：</label>
+		        	 <div class="tips-text verification-info vertical-align-mid">
+		        	 <select class="form-control sel-com" id="dataDictionaryType" name="dataDictionaryType" >
+		        		<option value="">--请选择--</option>
+		        		<option value="1">国标</option>
+		        		<option value="2">省标</option>
+		        		<option value="3">市标</option>
+		        		<option value="4">校标</option>
+		        		<option value="5">其他</option>
+		        	 </select>
+		             </div>
+			  </div>
+			  <div class="form-group form-inline formtext">
+			  	<label for="number">是否启用：</label>
+			  	<label class="radio-inline">
+				  <div class="radio-con"><input type="radio" name="isEnabled"  value="1" id="start"></div> 启用
+				</label>
+				<label class="radio-inline">
+				  <div class="radio-con"><input type="radio" name="isEnabled" value="2" id="forbid"></div> 禁用
+				</label>
+			  </div>
+			 	<div class="form-group form-inline formtext">
+			  		<label for="number">备注：</label>
+			  		 <div class="tips-text verification-info">
+			  		<textarea class="form-control tarea-com" rows="3" id="description" name="description" maxlength="100"></textarea>
+			  		</div>
+			  </div>
+		</div>
+		</form>
+	</body>
+</html>
+<script type="text/javascript">	
+    seajs.config({paths:{"basePath":"../../../common/js/utils","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/dictionary",function(dictionary){
+		 dictionary.initUpdate();
+	}); 
+	seajs.use("basePath/authority");
+</script>

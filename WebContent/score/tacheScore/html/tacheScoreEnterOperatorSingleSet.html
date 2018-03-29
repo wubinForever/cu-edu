@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>教师选择-单个</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="pop-con box900">
+	<div class="container-fluid">
+		<h3 class=" pop-title">指导教师</h3>
+		<form id="queryForm">
+			<div class="header-con major">
+				<div class="form-inline">
+				</div>
+			</div>
+		</form>
+	</div>
+	<!--表格区域-->
+	<div id="addUsers" class="sub-content">
+		<h3 class=" school-titlle">全部教师</h3>
+		<div class="box">
+			<form id="courseQueryForm">
+				<div class=" w280 pull-right clearfix mb10">
+					<div class="input-group input-group-m">
+						<input type="text" class="form-control" placeholder="教师工号/姓名" id="teacherNoAndName" name="teacherNoAndName" maxlength="100">
+						<span class="input-group-btn">
+	                      <button class="btn btn-info btn-flat fa fa-search" type="button" id="btnSearch" name="btnSearch"></button>
+	                    </span>
+					</div>
+				</div>
+			</form>
+			<div class="box-body mt10 ">
+				<div class="scorll-box">
+					<div class="table-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+							<tr>
+								<th class="width03"></th>
+								<th class="width48">序号</th>
+								<th>教师工号</th>
+								<th>教师姓名</th>
+								<th class="width48">性别</th>
+								<th>所属单位</th>
+								<th class="width90">教师类型</th>
+							</tr>
+							</thead>
+							 <tbody id="bodycontent">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="pagination" class="pagination"></div>
+		</div>
+
+	</div>
+</div>
+<!-- 内容框架 结束------------------------------------------------------------->
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+  <tr class="tr-checkbox">
+		<td class="width03"><label ><div class="radio-con"><input type="radio" value="${id}" teacherNo='${teacherNo}' name='onReadio'></div></label></td>
+		<td class="width48">${$index+1}</td>
+		<td class="text-l">${teacherNo}</td>
+		<td class="text-l">${teacherName}</td>
+		<td class="width48">${sexName}</td>
+		<td class="text-l">${departmentName}</td>
+		<td class="width90">${teacherTypeName}</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/tacheScoreEnterOperatorSet",function(tacheScoreEnterOperatorSet){
+		tacheScoreEnterOperatorSet.initOperator();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

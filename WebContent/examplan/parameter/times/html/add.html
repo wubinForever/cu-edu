@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>生成场次时间</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body>
+	<form id="addWorkForm">
+		<div class="pop-con">
+			<div class="form-group form-inline formtext mt20">
+				<label for="number">学年学期：</label> <span id="semester" class="tips-text"></span>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number">考试批次：</label> <span id="batchName" class="tips-text"></span>
+			</div>
+			<div class="form-group form-inline formtext mt20">
+				<label for="number">开始时间：</label> <span id="examStartDateStr" class="tips-text"></span> <input
+					type="text" class="form-control inp-com" id="examStartDate" name="examStartDate"
+					style="display: none;"> <input type="text" class="form-control inp-com" id="timesWeek"
+					name="timesWeek" style="display: none;">
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number">结束时间：</label> <span id="examEndDateStr" class="tips-text"></span> <input
+					type="text" class="form-control inp-com" id="examEndDate" name="examEndDate"
+					style="display: none;">
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>场次性质：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="timesPropertyCode" name="timesPropertyCode">
+					</select>
+				</div>
+			</div>
+			<div id="examTime1" class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>第1场：</label>
+				<div class="tips-text verification-info">
+					<input id="examStartTime1" name="examStartTime1" value="08:00" type="text"
+						class="form-control inp-com estValue wdate" maxlength="5"
+						onClick="WdatePicker({maxTime:'#F{$dp.$D(\'examEndTime1\')}',readOnly:true,dateFmt:'HH:mm'});" />
+				</div>
+				至
+				<div class="tips-text verification-info">
+					<input id="examEndTime1" name="examEndTime1" value="10:00" type="text"
+						class="form-control inp-com eetValue wdate" maxlength="5"
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examStartTime1\',{m:1})||\'00:00\'}',maxTime:'#F{$dp.$D(\'examStartTime2\',{m:-1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});" />
+				</div>
+			</div>
+			<div id="examTime2" class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>第2场：</label>
+				<div class="tips-text verification-info">
+					<input id="examStartTime2" name="examStartTime2" value="10:10" type="text"
+						class="form-control inp-com estValue wdate" maxlength="5"
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examEndTime1\',{m:1})||\'00:00\'}',maxTime:'#F{$dp.$D(\'examEndTime2\',{m:-1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});" />
+				</div>
+				至
+				<div class="tips-text verification-info">
+					<input id="examEndTime2" name="examEndTime2" value="12:10" type="text"
+						class="form-control inp-com eetValue wdate" maxlength="5" 
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examStartTime2\',{m:1})||\'00:00\'}',maxTime:'#F{$dp.$D(\'examStartTime3\',{m:-1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});"/>
+				</div>
+			</div>
+			<div id="examTime3" class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>第3场：</label>
+				<div class="tips-text verification-info">
+					<input id="examStartTime3" name="examStartTime3" value="14:00" type="text"
+						class="form-control inp-com estValue wdate" maxlength="5" 
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examEndTime2\',{m:1})||\'00:00\'}',maxTime:'#F{$dp.$D(\'examEndTime3\',{m:-1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});"/>
+				</div>
+				至
+				<div class="tips-text verification-info">
+					<input id="examEndTime3" name="examEndTime3" value="16:00" type="text"
+						class="form-control inp-com eetValue wdate" maxlength="5" 
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examStartTime3\',{m:1})||\'00:00\'}',maxTime:'#F{$dp.$D(\'examStartTime4\',{m:-1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});"/>
+				</div>
+			</div>
+			<div id="examTime4" class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>第4场：</label>
+				<div class="tips-text verification-info">
+					<input id="examStartTime4" name="examStartTime4" value="16:10" type="text"
+						class="form-control inp-com estValue wdate" maxlength="5" 
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examEndTime3\',{m:1})||\'00:00\'}',maxTime:'#F{$dp.$D(\'examEndTime4\',{m:-1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});"/>
+				</div>
+				至
+				<div class="tips-text verification-info">
+					<input id="examEndTime4" name="examEndTime4" value="18:10" type="text"
+						class="form-control inp-com eetValue wdate" maxlength="5" 
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examStartTime4\',{m:1})||\'00:00\'}',maxTime:'#F{$dp.$D(\'examStartTime5\',{m:-1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});"/>
+				</div>
+			</div>
+			<div id="examTime5" class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>第5场：</label>
+				<div class="tips-text verification-info">
+					<input id="examStartTime5" name="examStartTime5" value="19:30" type="text"
+						class="form-control inp-com estValue wdate" maxlength="5" 
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examEndTime4\',{m:1})||\'00:00\'}',maxTime:'#F{$dp.$D(\'examEndTime5\',{m:-1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});"/>
+				</div>
+				至
+				<div class="tips-text verification-info">
+					<input id="examEndTime5" name="examEndTime5" value="21:30" type="text"
+						class="form-control inp-com eetValue wdate" maxlength="5" 
+						onClick="WdatePicker({minTime:'#F{$dp.$D(\'examStartTime5\',{m:1})||\'00:00\'}',readOnly:true,dateFmt:'HH:mm'});"/>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<!-- <script src="../js/base/bootstrap/bootstrap.min.js"></script> -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/times", function(times) {
+		times.initAdd();
+	});
+</script>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>查看考场安排</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body>
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> <select class="form-control sel-com"
+									id="schoolCalendarSelect" name="schoolCalendarId">
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">考试批次：</label> 
+								<select class="form-control sel-com" id="batchId" name="batchId">									
+									<option value="1">2016-2017学年第二学期 期末考试</option>
+									<option value="2">2016-2017学年第二学期 期中考试</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">场地单位：</label> 
+								<select class="form-control sel-com" id="" name="">									
+									<option value="1">本部校区</option>
+									<option value="2">管理学院</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">校区：</label> 
+								<select class="form-control sel-com" id="" name="">									
+									<option value="1">本部校区</option>
+									<option value="2">管理学院</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">楼房：</label> 
+								<select class="form-control sel-com">									
+									<option value="1">全部</option>
+									<option value="2">普通教室</option>
+									<option value="2">多媒体教室</option>
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">场地：</label> 
+								<input type="text" class="form-control inp-com"/>
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="delete">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-warning">导出</button>
+						</div>
+						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th>校区</th>
+												<th>楼房</th>
+												<th>场地</th>
+												<th>考试日期</th>
+												<th>考试时间</th>
+												<th>开课单位</th>
+												<th>考试课程</th>
+												<th>考试人数</th>
+												<th>主监考</th>
+												<th>辅监考</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+											<tr>
+											    <td>主校区</td>    
+											    <td>11栋</td> 
+											    <td>[11-0102]102教室</td>
+											    <td>2018-01-25</td>
+											    <td title="第17周星期一，第1场（08:00-10:00）">第17周星期一，第1场（08:00-10:00）</td>
+											    <td>[KC-2938]软件工程</td>
+											    <td title="[01022365]计算机科学与技术">[01022365]计算机科学与技术</td>
+											    <td><a href="#" class="table-a">30</a></td>
+											    <td>[090632]张老师</td>
+											    <td title="[090635]孙老师,[090636]王老师">[090635]孙老师,[090636]王老师</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/roomssearch", function(roomssearch) {
+		roomssearch.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

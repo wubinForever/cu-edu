@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>行政班成绩分析</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<style>
+			th.rowspanone {
+			    border-bottom: none!important;
+			    position: relative;
+			}
+			th.rowspanone span.name {
+			    position: absolute;
+			    top: 80%;
+			    left: 50%;
+			    margin-left: -13px;
+			    margin-top: 12px\0;
+			}
+			th.rowspanone div.checkbox-con{
+				position: absolute;
+			    top: 80%;
+			    left: 50%;
+			    margin-left: -7px;
+			    margin-top: 12px\0;
+			}
+		</style>
+</head>
+<body page-auth-code="">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<div class="container-fluid">
+		<div class="header-con ">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年学期：</label>
+							<select	class="form-control sel-com" id="semester" name="semester">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">年级：</label>
+							<select class="form-control sel-com" id="" name="">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">院系：</label>
+							<select class="form-control sel-com" id="departmentId" name="departmentId">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar">专业：</label> 
+							<select class="form-control sel-com" id="teachingClassNo" name="teachingClassNo">
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar">行政班：</label> 
+							<input class="form-control inp-com" id="" name="" maxlength="">
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar">课程：</label> 
+							<input class="form-control inp-com" id="" name="" maxlength="">
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">成绩类型：</label>
+							<select class="form-control sel-com" id="scoreType" name="scoreType">
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>
+	</div>
+	<!-- 正式内容区域 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="clearfix">
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success width-default" id="import" name="import" auth-code="">导出</button>
+						</div>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box min1600">
+								<table class="table table-bordered">
+									<thead>
+									<tr>
+										<td></td>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent">
+										<tr>
+											<td>1</td>
+											<td>17软工1班</td>
+											<td>23423</td>
+											<td>数据设计</td>
+											<td>100</td>
+											<td>60</td>
+											<td>60.0</td>
+											<td>20</td>
+											<td>20.0</td>
+											<td>15</td>
+											<td>15.0</td>
+											<td>5</td>
+											<td>5.0</td>
+											<td>0</td>
+											<td>0.0</td>
+											<td>100.0</td>
+											<td>61.0</td>
+											<td>92.0</td>
+											<td>100.0</td>
+										</tr>
+										<tr>
+											<td>2</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>3</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td>4</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="pagination" class="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 --- -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	<tr>
+		<!--<td>${index}</td>
+		<td class="text-l" title="${departmentName}">${departmentName}</td>
+		<td class="text-l" title="${courseNo}">${courseNo}</td>
+		<td class="text-l" title="${courseName}">${courseName}</td>
+		<td class="text-l " title="${teachingClassNo}">${teachingClassNo}</td>
+		<td class="text-l" title="${teacherNames}">${teacherNames}</td>
+		<td class="text-r" title="${totalNum}">${totalNum}</td>
+		<td class="text-r" title="${excellent}">${excellent}</td>
+		<td class="text-r" title="${excellentPercent}">${excellentPercent}</td>
+		<td class="text-r" title="${good}">${good}</td>
+		<td class="text-r" title="${goodPercent}">${goodPercent}</td>
+		<td class="text-r" title="${secondary}">${secondary}</td>
+		<td class="text-r" title="${secondaryPercent}">${secondaryPercent}</td>
+		<td class="text-r" title="${pass}">${pass}</td>
+		<td class="text-r" title="${passPercent}">${passPercent}</td>
+		<td class="text-r" title="${fail}">${fail}</td>
+		<td class="text-r" title="${failPercent}">${failPercent}</td>
+		<td class="text-r" title="${maxscore}">${maxscore}</td>
+		<td class="text-r" title="${minscore}">${minscore}</td>
+		<td class="text-r" title="${avgscore}">${avgscore}</td>
+		<td class="text-r" title="${totalPasspercent}">${totalPasspercent}</td>-->
+	</tr>
+</script>
+<!--<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/administrativeClassScoreAnalysis",function(administrativeClassScoreAnalysis){
+		administrativeClassScoreAnalysis.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>-->
+</body>
+</html>

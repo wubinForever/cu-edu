@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>楼房</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+</head>
+<body>
+	<form id="addWorkForm">
+		<input type="hidden" class="form-control inp-com" id="buildingId" name="buildingId">
+		<div class="pop-con box800">
+			<div class="form-group form-inline formtext">
+				<label for="buildingCode"><i class="text-danger">*</i>楼房号：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="buildingNo"
+						name="buildingNo" maxlength="10">
+				</div>
+				<label for="buildingName"><i class="text-danger">*</i>楼房名称：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="buildingName"
+						name="buildingName" maxlength="20">
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>所在校区：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="campusSelect" name="campus">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+				<label for="name"><i class="text-danger">*</i>楼房类型：</label>
+				<div class="tips-text verification-info">
+					<select class="form-control sel-com" id="buildingTypeSelect" name="buildingType">
+						<option value="">--请选择--</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">楼层数：</label> <div class="tips-text verification-info input-group spinner">
+				<input type="text" class="form-control" value="1" id="floorsQuantity" name="floorsQuantity" maxlength="2" min="1" max="99">
+				<div class="input-group-btn-vertical">
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
+					<button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
+				</div>
+			</div> <label for="number"><i
+					class="text-danger">*</i>状态：</label> <label class="radio-inline">
+					<div class="radio-con">
+						<input type="radio" name="isEnabled" value="1" >
+					</div> 启用
+				</label> <label class="radio-inline">
+					<div class="radio-con">
+						<input type="radio" name="isEnabled" value="0">
+					</div> 禁用
+				</label>
+			</div>
+	</form>
+</body>
+</html>
+<script id="campusSelectTmpl" type="text/x-jquery-tmpl">
+<option value=${campusId}>${campusName}</option>
+</script>
+<script id="buildingTypeSelectTmpl" type="text/x-jquery-tmpl">
+<option value=${value}>${name}</option>
+</script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/building", function(building) {
+		building.initUpdate();
+	});
+</script>

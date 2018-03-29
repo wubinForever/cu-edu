@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>调停课处理</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+
+<body>
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con">
+				<form id="queryForm">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> 
+								<select class="form-control sel-com" id="semester" name="semester">
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">课程号/名称：</label> 
+								<input type="text" class="form-control inp-com" id="course" name="course"/>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">类型：</label> 
+								<select class="form-control sel-com" id="adjustShutType" name="adjustType">
+									<option value="-1">全部</option>
+									<option value="1">调课</option>
+									<option value="0">停课</option>
+								</select>
+							</div>
+						</div>						
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">调整项目：</label> 
+								<select class="form-control sel-com" id="adjustShutOption" name="adjustOption">									
+									 <option value="-1">全部</option>
+									<option value="1">周次</option>
+									<option value="2">节次</option>
+									<option value="3">教室</option>
+									<option value="4">教师</option>
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">状态：</label> 
+								<select class="form-control sel-com" id="handingStatus" name="handingStatus">									
+									<option value="-1">全部</option>
+									<option value="0">待处理</option>
+									<option value="2">通过</option>
+									<option value="1">不通过</option>
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">提交人：</label> 
+								<input type="text" class="form-control inp-com" id="userName" name="userName"/>
+							</div>
+						</div>
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" id="queryBtn">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-left">
+							<span>温馨提示：共有<span id="unHanding" class="text-danger"></span>条待处理信息 </span>
+						</div>
+						<div class="box-header pull-right">
+							<button type="button" class="btn btn-success" name="addnewclass">新增</button>
+						</div>
+						
+						<div class="box-body">
+							<div >
+								<div class="table-box">
+									<table class="table table-bordered  margin0" style="table-layout: fixed;">
+										<thead>
+											<tr>
+												<th class="width48" rowspan="2">序号</th>
+												<th class="" rowspan="2">课程号</th>
+												<th class="" rowspan="2">课程名称</th>
+												<th class="width48" rowspan="2">类型</th>
+												<th class="" rowspan="2">调整项目</th>
+												<th class="" colspan="2">周次</th>
+												<th class="" colspan="2">节次</th>
+												<th class="" colspan="2">教室</th>
+												<th class="" colspan="2">教师</th>
+												<th class="" rowspan="2">教学班号</th>
+												<th class="width60" rowspan="2">状态</th>
+												<th class="" rowspan="2">提交人</th>
+												<th class="" rowspan="2">操作</th>
+											</tr>
+											<tr>
+												<th class="">调前</th>
+												<th class="">调后</th>
+												<th class="">调前</th>
+												<th class="">调后</th>
+												<th class="">调前</th>
+												<th class="">调后</th>
+												<th class="">调前</th>
+												<th class="">调后</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent" class="no-data-html">
+											<tr><td colspan='17'></td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>	
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+<script id="tableTmpl" type="text/x-jquery-tmpl">
+<tr code="${adjustShutId}">
+    <td  class="width48">${$index + 1}</td>    
+    <td  class=" text-l" title="${courseNo}">${courseNo}</td>
+    <td  class=" text-l" title="${courseName}">${courseName}</td>
+    <td  class="width48">{{if adjustShutType == 1}}调课{{else adjustShutType ==0}}停课{{else adjustShutType ==3}}批量停课{{else adjustShutType ==4}}批量调课{{/if}}</td>
+    <td  class=" text-l" title="${adjustShutOptionName}">${adjustShutOptionName}</td>
+    <td  class=" text-r" title="{{if adjustShutType == 1}}${adjustWeek}{{else}}${adjustToWeek}{{/if}}">{{if adjustShutType == 1}}${adjustWeek}{{else}}${adjustToWeek}{{/if}}</td>										    
+    <td  class=" text-r {{if $item.repairZero(adjustShutOption, 4).charAt(0) == '1'}}text-danger{{/if}}">{{if adjustShutType == 1}}${adjustToWeek}{{/if}}</td>   
+    <td  class=" text-l" title="${adjustBeforeSection}">${adjustBeforeSection}</td>
+    <td  class=" text-l {{if $item.repairZero(adjustShutOption, 4).charAt(1) == '1'}}text-danger{{/if}} w180" title="${adjustToSection}">{{if adjustShutType == 1}}${adjustToSection}{{/if}}</td>
+    <td  class=" text-l" title="${adjustBeforeClassRoom}">${adjustBeforeClassRoom}</td>
+    <td  class=" text-l {{if $item.repairZero(adjustShutOption, 4).charAt(2) == '1'}}text-danger{{/if}} w180" title="${adjustToClassRoom}">{{if adjustShutType == 1}}${adjustToClassRoom}{{/if}}</td>
+    <td  class=" text-l w180" title="${beforeTeacherName}">${beforeTeacherName}</td>
+    <td  class=" text-l w180 {{if $item.repairZero(adjustShutOption, 4).charAt(3) == '1'}}text-danger{{/if}}" title="{{if adjustShutType == 1}}${afterTeacherName}{{/if}}">{{if adjustShutType == 1}}${afterTeacherName}{{/if}}</td>
+    <td  class=" text-l" title="${teachingClassNo}">${teachingClassNo}</td>
+    <td  class="width60">{{if handingStatus  == 1}}不通过{{else handingStatus == 0}}待处理{{else handingStatus == 2}}通过{{/if}}</td>  
+    <td  class=" text-l" title="[${userNo}]${userName}">[${userNo}]${userName}</td>
+    <td  class="">{{if handingStatus == 0}}<button type="button" class="btn-text" name="handerange">处理</button>{{else}}<button type="button" auth-code="CoursePlan_Lesson_Dispose_View" class="btn-text" name="detail">查看</button>{{/if}}</td>
+</tr>
+</script>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/list", function(list) {
+		list.init();
+	});
+</script>
+</html>

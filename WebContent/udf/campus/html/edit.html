@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>校区信息修改</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body>
+	<form id="addWorkForm">
+		<input type="text" class="form-control inp-com" id="campusId" name="campusId"
+			style="display: none;">
+		<div class="pop-con box820">
+			<div class="form-group form-inline formtext">
+				<label for="name"><i class="text-danger">*</i>校区号：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="campusNo" name="campusNo" maxlength="10">
+				</div>
+				<label for="number"><i class="text-danger">*</i>校区名称：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="campusName" name="campusName" maxlength="20">
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">负责人：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="superintendent" name="superintendent" maxlength="50">
+				</div>
+				<label for="name">联系电话：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="telephone" name="telephone">
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="name">传真号码：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="fax" name="fax">
+				</div>
+				<label for="name">邮政编码：</label>
+				<div class="tips-text verification-info">
+					<input type="text" class="form-control inp-com" id="postalCode" name="postalCode" maxlength="6">
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="number">校区地址：</label>
+				<div class="tips-text verification-info">
+					<textarea class="form-control inp-com-long" rows="2" id="address" name="address"></textarea>
+					<span id="addressCount" class="textarea-length"></span>
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<!-- <script src="../js/base/bootstrap/bootstrap.min.js"></script> -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script src="../../../common/js/utils/limit.js"></script>
+
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js/utils","configPath":"../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/campus", function(campus) {
+		campus.initUpdate();
+	});
+</script>

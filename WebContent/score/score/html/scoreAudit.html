@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>成绩审核-首考、补考、补录</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="ScoreService_Audit_Score_Audit">
+<form id="addForm">
+	<div class="pop-con box900">
+		<!-- 表格区域 开始 ------>
+		<div class="sub-content">
+			<div class="box">
+				<div class="box-body">
+					<div class="mb10">课程/环节：<span id="courseNameOrNo"></span><span class="ml80">录入方式：<span id="entryType"></span></span><span class="ml80">录入人：<span id="userNameOrNo"></span></span></div>
+					<div class="scorll-box">
+						<table class="table table-bordered table-hover">
+							<thead>
+							<tr>
+								<th class="width48">序号</th>
+								<th>学号</th>
+								<th>姓名</th>
+								<th class="width48">性别</th>
+								<th class="width70">平时成绩</th>
+								<th class="width70">期中成绩</th>
+								<th class="width70">期末成绩</th>
+								<th class="width70">技能成绩</th>
+								<th class="width70">总评成绩</th>
+								<th class="width70">特殊情况</th>
+								<th class="width70">成绩类型</th>
+								<th class="width120">录入时间</th>
+								<th>备注</th>
+							</tr>
+							</thead>
+							<tbody id="tbodycontent" class="autoheight-normal">
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 表格区域 结束 --- -->
+	</div>
+</form>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	<tr style="min-height:23px;">
+		<td class="width48" title="${$index+1}" style="height:23px;">${$index+1}</td>
+		<td class="text-l" title="${studentNo}" style="height:23px;">${studentNo}</td>
+		<td class="text-l" title="${studentName}" style="height:23px;">${studentName}</td>
+		<td class="width48" title="${sexName}" style="height:23px;">${sexName}</td>
+		<td class="width70 text-r" title="${usualScore}" style="height:23px;">${usualScore}</td>
+		<td class="width70 text-r" title="${midtermScore}" style="height:23px;">${midtermScore}</td>
+		<td class="width70 text-r" title="${endtermScore}" style="height:23px;">${endtermScore}</td>
+		<td class="width70 text-r" title="${skillScore}" style="height:23px;">${skillScore}</td>
+		<td class="width70 text-r" style="height:23px;" title="{{if scoreRegimenName==null}}${totalScore}{{else}}${scoreRegimenName}{{/if}}">{{if scoreRegimenName==null}}${totalScore}{{else}}${scoreRegimenName}{{/if}}</td>
+		<td class="width70" title="${orSpecialName}" style="height:23px;">${orSpecialName}</td>
+		<td class="width70" title="${scoreTypeName}" style="height:23px;">${scoreTypeName}</td>
+		<td class="width120" style="height:23px;" title="${$item.format(entryTime,'yyyy-MM-dd hh:mm')}">${$item.format(entryTime,'yyyy-MM-dd hh:mm')}</td>
+		<td class="text-l" title="${remark}" style="height:23px;">${remark}</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/scoreAudit",function(scoreAudit){
+		scoreAudit.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

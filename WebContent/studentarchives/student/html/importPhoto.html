@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>导入学生照片</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../../common/css/webuploader/webuploader.css" rel="stylesheet" />
+	<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+
+<body>
+	<form id="addWorkForm">
+		<div class="col-xs-12">
+		<div class="sub-content  form-big mt30">
+			<div class=" form-inline">
+				<label for="name" class="import-big">1. 导入照片命名方式：</label>
+				<label class="radio-inline">
+					<div class="radio-con"><input type="radio" name="photoName" value="1"></div> 学号
+				</label>
+				<label class="radio-inline on-radio">
+					<div class="radio-con"><input type="radio" name="photoName" value="2" checked></div> 身份证件号
+				</label>
+				<label class="radio-inline">
+					<div class="radio-con"><input type="radio" name="photoName" value="3"></div> 考生号
+				</label>
+			</div>
+			<div class="form-inline mt10">
+				<label for="number" class="import-big">2. 导入方式：</label>
+				<label class="radio-inline">
+					<div class="radio-con"><input type="radio" name="isValidity" value="false"></div> 更新<span class="font-caa" >（重复数据进行更新）</span>
+				</label>
+				<label class="radio-inline on-radio">
+					<div class="radio-con"><input type="radio" name="isValidity" value="true" checked></div> 追加<span class="font-caa" >（重复数据不再导入）</span>
+				</label>
+			</div>
+			<div class="form-inline mt10">
+				<label for="name">3. 选择文件上传：</label>
+				<div class=" inline-block">
+					<div>
+						<div class="form-group">
+							<input class="form-control" name="showFileName" id="showFileName" value="" disabled="disabled">
+						</div>
+						<a class="btn btn-success width-default mr10" name="ico-selpop" id="uploaderDiv">选择文件</a>
+						<a class="btn btn-success width-default" name="ico-selpop" id="importBtn">导入</a>
+					</div>
+				</div>
+				<!-- <div class="upload-bluebar ">
+				   <div class="upload" style="width: 80%;"></div><span>80%</span>
+			    </div> -->
+			</div>
+			<div class="care-tips margin0 mt20">
+				<p class="c-orange fa-text">导入说明：</p>
+			
+				<p>1.照片格式必须是JPG，单张照片大小不能超过1M；</p>
+			
+				<p>2.待上传照片打包成zip格式；</p>
+			
+				<p>3.导入失败的记录会显示前100条错误提示信息，可通过“导出失败信息”导出所有提示信息，请根据提示信息修改后再导入。</p>
+			
+			</div>
+			<!-- 表格区域 开始 ------>
+			<div class="box">
+				<div class="pull-left care-tips2 mt20">
+					导入成功<span class="text-danger" id="successCount">0条</span>数据，导入失败<span class="text-danger" id="failCount">0条</span>数据，请修改后再次导入！
+				</div>
+				<div class="box-header pull-right">
+					<button type="button" class="btn btn-success width-big" name="add" id="exportFailBtn">导出失败信息</button>
+				</div>
+				<div class="box-body">
+					<div class="scorll-box">
+						<table class="table table-bordered table-hover">
+							<thead id="thead">
+								<tr>
+								</tr>
+							</thead>
+							<tbody id="tbody">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<!-- 表格区域 结束 --- -->
+		</div>
+		</div>
+	</form>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 分页 -->
+	<script src="../../../common/js/base/core/page/pagination.js"></script>
+	<!-- 验证 -->
+	<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+	<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+	
+	<script src="../../../common/js/base/webuploader/webuploader.js"></script>
+	<!--加载meta IE兼容文件-->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	<![endif]-->
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	</script>
+	<script type="text/javascript">
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath":"../../../common/js",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/student", function(student) {
+			student.importPhoto();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

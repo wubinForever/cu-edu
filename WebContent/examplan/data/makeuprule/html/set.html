@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>补考规定设置</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+</head>
+<body>
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="sub-content text-center margin-top50">
+			<div class="single-row-form">
+				<div class="form-group form-inline form-big">
+					<label for="name">考试学年学期：</label>
+					<select class="form-control sel-com" id="" name="">									
+						<option value="1">2016-2017学年第一学期</option>
+						<option value="2">2016-2017学年第二学期</option>
+					</select>
+				</div>
+				<div class="form-group form-inline form-big">
+					<label for="name"><i class="text-danger">*</i>考试批次：</label>
+					<select class="form-control sel-com" id="" name="">									
+						<option value="1">2016-2017学年第二学期 期末考试</option>
+						<option value="2">2016-2017学年第二学期 期中考试</option>
+					</select>
+				</div>
+				<div class="form-group form-inline form-big">
+					<label for="name"><i class="text-danger">*</i>缓考申请开始时间：</label>
+					<input type="text" class="form-control inp-com wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});" />
+				</div>
+				<div class="form-group form-inline">
+					<label for="name"><i class="text-danger">*</i>允许补考成绩范围：</label>
+					<input type="text" class="form-control inp-small" placeholder="0"/>
+					<span>≤ 成绩 <</span>
+					<input type="text" class="form-control inp-small" placeholder="60"/>
+				</div>
+				<div class="form-group form-inline">
+					<label for="name">允许补考特殊成绩：</label>
+					<label class="checkbox-inline">
+						<div class="checkbox-con on-check">
+				     	 	<input type="checkbox" id="inlineCheckbox1" value="option1"> 
+						</div>
+						舞弊
+					</label>
+					<label class="checkbox-inline">
+						<div class="checkbox-con">
+				     	 	<input type="checkbox" id="inlineCheckbox2" value="option2"> 
+						</div>
+						缺考
+					</label>
+					<label class="checkbox-inline">
+						<div class="checkbox-con">
+				     	 	<input type="checkbox" id="inlineCheckbox3" value="option3"> 
+						</div>
+						缓考
+					</label>
+				</div>
+				<div class="form-group form-inline">
+					<label for="name"><i class="text-danger">*</i>允许补考学年学期：</label>
+					<select class="form-control sel-com" id="" name="">									
+						<option value="1">2016-2017学年第二学期 期末考试</option>
+						<option value="2">2016-2017学年第二学期 期中考试</option>
+					</select>
+				</div>
+				<div class="form-group form-inline">
+					<label for="name"><i class="text-danger">*</i>允许补考学生：</label>
+					<label class="radio-inline on-radio">
+				  	 	<div class="radio-con"><input type="radio" name="studentType" value="1" checked=""></div>按年级
+					</label>
+					<select class="form-control sel-com" id="" name="">									
+						<option value="1">1</option>
+						<option value="2">2</option>
+					</select>
+				</div>
+				<div class="form-group form-inline">
+					<label for="name"></label>
+					<label class="radio-inline on-radio">
+				  	 	<div class="radio-con"><input type="radio" name="studentType" value="2" checked=""></div>按毕业年届
+					</label>
+					<select class="form-control sel-com" id="" name="">									
+						<option value="1">1</option>
+						<option value="2">2</option>
+					</select>
+				</div>
+				<div class="form-group form-inline">
+					<label for="name">不允许补考课程类别：</label>
+					<label class="checkbox-inline">
+						<div class="checkbox-con on-check">
+				     	 	<input type="checkbox" id="inlineCheckbox4" value="option1"> 
+						</div>
+						公共任选课
+					</label>
+					<label class="checkbox-inline">
+						<div class="checkbox-con">
+				     	 	<input type="checkbox" id="inlineCheckbox5" value="option2"> 
+						</div>
+						专业任选课
+					</label>
+					<label class="checkbox-inline">
+						<div class="checkbox-con">
+				     	 	<input type="checkbox" id="inlineCheckbox6" value="option3"> 
+						</div>
+						体育课
+					</label>
+				</div>
+			</div>
+			<div class=" text-center mb20 mt30">
+				<button type="button" class="btn btn-success width-default">保存</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/makeuprule", function(makeuprule) {
+		makeuprule.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

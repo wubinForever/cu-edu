@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>开课计划维护时间控制</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="">
+<!-- 内容框架 开始------------------------------------------------------------->
+<form id="setForm">
+	<div class="layout-index">
+		<div class="sub-content text-center mt50 w600">
+			<div class="box-con">
+			<div class="form-group form-inline form-big formtext">
+				<label for="name"><i class="text-danger">*</i>开始时间：</label>
+				<div class="tips-text verification-info text-left">
+					<input id="beginTime" name="beginTime" type="text" class="form-control inp-com wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});" />
+				</div>
+			</div>
+			<div class="form-group form-inline form-big formtext">
+				<label for="name"><i class="text-danger">*</i>结束时间：</label>
+				<div class="tips-text verification-info text-left">
+					<input id="endTime" name="endTime" type="text" class="form-control inp-com wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'});" />
+				</div>
+			</div>
+           </div>
+		</div>
+	<div class=" text-center mb20"  >
+		<button type="button" class="btn btn-success width-default" name="save" id="save">保存</button>
+		<button type="button" class="btn btn-cancel width-default"  name="cancel" id="cancel">取消</button></div>
+</div>
+</form>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+
+</script> 
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/time",function(settime){
+		  settime.init();
+	}); 
+	//seajs.use("basePath/authority");
+</script>			

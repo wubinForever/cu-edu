@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>排课结果管理</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<!-- 下面这个是树目录控件的css -->
+<link href="../../../../common/css/ztree/zTreeStyle.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body page-auth-code="CoursePlan_TheoryArrange_PublishSchedule">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header margin0"></div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width05">序号</th>
+											<th>学年学期</th>
+											<th>状态</th>
+											<th>操作时间</th>
+											<th>操作</th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontent">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script id="tableTmpl" type="text/x-jquery-tmpl">
+	<tr timeSettingsId="${timeSettingsId}" publishStatus="${publishStatus}">
+		<td class="width05">${$index+1}</td>
+ 		{{if semesterCode==="1"}}
+			<td>${academicYear}-${academicYear+1}学年 第一学期</td>
+    	{{else}}
+			<td>${academicYear}-${academicYear+1}学年 第二学期</td>
+    	{{/if}} 
+ 		{{if publishStatus===1}}
+			<td>已发布</td>
+    	{{else}}
+			<td>未发布</td>
+    	{{/if}} 
+		<td>${$item.format(updateTime,"yyyy-MM-dd hh:mm")}</td>
+ 		{{if publishStatus===1}}
+			<td><button type="button" class="btn-text" name="publish" auth-code="CoursePlan_TheoryArrange_PublishSchedule_Update">取消发布</button></td>
+    	{{else}}
+			<td><button type="button" class="btn-text" name="publish" auth-code="CoursePlan_TheoryArrange_PublishSchedule_Update">发布</button></td>
+    	{{/if}} 
+	</tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/publishlist", function(item) {
+		item.init();
+	});
+</script>

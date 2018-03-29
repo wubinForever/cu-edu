@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>监考人员继承设置</title>
+		<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+        <link href="../../../../common/css/popup.css" rel="stylesheet"/>
+        <link href="../../../../common/css/skins.css" rel="stylesheet"/>
+        <!-- 下面这个是树目录控件的css -->
+        <link href="../../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+        <!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+	</head>
+	<body>
+		<div class="pop-con-header">
+			<section class="content-header">
+	          <h1> 选择考试批次</h1>
+	        </section>
+	        <div class="header-con">
+	        	<div class="row">
+		        	<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar">学年学期：</label> 
+							<select class="form-control sel-com170" id="schoolCalendarSelect" name="schoolCalendarId">									
+								<option value="1" selected="selected">2016-2017学年第二学期</option>
+								<option value="2">2016-2017学年第一学期</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">考试批次：</label> 
+							<select class="form-control sel-com170" id="batchId" name="batchId">									
+								<option value="1">2016-2017学年第二学期 期末考试</option>
+								<option value="2">2016-2017学年第二学期 期中考试</option>
+							</select>
+						</div>
+					</div>
+		        </div>
+	        </div>
+		</div>
+		<div class="pop-con-header">
+	        <section class="content-header">
+	          <h1> 选择监考人员</h1>
+	        </section>
+	        <div class="header-con">
+	        	<div class="row">
+	        		<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar">所属单位：</label> 
+							<select class="form-control sel-com170">									
+								<option value="1" selected="selected">全部</option>
+								<option value="2">经科院</option>
+								<option value="2">外国语学院</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">教师类型：</label> 
+							<select class="form-control sel-com170">									
+								<option value="1" selected="selected">全部</option>
+								<option value="2">专任老师</option>
+								<option value="2">外聘老师</option>
+								<option value="2">兼职老师</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="">教师工号/姓名：</label> 
+							<input type="text" class="form-control inp-com170"/>
+						</div>
+					</div>
+	        	</div>
+	        	<button type="button" class="btn btn-primary header-btn" name="delete">查询</button>
+	        </div>
+	    </div>    
+        <!-- 左右移动table -->
+        <div class="clearfix double-table-opra">
+			<div class="list-con pull-left">
+				<div class="box">
+					<div class="box-header">
+						<span>待设置：10</span>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+									   <tr>
+									  	 <th class="width10"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+										 <th>所属单位</th>
+										 <th>教师</th>
+										 <th>性别</th>
+										 <th>教师类型</th>
+									   </tr>
+									</thead>
+									<tbody id="">
+										<tr>
+											<td class="width10"><div class="checkbox-con"><input type="checkbox" class="checNormal"></div></td>
+											<td>[1212]计科院</td>
+											<td>[090632]张老师</td>
+											<td>男</td>
+											<td>校内</td>
+										</tr>
+										<tr>
+											<td class="width10"><div class="checkbox-con"><input type="checkbox" class="checNormal"></div></td>
+											<td>[1212]计科院</td>
+											<td>[090632]张老师</td>
+											<td>男</td>
+											<td>校内</td>
+										</tr>
+										<tr>
+											<td class="width10"><div class="checkbox-con"><input type="checkbox" class="checNormal"></div></td>
+											<td>[1212]计科院</td>
+											<td>[090632]张老师</td>
+											<td>男</td>
+											<td>校内</td>
+										</tr>
+										<tr>
+											<td class="width10"><div class="checkbox-con"><input type="checkbox" class="checNormal"></div></td>
+											<td>[1212]计科院</td>
+											<td>[090632]张老师</td>
+											<td>男</td>
+											<td>校内</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+			<div class="btn-team">
+				<button class="btn btn-opre btn-block btn-success fa fa-angle-double-right" name="btnAdd">添加</button>
+				<button class="btn btn-opre btn-block btn-danger fa fa-angle-double-left" name="btnDelete">移除</button>
+			</div>
+			<div class="list-con pull-right">
+				<div class="box">
+					<div class="box-header">
+						<span>已设置：5</span>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+									   <tr>
+									  	 <th class="width10"><div class="checkbox-con"><input type="checkbox" id="check-all" class="checNormal"></div></th>
+										 <th>所属单位</th>
+										 <th>教师</th>
+										 <th>性别</th>
+										 <th>教师类型</th>
+									   </tr>
+									</thead>
+									<tbody id="">
+										<tr>
+											<td class="width10"><div class="checkbox-con"><input type="checkbox" class="checNormal"></div></td>
+											<td>[1212]计科院</td>
+											<td>[090632]张老师</td>
+											<td>男</td>
+											<td>校内</td>
+										</tr>
+										<tr>
+											<td class="width10"><div class="checkbox-con"><input type="checkbox" class="checNormal"></div></td>
+											<td>[1212]计科院</td>
+											<td>[090632]张老师</td>
+											<td>男</td>
+											<td>校内</td>
+										</tr>
+										<tr>
+											<td class="width10"><div class="checkbox-con"><input type="checkbox" class="checNormal"></div></td>
+											<td>[1212]计科院</td>
+											<td>[090632]张老师</td>
+											<td>男</td>
+											<td>校内</td>
+										</tr>
+										<tr>
+											<td class="width10"><div class="checkbox-con"><input type="checkbox" class="checNormal"></div></td>
+											<td>[1212]计科院</td>
+											<td>[090632]张老师</td>
+											<td>男</td>
+											<td>校内</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 左右移动table-End -->	
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<!-- <script src="../js/base/bootstrap/bootstrap.min.js"></script> -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../../common/js/base/seajs/seajs-text.js"></script>   
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<!--[if lt IE 9]>
+   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]--> 
+<script type="text/javascript">	
+    /*
+    **初始化 新增
+    */
+    seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/invigilator", function(invigilator) {
+		invigilator.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

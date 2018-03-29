@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+		<title>毕业课程要求</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="../../../common/css/reset.css" rel="stylesheet" />
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+		<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+		<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+		<link href="../../../common/css/popup.css" rel="stylesheet" />
+		<link href="../../../common/css/skins.css" rel="stylesheet" />
+		<!--日期样式-->
+		<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+		<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+	</head>
+	<body page-auth-code="Graduation_Seting_AnticipatedGraduates_AddGraduateAdvance">
+		<div class="pop-con pop-con1">
+			<form id="queryForm">
+	        <div class="header-con">
+	        	<!--<div class="row">
+		        	<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="schoolCalendar">年级：</label> 
+							<select class="form-control sel-com" id="grade" name="grade">									
+								<option value="-1" selected="selected">请选择</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">院系：</label> 
+							<select class="form-control sel-com"  id="departmentId" name="departmentId">									
+								<option value="-1" selected="selected">请选择</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">专业：</label> 
+							<select class="form-control sel-com"  id="majorId" name="majorId">									
+								<option value="-1" selected="selected">请选择</option>
+							</select>
+						</div>
+					</div>
+		        </div>-->
+		        <div class="row">
+		        	<!--<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">班级：</label> 
+							<select class="form-control sel-com"  id="classId" name="classId">									
+								<option value="-1" selected="selected">全部</option>
+							</select>
+						</div>
+					</div>-->
+					<div class="col-sm-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学号/姓名：</label> 
+							<input type="text" class="form-control inp-com" id="studentNoOrName" name="studentNoOrName" maxlength="50" />
+						</div>
+					</div>
+		        </div>
+		        <button type="button" class="btn btn-primary header-btn" id="query" name="query" auth-code="Graduation_Seting_AnticipatedGraduates_AddGraduateAdvance">查询</button>
+	        </div>
+	        </form>
+		</div>
+		<!-- 左右移动table -->
+        <div class="clearfix double-table-opra" id="shufflingId">
+			  
+			 
+		</div>
+		<!-- 左右移动table-End -->	
+		<div id="pagination" class="pagination" style="float:left"></div>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/addGraduateAdvance", function(graduationYear) {
+		addGraduateAdvance.init();
+	});
+</script>

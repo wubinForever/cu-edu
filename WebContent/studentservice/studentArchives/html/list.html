@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>学籍异动申请</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentService_StudentArchives_AlienChange">
+	<!-- 内容框架 开始-->
+<div class="layout-index">
+	<!-- 内容 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+                    <div class="mt20 pull-left"><span>学籍异动申请时间范围：</span>
+                    <span id="beginTime" name="beginTime"></span> - <span id="endTime" name="endTime"></span>
+					</div>
+					<div class="box-header pull-right">					
+					<button type="button" class="btn btn-success width-default" id=applyButton name="applyButton" auth-code="StudentService_StudentArchives_AlienChange_Add" style="display:none;">申请异动</button>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered">
+									<thead>
+									<tr>
+										<th class="width48">序号</th>
+										<th>生效学年学期</th>
+										<th>异动类别</th>
+										<th>异动原因</th>
+										<th>备注</th>
+										<th class="width100">申请日期</th>
+										<th class="width100">状态</th>
+										<th class="width100">处理日期</th>
+										<th class="width145">操作</th>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+</div>
+<!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	<tr>
+		<td class="width48" title="${index}">${index}</td>
+		<td title="${academicYearSemester}">${academicYearSemester}</td>
+		<td title="${alienChangeCategoryCodeName}">${alienChangeCategoryCodeName}</td>
+		<td title="${alienChangeReasonCodeName}" class="text-l">${alienChangeReasonCodeName}</td>
+		<td class="text-l" title="${remark}">${remark}</td>
+		<td class="width100" title="${$item.format(applyDate,"yyyy-MM-dd")}">${$item.format(applyDate,"yyyy-MM-dd")}</td>
+		<td class="width100" title="${dealStatusName}">${dealStatusName}</td>
+		<td class="width100" title="${$item.format(alienChangeDate,"yyyy-MM-dd")}">${$item.format(alienChangeDate,"yyyy-MM-dd")}</td>
+		<td class="width145">
+        {{if dealStatus == 3}}
+			<button type="button" class="btn-text" name="edit" recordId="${recordId}" userId="${userId}" auth-code="StudentService_StudentArchives_AlienChange_Update">修改</button>
+            <button type="button" class="btn-text disabled" disabled="disabled" name="view" recordId="${recordId}" auth-code="StudentService_StudentArchives_AlienChange_View">查看</button>
+            <button type="button" class="btn-text" name="del" recordId="${recordId}" auth-code="StudentService_StudentArchives_AlienChange_Delete">删除</button>
+		{{else}}
+			<button type="button" class="btn-text disabled" disabled="disabled" name="edit" auth-code="StudentService_StudentArchives_AlienChange_Update">修改</button>		
+			<button type="button" class="btn-text" name="view" recordId="${recordId}" auth-code="StudentService_StudentArchives_AlienChange_View">查看</button>		
+			<button type="button" class="btn-text disabled" disabled="disabled" name="del" auth-code="StudentService_StudentArchives_AlienChange_Delete">删除</button>
+		{{/if}}		
+		</td>
+	</tr>
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/studentArchives", function(studentArchives) {
+			studentArchives.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

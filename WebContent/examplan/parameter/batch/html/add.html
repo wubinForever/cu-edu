@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>考试批次新增</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css"
+	rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+</head>
+<body>
+	<form id="addWorkForm">
+		<div class="pop-con">
+			<div class="form-group form-inline formtext">
+				<div class="form-group">
+					<label for="schoolCalendar"><i class="text-danger">*</i>学年学期：</label> 
+					<div class="tips-text verification-info">
+						<select class="form-control sel-com" id="schoolCalendarId" name="schoolCalendarId">
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="batchName"><i class="text-danger">*</i>批次名称：</label>
+				<div class="tips-text verification-info">
+					<!--  中、英文、数字、空格-->
+					<input type="text" maxlength = 50  onkeyup="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5\ ]/g,'')" 
+					onpaste="value=value.replace(/[^\a-\z\A-\Z0-9\u4E00-\u9FA5\ ]/g,'')" class="form-control inp-com" id="batchName" name="batchName">
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<div class="form-group">
+					<label for="examPropertyCode"><i class="text-danger">*</i>考试性质：</label>
+					<div class="tips-text verification-info">
+						<select class="form-control sel-com" id="examPropertyCode" name="examPropertyCode">
+							<option value="">---请选择---</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="startDate"><i class="text-danger">*</i>起始日期：</label>
+				<button id="startDate" type="button" class="btn btn-primary" name="startDate">打开校历</button>
+				<span class="fontspan fontspan-320 text-primary">（已选择：第16周星期一，2017-06-25）</span>
+			</div>
+			<div class="form-group form-inline formtext">
+				<label for="endDate"><i class="text-danger">*</i>结束日期：</label>
+				<button id="endDate" type="button" class="btn btn-primary" name="endDate">打开校历</button>
+				<span class="fontspan fontspan-320 text-primary">（已选择：第16周星期一，2017-06-25）</span>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/batch", function(batch) {
+		batch.initAdd();
+	});
+</script>
+<script id="examPropertyTypeSelectTmpl" type="text/x-jquery-tmpl">
+<option value=${code}>${dataDictionaryName}</option>
+</script>

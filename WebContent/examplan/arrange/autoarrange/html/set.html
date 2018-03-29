@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>辅监考人数设置</title>
+		<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+        <link href="../../../../common/css/popup.css" rel="stylesheet"/>
+        <link href="../../../../common/css/skins.css" rel="stylesheet"/>
+        <!-- 下面这个是树目录控件的css -->
+        <link href="../../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+        <!--[if lt IE 9]>
+		      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="pop-con">
+			<div class="box">
+				<div class="box-header">
+					<span>设置辅监考人数：</span>
+				</div>
+				<div class="box-body border-box form-horizontal">
+					<div>
+				       	 <div class="form-group radio">
+					       	 <label class="on-radio form-inline">
+						  	 	<div class="radio-con"><input type="radio" name="capacity" value="1" checked=""></div>
+						  	 	<label class="control-label">按比例设置：
+						  	 	<label class="ontrol-label">辅监考人数  = 考生数   / </label>
+						  	 	<input type="text" class="form-control inp-small"/>
+							 </label>
+				       	 </div>
+				       	<div class="form-group radio radio-team">
+							 <label class="vertical-align-top rowspan-radio">
+						  	 	<div class="radio-con"><input type="radio" name="capacity" value="2" checked=""></div>
+							 </label>
+							 <div class="inline-block">
+								<table>
+									<tr>
+										<td class="vertical-align-top" rowspan="4">
+											<div class="form-inline table-input-row">
+											<label class="control-label">按区段设置：</div> 
+										</td>
+										<td>
+											<div class="form-inline table-input-row">
+												<label class="ontrol-label">考生数大于</label>
+												<input type="text" class="form-control inp-small"/><span>人时：</span>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="form-inline table-input-row">
+												<label class="control-label">辅监考人数 =</label>
+												<input type="text" class="form-control inp-small" placeholder="2"/>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="table-input-row"><label class="control-label">考生数小于等于X人时：</label></div>
+										</td>	
+									</tr>
+									<tr>
+										<td>
+											<div class="form-inline table-input-row">
+												<label class="control-label">辅监考人数 =</label>
+												<input type="text" class="form-control inp-small" placeholder="1"/>
+											</div>
+										</td>
+									</tr>
+								</table>
+							 </div>
+				       	 </div>
+				       	 <div class="form-group radio">
+							 <label class="form-inline">
+						  	 	<div class="radio-con"><input type="radio" name="capacity" value="3" checked=""></div>
+						  	 	<label class="control-label">自定义设置：</label>
+						  	 	<label class="ontrol-label">辅监考人数 =</label>
+						  	 	<input type="text" class="form-control inp-small"/>
+							 </label>
+				       	 </div>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/autoarrange", function(autoarrange) {
+		autoarrange.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>	

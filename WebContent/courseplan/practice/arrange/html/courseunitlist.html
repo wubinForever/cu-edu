@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>实践安排查询（按开课单位）</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../../common/css/courseplan.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+<body page-auth-code="CoursePlan_PracticeArrange_Query_CourseUnit" style="overflow: hidden;">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> 
+								<select class="form-control sel-com" id="semester" name="semester"></select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">开课单位：</label> 
+								<select class="form-control sel-com" id="kkDepartmentId" name="kkDepartmentId">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">环节号/名称：</label> 
+								<input type="text" class="form-control inp-com" name="courseNo" id="courseNo"/>
+							</div>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">环节类别：</label> 
+								<select class="form-control sel-com" id="tacheTypeCode" name="tacheTypeCode">
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">小组号：</label> 
+								<select class="form-control sel-com" id="teamNo" name="teamNo">	
+									<option value="0">全部</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">指导教师：</label> 
+								<input type="text" class="form-control inp-com" name="teachers" id="teachers"/>
+							</div>
+						</div>	
+					</div>	
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">学号/姓名：</label> 
+								<input type="text" class="form-control inp-com" id="studentNoOrName" name="studentNoOrName" />
+							</div>
+						</div>							
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="searchInp">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">
+						<div class="box-header pull-right">
+							<button type="button" auth-code="CoursePlan_PracticeArrange_Query_CourseUnit_Export" id="exportExcel" class="btn btn-success">导出</button>
+							<input type="hidden" id="exportNumId" name="exportNumId" value="0">
+						</div>
+						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box min1600">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05 width55">序号</th>
+												<th class="">开课单位</th>
+												<th class="width75">环节号</th>
+												<th class="">环节名称</th>
+												<th class="width75">环节类别</th>
+												<th class="width48">学分</th>
+												<th class="width48">周数</th>
+												<th class="width60">年级</th>
+												<th class="">院系</th>
+												<th class="">专业</th>
+												<th class="width55">小组号</th>
+												<th class="width145">指导教师</th>
+												<th class="">班级</th>
+												<th class="width100">学号</th>
+												<th class="width75">姓名</th>
+												<th class="width75">实践周次</th>
+												<th class="">题目</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+  <tr class="tr-checkbox"> 
+  	<td class="width05 width55">${id}</td>
+    <td class="text-l" title=${kdepartmentName}>${kdepartmentName}</td>    
+    <td class="text-l width75" title=${courseNo}>${courseNo}</td>    
+    <td class="text-l" title=${courseName}>${courseName}</td>
+    <td class="width75" title=${tacheTypeName}>${tacheTypeName}</td>
+    <td class="width48 text-r">${credit}</td> 
+    <td class="width48 text-r">${weekNum}</td> 
+    <td class="width60">${grade}</td>
+    <td class="text-l" title=${departmentName}>${departmentName}</td>
+    <td class="text-l" title=${majorName}>${majorName}</td>
+    <td class="width55 text-r">${groupNo}</td>
+ 	{{if userIdLists}}
+    <td class="text-l width145 open-message" data="{{each(i,item) userIdLists}}${item}#@#{{/each}}">
+		{{each(i,item) userIdLists}}
+			{{if i < 4}}
+				<div class='ellipsis ellipsis-td'></div>${item}<br/>
+			{{/if}}
+		{{/each}}
+	 </td>
+    {{else}}
+		<td class="text-l width145" data="">
+		 </td>
+    {{/if}}
+ 	<td class="text-l" title=${className}>${className}</td> 	
+    <td class="text-l width100" title=${studentNo}>${studentNo}</td>
+    <td class="text-l width75" title=${studentName}>${studentName}</td>
+    <td class="width75 text-r" title=${practiceWeeks}>${practiceWeeks}</td> 
+    <td class="text-l" title=${linkTitle}>${linkTitle}</td>
+  </tr> 
+</script> 
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/courseArrangeList", function(courseArrangeList) {
+		courseArrangeList.init();
+	});
+</script>

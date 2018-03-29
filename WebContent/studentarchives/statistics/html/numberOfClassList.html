@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>按班级统计在校学生数</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../css/statistics.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentArchives_Statistics_StudentNumberOfClass">
+<!-- 内容框架 开始-->
+<div class="layout-index">
+	<!--筛选查询 开始-->
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年学期：</label>
+							<select class="form-control sel-com" id="academicYearSemesterSelect" name="academicYearSemesterSelect" >
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">年级：</label>
+							<select class="form-control sel-com" id="grade" name="grade">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">培养层次：</label>
+							<select class="form-control sel-com" id="trainingLevelCode" name="trainingLevelCode">
+								<option value="">全部</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="query"
+					id="query">查询</button>
+		</div>
+	</div>
+	<!--筛选查询 结束-->
+	<!-- 内容 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box-header text-right">
+					<button type="button" class="btn btn-success width-default" auth-code="StudentArchives_Statistics_StudentNumberOfClass_Export" name="export" id="export">导出</button>
+				</div>
+				<div class="box">
+                  <div class="print-title"><p id="schoolName"></p><p id="semesterName" class="font-14 mt10"></p></div>
+
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box" id="tbodycontent">
+							</div>
+						</div>
+					</div>
+					<div id="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+</div>
+<!-- 内容框架 结束 -->
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+  {{each(i,datali) data}}
+   <table class="table-static">
+   	  <thead>
+   	  	 <tr><th>${datali.grade}级(${datali.studentTotal}人)</th></tr>
+   	  	 <tr><th>班级(${classes.length}个)</th><th class="width20">人数</th></tr>
+   	  </thead>
+   	  <tbody>
+   	  	 	{{each(i,typeli) classes}}
+   	  	 	<tr>
+                <td title="${typeli.className}">${typeli.className}</td>
+		        <td title="${typeli.studentTotal}" class="width20">${typeli.studentTotal}</td>
+		    </tr>
+		    {{/each}}
+   	  </tbody>
+   </table>
+   {{/each}} 
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath":"../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/numberOfClassList", function(numofclasslist) {
+		numofclasslist.init();
+	});
+	
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>
+

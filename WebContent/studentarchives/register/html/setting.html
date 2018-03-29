@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>报到注册设置</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentArchives_ReportRegister_Setting">
+<!-- 内容框架 开始-->
+<form id="addForm">
+	<div class="layout-index">
+		<div class="sub-content text-center mt50 w600">
+			<h3 class=" blue-titlle">办理学生报到时间段设置</h3>
+			<div class="box-con">
+			<div class="form-group form-inline form-big formtext">
+				<label for="name"><i class="text-danger">*</i>开始时间：</label>
+				<div class="tips-text verification-info text-left">
+					<input id="reportBeginDate" name="reportBeginDate" type="text" class="form-control inp-com wdate" />
+				</div>
+			</div>
+			<div class="form-group form-inline form-big formtext">
+				<label for="name"><i class="text-danger">*</i>结束时间：</label>
+				<div class="tips-text verification-info text-left">
+					<input id="reportEndDate" name="reportEndDate" type="text" class="form-control inp-com wdate"/>
+				</div>
+			</div>
+			</div>
+			<h3 class="blue-titlle mt30">办理学生注册时间段设置</h3>
+			<div class="box-con">
+			<div class="form-group form-inline form-big formtext">
+				<label for="name"><i class="text-danger">*</i>开始时间：</label>
+				<div class="tips-text verification-info text-left">
+					<input id="registerBeginDate" name="registerBeginDate" type="text" class="form-control inp-com wdate" />
+				</div>
+			</div>
+			<div class="form-group form-inline form-big formtext">
+				<label for="name"><i class="text-danger">*</i>结束时间：</label>
+				<div class="tips-text verification-info text-left">
+					<input id="registerEndDate" name="registerEndDate" type="text" class="form-control inp-com wdate" />
+				</div>
+			</div>
+			</div>
+		</div>
+	<div class=" text-center mb20 mt30"  ><button type="button" class="btn btn-success width-default" id="btnSave" name="btnSave">保存</button></div>
+</div>
+<input type="hidden" id="settingId" name="settingId">
+</form>
+<!-- 内容框架 结束 -->
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../common/js","localPath":"../js"}});
+	seajs.use("localPath/setting",function(setting){
+		setting.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>
+

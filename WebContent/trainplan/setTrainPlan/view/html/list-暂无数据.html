@@ -1,0 +1,412 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<title>查询培养方案</title>
+	<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet"  />
+	<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet"  />
+	<link href="../../../../common/css/reset.css" rel="stylesheet"  />
+	<link href="../../../../common/css/gta-layout.css" rel="stylesheet"  />
+	<link href="../../../../common/css/sideBar.css" rel="stylesheet"  />
+	<link href="../../../../common/css/popup.css" rel="stylesheet"  />
+	<link href="../../../../common/css/skins.css" rel="stylesheet"  />
+	<link href="../../../../common/css/basic-data.css" rel="stylesheet"  />
+	
+</head>
+<body page-auth-code="TrainPlan_SetTrainPlan_ViewTrainPlan_View,TrainPlan_SetTrainPlan_ViewTrainPlan_Print">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<div class="tab-box">
+		<div class="tab-hd">
+			<ul class="hd-list clearfix">
+				<li class="cur" auth-code="TrainPlan_SetTrainPlan_ViewTrainPlan_View">查询培养方案</li>
+				<li auth-code="TrainPlan_SetTrainPlan_ViewTrainPlan_Print">打印培养方案</li>
+			</ul>
+		</div>
+		<div class="tab-bd">
+			<div class="bd-con">
+				<!--筛选查询 开始-->
+				<div class="container-fluid col-xs-12">
+					<div class="header-con">
+						<form id="queryForm">
+							<div class="row">
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">年级：</label>
+										<select class="form-control sel-com" id="grade" name="grade">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">院系：</label>
+										<select class="form-control sel-com" id="departmentId" name="departmentId">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">专业：</label>
+										<select class="form-control sel-com" id="majorId" name="majorId">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">开课单位：</label>
+										<select class="form-control sel-com" id="kkDepartmentId" name="kkDepartmentId">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">课程/环节：</label>
+										<select class="form-control sel-com" id="courseOrTache" name="courseOrTache">
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+						<button type="button" class="btn btn-primary header-btn"  name="query"
+								id="query">查询</button>
+					</div>
+				</div>
+				<!--筛选查询 结束-->
+				<!-- 内容一 开始 ------>
+				<div class="sub-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box">
+								<div class="box-header pull-right">
+									<button type="button" class="btn btn-success width-default" id="export" name="export" auth-code="TrainPlan_SetTrainPlan_ViewTrainPlan_View">导出</button>
+								</div>
+								<div class="box-body">
+									<div class="">
+										<div class="table-box">
+											<table class="table table-bordered">
+												<thead>
+												<tr>
+													<th class="width03">序号</th>
+													<th class="width48">年级</th>
+													<th>院系</th>
+													<th>专业</th>
+													<th>课程/环节号</th>
+													<th>课程/环节名称</th>
+													<th>开课单位</th>
+													<th>类别</th>
+													<th class="width85">课程/环节</th>
+													<th>开课学期</th>
+													<th class="width48">学分</th>
+													<th class="width60">总学时</th>
+													<th class="width48">理论<br/>学时</th>
+													<th class="width48">实验<br/>学时</th>
+													<th class="width48">实践<br/>学时</th>
+													<th class="width48">其他<br/>学时</th>
+													<th class="width48">周<br/>学时</th>
+													<th class="width48">周数</th>
+													<th class="width48">考核<br/>方式</th>
+												</tr>
+												</thead>
+												<tbody id="tbodycontent">
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+								<div class="pagination" id="pagination"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 内容一 结束 --- -->
+			</div>
+			<div class="bd-con">
+				<!--筛选查询 开始-->
+				<div class="container-fluid col-xs-12">
+					<div class="header-con">
+						<form id="queryForm2">
+							<div class="row">
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">年级：</label>
+										<select class="form-control sel-com" id="grade2" name="grade2">
+											<option value="1">2018</option>
+											<option value="2">2017</option>
+											<option value="2">2016</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">院系：</label>
+										<select class="form-control sel-com" id="departmentId2" name="departmentId2">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">专业：</label>
+										<select class="form-control sel-com" id="majorId2" name="majorId2">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">开课单位：</label>
+										<select class="form-control sel-com" id="kkDepartmentId2" name="kkDepartmentId2">
+											<option value="">全部</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">课程/环节：</label>
+										<select class="form-control sel-com" id="courseOrTache2" name="courseOrTache2">
+										</select>
+									</div>
+								</div>
+								<div class="col-md-4 form-inline form-inp-con">
+									<div class="form-group">
+										<label for="name">培养层次：</label>
+										<select class="form-control sel-com" id="trainingLevelCode2" name="trainingLevelCode2">
+										</select>
+									</div>
+								</div>
+							</div>
+						</form>
+						<button type="button" class="btn btn-primary header-btn"  name="query2"
+								id="query2">查询</button>
+					</div>
+				</div>
+				<!--筛选查询 结束-->
+				<!-- 内容二 开始 ------>
+				<div class="sub-content">
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="box-header text-right">
+								<button type="button" class="btn btn-success width-default mr10" id="btnPrint" auth-code="TrainPlan_SetTrainPlan_ViewTrainPlan_Print">打印</button>
+							</div>
+							<div id="printBody" class="box">
+								<div class="print-title"><span id="spanSchoolName">*****学校</span>专业<span id="spanCourseOrTache"></span>安排</div>
+								<div id="divBody table-box">
+									<table class="table">
+										<tbody class="no-data-html">
+									<tr>
+										<td colspan="25"></td>
+									</tr>
+										</tbody>
+									</table>
+							</div>
+							
+							<button type="button" class="btn-more mb10" name="" id="btnLoadMore">加载更多 <i class="fa fa-angle-double-down"></i> </button>
+						</div>
+					</div>
+				</div>
+				<!-- 内容二 结束 --- -->
+			</div>
+		</div>
+	</div>
+
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!-- 打印 -->
+<script src="../../../../common/js/base/print/jquery-migrate-1.2.1.min.js"></script>
+<script src="../../../../common/js/base/print/jquery.jqprint-0.3.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->	
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">	
+	<td class="width03">${index}</td>
+	<td class="width48">${grade}</td>
+	<td class="text-l">${departmentName}</td>
+	<td class="text-l" title="[${majorNo}]${majorName}">[${majorNo}]${majorName}</td>
+	<td class="text-l">${courseNo}</td>
+	<td class="text-l">${name}</td>
+	<td class="text-l">${kkDepartmentName}</td>
+	<td class="text-l" title="${courseTypeName}/${courseAttributeName}">${courseTypeName}/${courseAttributeName}</td>
+	<td class="width85">{{if courseOrTache==1}} 理论课程 {{else}} 实践环节 {{/if}}</td>
+	<td class="text-l" title="${startclassSemester}">${startclassSemester}</td>
+	<td title="${credit}" class="width48 text-r">${credit}</td>
+	<td class="width60 text-r">${totalPeriod}</td>
+	<td class="width48 text-r">${theoryPeriod}</td>
+	<td class="width48 text-r">${experiPeriod}</td>
+	<td class="width48 text-r">${practicePeriod}</td>
+	<td class="width48 text-r">${otherPeriod}</td>
+	<td class="width48 text-r">${weekPeriod}</td>
+	<td class="width48 text-r">${weekNum}</td>
+	<td class="width48">${checkWayName}</td>
+</tr>
+</script> 
+
+
+
+
+
+<script id="bodyCourseImpl" type="text/x-jquery-tmpl">
+<div class="box-body">
+	<div class="print-caption">年级：${grade} <span class="ml80">专业：${majorName}</span><span class="ml80">培养层次：${trainingLevelName}</span></div>
+	<div class="">
+		<div class="table-box">
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th rowspan="3" class="width03">序<br/>号</th>
+					<th colspan="2" rowspan="3">课程类别</th>
+					<th rowspan="3" width="160px"><p>[课程代码]</p>
+						<p>课程名称</p></th>
+					<th rowspan="3"><p>学</p>
+						<p>分</p></th>
+					<th rowspan="3"><p>总</p>
+						<p>学</p>
+						<p>时</p></th>
+					<th colspan="4">学时构成</th>
+					<th colspan="14">学分分布</th>
+					<th rowspan="3"><p>考核</p>
+						<p>方式</p></th>
+					<th rowspan="3">标识</th>
+				</tr>
+				<tr>
+					<th rowspan="2"><p>理</p>
+						<p>论</p></th>
+					<th rowspan="2"><p>实</p>
+						<p>验</p></th>
+					<th rowspan="2"><p>实</p>
+						<p>践</p></th>
+					<th rowspan="2"><p>其</p>
+						<p>它</p></th>
+					<th colspan="2">一</th>
+					<th colspan="2">二</th>
+					<th colspan="2">三</th>
+					<th colspan="2">四</th>
+					<th colspan="2">五</th>
+					<th colspan="2">六</th>
+					<th colspan="2">七</th>
+				</tr>
+				<tr>
+					<th>1</th>
+					<th>2</th>
+					<th>3</th>
+					<th>4</th>
+					<th>5</th>
+					<th>6</th>
+					<th>7</th>
+					<th>8</th>
+					<th>9</th>
+					<th>10</th>
+					<th>11</th>
+					<th>12</th>
+					<th>13</th>
+					<th>14</th>
+				</tr>
+				</thead>
+				<tbody>
+					{{each(i,majorTheoryDto) majorTheoryDtos}}
+						<tr class="tr-checkbox">
+							<td class="width03">${majorTheoryDto.index}</td>
+							<td>${majorTheoryDto.courseTypeName}</td>
+							<td>${majorTheoryDto.courseAttributeName}</td>
+							<td width="160px">[${majorTheoryDto.majorNo}]${majorTheoryDto.majorName}</td>
+							<td>${majorTheoryDto.credit}</td>
+							<td>${majorTheoryDto.totalPeriod}</td>
+							<td>${majorTheoryDto.theoryPeriod}</td>
+							<td>${majorTheoryDto.experiPeriod}</td>
+							<td>${majorTheoryDto.practicePeriod}</td>
+							<td>${majorTheoryDto.otherPeriod}</td>
+							<td>${majorTheoryDto.creditForStartClass[1]}</td>
+							<td>${majorTheoryDto.creditForStartClass[2]}</td>
+							<td>${majorTheoryDto.creditForStartClass[3]}</td>
+							<td>${majorTheoryDto.creditForStartClass[4]}</td>
+							<td>${majorTheoryDto.creditForStartClass[5]}</td>
+							<td>${majorTheoryDto.creditForStartClass[6]}</td>
+							<td>${majorTheoryDto.creditForStartClass[7]}</td>
+							<td>${majorTheoryDto.creditForStartClass[8]}</td>
+							<td>${majorTheoryDto.creditForStartClass[9]}</td>
+							<td>${majorTheoryDto.creditForStartClass[10]}</td>
+							<td>${majorTheoryDto.creditForStartClass[11]}</td>
+							<td>${majorTheoryDto.creditForStartClass[12]}</td>
+							<td>${majorTheoryDto.creditForStartClass[13]}</td>
+							<td>${majorTheoryDto.creditForStartClass[14]}</td>
+							<td>${majorTheoryDto.checkWayName}</td>
+							<td></td>
+            		{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</script>
+
+<script id="bodyTacheImpl" type="text/x-jquery-tmpl">
+<div class="box-body">
+	<div class="print-caption">年级：${grade} <span class="ml80">专业：${majorName}</span><span class="ml80">培养层次：${trainingLevelName}</span></div>
+	<div class="">
+		<div class="table-box">
+			<table class="table table-bordered">
+				<thead>
+				<tr>
+					<th class="width03">序号</th>
+					<th>环节类别</th>
+					<th width="160"><p>[环节代码]</p></th>
+					<th><p>环节名称</p></th>
+					<th><p>学分</p></th>
+					<th>周数</th>
+					<th>开课学期</th>
+					<th>内容与要求</th>
+				</tr>
+				</thead>
+				<tbody>
+				{{each(i,majorTheoryDto) majorTheoryDtos}}
+				<tr class="tr-checkbox">
+					<td class="width03">${majorTheoryDto.index}</td>
+					<td>${majorTheoryDto.tacheTypeName}</td>
+					<td width="160">[${majorTheoryDto.courseNo}]</td>
+					<td>${majorTheoryDto.name}</td>
+					<td>${majorTheoryDto.credit}</td>
+					<td>${majorTheoryDto.weekNum}</td>
+					<td title="${majorTheoryDto.startclassSemester}">${majorTheoryDto.startclassSemester}</td>
+					<td></td>
+				</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</script>  
+												
+
+
+
+<script type="text/javascript">
+	//方法引用
+	seajs.config({paths:{"basePath":"../../../../common/js","configPath":"../../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/view",function(view){
+		view.init();
+	}); 
+	seajs.use("basePath/utils/authority");
+</script>
+</html>

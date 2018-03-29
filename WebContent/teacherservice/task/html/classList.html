@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>教学班查看</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_TeachingTask_ViewTeachingClass">
+   <!-- 内容框架 开始-->
+    <div class="layout-index">
+	<!-- 内容 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body">
+						<div class="labs mb10 mt10 row" id="rollrow">
+							<div class="col-md-4">课程：<span id="course"></span></div>
+							<div class="col-md-4"> 教学班：<span id="classNameNo"></span></div>
+							<div class="col-md-4">教学班人数：<span id="classCount"></span></div>
+					    </div>
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th class="width75">年级</th>
+											<th>专业</th>
+											<th>行政班级</th>
+											<th class="width75">班级人数</th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontent">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+   </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+		<tr>
+			<td class="width48">${index}</td>
+			<td class="width75" title="${grade}">${grade}</td>
+			<td title="${majorName}" class="text-l">${majorName}</td>
+			<td title="${className}" class="text-l">${className}</td>
+			<td title="${studentCount}" class="width75">${studentCount}</td>
+		</tr>
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/classList", function(classList) {
+			classList.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

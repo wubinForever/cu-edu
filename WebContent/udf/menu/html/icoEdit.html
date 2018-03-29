@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>选择图标</title>
+		<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../common/css/skins.css" rel="stylesheet"/>
+		<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+		<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+		<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>  
+		<script src="../../../common/js/base/seajs/seajs-text.js"></script>  
+		<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	</head>
+	<body page-auth-code="Udf_UserManage">
+		<div id="icoEdit" class="icoEditCon">
+			<ul class="ico-table">
+				 
+			</ul>
+		</div>
+		<input type="hidden" id="imageClass" value="">
+		<input type="hidden" id="className" value="">
+	</body>
+</html>
+<script id="iconImpl" type="text/x-jquery-tmpl">
+	 	<li><a href="#"><span class="fa ${icon} fa-2x" name="fa ${icon}"></span></a></li>
+</script>
+<script type="text/javascript">	
+    seajs.config({paths:{"basePath":"../../../common/js/utils","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/menu",function(menu){
+		menu.initIco();
+	}); 
+	seajs.use("basePath/authority");
+</script>
+

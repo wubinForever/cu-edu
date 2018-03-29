@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title></title>
+<link href="../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../common/css/reset.css" rel="stylesheet" />
+<link href="../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../common/css/skins.css" rel="stylesheet" />
+<link href="../../common/css/webuploader/webuploader.css" rel="stylesheet" />
+
+<link href="../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../common/css/webuploader/webuploader.css" rel="stylesheet" />
+<script src="../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../common/js/base/seajs/2.2.0/sea.js"></script>
+<script src="../../common/js/base/webuploader/webuploader.js"></script>
+<!-- 弹窗 -->
+<script src="../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../common/js/base/jquery/iframeTools.source.js"></script>
+
+</head>
+
+<body>
+	<form id="addWorkForm">
+		<div class="pop-con form-big">
+			<div class="form-inline">
+				<label for="name" class="min120 text-r">模板下载：</label>
+				<div class="btn btn-success width-default" name="ico-selpop" id="exportTemplate">模板下载</div>
+			</div>
+			<div id="importWay" class="mt10 form-inline">
+				<label for="number" class="min120 text-r">导入方式：</label> <label class="radio-inline">
+					<div class="radio-con">
+						<input type="radio" name="isValidity" value="false">
+					</div> 更新<span class="font-caa">（重复数据进行更新）</span>
+				</label> <label class="radio-inline on-radio">
+					<div class="radio-con">
+						<input type="radio" name="isValidity" value="true" checked="checked">
+					</div> 追加<span class="font-caa">（重复数据不再导入）</span>
+				</label>
+			</div>
+			<div class="mt10 form-inline">
+				<label for="name" class="min120 text-r">选择文件上传：</label>
+				<div class=" inline-block">
+					<div>
+						<div class="form-group">
+							<input class="form-control" name="showFileName" id="showFileName" value="" disabled="disabled">
+						</div>
+						<a class="btn btn-success width-default mr10" name="ico-selpop"
+							id="uploaderDiv">选择文件</a><a class="btn btn-success width-default"
+							name="ico-selpop" id="importBtn">导入</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="care-tips mt20">
+				<p class="c-orange fa-text">导入说明：</p>
+				<p>1.模板文件中红色字段为必填项；</p>
+				<p>2.填写数据时，请连续填写，不要有空行；</p>
+				<p>3.请勿修改模板格式和字段；</p>
+				<p>4.导入失败的记录会显示前100条错误提示信息，可通过“导出失败信息”导出所有提示信息，请根据提示信息修改后再导入。</p>
+			</div>
+			<!-- 表格区域 开始 ------>
+			<div class="sub-content">
+
+				<div class="box">
+					<div class="pull-left care-tips2 mt20">
+						导入成功<span class="text-danger" id="successCount">0条</span>数据，导入失败<span class="text-danger" id="failCount">0条</span>数据，请修改后再次导入！
+					</div>
+					<div class="box-header pull-right">
+						<button type="button" class="btn btn-success width-big" name="add" id="exportFailBtn">导出失败信息</button>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<table class="table table-bordered table-hover">
+								<thead id="thead">
+									<tr>
+									</tr>
+								</thead>
+								<tbody id="tbody">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- 表格区域 结束 --- -->
+		</div>
+	</form>
+	<script type="text/javascript">
+		seajs.config({
+			paths : {
+				"basePath" : "../js",
+				"localPath" : "../js/utils"
+			}
+		});
+		seajs.use("localPath/importFile", function(item) {
+			item.init();
+		});
+	</script>
+</body>
+</html>
+ 

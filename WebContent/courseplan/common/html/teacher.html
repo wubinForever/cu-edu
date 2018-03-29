@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>教师选择弹窗</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../common/css/courseplan.css" rel="stylesheet" />
+<link href="../../../common/css/ztree/zTreeStyle.css" rel="stylesheet"/>
+<!--日期样式-->
+<link href="../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+    <body>
+		<div class="pop-con pop-con1">
+	        <div class="header-con">
+	        	<div class="row">
+		        	<div class="col-sm-4 form-inline form-inp-con margin0">
+						<div class="form-group">
+							<label for="schoolCalendar">所属单位：</label> 
+							 <div class="toggle-tree-con vertical-align-mid drop-down-normal need-clear">
+								<div class="tips-text verification-info w220">
+									<input class="form-control inp-com toggle-tree" id="teachingUnitName" name="teachingUnitName" type="text" readonly="readonly" /> 
+									<input type="hidden" id="teachingUnitId" name="teachingUnitId" value="" />
+								</div>
+								<ul id="teachingUnitTree" class="ztree input-tree toggle-ui-up"></ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con margin0">
+						<div class="form-group">
+							<label for="name">教师类型：</label> 
+							<select class="form-control" id="teacherTypeCode" name="teacherTypeCode" style="width: 220px;"></select>
+						</div>
+					</div>
+					<div class="col-sm-4 form-inline form-inp-con margin0">
+						<div class="form-group">
+							<label for="name">教师工号/姓名：</label> 
+							<input type="text" class="form-control inp-com" id="teacherName" maxlength="50"/>
+						</div>
+					</div>
+		        </div>
+		        <button type="button" class="btn btn-primary header-btn" id="searchBtn">查询</button>
+	        </div>
+		</div>
+        <!-- 左右移动table -->
+        <div class="clearfix double-table-opra" id="shufflingId"> </div>
+		<!-- 左右移动table-End -->	
+	</body>
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<script src="../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/ztree/jquery.ztree.core-3.5.min.js"></script>
+	<script src="../../../common/js/base/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+	<!-- Seajs 模块化开发，请一定遵守 -->
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 验证 -->
+	<script type="text/javascript">
+		seajs.use("../js/teacher", function(teacher) {
+			teacher.init();
+		});
+	</script>
+</html>

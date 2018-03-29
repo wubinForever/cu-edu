@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>调剂</title>
+		<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+		<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+		<link href="../../../../common/css/reset.css" rel="stylesheet"/>
+		<link href="../../../../common/css/gta-layout.css" rel="stylesheet"/>
+		<link href="../../../../common/css/sideBar.css" rel="stylesheet"/>
+		<link href="../../../../common/css/popup.css" rel="stylesheet"/>
+		<link href="../../../../common/css/skins.css" rel="stylesheet"/>
+		<!--[if lt IE 9]>
+		   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<style>
+	td.width03, th.width03{ 
+	    width:40px;
+     }
+	 td.width05, th.width05{ 
+	    width:60px;
+     }
+     td.width06, th.width06{ 
+	    width:120px;
+     }
+      td.width07, th.width07{ 
+	    width:80px;
+     }
+	  td.width04, th.width04{ 
+	    width:70px;
+	 }
+	</style>
+	<body>
+		<div class="pop-con">
+	       <form id="queryForm">
+	     		<div class="row">
+	     		   <input type="hidden" id="theoreticalTaskId" name="theoreticalTaskId" value=""/>
+	     		    <input type="hidden" id="semester" name="semester" value=""/>
+	     		    <input type="hidden" id="courseId" name="courseId" value=""/>
+	   		    </div>
+	   		</form>   
+			<div class="box">
+				<div class="box-header pull-left">
+					选择当前教学班可调剂学生 : <i class="text-danger" id="studentCount">0</i>
+				</div>
+				<div class="box-body">
+					<div class="scorll-box">
+						<div class="table-box">
+							<table class="table table-hover table-bordered">
+								<thead>
+									<tr>
+										<th class="width03">
+											<div class="checkbox-con on-check">
+												<input type="checkbox" id="check-all" name="check-all" checked="checked"/>
+											</div>
+										</th>
+										<th class="width04">序号</th>
+										<th width="55">年级</th>
+										<th >院系</th>
+										<th>专业</th>
+										<th >班级</th>
+										<th width="100">学号</th>
+										<th width="100">姓名</th>
+										<th width="55">性别</th>
+										<th width="65">是否允许<br>调剂</th>
+									</tr>
+								</thead>
+								<tbody id="tbodycontent">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				
+				<div class="box-header pull-left">
+					选择可调剂教学班 : <i class="text-danger" id="teachingClassCount">0</i>
+				</div>
+				<div class="box-body">
+					<div class="scorll-box">
+						<div class="table-box">
+							<table class="table table-hover table-bordered">
+								<thead>
+									<tr>
+										<th class="width03"></th>
+										<th class="width03">序号</th>
+										<th class="width06">教学班</th>
+										<th class="width06">任课教师</th>
+										<th class="width06">教学班人数</th>
+										<th class="width06">可选人数上限</th>
+										<th class="width06">已选人数</th>
+									</tr>
+								</thead>
+								<tbody id="downTbodycontent">
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>   
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script> 
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox">  
+      <td class="width03"><div class="checkbox-con on-check"><input type="checkbox" checked="checked" class="checNormal" name="checNormal" value="${userId}_${teachingClassStudentId}_${theoreticalTaskId}"></div></td>
+      <td class="width04">${$index+1}</td>
+      <td width="55">${grade}</td>   
+      <td class=" text-l" title="${departmentName}">${departmentName}</td>
+      <td class=" text-l" title="${majorName}">${majorName}</td>
+      <td class=" text-l" title="${className}">${className}</td>
+      <td class="text-l" width="100">${studentNo}</td>
+      <td class="text-l" width="100" title="${studentName}">${studentName}</td>
+      <td width="55">${sexName}</td>
+      <td width="65">
+           {{if isAdjust == 1}}  
+                                       是 
+           {{else}} 
+                                       否 
+           {{/if}} 
+      </td>
+ </tr> 
+</script>
+<script id="downBodyContentImpl" type="text/x-jquery-tmpl">
+  <tr data-tt-id='${academicYear}'>  
+         <td class="width03">
+             <label>
+			     <div class="radio-con"><input type="radio" value="${theoreticalTaskId}" data-tt-id="${courseId}_${theoreticalTaskId}_${courseTypeCode}_${courseAttributeCode}_${isCoreCurriculum}_${credit}_${academicYear}_${semesterCode}_${choiceLimit}_${choicedNum}_${weekList}_${sectionList}" name="radioButton"/>
+                 </div>
+			 </label>
+         </td>
+         <td class="width03">${$index+1}</td> 
+         <td class="width06 text-l" title="${teachingClassNo}">${teachingClassNo}</td>      
+         <td class="width06 text-l" title="${teacherList}">${teacherList}</td> 
+         <td class="width06 text-r">${teachingClassMemberCount}</td>
+         <td class="width06 text-r">${choiceLimit}</td>
+         <td class="width06 text-r">${choicedNum}</td>
+ </tr>
+</script>
+<script type="text/javascript">
+	//两种方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/manageresult", function(manageresult) {
+		manageresult.initAdjust();
+	});
+	seajs.use("basePath/utils/authority");
+</script>

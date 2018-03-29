@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>权限设置</title>
+<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" /> 
+<link href="../../../common/css/reset.css" rel="stylesheet"/>
+<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../common/css/popup.css" rel="stylesheet"/>
+<link href="../../../common/css/skins.css" rel="stylesheet"/>
+  <!-- jquery版本 -->
+  <script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+  <!-- bootstrap -->
+  <script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+  <!-- Seajs 模块化开发，请一定遵守 -->
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<script src="../../../common/js/base/seajs/seajs-text.js"></script>
+	<!-- 弹窗 -->
+  <script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+  <script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+  <!-- 验证 -->
+  <script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+  <script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script> 
+</head>
+
+	<body page-auth-code="Udf_UserManage_Authority">
+			
+		<div id="userView" class="pop-con mini-pop">
+			<!-- 权限设置 -->
+			<div class="form-group form-inline formtext">
+       	      <label for="customPassword">校区：</label>
+	        	<div class="tips-text inline-block">
+					<textarea class="form-control tarea-com mr10" rows="3" id="campusNames"
+						name="campusNames" maxlength="500" readOnly="true"></textarea>
+						<input id="campusIds" name="campusIds" type="hidden"> <button type="button" class="btn btn-success width-default" name="campusSelect">请选择</button>
+				</div>
+               
+			 </div>
+             <div class="form-group form-inline formtext">
+       	      <label for="customPassword">院系：</label>
+	        	<div class="tips-text inline-block">
+					<textarea class="form-control tarea-com mr10" rows="3" id="departmentNames"
+						name="departmentNames" maxlength="500" readOnly="true"></textarea> 
+						<input id="departmentIds" name="departmentIds" type="hidden"><button type="button" class="btn btn-success width-default" name="departmentSelect">请选择</button>
+				</div>
+               
+			 </div>
+             <div class="form-group form-inline formtext">
+       	      <label for="customPassword">开课单位：</label>
+	        	<div class="tips-text inline-block">
+					<textarea class="form-control tarea-com mr10" rows="3" id="commencementUnitNames"
+						name="commencementUnitNames" maxlength="500" readOnly="true"></textarea>
+						<input id="commencementUnitIds" name="commencementUnitIds" type="hidden"> <button type="button" class="btn btn-success width-default" name="commencementUnitSelect">请选择</button>
+				</div>
+			 </div>
+		</div>	
+	</body>
+</html>
+<script type="text/javascript">	
+    seajs.config({paths:{"basePath":"../../../common/js","configPath":"../../../common/js/config","localPath":"../js"}});
+	seajs.use("localPath/user",function(user){
+		user.initAuthority();
+	}); 
+	seajs.use("basePath/utils/authority");
+</script>

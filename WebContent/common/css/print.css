@@ -1,0 +1,30 @@
+/**
+* print 
+* 2017.11 打印样式表  
+* pan.wenbin
+* 
+*/
+
+/* use a media query to limit the CSS to only print devices, like a printer */
+@media only print
+{
+	.print-hidden{
+		display: none !important;
+	}
+	
+	.print-show{
+		display: block !important;
+	}
+	
+	.sub-content{
+		padding-top: 0 !important;
+		padding-bottom: 0 !important;
+	}
+	
+	.table tbody tr td {
+	    padding: 4px;
+	}
+	.table tbody tr th {
+	    padding: 4px;
+	}
+}

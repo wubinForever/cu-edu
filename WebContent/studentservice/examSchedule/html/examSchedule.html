@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>考试安排查询</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+</head>
+<body page-auth-code="StudentService_StudentArchives_AlienChange">
+   <!-- 内容框架 开始-->
+    <div class="layout-index">
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年学期：</label>
+							<select class="form-control sel-com" id="academicSemesterSelect" name="academicSemesterSelect"></select>
+						</div>
+					</div>	
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">考试批次：</label>
+							<select class="form-control sel-com" id="examinationbatchSelect" name="examinationbatchSelect"></select>
+						</div>
+					</div>				
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn" name="query" id="query">查询</button>
+		</div>
+	</div>
+	<!--筛选查询 结束-->
+	<!-- 内容 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-header pull-right">
+						<button type="button" class="btn btn-success width-default" name="export" id="export">导出</button>
+					</div>
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th>考试日期</th>
+											<th>考试时间</th>
+											<th>考场</th>
+											<th>考试课程</th>
+											<th>考核方式</th>
+											<th>特殊情况</th>
+											<th>座位号</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="width48">1</td>
+											<td>2018-01-25</td>
+											<td>第17周星期一，第1场（08:00-10:00）</td>
+											<td>校园本部 11栋 103教室</td>
+											<td>01022365]计算机科学与技术</td>
+											<td>考查</td>
+											<td>缓考</td>
+											<td>1</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					    <div class="scorll-box mt20">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th>类别</th>
+											<th>修读课程/环节数</th>
+											<th>学分</th>
+											<th>获得学分</th>
+											<th>获得绩点</th>
+											<th>获得学分绩点</th>
+											<th>获得学分平均绩点</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="width48">1</td>
+											<td>公共必修课</td>
+											<td>3</td>
+											<td>9</td>
+											<td>9</td>
+											<td>40</td>
+											<td>40</td>
+											<td>40</td>
+										</tr>
+										<tr>
+											<td class="width48"></td>
+											<td>课程合计</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td class="width48"></td>
+											<td>环节合计</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+										<tr>
+											<td class="width48"></td>
+											<td>总计</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+   </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		// seajs.use("localPath/studentArchives", function(studentArchives) {
+		// 	studentArchives.init();
+		// });
+		// seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

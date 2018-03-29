@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<title>成绩修改</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../../common/js/base/core/page/pagination.css" rel="stylesheet"/>
+</head>
+<body page-auth-code="ScoreService_Entry_Update">
+<!-- 内容框架 开始------------------------------------------------------------->
+<div class="layout-index">
+	<div class="container-fluid">
+		<div class="header-con mb10">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name" class="min120">修读学年学期：</label>
+							<select	class="form-control sel-com" id="semester" name="semester"></select>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name"><i class="text-danger">*</i> 学号/姓名：</label>
+							<!-- <input class="form-control inp-com" name="studentNoOrName" id="studentNoOrName"  maxlength="20" /> -->
+							<input class="form-control inp-com"  id="studentNoOrName" name="studentNoOrName">
+							<div id="studentSelect"></div>
+						</div>
+					</div>
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">课程/环节：</label>
+							<input class="form-control inp-com" name="courseNoOrName" id="courseNoOrName" value="" maxlength="20" /> 
+						</div>
+					</div>
+
+				</div>
+			</form>
+			<button type="button" class="btn btn-primary header-btn"  name="query"
+					id="query">查询</button>
+		</div>
+	</div>
+	<!--提示信息-->
+	<div class="care-tips mb10"><p>年级：<span id="grade"></span><span class="ml20">院系：<span id="departmentName"></span></span><span class="ml20">专业：<span id="majorName"></span></span><span class="ml20">班级：<span id="className"></span></span><span class="ml20">学生：<span id="studentName"></span></span> </p>
+	</div>
+	<!-- 正式内容区域 开始 ------>
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body">
+						<div class="scorll-box">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+									<tr>
+										<th class="width48">序号</th>
+										<th>修读学年学期</th>
+										<th>课程/环节</th>
+										<th class="width60">学分</th>
+										<th class="width48">考核<br/>方式</th>
+										<th class="width70">类型</th>
+										<th class="width48">平时<br/>成绩</th>
+										<th class="width48">期中<br/>成绩</th>
+										<th class="width48">期末<br/>成绩</th>
+										<th class="width48">技能<br/>成绩</th>
+										<th class="width48">总评<br/>成绩</th>
+										<th class="width70">特殊情况</th>
+										<th>取得学年学期</th>
+										<th class="width60">状态</th>
+										<th class="width60">操作</th>
+									</tr>
+									</thead>
+									<tbody id="tbodycontent">
+									<!-- <tr>
+										<td class="width48">1</td>
+										<td>2017-2018学年 第一学期</td>
+										<td class="text-l">[23428]数据库设计</td>
+										<td class="width60 text-r">2</td>
+										<td class="width48">考试</td>
+										<td class="width48">课程</td>
+										<td class="width48 text-r">90.0</td>
+										<td class="width48 text-r">90.0</td>
+										<td class="width48 text-r">90.0</td>
+										<td class="width48 text-r">86.0</td>
+										<td class="width48 text-r">90.0</td>
+										<td class="width70"></td>
+										<td>2017-2018学年 第一学期</td>
+										<td class="width60">待审核</td>
+										<td class="width60">
+										<button type="button" class="btn-text" name="view" >查看</button>
+										<button type="button" class="btn-text" name="modify" >修改</button></td>
+									</tr> -->
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="pagination" class="pagination"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 正式内容区域 结束 --- -->
+</div>
+<!-- 内容框架 结束 ------------------------------------------------------------>
+<!-- jquery版本 -->
+<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<!-- bootstrap -->
+<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 弹窗 -->
+<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../common/js/base/core/page/pagination.js"></script>
+
+<!-- 验证 -->
+<script src="../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<!--加载meta IE兼容文件-->
+<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+<![endif]-->
+
+<!-- 列表内容 -->
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+<tr class="tr-checkbox" academicYear="${academicYear}" semesterCode="${semesterCode}" studentNo="${studentNo}" semesterYearCode="${semesterYearCode}" courseId="${courseId}"> 
+		<td class="width48" title="${id}" >${id}</td>
+		<td title="${semester}">${semester}</td>
+		<td class="text-l" title="${courseName}">${courseName}</td>
+		<td class="width60  text-r" title="${credit}">${credit}</td>
+		<td class="width48" title="${checkWakyName}">${checkWakyName}</td>
+		<td class="width70" title="${classTypeName}">${classTypeName}</td>
+		<td class="width48  text-r" title="${usualScore}">${usualScore}</td>
+		<td class="width48  text-r" title="${midtermScore}">${midtermScore}</td>
+		<td class="width48  text-r" title="${endtermScore}">${endtermScore}</td>
+		<td class="width48  text-r" title="${skillScore}">${skillScore}</td>
+		<td class="width48  text-r" title="${totalScoreall}">${totalScoreall}</td>
+		<td class="width70" title="${specialCaseName}">${specialCaseName}</td>
+		<td title="${scoreSemester}">${scoreSemester}</td>
+		<td class="width60" title="${auditStatusName}">${auditStatusName}</td>
+		<td class="width60">
+{{if showUpdate }}
+			<button type="button" class="btn-text" name="modify" data-tt-id="${originalScoreId}" auth-code="ScoreService_Entry_Update_Update">修改</button>
+{{else}}
+			<button type="button" class="btn-text" name="view" data-tt-id="${originalScoreId}" auth-code="ScoreService_Entry_Update_Detail">查看</button>
+{{/if}}
+		</td>
+	</tr>
+</script>
+<script type="text/javascript">
+	//方法引用
+	seajs.config({
+		paths : {
+			"basePath" : "../../../common/js",
+			"configPath" : "../../../common/js/config",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/scoreModify",function(scoreModify){
+		scoreModify.init();
+	});
+	seajs.use("basePath/utils/authority");
+</script>
+</body>
+</html>

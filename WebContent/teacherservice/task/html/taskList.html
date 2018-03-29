@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<title>教学任务</title>
+	<link href="../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+	<link href="../../../common/css/font-awesome.min.css" rel="stylesheet" />
+	<link href="../../../common/css/reset.css" rel="stylesheet"/>
+	<link href="../../../common/css/gta-layout.css" rel="stylesheet"/>
+	<link href="../../../common/css/sideBar.css" rel="stylesheet"/>
+	<link href="../../../common/css/popup.css" rel="stylesheet"/>
+	<link href="../../../common/css/skins.css" rel="stylesheet"/>
+	<link href="../../../common/css/basic-data.css" rel="stylesheet" />
+	<link href="../../teacherservice.css" rel="stylesheet" />
+</head>
+<body page-auth-code="TeacherService_TeachingTask">
+   <!-- 内容框架 开始-->
+    <div class="layout-index">
+	<div class="container-fluid col-xs-12">
+		<div class="header-con">
+			<form id="queryForm">
+				<div class="row">
+					<div class="col-md-4 form-inline form-inp-con">
+						<div class="form-group">
+							<label for="name">学年学期：</label>
+							<select class="form-control sel-com" id="academicYearSemesterSelect" name="academicYearSemesterSelect"></select>
+						</div>
+					</div>				
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- 内容 开始 -->
+	<div class="sub-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<div class="box">
+					<div class="box-body">
+						<div class="clearfix">
+						   <div class="pull-left mt20 mb10">理论课程教学任务：<span id="coursecount">0</span></div>
+						</div>
+						<div class="scorll-box scorll-boxauto">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th class="width15">开课单位</th>
+											<th class="width15">课程</th>
+											<th class="width45" style="min-width:35px;">学分</th>
+											<th class="width45" style="min-width:35px;">总<br>学时</th>
+											<th class="width45" style="min-width:35px;">理论<br>学时</th>
+											<th class="width45" style="min-width:35px;">实验<br>学时</th>
+											<th class="width45" style="min-width:35px;">实践<br>学时</th>
+											<th class="width45" style="min-width:35px;">其他<br>学时</th>
+											<th class="width45" style="min-width:35px;">授课<br>方式</th>
+											<th class="width45" style="min-width:35px;">周<br>学时</th>
+											<th class="width45" style="min-width:35px;">周次</th>
+											<th class="width45" style="min-width:35px;">单双周</th>
+											<th class="width45" style="min-width:35px;">考核<br>方式</th>
+											<th class="width110">教学班</th>
+											<th class="width55">教学班<br>人数</th>
+											<th class="width70">操作</th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontentone">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+                        <div class="pull-left mt20 mb10">实践环节教学任务：<span id="practicecount">0</span></div>
+					    <div class="scorll-box mt20  scorll-boxauto">
+							<div class="table-box">
+								<table class="table table-bordered table-hover">
+									<thead>
+										<tr>
+											<th class="width48">序号</th>
+											<th>开课单位</th>
+											<th>环节</th>
+											<th class="width80">环节类别</th>
+											<th class="width75">年级</th>
+											<th>院系</th>
+											<th>专业</th>
+											<th class="width55">学分</th>
+											<th class="width70">实践周次</th>
+											<th class="width70">小组号</th>
+											<th class="width55">小组<br>人数</th>
+											<th class="width70">操作</th>
+										</tr>
+									</thead>
+									<tbody id="tbodycontenttwo">
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容 结束 -->
+   </div>
+    <!-- 内容框架 结束 -->
+	<!-- jquery版本 -->
+	<script src="../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+	<!-- bootstrap -->
+	<script src="../../../common/js/base/bootstrap/bootstrap.js"></script>
+	<script src="../../../common/js/base/seajs/2.2.0/sea.js"></script>
+	<!-- 弹窗 -->
+	<script src="../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+	<script src="../../../common/js/base/jquery/iframeTools.source.js"></script>
+	<!-- 模块渲染template -->
+	<script src="../../../common/js/base/jquery/jquery.tmpl.js"></script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImplOne" type="text/x-jquery-tmpl">
+		<tr>
+			<td class="width48" teachingClassId="${id}">${$index+1}</td>
+			<td title="${departmentName}" class="text-l width15">${departmentName}</td>
+			<td title="[${courseNo}]${courseName}" courseNo=${courseNo} courseName="${courseName}" class="text-l width15">[${courseNo}]${courseName}</td>
+			<td class="width45 text-r" title="${credit}" style="min-width:35px;">${credit}</td>
+			<td class="width45 text-r" title="${totalPeriod}" style="min-width:35px;">${totalPeriod}</td>
+			<td class="width45 text-r" title="${theoryPeriod}" style="min-width:35px;">${theoryPeriod}</td>
+			<td class="width45 text-r" title="${experiPeriod}" style="min-width:35px;">${experiPeriod}</td>
+			<td class="width45 text-r" title="${practicePeriod}" style="min-width:35px;">${practicePeriod}</td>
+			<td class="width45 text-r" title="${otherPeriod}" style="min-width:35px;">${otherPeriod}</td>
+			<td class="width45" title="${teachingMethodsName}" style="min-width:35px;">${teachingMethodsName}</td>
+			<td class="width45 text-r" title="${weeklyHours}" style="min-width:35px;">${weeklyHours}</td>
+			<td class="width45 text-l" title="${arrangeWeeks}" style="min-width:35px;">${arrangeWeeks}</td>
+			<td class="width45" title="${weekName}" style="min-width:35px;">${weekName}</td>
+			<td class="width45" title="${checkWayName}" style="min-width:35px;">${checkWayName}</td>
+			<td class="text-l width110" title="${teachingClassNo}" teachingClassNo="${teachingClassNo}">${teachingClassNo}</td>
+			<td title="${teachingClassMemberCount}" class="classCount width55  text-r">${teachingClassMemberCount}</td>
+			<td class="width70"><button type="button" {{if teachingClassMemberCount < 1}} class="btn-text  disabled" disabled="disabled"{{/if}} class="btn-text" name="classCheck" auth-code="TeacherService_TeachingTask_ViewTeachingClass">查看</button></td>
+		</tr>
+	</script>
+	<!-- 列表内容 -->
+	<script id="bodyContentImplTwo" type="text/x-jquery-tmpl">
+		<tr>
+			<td class="width48">${$index+1}</td>
+			<td title="${departmentName}" class="text-l">${departmentName}</td>
+			<td title="[${courseNo}]${courseName}" class="courseName text-l">[${courseNo}]${courseName}</td>
+			<td title="${tacheTypeName}" class="text-l width80">${tacheTypeName}</td>
+			<td title="${grade}"  class="width75">${grade}</td>
+			<td title="${departmentNameYx}" class="text-l">${departmentNameYx}</td>
+			<td title="${majorName}" class="text-l">${majorName}</td>
+			<td class="width55 text-r" title="${credit}">${credit}</td>
+			<td class="width70 text-l" title="${practiceWeeks}">${practiceWeeks}</td>
+			<td class="width70 text-r groupNo" title="${groupNo}">${groupNo}</td>
+			<td class="width55 memberCount text-r" title="${memberCount}">${memberCount}</td>
+			<td class="width70" practicalArrangeId="${practicalArrangeId}"><button type="button" {{if memberCount < 1}} class="btn-text  disabled" disabled="disabled"{{/if}} class="btn-text" name="rollCheck" auth-code="TeacherService_TeachingTask_ViewCourse">查看</button></td>
+		</tr>
+	</script>
+	<script type="text/javascript">		
+		//方法引用
+		seajs.config({
+			paths : {
+				"basePath" : "../../../common/js",
+				"configPath" : "../../../common/js/config",
+				"localPath" : "../js"
+			}
+		});
+		seajs.use("localPath/taskList", function(taskList) {
+			taskList.init();
+		});
+		seajs.use("basePath/utils/authority");
+	</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8">
+<title>班级环节周次设置（按年级/专业）</title>
+<link href="../../../../common/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+<link href="../../../../common/css/font-awesome.min.css" rel="stylesheet" />
+<link href="../../../../common/css/reset.css" rel="stylesheet" />
+<link href="../../../../common/css/gta-layout.css" rel="stylesheet" />
+<link href="../../../../common/css/sideBar.css" rel="stylesheet" />
+<link href="../../../../common/css/basic-data.css" rel="stylesheet" />
+<link href="../../../../common/css/popup.css" rel="stylesheet" />
+<link href="../../../../common/css/skins.css" rel="stylesheet" />
+<link href="../../../../common/css/courseplan.css" rel="stylesheet" />
+<!--日期样式-->
+<link href="../../../../common/js/base/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+</head>
+<body page-auth-code="CoursePlan_Practice_ClassSection_TeachingFaculty" style="overflow: hidden;">
+	<!-- 内容框架 开始------------------------------------------------------------->
+	<div class="layout-index">
+		<div class="container-fluid col-xs-12">
+			<div class="header-con ">
+				<form id="">
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="schoolCalendar">学年学期：</label> 
+								<select class="form-control sel-com" id="semester" name="semester">
+								</select>
+							</div>
+						</div>						
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">年级：</label> 
+								<select class="form-control sel-com" id="grade" name="grade">									
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">院系：</label> 
+								<select class="form-control sel-com" id="departmentId" name="departmentId">									
+								</select>
+							</div>
+						</div>	
+					</div>
+					<div class="row">
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="name">专业：</label> 
+								<select class="form-control sel-com" id="majorId" name="majorId">									
+								</select>
+							</div>
+						</div>
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">环节号/名称：</label> 
+								<input class="form-control inp-com" name="courseNo" id="courseNo" value="">
+								<input type="text" style="display: none;" />
+							</div>
+						</div>	
+						<div class="col-md-4 form-inline form-inp-con">
+							<div class="form-group form-normal">
+								<label for="">设置状态：</label> 
+								<select class="form-control sel-com" id="setState" name="setState">									
+									<option value="0" selected="selected">全部</option>
+									<option value="1">未完成</option>
+									<option value="2">已完成</option>
+								</select>
+							</div>
+						</div>					
+					</div>
+				</form>
+				<button type="button" class="btn btn-primary header-btn" name="searchInp">查询</button>
+			</div>
+		</div>
+		<div class="sub-content">
+			<div class="row">
+				<div class="col-xs-12">
+					<div class="box">						
+						<div class="box-body">
+							<div class="scorll-box">
+								<div class="table-box">
+									<table class="table table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="width05">序号</th>
+												<th class="width65">年级</th>
+												<th>院系</th>
+												<th>专业</th>
+												<th class="width85">环节号</th>
+												<th class="">环节名称</th>
+												<th class="width75">环节类别</th>
+												<th class="">开课单位</th>
+												<th class="width55">学分</th>
+												<th class="width145">指导教师</th>
+												<th class="width75">设置状态</th>
+												<th class="width75">操作</th>
+											</tr>
+										</thead>
+										<tbody id="tbodycontent">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 内容框架 结束 ------------------------------------------------------------>
+</body>
+</html>
+<!-- jquery版本 -->
+<script src="../../../../common/js/base/jquery/jquery-1.9.1.min.js"></script>
+<script src="../../../../common/js/base/My97DatePicker/WdatePicker.js"></script>
+<!-- bootstrap -->
+<script src="../../../../common/js/base/bootstrap/bootstrap.js"></script>
+<!-- 弹窗 -->
+<script src="../../../../common/js/base/jquery/jquery.artDialog.source.js"></script>
+<script src="../../../../common/js/base/jquery/iframeTools.source.js"></script>
+<!-- Seajs 模块化开发，请一定遵守 -->
+<script src="../../../../common/js/base/seajs/2.2.0/sea.js"></script>
+<!-- 模块渲染template -->
+<script src="../../../../common/js/base/jquery/jquery.tmpl.js"></script>
+<!-- 分页 -->
+<script src="../../../../common/js/base/core/page/pagination.js"></script>
+<link href="../../../../common/js/base/core/page/pagination.css" rel="stylesheet" />
+<!-- 验证 -->
+<script src="../../../../common/js/base/jquery/jquery.validate.js"></script>
+<script src="../../../../common/js/base/jquery/jquery.validate.custom.js"></script>
+<script id="bodyContentImpl" type="text/x-jquery-tmpl">
+  <tr class="tr-checkbox">  
+     <td class="width05">${id}</td>
+     <td class="width65" >${grade}</td>
+     <td class="text-l" >${yxDepartmentName}</td>    
+    <td class="text-l" >${majorName}</td>    
+     <td class="width85 text-l" >${courseNo}</td>
+     <td class="text-l" >${courseName}</td>  
+     <td class="width75">${tacheTypeName}</td>
+     <td class="text-l" >${departmentName}</td>   
+     <td class="width55 text-r">${credit}</td> 
+ 	{{if teachers}}
+     <td class="text-l width145 open-message" data="{{each(i,item) teachers}}${item}#@#{{/each}}">
+		{{each(i,item) teachers}}
+			{{if i < 4}}
+				<div class='ellipsis ellipsis-td'></div>${item}<br/>
+			{{/if}}
+		{{/each}}
+	 </td>
+    {{else}}
+		<td class="text-l width145" data="">
+		 </td>
+    {{/if}} 
+     <td class="width75">${setstate}</td> 
+     <td class="width75"><button type="button" auth-code="CoursePlan_Practice_ClassSection_TeachingFaculty_Add" class="btn-text" name="weekset" startclassPlanIds=${startclassPlanIds} courseId=${courseId}>设置</button></td>
+  </tr> 
+</script> 
+<script type="text/javascript">
+	seajs.config({
+		paths : {
+			"basePath":"../../../../common/js",
+			"localPath" : "../js"
+		}
+	});
+	seajs.use("localPath/gradeProfessionList", function(gradeProfessionList) {
+		gradeProfessionList.init();
+	});
+</script>
